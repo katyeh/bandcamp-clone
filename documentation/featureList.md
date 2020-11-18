@@ -14,6 +14,8 @@
     * Landing Page
         * User login/registration
     * Homepage/Main Page
+        * Navbar
+            * Persistent search bar
     * Footer
 5. Stretch Goals
     * Ability to purchase Songs
