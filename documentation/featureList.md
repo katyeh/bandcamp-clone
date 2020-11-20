@@ -28,7 +28,7 @@
      * Includes creators
 6. Stretch Goals
    * Ability to purchase and download songs
-   * Follows
+   * Follows and Likes
    * Persisting song player
    * Advanced search (categories, tags, autocomplete, display by type)
    * User registration/login
