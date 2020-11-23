@@ -6,8 +6,8 @@ class Follower(db.Model):
   __tablename__ = 'followers'
 
   id = Column(Integer, primary_key=True)
-  follower_id = Column(Integer, nullable=False, ForeignKey="artists.id")
-  followed_id = Column(Integer, nullable=False, ForeignKey="artists.id")
+  follower_id = Column(Integer, ForeignKey("artists.id"), nullable=False)
+  followed_id = Column(Integer, ForeignKey("artists.id"), nullable=False)
 
   def to_dict(self):
     return {
