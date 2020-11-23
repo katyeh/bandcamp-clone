@@ -1,5 +1,5 @@
 from .db import db
-from sqlalchmey.schema import Column, ForeignKey
+from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, String, Date, Boolean
 
 class Genre(db.Model):

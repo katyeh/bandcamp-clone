@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-function User() {
-  const [user, setUser] = useState({});
+function Artist() {
+  const [user, setArtist] = useState({});
   // Notice we use useParams here instead of getting the params
   // From props.
   const { userId }  = useParams();
@@ -14,7 +14,7 @@ function User() {
     (async () => {
       const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
-      setUser(user);
+      setArtist(user);
     })();
   }, [userId]);
 
@@ -25,10 +25,10 @@ function User() {
   return (
     <ul>
       <li>
-        <strong>User Id</strong> {userId}
+        <strong>Artist Id</strong> {userId}
       </li>
       <li>
-        <strong>Username</strong> {user.username}
+        <strong>Artistname</strong> {user.username}
       </li>
       <li>
         <strong>Email</strong> {user.email}
@@ -36,4 +36,4 @@ function User() {
     </ul>
   );
 }
-export default User;
+export default Artist;

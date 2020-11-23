@@ -3,7 +3,7 @@
    * Artist registration with validations
    * Login page for artists with validations
    * Artist authentication that persists throughout session
-   * Guest User (for demonstration)
+   * Guest Artist (for demonstration)
    * Login/Logout functionality
    * Profile/Profile photo that appears in top right when logged in
    * Ability to upload and like songs
@@ -30,7 +30,7 @@
 6. UI Design
 
    * Landing Page
-     * User login/registration
+     * Artist login/registration
    * Homepage/Main Page
      * Navbar
        * Persistent search bar
@@ -43,4 +43,4 @@
    * Follows and Likes
    * Persisting song player
    * Advanced search (categories, tags, autocomplete, display by type)
-   * User registration/login
+   * Artist registration/login

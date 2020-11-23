@@ -1,5 +1,5 @@
 from .db import db
-from sqlalchmey.schema import Column, ForeignKey
+from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, String, Date, Boolean
 
 class Album(db.Model):
@@ -7,7 +7,8 @@ class Album(db.Model):
 
     id = Column(db.Integer, primary_key=True)
     title = Column(db.String(50), nullable=False)
-    albumArtUrl = Column(db.String(1000), default=)
+    albumArtUrl = Column(db.String(
+        1000), default='https://busker2.s3.amazonaws.com/defaultalbumcover.jpg')
     releaseDate = Column(db.Date)
     single = Column(db.Boolean)
 

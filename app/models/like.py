@@ -6,8 +6,8 @@ class Like(db.Model):
     __tablename__ = 'likes'
 
     id = Column(db.Integer, primary_key=True)
-    track_id = Column(db.Integer, ForeignKey("track.id"), nullable=False)
-    artist_id = Column(db.Integer, ForeignKey("artist.id"), nullable=False)
+    track_id = Column(db.Integer, ForeignKey("tracks.id"), nullable=False)
+    artist_id = Column(db.Integer, ForeignKey("artists.id"), nullable=False)
 
 def to_dict(self):
     return {
