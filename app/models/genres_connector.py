@@ -1,5 +1,5 @@
 from .db import db
-from sqlalchmey.schema import Column, ForeignKey
+from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, String, Date, Boolean
 
 class GenresConnector(db.Model):
@@ -18,6 +18,6 @@ def to_dict(self):
             "genre_id": self.genre_id,
             "album_id": self.album_id,
             "track_id": self.track_id,
-            "artist_id": self.artist_id,
+            "artist_id": self.artist_id
         }
     }
