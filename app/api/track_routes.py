@@ -11,8 +11,10 @@ def create_comment(id):
   if comment_data.validate_on_submit():
     comment = Comment()
     comment_data.populate_obj(comment)
-    db.session.add(comment)
-    db.session.commit()
-    return redirect('/')
 
-  return 'Error'; # Need to switch to actual error data.
+    try:
+      db.session.add(comment)
+      db.session.commit()
+      return redirect('/')
+    except: # Need to add error type
+      return 'Error creating a comment.'; 
