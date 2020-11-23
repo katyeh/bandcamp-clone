@@ -6,22 +6,28 @@
    * Guest User (for demonstration)
    * Login/Logout functionality
    * Profile/Profile photo that appears in top right when logged in
+   * Ability to upload and like songs
 2. Artist Page
 
    * Ability to tip artists
      * Button to tip x amount
      * Customize background/header
-3. Songs
+3. Comments
+
+   * Ability to tip artists
+     * Button to tip x amount
+     * Customize background/header
+4. Songs
 
    * Song player
      * Sound wave
    * Ability to upload songs
-4. Search
+5. Search
 
    * Ability to search by artist or song
      name
    * Dropdown list of categories
-5. UI Design
+6. UI Design
 
    * Landing Page
      * User login/registration
@@ -31,7 +37,7 @@
        * Profile dropdown on top right
    * Footer
      * Includes creators
-6. Stretch Goals
+7. Stretch Goals
 
    * Ability to purchase and download songs
    * Follows and Likes

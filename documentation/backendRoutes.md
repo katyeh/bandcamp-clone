@@ -19,6 +19,10 @@
   * GET /songs => gets all songs
   * GET /songs/:id => gets a single song (returns title, descrip, artist, genre, and createdAt)
   * DELETE /songs/:id => delete a song
+* comments
+  * GET /songs/:id/comments => gets all comments for a single song
+  * POST /songs/:id/comments => create a new comment
+  * DELETE /comments/:id => delete a comment
 * likes
   * GET /songs/:id/likes => gets all likes for a single song
   * POST /songs/:id/likes => adds a like to a single song
