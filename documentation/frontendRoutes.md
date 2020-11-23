@@ -1,7 +1,7 @@
 # Front End Routes
 
 * / (splash)
-* .login
+* /login
 * /sign-up
 * / (main)
   * Nav bar
