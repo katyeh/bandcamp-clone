@@ -4,11 +4,13 @@ from app.models import db, Artist
 # Adds a demo user, you can add other users here if you want
 def seed_users():
 
-    demo = Artist(username='Demo', email='demo@aa.io',
-                password='password')
+    demo = Artist(name='Demo',username='Demo', email='demo@aa.io', bio='',country='US',
+        city='San Francisco',password='password')
+
+    demo = Artist(name='Demo', username='Demo', email='demo@aa.io', bio='', country='US',
+                  city='San Francisco', profile_image_url='', cover_image_url='', password='password')
 
     db.session.add(demo)
-
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.
