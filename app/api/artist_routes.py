@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import Artist, Track
+from app.models import Artist, Track, Album
 
 artist_routes = Blueprint('artists', __name__)
 
@@ -27,7 +27,7 @@ def artist_all_tracks():
 
 
 @artist_routes.route('/<int:id>/albums', methods=['GET'])
-def artist_all_tracks():
+def artist_all_albums():
     albums = Album.query.filter_by(id).all()
     if len(albums) > 0:
         return jsonify(album)
@@ -43,29 +43,35 @@ def new_track():
         try:
             new_song = Song()
         except:
+            pass
     else:
         return jsonify(error='Missing Arguments')
 
 
-/////
 
 
-@app.route('/ratings/<int:book_id>', methods=['POST'])
-def post_rating(book_id):
-    # print(request.args.get('value') is not '')
-    # print(request.remote_addr)
-    if request.args is False:
-        return jsonify(error='Bad Data')
-    elif request.args.get('value') is not '' and request.args.get('email') is not '':
-        try:
-            new_rating = Rating(value=int(request.args.get(
-                'value')), book_id=book_id, email=request.args.get('email'))
-            db.session.add(new_rating)
-            db.session.commit()
-            return jsonify(new_rating={'email': new_rating.email, 'value': new_rating.value, 'book_id': book_id})
-        except IntegrityError as e:
-            print(e)
-            return jsonify(error='Each user can only submit one rating per book.')
-    else:
-        return jsonify(error='Missing Arguments')
+@artist_routes.route('/<int:id>/followers')
+def get_followers(id):
+  followers = Follower.query.filter(Follower.followedId == id).all()
+  return jsonify(followers = followers)
 
+@artist_routes.route('/<int:artistId>/followers', methods=["POST"])
+@login_required
+def follow(artistId):
+  follower = Follower(followerId=request.args.get(id), followedId=artistId)
+
+  try:
+    db.session.add(follower)
+    db.session.commit()
+    return redirect('/')
+  except: # Need to add error type
+    return 'Error creating a follower.', 404;
+
+@artist_routes.route('/<int:artistId>/followers', methods=["DELETE"])
+@login_required
+def unfollow(artistId):
+  follower_data = Follower.query.filter(Follower.followerId == request.args.get(id) 
+                                        and Follower.followedId == artistId).first()
+  db.session.delete(follower_data)
+  db.commit()
+  return jsonify(message = f"Unfollowed artist with id of ${artistId}.")

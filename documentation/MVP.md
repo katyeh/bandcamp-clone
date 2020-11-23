@@ -4,7 +4,7 @@
     * Artist registration with validations
     * Login page for artists with validations
     * Artist authentication that persists throughout session
-    * Guest User (for demonstration)
+    * Guest Artist (for demonstration)
     * Login/Logout functionality
 2. Artist page
     * Ability to tip artists
