@@ -26,7 +26,7 @@
 * likes
   * GET /tracks/:id/likes => gets all likes for a single track
   * POST /tracks/:id/likes => adds a like to a single track
-  * DELETE /tracks/:id/likes => remove like to a single track
+  * DELETE likes/:id => remove like to a single track
 * followers
   * GET /artists/:id/followers => gets all followers for an artist
   * POST /artists/:id/followers => follow an artist
