@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function UsersList() {
-  const [users, setUsers] = useState([]);
+function ArtistsList() {
+  const [users, setArtists] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("/api/users/");
       const responseData = await response.json();
-      setUsers(responseData.users);
+      setArtists(responseData.users);
     }
     fetchData();
   }, []);
@@ -23,10 +23,10 @@ function UsersList() {
 
   return (
     <>
-      <h1>User List: </h1>
+      <h1>Artist List: </h1>
       <ul>{userComponents}</ul>
     </>
   );
 }
 
-export default UsersList;
+export default ArtistsList;

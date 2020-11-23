@@ -1,5 +1,5 @@
 from .db import db
-from sqlalchmey.schema import Column, ForeignKey
+from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, String, Date, Boolean
 
 class Transaction(db.Model):
@@ -7,8 +7,8 @@ class Transaction(db.Model):
 
     id = Column(db.Integer, primary_key=True)
     amount = Column(db.Integer, default=50, nullable=False)
-    sender_id = Column(db.Integer, ForeignKey("user.id"), nullable=False)
-    recipient_id = Column(db.Integer, ForeignKey("user.id"), nullable=False)
+    sender_id = Column(db.Integer, ForeignKey("artists.id"), nullable=False)
+    recipient_id = Column(db.Integer, ForeignKey("artists.id"), nullable=False)
 
 def to_dict(self):
     return {

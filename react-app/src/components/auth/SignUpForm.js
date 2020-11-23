@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../services/auth';
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
-  const [username, setUsername] = useState("");
+  const [username, setArtistname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -18,8 +18,8 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
+  const updateArtistname = (e) => {
+    setArtistname(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -41,11 +41,11 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   return (
     <form onSubmit={onSignUp}>
       <div>
-        <label>User Name</label>
+        <label>Artist Name</label>
         <input
           type="text"
           name="username"
-          onChange={updateUsername}
+          onChange={updateArtistname}
           value={username}
         ></input>
       </div>

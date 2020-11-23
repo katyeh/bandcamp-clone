@@ -1,5 +1,5 @@
 from .db import db
-from sqlalchemy.types import Integer
+from sqlalchemy.types import Integer, String
 from sqlalchemy.schema import Column, ForeignKey
 
 class Comment(db.Model):
@@ -12,7 +12,7 @@ class Comment(db.Model):
 
   def to_dict(self):
     return {
-      self.id {
+      self.id: {
         "id": self.id,
         "track_id": self.track_id,
         "artist_id": self.artist_id,
