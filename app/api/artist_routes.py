@@ -35,13 +35,13 @@ def follow(artistId):
     db.session.commit()
     return redirect('/')
   except: # Need to add error type
-    return 'Error creating a follower.';
+    return 'Error creating a follower.', 404;
 
-@comment_routes.route('/<int:artistId>/followers', methods=["DELETE"])
+@artist_routes.route('/<int:artistId>/followers', methods=["DELETE"])
 @login_required
 def unfollow(artistId):
   follower_data = Follower.query.filter(Follower.followerId == request.args.get(id) 
-                        and Follower.followedId == artistId).first()
+                                        and Follower.followedId == artistId).first()
   db.session.delete(follower_data)
   db.commit()
-  return jsonify(message = f"Unfollowed artist with id of ${artistId}."})
+  return jsonify(message = f"Unfollowed artist with id of ${artistId}.")
