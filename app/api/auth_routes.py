@@ -62,10 +62,15 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # if not form.data['profile_image_url']:
-    #     form.data['profile_image_url'] = 'https://busker2.s3.amazonaws.com/defaultimage2.jpeg'
-    # if not form.data['cover_image_url']:
-    #     form.data['cover_image_url'] = 'https://busker2.s3.amazonaws.com/busker_logo.png'
+
+    profile = form.data["profile_image_url"]
+    cover = form.data['cover_image_url']
+
+    if not form.data['profile_image_url']:
+        profile = 'https://busker2.s3.amazonaws.com/defaultimage2.jpeg'
+    if not form.data['cover_image_url']:
+        cover = 'https://busker2.s3.amazonaws.com/busker_logo.png'
+    
     if form.validate_on_submit():
         user = Artist(
             name=form.data['name'],
@@ -74,8 +79,8 @@ def sign_up():
             bio=form.data['bio'],
             country=form.data['country'],
             city=form.data['city'],
-            profile_image_url=form.data["profile_image_url"],
-            cover_image_url=form.data['cover_image_url'],
+            profile_image_url= profile if profile else form.data["profile_image_url"],
+            cover_image_url=cover if cover else form.data['cover_image_url'],
             tip_stash=0,
             password=form.data['password'],
 
