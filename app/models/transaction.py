@@ -15,7 +15,7 @@ def to_dict(self):
         self.id: {
             "id": self.id,
             "amount": self.amount,
-            "senderId": self.senderId,
-            "recipientId": self.recipientId,
+            "sender_idd": self.sender_id,
+            "recipient_id": self.recipient_id,
         }
     }
