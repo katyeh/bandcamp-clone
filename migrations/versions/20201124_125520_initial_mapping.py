@@ -1,8 +1,8 @@
-"""create all tables
+"""initial mapping
 
-Revision ID: dfe18c58b5a1
+Revision ID: 36ff62a33d89
 Revises: 
-Create Date: 2020-11-23 16:45:52.992774
+Create Date: 2020-11-24 12:55:20.425631
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'dfe18c58b5a1'
+revision = '36ff62a33d89'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,8 +21,8 @@ def upgrade():
     op.create_table('albums',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=50), nullable=False),
-    sa.Column('albumArtUrl', sa.String(length=1000), nullable=True),
-    sa.Column('releaseDate', sa.Date(), nullable=True),
+    sa.Column('album_art_url', sa.String(length=1000), nullable=True),
+    sa.Column('release_date', sa.Date(), nullable=True),
     sa.Column('single', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )

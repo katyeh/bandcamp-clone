@@ -7,18 +7,21 @@ class Album(db.Model):
 
     id = Column(db.Integer, primary_key=True)
     title = Column(db.String(50), nullable=False)
-    albumArtUrl = Column(db.String(
+    album_art_url = Column(db.String(
         1000), default='https://busker2.s3.amazonaws.com/defaultalbumcover.jpg')
-    releaseDate = Column(db.Date)
+    release_date = Column(db.Date)
     single = Column(db.Boolean)
+    artist_id = Column(Integer, ForeignKey("artists.id"))
+
 
 def to_dict(self):
     return {
         self.id: {
             "id": self.id,
             "title": self.title,
-            "albumArtUrl": self.albumArtUrl,
-            "releaseDate": self.releaseDate,
-            "single": self.single
+            "album_art_url": self.album_art_url,
+            "release_date": self.release_date,
+            "single": self.single,
+            "artist_id": self.artist_id
         }
     }

@@ -18,9 +18,9 @@ class Track(db.Model):
       self.id: {
         "id": self.id,
         "title": self.title,
-        "mp3Url": self.mp3_url,
+        "mp3_url": self.mp3_url,
         "lyrics": self.lyrics,
-        "albumId": self.album_id,
-        "artistId": self.artist_id
+        "album_id": self.album_id,
+        "artist_id": self.artist_id
       }
     }
