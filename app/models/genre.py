@@ -8,10 +8,10 @@ class Genre(db.Model):
     id = Column(db.Integer, primary_key=True)
     name = Column(db.String(50), default=50, nullable=False)
 
-def to_dict(self):
-    return {
-        self.id: {
-            "id": self.id,
-            "name": self.name,
+    def to_dict(self):
+        return {
+            self.id: {
+                "id": self.id,
+                "name": self.name,
+            }
         }
-    }

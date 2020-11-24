@@ -11,8 +11,9 @@ class Album(db.Model):
         1000), default='https://busker2.s3.amazonaws.com/defaultalbumcover.jpg')
     release_date = Column(db.Date)
     single = Column(db.Boolean)
-    artist_id = Column(Integer, ForeignKey("artists.id"), nullable=False)
+    artist_id = Column(Integer, ForeignKey('artists.id'), nullable=False)
 
+    track = db.relationship('Track', cascade='all, delete', backref='album')
 
     def to_dict(self):
         return {
