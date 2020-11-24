@@ -73,6 +73,10 @@ def follow(artistId, followerId):
 def unfollow(artistId, followerId):
   follower_data = Follower.query.filter(Follower.follower_id == followerId)\
                                 .filter(Follower.followed_id == artistId).first()
-  db.session.delete(follower_data)
-  db.session.commit()
-  return jsonify(message = f"Unfollowed artist with the id of {artistId}.")
+  
+  try:
+    db.session.delete(follower_data)
+    db.session.commit()
+    return jsonify(message = f"Unfollowed artist with the id of {artistId}."), 204
+  except:
+    return jsonify(message = f"Error unfollowing artist with the id of {artistId}."), 404

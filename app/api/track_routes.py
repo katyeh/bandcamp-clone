@@ -29,7 +29,7 @@ def get_comments(id):
   return jsonify(comments = comments)
 
 @track_routes.route('/<int:id>/comments', methods=["POST"])
-@login_required
+# @login_required
 def create_comment(id):
   comment_data = CommentForm()
 
