@@ -1,8 +1,8 @@
 
-from flask import Blueprint
+from flask import Blueprint, request, jsonify
 from flask_login import login_required
-from app.models import
-fom ../models import db
+from app.models import db, Track, Comment
+import json
 
 track_routes = Blueprint('tracks', __name__, url_prefix='/tracks')
 
@@ -25,22 +25,27 @@ def get_track_to_delete(id):
 
 @track_routes.route('/<int:id>/comments')
 def get_comments(id):
-  comments = Comment.query.filter(Comment.trackId == id).all()
-  return jsonify(comments = comments)
+  comments = Comment.query.filter(Comment.track_id == id).all()
+  return jsonify(comments = [comment.to_dict() for comment in comments])
 
 @track_routes.route('/<int:id>/comments', methods=["POST"])
-@login_required
-def create_comment(id):
-  comment_data = CommentForm()
+# @login_required
+def comment_on_track(id):
+  # comment_data = CommentForm()
+  # if comment_data.validate_on_submit():
+      # comment_data.populate_obj(comment)
 
-  if comment_data.validate_on_submit():
-    comment = Comment()
-    comment_data.populate_obj(comment)
+  # To be replaced with above once frontend form is implemented.
+  data = json.loads(request.data)
+  comment = Comment()
+  comment.track_id = id
+  comment.artist_id = data["artist_id"]
+  comment.message = data["message"]
 
-    try:
-      db.session.add(comment)
-      db.session.commit()
-      return redirect('/')
-    except: # Need to add error type
-      return 'Error creating a comment.'; 
+  try:
+    db.session.add(comment)
+    db.session.commit()
+    return jsonify(message = f"Commented on track with the id of {id}."), 201
+  except:
+    return jsonify(error = f"Error commenting on track with the id of {id}."), 404
 

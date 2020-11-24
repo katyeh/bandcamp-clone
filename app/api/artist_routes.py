@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required
-from app.models import db, Artist,Follower, Track, Album
+from app.models import db, Artist, Track, Album, Follower
 import json
 
 artist_routes = Blueprint('artists', __name__)
@@ -72,32 +72,37 @@ def new_track(id):
         return jsonify(error='Missing Arguments')
 
 
-
-
-
-
 @artist_routes.route('/<int:id>/followers')
 def get_followers(id):
-  followers = Follower.query.filter(Follower.followedId == id).all()
-  return jsonify(followers=followers)
+  followers = Follower.query.filter(Follower.followed_id == id).all()
+  return jsonify(followers = [follower.to_dict() for follower in followers])
+
 
 @artist_routes.route('/<int:artistId>/followers', methods=["POST"])
-@login_required
+# @login_required
 def follow(artistId):
-  follower = Follower(followerId=request.args.get(id), followedId=artistId)
+  followerId = json.loads(request.data)["id"]
+  follower = Follower()
+  follower.follower_id = followerId
+  follower.followed_id = artistId
 
   try:
     db.session.add(follower)
     db.session.commit()
-    return redirect('/')
-  except: # Need to add error type
-    return 'Error creating a follower.', 404;
+    return jsonify(message = f"Followed artist with the id of {artistId}."), 201
+  except:
+    return jsonify(error = f"Error following artist with the id of {artistId}."), 404
 
-@artist_routes.route('/<int:artistId>/followers', methods=["DELETE"])
-@login_required
-def unfollow(artistId):
-  follower_data = Follower.query.filter(Follower.followerId == request.args.get(id) 
-                                        and Follower.followedId == artistId).first()
-  db.session.delete(follower_data)
-  db.commit()
-  return jsonify(message = f"Unfollowed artist with id of ${artistId}.")
+
+@artist_routes.route('/<int:artistId>/followers/<int:followerId>', methods=["DELETE"])
+# @login_required
+def unfollow(artistId, followerId):
+  follower_data = Follower.query.filter(Follower.follower_id == followerId)\
+                                .filter(Follower.followed_id == artistId).first()
+  
+  try:
+    db.session.delete(follower_data)
+    db.session.commit()
+    return jsonify(message = f"Unfollowed artist with the id of {artistId}."), 204
+  except:
+    return jsonify(error = f"Error unfollowing artist with the id of {artistId}."), 404
