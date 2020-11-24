@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import db, Artist, Track, Album, Follower
-import json
 
 artist_routes = Blueprint('artists', __name__)
 
@@ -64,7 +63,7 @@ def follow(artistId, followerId):
   try:
     db.session.add(follower)
     db.session.commit()
-    return jsonify(message = f"Followed artist with id of {artistId}."), 201
+    return jsonify(message = f"Followed artist with the id of {artistId}."), 201
   except:
     return jsonify(message = f"Error following artist with the id of {artistId}."), 404
 
