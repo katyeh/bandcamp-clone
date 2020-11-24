@@ -10,17 +10,17 @@ class Track(db.Model):
   title = Column(String, nullable=False)
   mp3_url = Column(String, nullable=False)
   lyrics = Column(Text)
-  album_id = Column(Integer, ForeignKey("albums.id"))
-  artist_id = Column(Integer, ForeignKey("artists.id"))
+  album_id = Column(Integer, ForeignKey("albums.id"), nullable=False)
+  artist_id = Column(Integer, ForeignKey("artists.id"), nullable=False)
 
   def to_dict(self):
     return {
       self.id: {
         "id": self.id,
         "title": self.title,
-        "mp3Url": self.mp3_url,
+        "mp3_url": self.mp3_url,
         "lyrics": self.lyrics,
-        "albumId": self.album_id,
-        "artistId": self.artist_id
+        "album_id": self.album_id,
+        "artist_id": self.artist_id
       }
     }
