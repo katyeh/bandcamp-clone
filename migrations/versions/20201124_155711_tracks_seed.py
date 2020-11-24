@@ -365,7 +365,6 @@ def upgrade():
                 'album_id': 7,
                 'artist_id': 5
             },
-
             {
                 'title': 'vamos a pasarla bien',
                 'mp3_url': 'https://busker2.s3.amazonaws.com/songs/maluma/vamos+a+pasarla+bien+maluma+letra.mp3',
