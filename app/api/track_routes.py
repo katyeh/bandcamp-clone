@@ -9,20 +9,30 @@ track_routes = Blueprint('tracks', __name__)
 @track_routes.route('/')
 def all_tracks():
   tracks = Track.query.all()
-  print([track.to_dict() for track in tracks])
-  return {"tracks": [track.to_dict() for track in tracks]}
+  # tracks = None
+  try:
+    print([track.to_dict() for track in tracks])
+    return {"tracks": [track.to_dict() for track in tracks]}
+  except:
+    return {'errors':'There are no tracks avaliable'}, 400
+
 
 @track_routes.route('/<int:id>')
 def get_track(id):
   track = Track.query.get(id)
+  if not track:
+    return {'errors':'Could not find track'}, 400
   return track.to_dict()
 
 @track_routes.route('/<int:id>', methods=['DELETE'])
 def get_track_to_delete(id):
   track = Track.query.get(id)
-  db.session.delete(track)
-  db.session.commit()
-  return {'message': f"Successfully deleted track {id}"}, 200
+  try:
+    db.session.delete(track)
+    db.session.commit()
+    return {'message': "Successfully deleted track"}, 200
+  except:
+    return {'errors':'Error deleting track'}, 400
 
 @track_routes.route('/<int:id>/comments')
 def get_comments(id):
@@ -43,4 +53,4 @@ def create_comment(id):
       db.session.commit()
       return redirect('/')
     except: # Need to add error type
-      return 'Error creating a comment.';
+      return 'Error creating a comment.'
