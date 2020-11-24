@@ -41,8 +41,8 @@ def upgrade():
             'bio': 'Yo, my name is Wolgang, I am 8 years old. My dad is a tyrant, he makes me practice the stupid piano for hours and makes me write boring stuff. Tbh I wanna do is play drums in a metal band. Yo send me some money so I can run away.',
             'country': 'Vienna',
             'city': 'Salzburg',
-            'profile_image_url': '',
-            'cover_image_url': '',
+            'profile_image_url': 'https://busker2.s3.amazonaws.com/images/mozartprofilepicture.jpg',
+            'cover_image_url': 'https://busker2.s3.amazonaws.com/coverimage/mozartCover.jpg',
             'tip_stash': 120,
             'dough': 20000,
             'hashed_password': 'pbkdf2:sha256:150000$0Y70Jx11$5170eba1cde3b4481c1a289401d7273375faa4691e3ff10e8bd1ac4e9784a5c6'
@@ -54,8 +54,8 @@ def upgrade():
             'bio': 'This is Drake, just trying to make it big out here in Toronto. Only love my bed and my momma.',
             'country': 'USA',
             'city': 'Toronto',
-            'profile_image_url': '<<URL HERE>>',
-            'cover_image_url': '<<URL HERE>>',
+            'profile_image_url': 'https://busker2.s3.amazonaws.com/images/drakeprofilepicture.png',
+            'cover_image_url': 'https://busker2.s3.amazonaws.com/coverimage/drakecover.jpeg',
             'tip_stash': 75,
             'dough': 100,
             'hashed_password': 'pbkdf2:sha256:150000$0Y70Jx11$5170eba1cde3b4481c1a289401d7273375faa4691e3ff10e8bd1ac4e9784a5c6'
@@ -72,8 +72,8 @@ def upgrade():
             ''',
             'country': 'USA',
             'city': 'California',
-            'profile_image_url': '<<URL HERE>>',
-            'cover_image_url': '<<URL HERE>>',
+            'profile_image_url': 'https://busker2.s3.amazonaws.com/images/blink_prof.jpg',
+            'cover_image_url': 'https://busker2.s3.amazonaws.com/coverimage/blink_cover.jpg',
             'tip_stash': 82,
             'dough': 100,
             'hashed_password': 'pbkdf2:sha256:150000$0Y70Jx11$5170eba1cde3b4481c1a289401d7273375faa4691e3ff10e8bd1ac4e9784a5c6'
@@ -88,8 +88,8 @@ def upgrade():
                     You can live on the street, you can rule the whole world.''',
             'country': 'USA',
             'city': 'New Jersey',
-            'profile_image_url': '<<URL HERE>>',
-            'cover_image_url': '<<URL HERE>>',
+            'profile_image_url': 'https://busker2.s3.amazonaws.com/images/bonjovi_prof.jpg',
+            'cover_image_url': '',
             'tip_stash': 275,
             'dough': 78,
             'hashed_password': 'pbkdf2:sha256:150000$0Y70Jx11$5170eba1cde3b4481c1a289401d7273375faa4691e3ff10e8bd1ac4e9784a5c6'
@@ -107,7 +107,7 @@ def upgrade():
             'country': 'Columbia',
             'city': 'Madellin',
             'profile_image_url': 'https://busker2.s3.amazonaws.com/images/maluma2.jpeg',
-            'cover_image_url': '<<URL HERE>>',
+            'cover_image_url': 'https://busker2.s3.amazonaws.com/coverimage/malumacover.png',
             'tip_stash': 82,
             'dough': 1000,
             'hashed_password': 'pbkdf2:sha256:150000$0Y70Jx11$5170eba1cde3b4481c1a289401d7273375faa4691e3ff10e8bd1ac4e9784a5c6'
@@ -127,7 +127,7 @@ def upgrade():
             'country': 'USA',
             'city': 'NY',
             'profile_image_url': 'https://busker2.s3.amazonaws.com/images/ladygaga.jpeg',
-            'cover_image_url': '<<URL HERE>>',
+            'cover_image_url': '<https://busker2.s3.amazonaws.com/coverimage/ladygagacover.jpeg',
             'tip_stash': 82,
             'dough': 1000,
             'hashed_password': 'pbkdf2:sha256:150000$0Y70Jx11$5170eba1cde3b4481c1a289401d7273375faa4691e3ff10e8bd1ac4e9784a5c6'

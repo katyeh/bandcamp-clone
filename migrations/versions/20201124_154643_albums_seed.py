@@ -35,42 +35,42 @@ def upgrade():
         [
             {
                 'title': 'My first piano grooves',
-                'album_art_url':"",
+                'album_art_url': 'https://busker2.s3.amazonaws.com/albumeimage/MozartAlbum1.jpeg',
                 'release_date': datetime(1763, 1, 1),
                 'single': False,
                 'artist_id': 1
             },
             {
                 'title': 'My second piano grooves',
-                'album_art_url':"",
+                'album_art_url': 'https://busker2.s3.amazonaws.com/albumeimage/mozartalbum2.jpg',
                 'release_date': datetime(1764, 1, 1),
                 'single': False,
                 'artist_id': 1
             },
             {
                 'title': 'Fly Swatter',
-                'album_art_url': '<<URL HERE>>',
+                'album_art_url': 'https://busker2.s3.amazonaws.com/albumeimage/blink_flyswatter.jpg',
                 'release_date': datetime(1993, 5, 1),
                 'single': False,
                 'artist_id': 3
             },
             {
                 'title': 'Buddha',
-                'album_art_url': '<<URL HERE>>',
+                'album_art_url': 'https://busker2.s3.amazonaws.com/albumeimage/blink_buddha.jpg',
                 'release_date': datetime(1994, 1, 1),
                 'single': False,
                 'artist_id': 3
             },
             {
                 'title': 'Runaway',
-                'album_art_url': '<<URL HERE>>',
+                'album_art_url': 'https://busker2.s3.amazonaws.com/albumeimage/bonjovi_runaway.jpg',
                 'release_date': datetime(1981, 1, 1),
                 'single': True,
                 'artist_id': 4
             },
             {
                 'title': 'Thank Me Later',
-                'album_art_url':  '<<URL HERE>>',
+                'album_art_url':  'https://busker2.s3.amazonaws.com/albumeimage/drakealbum.jpg',
                 'release_date': datetime(2010, 1, 1),
                 'single': False,
                 'artist_id': 2

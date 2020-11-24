@@ -131,7 +131,7 @@ def upgrade():
             },
             {
                 'title': 'Reebok Commercial',
-                'mp3_url': '<<URL HERE>>',
+                'mp3_url': 'https://busker2.s3.amazonaws.com/songs/blink/Blink_ReebokCommercial.mp3',
                 'lyrics': '''You are better than me,girls,money,and everything I try to compete with you,
                 but you beat me at everything i do
                 I see in you the things that I would like to be
@@ -152,7 +152,7 @@ def upgrade():
             },
             {
                 'title': 'Malboro Man',
-                'mp3_url': '<<URL HERE>>',
+                'mp3_url': 'https://busker2.s3.amazonaws.com/songs/blink/Blink_MalboroMan.mp3',
                 'lyrics': '''
                 I whistle good
                 I'm kinda straight
@@ -201,7 +201,7 @@ def upgrade():
             },
             {
                 'title': 'Freak Scene',
-                'mp3_url': '<<URL HERE>>',
+                'mp3_url': 'https://busker2.s3.amazonaws.com/songs/blink/Blink_FreakScene.mp3',
                 'lyrics': '''
                 Seen enough to eye you
                 but I've seen to much to try you
@@ -235,7 +235,7 @@ def upgrade():
             },
             {
                 'title': 'Time',
-                'mp3_url': '<<URL HERE>>',
+                'mp3_url': 'https://busker2.s3.amazonaws.com/songs/blink/Blink_Time.mp3',
                 'lyrics': '''
                 When the clock strikes two
                 There's just so much to do
@@ -269,7 +269,7 @@ def upgrade():
             },
             {
                 'title': 'Sometimes',
-                'mp3_url': '<<URL HERE>>',
+                'mp3_url': 'https://busker2.s3.amazonaws.com/songs/blink/Blink_Sometimes.mp3',
                 'lyrics': '''
                 Oh, how I wish that they would last
                 Moments of peace that just slip through me so fast
@@ -299,7 +299,7 @@ def upgrade():
             },
             {
                 'title': 'Runaway',
-                'mp3_url': '<<URL HERE>>',
+                'mp3_url': 'https://busker2.s3.amazonaws.com/songs/bonjovi/BonJovi_Runaway.mp3',
                 'lyrics': '''
                 On the street where you live girls talk about their social lives
                 They're made of lipstick, plastic and paint, a touch of sable in their eyes
@@ -353,7 +353,7 @@ def upgrade():
             },
             {
                 'title': 'Best I Ever Head',
-                'mp3_url': '<<URL HERE>>',
+                'mp3_url': 'https://busker2.s3.amazonaws.com/songs/drake/Best+I+Ever+Had.mp3',
                 'lyrics': '<<URL HERE>>',
                 "album_id": 6,
                 "artist_id": 2
