@@ -1,13 +1,14 @@
-from flask import Blueprint, redirect
+from flask import Blueprint, redirect, jsonify
 from app.models import db, Like
 
-bp = Blueprint("like", __name__, "")
+like_routes = Blueprint("like", __name__)
 
-@bp.route("/tracks/<int:track_id>/likes")
+@like_routes.route("/tracks/<int:track_id>/likes")
 def get_likes(track_id):
     likes = Like.query.filter(Like.track_id == track_id).all()
+    return jsonify(likes = [like.to_dict() for like in likes])
 
-@bp.route("/tracks/<int:track_id>/likes", methods=["POST"])
+@like_routes.route("/tracks/<int:track_id>/likes", methods=["POST"])
 def new_like():
     likes = Like.query.all()
     new_like = {}
@@ -17,7 +18,7 @@ def new_like():
 
     return jsonify(new_like)
 
-@bp.route("/likes/<id>", methods=["DELETE"])
+@like_routes.route("/likes/<id>", methods=["DELETE"])
 def remove_like(id):
     like = Like.query.get(id)
     db.session.delete(like)

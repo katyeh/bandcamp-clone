@@ -136,4 +136,12 @@ def upgrade():
 
 
 def downgrade():
-    pass
+    op.drop_table('likes')
+    op.drop_table('genres_connector')
+    op.drop_table('comments')
+    op.drop_table('tracks')
+    op.drop_table('transactions')
+    op.drop_table('followers')
+    op.drop_table('albums')
+    op.drop_table('genres')
+    op.drop_table('artists')

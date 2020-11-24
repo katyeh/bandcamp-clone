@@ -1,41 +1,49 @@
-from flask import Blueprint, redirect
+from flask import Blueprint, redirect, jsonify, request
 from app.models import db, Album, Track
 
-bp = Blueprint("album", __name__, url_prefix="/albums")
+album_routes = Blueprint("album", __name__)
 
-@bp.route("/<int:album_id>", methods=["GET"])
-def get_album(album_id):
-    album = Album.query.get(album_id)
-    return jsonify(album)
+@album_routes.route("/<int:id>")
+def get_album(id):
+    album = Album.query.get(id)
+    if album:
+        return album.to_dict()
+    else:
+        return jsonify(error='This album does not exist.')
 
-@bp.route("/<int:album_id>/tracks")
-def albumtracks():
+@album_routes.route("/<int:album_id>/tracks")
+def albumtracks(album_id):
     tracks = Track.query.filter(Track.album_id == album_id).all()
-    return {
-        "tracks": tracks
-    }
+    if tracks:
+        return jsonify(tracks = [track.to_dict() for track in tracks])
+    else:
+        return jsonify(error='There are no tracks in this album.')
 
-@bp.route("/<id>", methods=["PUT"])
+@album_routes.route("/<int:id>", methods=["PUT"])
 def update_album(id):
-    album = Album.query.get(id)
-    title = request.json['title']
-    albumArtUrl = request.json['albumArtUrl']
-    releaseDate = request.json['releaseDate']
-    single = request.json['single']
+    try:
+        album = Album.query.get(id)
+        title = request.json['title']
+        album_art_url = request.json['album_art_url']
+        release_date = request.json['release_date']
+        single = request.json['single']
 
-    album.title = title
-    album.albumArtUrl = albumArtUrl
-    album.releaseDate = releaseDate
-    album.single = single
+        album.title = title
+        album.album_art_url = album_art_url
+        album.release_date = release_date
+        album.single = single
 
-    db.session.commit()
+        db.session.commit()
+        return "Album was successfully updated."
+    except:
+        return "Error updating album."
 
-    # return album_schema.jsonify(album)
-
-@bp.route("/<id>", methods=["DELETE"])
+@album_routes.route("/<int:id>", methods=["DELETE"])
 def delete_album(id):
-    album = Album.query.get(id)
-    db.session.delete(album)
-    db.session.commit()
-
-    return "Album {id} was successfully deleted."
+    try:
+        album = Album.query.get(id)
+        db.session.delete(album)
+        db.session.commit()
+        return "Album was successfully deleted."
+    except:
+        return jsonify(errors = f"Error deleting the album")

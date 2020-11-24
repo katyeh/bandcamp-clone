@@ -6,8 +6,10 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
 from .models import *
+from .api.album_routes import album_routes
 from .api.artist_routes import artist_routes
 from .api.auth_routes import auth_routes
+from .api.like_routes import like_routes
 
 from .seeds import seed_commands
 
@@ -31,6 +33,8 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(artist_routes, url_prefix='/api/artists')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(album_routes, url_prefix='/api/albums')
+app.register_blueprint(like_routes, url_prefix='/api')
 db.init_app(app)
 Migrate(app, db)
 
