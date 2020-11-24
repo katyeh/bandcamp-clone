@@ -14,14 +14,14 @@ class Album(db.Model):
     artist_id = Column(Integer, ForeignKey("artists.id"), nullable=False)
 
 
-def to_dict(self):
-    return {
-        self.id: {
-            "id": self.id,
-            "title": self.title,
-            "album_art_url": self.album_art_url,
-            "release_date": self.release_date,
-            "single": self.single,
-            "artist_id": self.artist_id
+    def to_dict(self):
+        return {
+            self.id: {
+                "id": self.id,
+                "title": self.title,
+                "album_art_url": self.album_art_url,
+                "release_date": self.release_date,
+                "single": self.single,
+                "artist_id": self.artist_id
+            }
         }
-    }
