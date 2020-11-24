@@ -39,6 +39,7 @@ app.register_blueprint(album_routes, url_prefix='/api/albums')
 app.register_blueprint(like_routes, url_prefix='/api')
 app.register_blueprint(track_routes, url_prefix='/api/tracks')
 app.register_blueprint(comment_routes, url_prefix='/api/comments')
+
 db.init_app(app)
 Migrate(app, db)
 

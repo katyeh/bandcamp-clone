@@ -4,24 +4,36 @@ from flask_login import login_required
 from app.models import db, Track, Comment
 import json
 
-track_routes = Blueprint('tracks', __name__, url_prefix='/tracks')
+
+track_routes = Blueprint('tracks', __name__)
 
 @track_routes.route('/')
 def all_tracks():
-  tracks = Tracks.query.all()
-  return {"tracks": [track.to_dict() for track in tracks]}
+  tracks = Track.query.all()
+  # tracks = None
+  try:
+    print([track.to_dict() for track in tracks])
+    return {"tracks": [track.to_dict() for track in tracks]}
+  except:
+    return {'errors':'There are no tracks avaliable'}, 400
+
 
 @track_routes.route('/<int:id>')
 def get_track(id):
-  track = Tracks.query.get(id)
+  track = Track.query.get(id)
+  if not track:
+    return {'errors':'Could not find track'}, 400
   return track.to_dict()
 
 @track_routes.route('/<int:id>', methods=['DELETE'])
 def get_track_to_delete(id):
-  track = Tracks.query.get(id)
-  db.session.delete(track)
-  db.session.commit()
-  return {'message': f"Successfully deleted track {id}"}, 200
+  track = Track.query.get(id)
+  try:
+    db.session.delete(track)
+    db.session.commit()
+    return {'message': "Successfully deleted track"}, 200
+  except:
+    return {'errors':'Error deleting track'}, 400
 
 @track_routes.route('/<int:id>/comments')
 def get_comments(id):
@@ -48,4 +60,3 @@ def comment_on_track(id):
     return jsonify(message = f"Commented on track with the id of {id}."), 201
   except:
     return jsonify(error = f"Error commenting on track with the id of {id}."), 404
-
