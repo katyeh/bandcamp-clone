@@ -1,18 +1,17 @@
-"""seed for artist
+"""artists seed
 
-Revision ID: 34b20b25648f
-Revises: 36ff62a33d89
-Create Date: 2020-11-24 12:58:26.221737
+Revision ID: a7c3f792b5dd
+Revises: e31a3ab26e4b
+Create Date: 2020-11-24 15:46:35.819285
 
 """
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.sql import table
 
-
 # revision identifiers, used by Alembic.
-revision = '34b20b25648f'
-down_revision = '36ff62a33d89'
+revision = 'a7c3f792b5dd'
+down_revision = 'e31a3ab26e4b'
 branch_labels = None
 depends_on = None
 
