@@ -67,7 +67,8 @@ def follow(artistId):
     db.session.commit()
     return jsonify(message = f"Followed artist with the id of {artistId}."), 201
   except:
-    return jsonify(message = f"Error following artist with the id of {artistId}."), 404
+    return jsonify(error = f"Error following artist with the id of {artistId}."), 404
+
 
 @artist_routes.route('/<int:artistId>/followers/<int:followerId>', methods=["DELETE"])
 # @login_required
@@ -80,4 +81,4 @@ def unfollow(artistId, followerId):
     db.session.commit()
     return jsonify(message = f"Unfollowed artist with the id of {artistId}."), 204
   except:
-    return jsonify(message = f"Error unfollowing artist with the id of {artistId}."), 404
+    return jsonify(error = f"Error unfollowing artist with the id of {artistId}."), 404

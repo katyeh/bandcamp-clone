@@ -13,4 +13,4 @@ def delete_comment(id):
     db.session.commit()
     return jsonify(message = f"Deleted comment with the id of {id}."), 204
   except:
-    return jsonify(message = f"Error deleting comment with the id of {id}."), 404
+    return jsonify(error = f"Error deleting comment with the id of {id}."), 404

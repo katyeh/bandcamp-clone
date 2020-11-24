@@ -47,5 +47,5 @@ def comment_on_track(id):
     db.session.commit()
     return jsonify(message = f"Commented on track with the id of {id}."), 201
   except:
-    return jsonify(message = f"Error commenting on track with the id of {id}."), 404
+    return jsonify(error = f"Error commenting on track with the id of {id}."), 404
 
