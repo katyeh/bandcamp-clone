@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, jsonify
+from flask import Blueprint, redirect, jsonify, request
 from app.models import db, Like
 
 like_routes = Blueprint("like", __name__)
@@ -9,14 +9,21 @@ def get_likes(track_id):
     return jsonify(likes = [like.to_dict() for like in likes])
 
 @like_routes.route("/tracks/<int:track_id>/likes", methods=["POST"])
-def new_like():
-    likes = Like.query.all()
-    new_like = {}
-    like = Like(**new_like)
-    db.session.add(like)
-    db.session.commit()
+def add_like(track_id):
+    try:
+        track_id = request.json['track_id']
+        artist_id = request.json['artist_id']
 
-    return jsonify(new_like)
+        new_like = Like(track_id=track_id, artist_id=artist_id)
+
+        db.session.add(new_like)
+        db.session.commit()
+
+        like = Like.query.get(new_like.id)
+
+        return like.to_dict()
+    except:
+        return "Error adding a like."
 
 @like_routes.route("/likes/<id>", methods=["DELETE"])
 def remove_like(id):
