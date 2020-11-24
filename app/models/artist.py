@@ -12,10 +12,8 @@ class Artist(db.Model, UserMixin):
   bio = db.Column(db.Text, nullable= False)
   country = db.Column(db.String(50), nullable=False)
   city = db.Column(db.String(50), nullable=False)
-  profile_image_url = db.Column(
-      db.String(255), default='https://busker2.s3.amazonaws.com/defaultimage2.jpeg')
-  cover_image_url = db.Column(
-      db.String(255), default='https://busker2.s3.amazonaws.com/busker_logo.png')
+  profile_image_url = db.Column(db.String(255), default="https://busker2.s3.amazonaws.com/defaultimage2.jpeg")
+  cover_image_url = db.Column(db.String(255), default="https://busker2.s3.amazonaws.com/busker_logo.png")
   tip_stash = db.Column(db.Integer)
   dough = db.Column(db.Integer,default=1000000)
   hashed_password = db.Column(db.String(255), nullable = False)
@@ -37,19 +35,19 @@ class Artist(db.Model, UserMixin):
 
   def to_dict(self):
     return {
-      self.id: {"id": self.id,
-      "username": self.username,
-      "email": self.email,
-      "bio": self.bio,
-      "country": self.country,
-      "city": self.city,
-      "profile_image_url": self.profile_image_url,
-      "cover_image_url": self.cover_image_url,
-      "tip_stash": self.tip_stash,
-      "dough": self.dough,
+      self.id: {
+        "id": self.id,
+        "name": self.name,
+        "username": self.username,
+        "email": self.email,
+        "bio": self.bio,
+        "country": self.country,
+        "city": self.city,
+        "tip_stash": self.tip_stash,
+        "dough": self.dough,
       }
     }
 
 
-# default album cover  'https://busker2.s3.amazonaws.com/defaultalbumcover.jpg'
-# dough picture 'https://busker2.s3.amazonaws.com/dough2.png'
+  #  "profile_image_url": self.profile_image_url,
+  #       "cover_image_url": self.cover_image_url,
