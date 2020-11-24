@@ -35,6 +35,7 @@ def comment_on_track(id):
   # if comment_data.validate_on_submit():
       # comment_data.populate_obj(comment)
 
+  # To be replaced with above once frontend form is implemented.
   data = json.loads(request.data)
   comment = Comment()
   comment.track_id = id

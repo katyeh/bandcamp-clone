@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import db, Artist, Track, Album, Follower
+import json
 
 artist_routes = Blueprint('artists', __name__)
 
@@ -53,9 +54,10 @@ def get_followers(id):
   followers = Follower.query.filter(Follower.followed_id == id).all()
   return jsonify(followers = [follower.to_dict() for follower in followers])
 
-@artist_routes.route('/<int:artistId>/followers/<int:followerId>', methods=["POST"])
+@artist_routes.route('/<int:artistId>/followers', methods=["POST"])
 # @login_required
-def follow(artistId, followerId):
+def follow(artistId):
+  followerId = json.loads(request.data)["id"]
   follower = Follower()
   follower.follower_id = followerId
   follower.followed_id = artistId
