@@ -48,10 +48,10 @@ function App() {
     }
   ])
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
-  const [nextTrackIndex, setNextTrackIndex] = useState(currentTrackIndex + 1);
+
 
   useEffect(() => {
-    (async () => {
+    (async() => {
       const user = await authenticate();
       if (!user.errors) {
         setAuthenticated(true);
@@ -60,20 +60,11 @@ function App() {
     })();
   }, []);
 
-  useEffect(() => {
-    dispatch(getAlbum())
-    setNextTrackIndex(() => {
-      if (currentTrackIndex + 1 > tracks.length - 1) {
-        return 0;
-      } else {
-        return currentTrackIndex + 1
-      }
-    })
-  })
-
   if (!loaded) {
     return null;
   }
+
+
 
   return (
     <BrowserRouter>
@@ -81,7 +72,6 @@ function App() {
       <Player
         currentTrackIndex={currentTrackIndex}
         setCurrentTrackIndex={setCurrentTrackIndex}
-        nextTrackIndex={nextTrackIndex}
         tracks={tracks}
       />
 

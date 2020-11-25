@@ -1,11 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import Controls from './Controls'
-// import Details from './Details'
 
 
 
-function Player({ currentTrackIndex, setCurrentTrackIndex, nextTrackIndex, tracks }) {
+function Player({ currentTrackIndex, setCurrentTrackIndex, tracks }) {
   const audioEl = useRef(null)
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -44,7 +43,6 @@ function Player({ currentTrackIndex, setCurrentTrackIndex, nextTrackIndex, track
       <div style={style}>
         <audio src={tracks[currentTrackIndex].mp3_url} ref={audioEl}></audio>
         <h4>Playing now</h4>
-        {/* <Details track={tracks[currentTrackIndex]} /> */}
         <Controls
           isPlaying={isPlaying}
           setIsPlaying={setIsPlaying}
