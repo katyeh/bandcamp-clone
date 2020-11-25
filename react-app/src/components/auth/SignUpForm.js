@@ -27,7 +27,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
       data.append('bio', bio);
       data.append('country', country);
       data.append('city', city);
-      data.append('file', profileImageUrl);
+      data.append('profileImageUrl', profileImageUrl);
       data.append('coverImageUrl', coverImageUrl);
       data.append('email', email);
       data.append('password', password);

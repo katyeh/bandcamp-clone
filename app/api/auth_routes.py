@@ -78,11 +78,13 @@ def sign_up():
     # print(request.data)
     # print(request.form)
     # # print(request.files["file"])
-    file = request.files["file"]
+    print(request.files)
+    file = request.files["profileImageUrl"]
     # with open(file, "rb") as f:
     # client.upload_fileobj(file, 'busker2', 'hello', ExtraArgs = {"ACL": "public-read"})
-    rest = client.put_object(Body=file, Bucket="busker2", Key=file.filename, ContentType=file.mimetype, ACL="public-read")
+    rest = client.put_object(Body=file, Bucket="busker2", Key=f"images/{file.filename}", ContentType=file.mimetype, ACL="public-read")
     print(rest)
+    # https://busker2.s3.amazonaws.com/22.gif
     print('----------------------------')
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -97,10 +99,7 @@ def sign_up():
         cover = 'https://busker2.s3.amazonaws.com/busker_logo.png'
 
     if form.validate_on_submit():
-        # data = open('test.jpg', 'rb')
-        # s3.Bucket('my-bucket').put_object(Key='test.jpg', Body=data)
-        # upload_file_bucket = 'busker2'
-        # upload_file_key = 'user_photo/' + 'test'
+
 
 
         user = Artist(
