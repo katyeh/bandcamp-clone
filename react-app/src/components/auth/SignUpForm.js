@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../services/auth';
+import { signupUser } from '../../actions/signupActions';
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
+  const dispatch = useDispatch();
+
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
@@ -17,10 +21,22 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(name,username,email,bio,country,city,profileImageUrl,coverImageUrl,password);
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
+      const data = new FormData();
+      data.append('name', name);
+      data.append('username', username);
+      data.append('bio', bio);
+      data.append('country', country);
+      data.append('city', city);
+      data.append('profileImageUrl', profileImageUrl);
+      data.append('coverImageUrl', coverImageUrl);
+      data.append('email', email);
+      data.append('password', password);
+
+      dispatch(signupUser(data))
+      // const user = await signUp(name,username,email,bio,country,city,profileImageUrl,coverImageUrl,password);
+      // if (!user.errors) {
+      //   setAuthenticated(true);
+      // }
     }
   };
 
@@ -44,11 +60,11 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
     setCity(e.target.value);
   };
   const updateProfileImageUrl = (e) => {
-    setProfileImageUrl(e.target.value);
+    setProfileImageUrl(e.target.files[0]);
   };
 
   const updateCoverImageUrl = (e) => {
-    setCoverImageUrl(e.target.value);
+    setCoverImageUrl(e.target.files[0]);
   };
 
   const updateEmail = (e) => {
@@ -126,19 +142,17 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
       <div>
         <label>Profile Image</label>
         <input
-          type="text"
+          type="file"
           name="profile_image"
           onChange={updateProfileImageUrl}
-          value={profileImageUrl}
         ></input>
       </div>
       <div>
         <label>Cover Image</label>
         <input
-          type="text"
+          type="file"
           name="cover_image"
           onChange={updateCoverImageUrl}
-          value={coverImageUrl}
         ></input>
       </div>
       <div>
