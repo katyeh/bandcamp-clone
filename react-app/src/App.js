@@ -9,15 +9,14 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Player from "./components/player/Player";
 import Upload from "./components/upload/Upload";
 import UsersList from "./components/UsersList";
-import User from "./components/User";
+import User from "./components/Artist";
 import Home from "./components/home/Home";
 import { authenticate } from "./services/auth";
-import { getAlbum } from './actions/playerActions'
+import { getAlbum } from './store/actions/playerActions'
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const dispatch = useDispatch();
   const [tracks, setTracks] = useState([
     {
       'title': 'Best I Ever Head',

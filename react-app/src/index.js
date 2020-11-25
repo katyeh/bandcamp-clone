@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './styles/main.scss';
 import App from './App';
 import { Provider } from 'react-redux';
-import App from './App';
 import configureStore from './store/configureStore';
 
 const userInfo = localStorage.getItem('user-info');
