@@ -4,7 +4,21 @@ from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 
+import json
+import binascii
+import os
+import boto3
+from botocore.exceptions import ClientError
+
+
 auth_routes = Blueprint('auth', __name__)
+
+s3 = boto3.resource('s3')
+client = boto3.client('s3',
+                      aws_access_key_id = os.environ.get('AWS_ACCESS_KEY'),
+                      aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
+)
+
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -60,8 +74,21 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
+    print('----------------------------')
+    # print(request.data)
+    # print(request.form)
+    # # print(request.files["file"])
+    print(request.files)
+    file = request.files["profileImageUrl"]
+    # with open(file, "rb") as f:
+    # client.upload_fileobj(file, 'busker2', 'hello', ExtraArgs = {"ACL": "public-read"})
+    rest = client.put_object(Body=file, Bucket="busker2", Key=f"images/{file.filename}", ContentType=file.mimetype, ACL="public-read")
+    print(rest)
+    # https://busker2.s3.amazonaws.com/22.gif
+    print('----------------------------')
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
 
     profile = form.data["profile_image_url"]
     cover = form.data['cover_image_url']  
@@ -72,6 +99,9 @@ def sign_up():
         cover = 'https://busker2.s3.amazonaws.com/busker_logo.png'
 
     if form.validate_on_submit():
+
+
+
         user = Artist(
             name=form.data['name'],
             username=form.data['username'],
