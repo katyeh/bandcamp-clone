@@ -27,7 +27,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
       data.append('bio', bio);
       data.append('country', country);
       data.append('city', city);
-      data.append('profileImageUrl', profileImageUrl);
+      data.append('file', profileImageUrl);
       data.append('coverImageUrl', coverImageUrl);
       data.append('email', email);
       data.append('password', password);
@@ -60,11 +60,11 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
     setCity(e.target.value);
   };
   const updateProfileImageUrl = (e) => {
-    setProfileImageUrl(e.target.value);
+    setProfileImageUrl(e.target.files[0]);
   };
 
   const updateCoverImageUrl = (e) => {
-    setCoverImageUrl(e.target.value);
+    setCoverImageUrl(e.target.files[0]);
   };
 
   const updateEmail = (e) => {
