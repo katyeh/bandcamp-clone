@@ -1,14 +1,22 @@
 import { SIGN_UP } from '../reducers/signupReducer';
 
-export const signupUser = (data) => {
+export const signupUser = (user) => {
   return async dispatch => {
-    const res = await fetch(`http://localhost:5000/api/auth/signup`, {
-      method: 'POST',
-      body: data
-    });
+    try {
+      const res = await fetch(`/api/auth/signup`, {
+        method: 'POST',
+        body: user
+      });
+  
+      if (res.ok) {
+        const data = await res.json();
+        return data;
+      }
 
-    // if (res.ok) {
-      console.log(await res.json())
-    // }
+      return await res.json();
+
+    } catch(e) {
+      console.log(e);
+    }
   }
 }

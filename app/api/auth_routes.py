@@ -3,12 +3,14 @@ from app.models import Artist, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from datetime import datetime
 
 import json
 import binascii
 import os
 import boto3
 from botocore.exceptions import ClientError
+import uuid
 
 
 auth_routes = Blueprint('auth', __name__)
@@ -71,55 +73,45 @@ def logout():
 
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():
-    """
-    Creates a new user and logs them in
-    """
-    print('----------------------------')
-    # print(request.data)
-    # print(request.form)
-    # # print(request.files["file"])
-    print(request.files)
-    file = request.files["profileImageUrl"]
-    # with open(file, "rb") as f:
-    # client.upload_fileobj(file, 'busker2', 'hello', ExtraArgs = {"ACL": "public-read"})
-    rest = client.put_object(Body=file, Bucket="busker2", Key=f"images/{file.filename}", ContentType=file.mimetype, ACL="public-read")
-    print(rest)
-    # https://busker2.s3.amazonaws.com/22.gif
-    print('----------------------------')
-    form = SignUpForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+  """
+  Creates a new user and logs them in
+  """
+  
+  form = SignUpForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
 
+  if form.validate_on_submit():
+      key_list = request.files.keys()
 
-    profile = form.data["profile_image_url"]
-    cover = form.data['cover_image_url']  
+      if request.files:
+        if "profileImage" in key_list:
+          profile_image_data = request.files["profileImage"]
+          profile_image_key = f"images/{profile_image_data.filename}_{uuid.uuid4()}"
+          client.put_object(Body=profile_image_data, Bucket="busker2", Key=profile_image_key, ContentType=profile_image_data.mimetype, ACL="public-read")
+
+        if "coverImage" in key_list:
+          cover_image_data = request.files["coverImage"]
+          cover_image_key = f"coverimage/{cover_image_data.filename}_{uuid.uuid4()}"
+          client.put_object(Body=cover_image_data, Bucket="busker2", Key=cover_image_key, ContentType=cover_image_data.mimetype, ACL="public-read")
     
-    if not form.data['profile_image_url']: 
-        profile = 'https://busker2.s3.amazonaws.com/defaultimage2.jpeg' 
-    if not form.data['cover_image_url']: 
-        cover = 'https://busker2.s3.amazonaws.com/busker_logo.png'
-
-    if form.validate_on_submit():
-
-
-
-        user = Artist(
-            name=form.data['name'],
-            username=form.data['username'],
-            email=form.data['email'],
-            bio=form.data['bio'],
-            country=form.data['country'],
-            city=form.data['city'],
-            profile_image_url=profile if profile else form.data["profile_image_url"], 
-            cover_image_url=cover if cover else form.data['cover_image_url'],
-            tip_stash=0,
-            password=form.data['password'],
-
-        )
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
-        return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+      user = Artist(
+          name=form.data['name'],
+          username=form.data['username'],
+          email=form.data['email'],
+          bio=form.data['bio'],
+          country=form.data['country'],
+          city=form.data['city'],
+          profile_image_url=f"https://busker2.s3.amazonaws.com/{profile_image_key}" \
+                              if "profileImage" in key_list else "https://busker2.s3.amazonaws.com/defaultimage2.jpeg",
+          cover_image_url=f"https://busker2.s3.amazonaws.com/{cover_image_key}" \
+                            if "coverImage" in key_list else "https://busker2.s3.amazonaws.com/busker_logo.png",
+          tip_stash=0,
+          password=form.data['password'])
+      db.session.add(user)
+      db.session.commit()
+      login_user(user)
+      return user.to_dict()
+  return {'errors': validation_errors_to_error_messages(form.errors)}, 404
 
 
 @auth_routes.route('/unauthorized')
