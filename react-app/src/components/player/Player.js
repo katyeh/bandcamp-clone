@@ -1,21 +1,65 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import Controls from './Controls'
+// import Details from './Details'
 
 
 
-function Player() {
-  return <div style={style}>
+function Player({ currentTrackIndex, setCurrentTrackIndex, nextTrackIndex, tracks }) {
+  const audioEl = useRef(null)
+  const [isPlaying, setIsPlaying] = useState(false);
 
-    <Controls/>
-  </div>
+  useEffect(() => {
+    if (isPlaying) {
+      audioEl.current.play();
+    } else {
+      audioEl.current.pause();
+    }
+  })
+
+  const skipTrack = (forwards = true) => {
+    if (forwards) {
+      setCurrentTrackIndex(() => {
+        let idx = currentTrackIndex;
+        idx++
+
+        if (idx > tracks.length - 1) {
+          idx = 0
+        }
+        return idx
+      });
+    } else {
+      setCurrentTrackIndex(() => {
+        let idx = currentTrackIndex;
+        idx--;
+
+        if (idx < 0) {
+          idx = tracks.length - 1
+        }
+        return idx
+      })
+    }
+
+    return (
+      <div style={style}>
+        <audio src={tracks[currentTrackIndex].mp3_url} ref={audioEl}></audio>
+        <h4>Playing now</h4>
+        {/* <Details track={tracks[currentTrackIndex]} /> */}
+        <Controls
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+          skipTrack={skipTrack}
+        />
+      </div>
+    )
+  }
+
 }
 
-
-const PlayerContainer = () => {
+const PlayerContainer = (props) => {
 
   return (
-    <Player
+    <Player {...props}
     />
   )
 }
