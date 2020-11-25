@@ -5,8 +5,10 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import Splash from "./components/splash/Splash"
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Player from "./components/player/Player";
+import Upload from "./components/upload/Upload";
 import UsersList from "./components/UsersList";
-import User from "./components/User";
+import Artist from "./components/Artist";
 import { authenticate } from "./services/auth";
 
 function App() {
@@ -29,27 +31,29 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Switch>
+        <NavBar setAuthenticated={setAuthenticated} />
+        <Player/>
         <Route path="/" exact={true}>
           <Splash>Splash</Splash>
         </Route>
-        <NavBar setAuthenticated={setAuthenticated} />
         <Route path="/login" exact={true}>
           <LoginForm
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        <Route path="/sign-up" exact={true}>
+        {/* <Route path="/sign-up" exact={true}>
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
-        </Route>
+        </Route> */}
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <UsersList/>
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
-          <User />
+        <ProtectedRoute path="/artists/:artistId" exact={true} authenticated={authenticated}>
+          <Artist/>
         </ProtectedRoute>
-      </Switch>
+        <ProtectedRoute path="/upload" exact={true} authenticated={authenticated}>
+          <Upload/>
+        </ProtectedRoute>
     </BrowserRouter>
   );
 }

@@ -28,4 +28,4 @@ const SplashContainer = () => {
   )
 }
 
-export default SplashContainer
+export default SplashContainer;
