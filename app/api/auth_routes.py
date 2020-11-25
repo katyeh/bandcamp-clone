@@ -75,6 +75,8 @@ def sign_up():
     Creates a new user and logs them in
     """
     print('----------------------------')
+    print(request.cookies)
+    print('----------------------------')
     # print(request.data)
     # print(request.form)
     # # print(request.files["file"])
@@ -83,12 +85,11 @@ def sign_up():
     # with open(file, "rb") as f:
     # client.upload_fileobj(file, 'busker2', 'hello', ExtraArgs = {"ACL": "public-read"})
     rest = client.put_object(Body=file, Bucket="busker2", Key=f"images/{file.filename}", ContentType=file.mimetype, ACL="public-read")
-    print(rest)
     # https://busker2.s3.amazonaws.com/22.gif
-    print('----------------------------')
+    # print('----------------------------')
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    print(form.data)
 
     profile = form.data["profile_image_url"]
     cover = form.data['cover_image_url']  
