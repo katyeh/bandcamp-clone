@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-// import { signUp } from '../../services/auth';
 import { signupUser } from '../../store/actions/signupActions';
 import Modal from 'react-modal';
 import "./modal.css";

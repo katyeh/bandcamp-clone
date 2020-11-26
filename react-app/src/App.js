@@ -28,8 +28,8 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/splash" exact={true}>
-          <Splash>Splash</Splash>
           <Header setAuthenticated={setAuthenticated} />
+          <Splash>Splash</Splash>
         </Route>
         <Route path='/*'>
           <RoutesContainer

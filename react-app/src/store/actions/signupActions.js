@@ -1,4 +1,3 @@
-import { SIGN_UP } from '../reducers/signupReducer';
 
 export const signupUser = (user) => {
   return async dispatch => {
@@ -7,7 +6,7 @@ export const signupUser = (user) => {
         method: 'POST',
         body: user
       });
-  
+
       if (res.ok) {
         const data = await res.json();
         return data;
