@@ -3,7 +3,7 @@ import SearchBar from './SearchBar';
 import FeaturedTracks from './FeaturedTracks';
 
 
-const Splash = (props) => {
+const Splash = () => {
   /* Should render:
     header(with signin/create account buttons),
     banner

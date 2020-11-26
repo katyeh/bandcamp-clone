@@ -4,6 +4,7 @@ const userReducer = (state = {}, action) => {
   switch(action.type) {
     case SIGN_UP:
       return {
+        ...state,
         id: action.user.id,
         name: action.user.name,
         username: action.user.username,
