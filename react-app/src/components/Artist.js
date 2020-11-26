@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-function Artist() {
+function Artist(props) {
   const [user, setArtist] = useState({});
   // Notice we use useParams here instead of getting the params
   // From props.
@@ -36,4 +36,13 @@ function Artist() {
     </ul>
   );
 }
-export default Artist;
+
+
+const ArtistContainer = () => {
+
+  return <Artist
+
+  />
+}
+
+export default ArtistContainer;
