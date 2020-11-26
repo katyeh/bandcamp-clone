@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../services/auth';
 import { signupUser } from '../../actions/signupActions';
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
@@ -21,22 +20,21 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = new FormData();
-      data.append('name', name);
-      data.append('username', username);
-      data.append('bio', bio);
-      data.append('country', country);
-      data.append('city', city);
-      data.append('profileImageUrl', profileImageUrl);
-      data.append('coverImageUrl', coverImageUrl);
-      data.append('email', email);
-      data.append('password', password);
+      let user = new FormData();
+      user.append('name', name);
+      user.append('username', username);
+      user.append('bio', bio);
+      user.append('country', country);
+      user.append('city', city);
+      user.append('profileImage', profileImageUrl);
+      user.append('coverImage', coverImageUrl);
+      user.append('email', email);
+      user.append('password', password);
 
-      dispatch(signupUser(data))
-      // const user = await signUp(name,username,email,bio,country,city,profileImageUrl,coverImageUrl,password);
-      // if (!user.errors) {
-      //   setAuthenticated(true);
-      // }
+      user = await dispatch(signupUser(user));
+      if (!user.errors) {
+        setAuthenticated(true);
+      }
     }
   };
 
@@ -85,6 +83,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
 
   return (
     <form onSubmit={onSignUp}>
+
       <div>
         <label>Name</label>
         <input

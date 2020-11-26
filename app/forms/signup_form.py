@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField
+from wtforms import StringField, FileField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import Artist
 
@@ -19,6 +19,8 @@ class SignUpForm(FlaskForm):
     bio = StringField('bio', validators=[DataRequired()])
     country = StringField('country', validators=[DataRequired()])
     city = StringField('city', validators=[DataRequired()])
-    profile_image_url = StringField('profile_image_url')
-    cover_image_url = StringField('profile_image_url')
+    # profile_image_url = FileField('profile_image_url', default="https://busker2.s3.amazonaws.com/defaultimage2.jpeg")
+    # cover_image_url = FileField('cover_image_url', default="https://busker2.s3.amazonaws.com/busker_logo.png")
+    profile_image = FileField('profile_image_url')
+    cover_image = FileField('cover_image_url')
     password = StringField('password', validators=[DataRequired()])
