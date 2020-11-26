@@ -1,10 +1,18 @@
 .navbar {
+  grid-column: 1 / -1;
+  grid-row: 1 / span 1;
   background-color: $color-dark;
-  height: 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   font-size: 1.4rem;
+  display: grid;
+  // grid-template-columns: [left-gutter] left-gutter [contents] repeat(auto-fit, minmax(5rem, 1fr) [right-gutter] right-gutter);
+  // grid-template-columns: [left-gutter] 10rem [contents] 1fr [right-gutter] 10rem;
+
+  &__contents {
+    // grid-column: contents;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   
   a {
     height: 100%;
@@ -47,7 +55,6 @@
     @include opacity-transition;
 
     & .active {
-      // color: $color-accent;
       opacity: 1;
     }
   }
