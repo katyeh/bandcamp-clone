@@ -36,7 +36,6 @@ const Login = ({ authenticated, setAuthenticated }) => {
     const user = await login(email, password);
     if (!user.errors) {
       setAuthenticated(true);
-      debugger
       setIsOpen(false);
       history.push("/home")
     } else {

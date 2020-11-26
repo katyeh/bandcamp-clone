@@ -38,26 +38,61 @@ function Player({ currentTrackIndex, setCurrentTrackIndex, tracks }) {
         return idx
       })
     }
-
-    return (
-      <div style={style}>
-        <audio src={tracks[currentTrackIndex].mp3_url} ref={audioEl}></audio>
-        <h4>Playing now</h4>
-        <Controls
-          isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying}
-          skipTrack={skipTrack}
-        />
-      </div>
-    )
   }
+  return (
+    <div style={style}>
+      <audio src={tracks[currentTrackIndex].mp3_url} ref={audioEl}></audio>
+      <h4>Playing now</h4>
+      <Controls
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        skipTrack={skipTrack}
+      />
+    </div>
+  )
+
 
 }
 
 const PlayerContainer = (props) => {
+  const [tracks, setTracks] = useState([
+    {
+      'title': 'Best I Ever Head',
+      'mp3_url': 'https://busker2.s3.amazonaws.com/songs/drake/Best+I+Ever+Had.mp3',
+      'lyrics': '<<URL HERE>>',
+      "album_id": 6,
+      "artist_id": 2
+    },
+    {
+      'title': 'Farandulera',
+      'mp3_url': 'https://busker2.s3.amazonaws.com/songs/maluma/Farandulera+Maluma+Letra.mp3',
+      'lyrics': '<<URL HERE>>',
+      'album_id': 7,
+      'artist_id': 5
+    },
+    {
+      'title': 'vamos a pasarla bien',
+      'mp3_url': 'https://busker2.s3.amazonaws.com/songs/maluma/vamos+a+pasarla+bien+maluma+letra.mp3',
+      'lyrics': '<<URL HERE>>',
+      'album_id': 8,
+      'artist_id': 5
+    },
+    {
+      'title': 'Beautiful, Dirty, Rich',
+      'mp3_url': 'https://busker2.s3.amazonaws.com/songs/ladygaga/Lady+Gaga+-+Beautiful%2C+Dirty%2C+Rich.mp3',
+      'lyrics': '<<URL HERE>>',
+      'album_id': 9,
+      'artist_id': 6
+    }
+  ])
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+
 
   return (
-    <Player {...props}
+    <Player
+    currentTrackIndex={currentTrackIndex}
+    setCurrentTrackIndex={setCurrentTrackIndex}
+    tracks={tracks}
     />
   )
 }
