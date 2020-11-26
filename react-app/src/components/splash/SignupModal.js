@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signupUser } from '../../store/actions/signupActions';
 import Modal from 'react-modal';
-import "./modal.css";
 
 const SignupModal = ({authenticated, setAuthenticated}) => {
   const dispatch = useDispatch();
@@ -86,7 +85,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
 
   return (
     <div>
-      <button onClick={() => setIsOpen(true)}>Sign Up</button>
+      <button className="signup__btn" onClick={() => setIsOpen(true)}>Sign Up</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}

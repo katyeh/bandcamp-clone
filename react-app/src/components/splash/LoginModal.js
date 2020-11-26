@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { login } from "../../services/auth";
 import Modal from "react-modal";
-import "./modal.css";
 
 Modal.setAppElement('#root');
 
@@ -40,7 +39,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
   return (
     <div>
-      <button onClick={() => setIsOpen(true)}>Login</button>
+      <button className="login__btn" onClick={() => setIsOpen(true)}>Login</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}
