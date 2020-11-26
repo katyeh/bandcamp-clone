@@ -14,3 +14,10 @@ html {
 body {
   font-size: 1.6rem;
 }
+
+a,
+a::before,
+a::after {
+  color: $color-light;
+  text-decoration: none;
+}
