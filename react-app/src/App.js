@@ -24,8 +24,6 @@ function App() {
     return null;
   }
 
-
-
   return (
     <BrowserRouter>
       <Switch>
@@ -36,6 +34,7 @@ function App() {
         <Route path='/*'>
           <RoutesContainer
             authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
             />
         </Route>
       </Switch>

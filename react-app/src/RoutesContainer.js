@@ -7,15 +7,19 @@ import Player from './components/player/Player';
 
 
 
-function RoutesContainer({authenticated}) {
+function RoutesContainer({authenticated, setAuthenticated}) {
 
 
   return (
     <>
-      <NavBar/>
+      <NavBar setAuthenticated={setAuthenticated}/>
       <Player/>
       <Switch>
-        <Route path="/" exact={true} authenticated={authenticated}>
+        <Route
+          path="/"
+          exact={true}
+          authenticated={authenticated}
+        >
           <Home/>
         </Route>
       </Switch>
