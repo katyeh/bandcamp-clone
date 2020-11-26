@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { NavLink, Redirect, useHistory } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+import { useHistory } from 'react-router-dom';
 import { login } from "../../services/auth";
 import Modal from "react-modal";
-import "./modal.css";
 
 Modal.setAppElement('#root');
 
@@ -14,10 +12,6 @@ const Login = ({ authenticated, setAuthenticated }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   let history = useHistory();
-
-  function openModal() {
-    setIsOpen(true);
-  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -45,7 +39,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
   return (
     <div>
-      <button onClick={() => setIsOpen(true)}>Login</button>
+      <button className="login__btn" onClick={() => setIsOpen(true)}>Login</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}
