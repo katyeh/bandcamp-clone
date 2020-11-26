@@ -26,8 +26,6 @@ const Splash = () => {
 }
 
 const SplashContainer = () => {
-
-
   return (
     <Splash
     />
