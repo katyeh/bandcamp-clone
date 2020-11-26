@@ -6,14 +6,22 @@ import Controls from './Controls'
 function Player({ currentTrackIndex, setCurrentTrackIndex, tracks }) {
   const audioEl = useRef(null)
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSeeking, setIsSeeking] = useState(false)
+
 
   useEffect(() => {
     if (isPlaying) {
       audioEl.current.play();
+      console.log(audioEl)
     } else {
       audioEl.current.pause();
     }
   })
+
+
 
   const skipTrack = (forwards = true) => {
     if (forwards) {
@@ -49,8 +57,6 @@ function Player({ currentTrackIndex, setCurrentTrackIndex, tracks }) {
       />
     </div>
   )
-
-
 }
 
 const PlayerContainer = (props) => {
