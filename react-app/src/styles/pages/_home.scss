@@ -11,15 +11,17 @@
     display: flex;
 
     & * {
-      border: 1px solid black;
+      // border: 1px solid black;
     }
   }
 
   &__main {
     min-width: 70%;
+    padding: 3rem;
   }
 
   &__sidemenu {
     width: 100%;
+    padding: 3rem;
   }
 }

@@ -1,0 +1,12 @@
+.section {
+  height: 30rem;
+  
+  & > * {
+    padding: 1rem;
+  }
+
+  &__subtitle {
+    color: $color-grey1;
+    font-size: 1.2rem;
+  }
+}

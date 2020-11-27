@@ -1,12 +1,14 @@
 import React from 'react';
-import Player from '../player/Player'
+import Section from '../home/Section';
 
 const Home = () => {
   return (
     <div className="home">
       <div className="home__contents">
         <main className="home__main">
-          Main
+          <Section title="Suggestion" subtitle="Suggested music based on your likes."/>
+          <Section title="Trending" subtitle="What's hot right now."/>
+          <Section title="New" subtitle="New music by various artists."/>
         </main>
         <aside className="home__sidemenu">
           Aside
