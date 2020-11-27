@@ -1,14 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
-import Home from './components/home/Home';
+import HomeContainer from './components/home/HomeContainer';
+// import HomeContainer from './components/home/HomeContainer';
 import Player from './components/player/Player';
-<<<<<<< HEAD
-import Artist from './components/ArtistProfile'
-=======
-import Example from './components/Example';
->>>>>>> a43646ed61ccc8a91d2d4494b42c28eb3e2353ce
-
+import ArtistProfile from './components/ArtistProfile'
+import Artist from './components/Artists'
 
 
 
@@ -19,28 +16,21 @@ function RoutesContainer({authenticated, setAuthenticated}) {
     <>
       <NavBar setAuthenticated={setAuthenticated}/>
       <Player/>
-      {/* <Switch> */}
+      <Switch>
         <Route
-          path="/example"
-          // exact={true}
-          authenticated={authenticated}
-        >
-          <Example/>
-        </Route>
-        <Route
-          path="/home"
+          path="/"
           exact={true}
           authenticated={authenticated}
-<<<<<<< HEAD
-        />
-          <Home/>  
-      </Switch>
-=======
         >
-          <Home/>
+          <HomeContainer/>
         </Route>
-      {/* </Switch> */}
->>>>>>> a43646ed61ccc8a91d2d4494b42c28eb3e2353ce
+        <Route path="/artists" exact={true}>
+          <Artist />
+        </Route>
+        <Route path="/artists/:id" exact={true}>
+          <ArtistProfile />
+        </Route>
+      </Switch>
     </>
   )
 
