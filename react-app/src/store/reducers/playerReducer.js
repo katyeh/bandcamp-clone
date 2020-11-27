@@ -1,14 +1,14 @@
-export const LOAD_ALBUM = 'LOAD_ALBUM'
+export const LOAD_ALBUMS = 'LOAD_ALBUMS'
 
-export const loadAlbum = (album) => ({ type: LOAD_ALBUM, album })
+export const loadAlbums = (albums) => ({ type: LOAD_ALBUMS, albums })
 
 
 export default function reducer(state = {}, action) {
   switch(action.type) {
-    case LOAD_ALBUM: {
+    case LOAD_ALBUMS: {
       return {
         ...state,
-        currentPlaylist: action.album
+        albums: action.albums
       }
     }
     default: return state;
