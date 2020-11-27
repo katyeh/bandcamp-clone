@@ -35,7 +35,6 @@ class Artist(db.Model, UserMixin):
 
   def to_dict(self):
     return {
-      self.id: {
         "id": self.id,
         "name": self.name,
         "username": self.username,
@@ -43,9 +42,10 @@ class Artist(db.Model, UserMixin):
         "bio": self.bio,
         "country": self.country,
         "city": self.city,
+        "profile_image_url": self.profile_image_url,
+        "cover_image_url": self.cover_image_url,
         "tip_stash": self.tip_stash,
         "dough": self.dough,
-      }
     }
 
 
