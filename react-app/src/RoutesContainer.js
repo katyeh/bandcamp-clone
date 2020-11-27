@@ -15,21 +15,22 @@ function RoutesContainer({authenticated, setAuthenticated}) {
     <>
       <NavBar setAuthenticated={setAuthenticated}/>
       <Player/>
-      <Switch>
+      {/* <Switch> */}
         <Route
-          exact={true}
           path="/example"
+          // exact={true}
+          authenticated={authenticated}
         >
           <Example/>
+        </Route>
         <Route
-          path="/"
+          path="/home"
           exact={true}
           authenticated={authenticated}
         >
           <Home/>
         </Route>
-        </Route>
-      </Switch>
+      {/* </Switch> */}
     </>
   )
 

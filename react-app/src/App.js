@@ -30,7 +30,7 @@ function App() {
           <Header setAuthenticated={setAuthenticated} />
           <Splash>Splash</Splash>
         </Route>
-        <Route path='/*'>
+        <Route path='/'>
           <RoutesContainer
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
