@@ -1,6 +1,7 @@
 import React from 'react';
 import Section from '../home/Section';
 
+
 const Home = ({tracks}) => {
   return (
     <div className="home">
