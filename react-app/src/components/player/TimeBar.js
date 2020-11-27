@@ -1,6 +1,7 @@
 import React from react;
 import { useDrag } from 'react-use-gesture';
 import { directstyled, useDirectStyle } from 'direct-styled'
+import { useEffect } from 'react';
 
 function formatTime(seconds) {
   return [Math.floor(seconds / 60),
@@ -39,10 +40,50 @@ function TimeBar({
   const [circleStyle, setCircleStyle] = useDirectStyle();
   const [ignoreTimeUpdates, setIgnoreTimeUpdates] = useState(false);
 
-  function setStyles((progress) {
+  function setStyles(progress) {
     setCircleStyle({
-
+      left: `${progress}`
     })
-  })
+    setBarStyle({
+      background: `linear-gradient`(to right, #FF8E9E 0%, #FF8E9E ${progress}%, #B2B4C1 ${progress}%, #B2B4C1 100%)
+    })
+  }
+  const bind = useDrag(
+    ({ xy, first, last, event }) => {
+      event.preventDefault();
+      if (first) {
+        setIgnoreTimeUpdates(true);
+      }
+      const { seconds, progress } = getNewTimeProps(barRef.current.getSoundingClientRect(),
+      xy[0], duration
+      )
+      if (last) {
+        setTime(seconds)
+        setIgnoreTimeUpdates(false)
+        return
+      }
+      setStyles(progress);
+    },
+    { event: { passibe:false, capture: true }}
+  )
+  useEffect(() => {
+    if (ignoreTimeUpdates) {
+      return
+    }
+    setStyles(progress);
+  }, [progress]
+  return (
+    <div className={`timebar-ct ${className || ""}`} style={{ position: 'relative, ...style '}}
+    >
+      <directstyled.div ref={barRef} className='timebar-bar' style={barStyle} />
+      <directedstyled.div className=''
+
+
+    </div>
+
+  )
+
+
+
 
 }
