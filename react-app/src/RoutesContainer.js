@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Home from './components/home/Home';
 import Player from './components/player/Player';
+import Artist from './components/ArtistProfile'
 
 
 
@@ -19,9 +20,8 @@ function RoutesContainer({authenticated, setAuthenticated}) {
           path="/"
           exact={true}
           authenticated={authenticated}
-        >
-          <Home/>
-        </Route>
+        />
+          <Home/>  
       </Switch>
     </>
   )
