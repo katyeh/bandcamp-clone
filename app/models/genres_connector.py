@@ -13,11 +13,9 @@ class GenresConnector(db.Model):
 
     def to_dict(self):
         return {
-            self.id: {
-                "id": self.id,
-                "genre_id": self.genre_id,
-                "album_id": self.album_id,
-                "track_id": self.track_id,
-                "artist_id": self.artist_id
-            }
+            "id": self.id,
+            "genre_id": self.genre_id,
+            "album_id": self.album_id,
+            "track_id": self.track_id,
+            "artist_id": self.artist_id
         }
