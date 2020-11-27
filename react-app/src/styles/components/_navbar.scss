@@ -1,0 +1,91 @@
+.navbar {
+  grid-column: 1 / -1;
+  grid-row: 1 / span 1;
+  background-color: $color-dark;
+  font-size: 1.4rem;
+  height: 5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
+
+  &__contents {
+    grid-column: 2 / span 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  a {
+    height: 100%;
+  }
+
+  &__logo {
+    height: 100%;
+    display: flex;
+    background: $gradient-violet;
+    padding: 0 1.5rem;
+
+    & > * {
+      padding: 0 1rem;
+    }
+
+    &-image {
+      background-image: url("../../images/busker_logo.png");
+      background-size: 80%;
+      background-repeat: no-repeat;
+      width: 4rem;
+      margin: .3rem 0;
+    }
+
+    &-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.1rem;
+    }
+  }
+
+  &__links {
+    list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: space-evenly;
+
+    @include opacity-transition;
+
+    & .active {
+      opacity: 1;
+    }
+  }
+
+  &__search {
+    input {
+      border-radius: 3px;
+      border: 0;
+      height: 2.8rem;
+      width: 25rem;
+
+      &:focus {
+        outline: 1px solid $color-accent;
+        transition: outline .2s ease-in-out;
+      }
+    }
+  }
+
+  &__menu {
+    width: 12rem;
+    height: 100%;
+    padding: 0 1.5rem;
+    display: flex;
+
+    & > * {
+      flex-grow: 1;
+
+      ///// remove once replaced with contents./////
+      border: 1px solid white;
+      color: white;
+      /////////////
+    }
+  }
+}

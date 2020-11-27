@@ -1,16 +1,21 @@
 import React from 'react';
-import Player from '../player/Player'
+import Section from '../home/Section';
 
-const Home = ({ currentTrackIndex, setCurrentTrackIndex, tracks }) => {
+
+const Home = ({tracks}) => {
   return (
-    <>
-      <h1>Home Page</h1>
-      <Player
-      currentTrackIndex={currentTrackIndex}
-      setCurrentTrackIndex={setCurrentTrackIndex}
-      tracks={tracks}
-      />
-    </>
+    <div className="home">
+      <div className="home__contents">
+        <main className="home__main">
+          <Section tracks={tracks} title="Suggestion" subtitle="Suggested music based on your likes."/>
+          <Section tracks={tracks} title="Trending" subtitle="What's hot right now."/>
+          <Section tracks={tracks} title="New" subtitle="New music by various artists."/>
+        </main>
+        <aside className="home__sidemenu">
+          Aside
+        </aside>
+      </div>
+    </div>
   )
 }
 

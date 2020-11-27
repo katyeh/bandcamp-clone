@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, request, session
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
@@ -44,7 +44,7 @@ db.init_app(app)
 Migrate(app, db)
 
 # Application Security
-CORS(app)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 @app.after_request
@@ -57,7 +57,6 @@ def inject_csrf_token(response):
                             'FLASK_ENV') == 'production' else None,
                         httponly=True)
     return response
-
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

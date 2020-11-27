@@ -13,16 +13,17 @@ class Album(db.Model):
     single = Column(db.Boolean)
     artist_id = Column(Integer, ForeignKey('artists.id'), nullable=False)
 
-    track = db.relationship('Track', cascade='all, delete', backref='album')
+    artist = db.relationship('Artist', cascade='all, delete', backref='album')
+    tracks = db.relationship('Track', cascade='all, delete', backref='album')
 
     def to_dict(self):
         return {
-            self.id: {
-                "id": self.id,
-                "title": self.title,
-                "album_art_url": self.album_art_url,
-                "release_date": self.release_date,
-                "single": self.single,
-                "artist_id": self.artist_id
-            }
+            "id": self.id,
+            "title": self.title,
+            "album_art_url": self.album_art_url,
+            "release_date": self.release_date,
+            "single": self.single,
+            "artist_id": self.artist_id,
+            "tracks": [track.to_dict() for track in self.tracks],
+            "artist":  self.artist.to_dict()
         }
