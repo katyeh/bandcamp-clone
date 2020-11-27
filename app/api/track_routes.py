@@ -9,6 +9,7 @@ track_routes = Blueprint('tracks', __name__)
 
 @track_routes.route('/')
 def all_tracks():
+  return {'errors':'There are no tracks avaliable'}, 400
   tracks = Track.query.all()
   # tracks = None
   try:
