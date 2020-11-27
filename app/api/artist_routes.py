@@ -1,5 +1,7 @@
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required
+from flask_cors import cross_origin
+from sqlalchemy.orm import relationship, sessionmaker, joinedload
 from app.models import db, Artist, Track, Album, Follower
 import json
 
@@ -28,12 +30,16 @@ def artist_all_tracks(id):
 
 
 @artist_routes.route('/<int:id>/albums', methods=['GET'])
+@cross_origin()
 def artist_all_albums(id):
     albums = Album.query.filter(Album.artist_id == id).all()
     if len(albums) > 0:
+        # albums=[album.to_dict() for album in albums]
+        # return jsonify(albums)
         return jsonify(albums=[album.to_dict() for album in albums])
     else:
         return jsonify(error='This artist did not upload any albums yet.')
+
 
 
 @artist_routes.route('/<int:id>/albums', methods=['POST'])
@@ -99,7 +105,7 @@ def follow(artistId):
 def unfollow(artistId, followerId):
   follower_data = Follower.query.filter(Follower.follower_id == followerId)\
                                 .filter(Follower.followed_id == artistId).first()
-  
+
   try:
     db.session.delete(follower_data)
     db.session.commit()

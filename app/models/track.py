@@ -1,6 +1,7 @@
 from .db import db
 from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, String, Text
+from sqlalchemy.orm import relationship
 
 
 class Track(db.Model):
@@ -15,12 +16,10 @@ class Track(db.Model):
 
   def to_dict(self):
     return {
-      # self.id: {
-        "id": self.id,
-        "title": self.title,
-        "mp3_url": self.mp3_url,
-        "lyrics": self.lyrics,
-        "album_id": self.album_id,
-        "artist_id": self.artist_id
-      # }
+      "id": self.id,
+      "title": self.title,
+      "mp3_url": self.mp3_url,
+      "lyrics": self.lyrics,
+      "album_id": self.album_id,
+      "artist_id": self.artist_id
     }

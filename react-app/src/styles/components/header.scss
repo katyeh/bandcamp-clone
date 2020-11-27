@@ -1,0 +1,59 @@
+.header__logo {
+    display: flex;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    background-color: $color-dark;
+    background-image: url("../../assets/busker.png");
+    height: 40rem;
+}
+.header-btn__container {
+    display: flex;
+
+    .header-btn__wrapper {
+        padding: .5rem;
+
+    }
+}
+
+.header__img1, .header__img2 {
+    height: 8rem;
+    width: 6rem;
+    align-items: center;
+}
+
+.header__img2 {
+    display: flex;
+    height: 5rem;
+    width: 14rem;
+    position: relative;
+    top: 2rem;
+}
+
+.search__div {
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    padding: 5rem;
+
+    p {
+        display: flex;
+        justify-content: center;
+        font-weight: 800;
+        color: $color-dark;
+    }
+    .search__container {
+        display: flex;
+        justify-content: center;
+    }
+    input {
+        height: 4rem;
+        width: 40rem;
+        background-color: lightgray;
+        margin-top: 2rem;
+        border: none;
+    }
+}

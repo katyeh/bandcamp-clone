@@ -35,19 +35,15 @@ class Artist(db.Model, UserMixin):
 
   def to_dict(self):
     return {
-      self.id: {
-        "id": self.id,
-        "name": self.name,
-        "username": self.username,
-        "email": self.email,
-        "bio": self.bio,
-        "country": self.country,
-        "city": self.city,
-        "tip_stash": self.tip_stash,
-        "dough": self.dough,
-      }
+      "id": self.id,
+      "name": self.name,
+      "username": self.username,
+      "email": self.email,
+      "bio": self.bio,
+      "country": self.country,
+      "city": self.city,
+      "tip_stash": self.tip_stash,
+      "dough": self.dough,
+      "cover_image_url": self.cover_image_url,
+      "profile_image_url": self.profile_image_url
     }
-
-
-  #  "profile_image_url": self.profile_image_url,
-  #       "cover_image_url": self.cover_image_url,
