@@ -1,5 +1,9 @@
 .section {
   height: 30rem;
+  
+  &:not(:first-child) {
+    margin: 8rem 0;
+  }
 
   &::after {
     content: "";
@@ -21,6 +25,6 @@
     display: flex;
     width: 100%;
     overflow-x: scroll;
-    // @include hide-scrollbar;
+    @include hide-scrollbar;
   }
 }

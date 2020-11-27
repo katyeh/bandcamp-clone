@@ -1,16 +1,31 @@
-import React, { useState } from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
-import { login } from "../../services/auth";
-import Modal from "react-modal";
+import React from 'react';
 import Login from "./LoginModal";
 import Signup from "./SignupModal";
+import logo1 from "../../assets/busker_logo.png";
+import logo2 from "../../assets/busker_logo2.png";
+
 
 const Header = ( {authenticated, setAuthenticated} ) => {
   return (
-    <div>
-      <Login authenticated={authenticated} setAuthenticated={setAuthenticated} />
-      <Signup authenticated={authenticated} setAuthenticated={setAuthenticated} />
+    <div className="header__container">
+      <div className="header__logo">
+        <img className="header__img1" src={logo1}></img>
+        <img className="header__img2" src={logo2}></img>
+      </div>
+      <div className="header-btn__container">
+        <div className="header-btn__wrapper">
+          <Login
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
+        </div>
+        <div className="header-btn__wrapper">
+          <Signup
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
+        </div>
+      </div>
     </div>
   )
 }

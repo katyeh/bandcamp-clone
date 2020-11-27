@@ -1,0 +1,31 @@
+.header__logo {
+    display: flex;
+    align-items: center;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    background-color: $color-dark;
+}
+.header-btn__container {
+    display: flex;
+
+    .header-btn__wrapper {
+        padding: .5rem;
+
+    }
+}
+
+.header__img1, .header__img2 {
+    height: 8rem;
+    width: 6rem;
+    align-items: center;
+}
+
+.header__img2 {
+    display: flex;
+    height: 5rem;
+    width: 14rem;
+}

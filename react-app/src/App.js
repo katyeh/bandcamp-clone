@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Splash from "./components/splash/Splash";
 import Header from "./components/splash/Header";
 import { authenticate } from "./services/auth";
-
 import RoutesContainer from './RoutesContainer';
 
 function App() {
@@ -28,10 +27,10 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/splash" exact={true}>
-          <Splash>Splash</Splash>
           <Header setAuthenticated={setAuthenticated} />
+          <Splash>Splash</Splash>
         </Route>
-        <Route path='/*'>
+        <Route path='/home'>
           <RoutesContainer
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
