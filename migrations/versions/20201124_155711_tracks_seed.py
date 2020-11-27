@@ -394,3 +394,4 @@ def downgrade():
     op.drop_table('genres')
     op.drop_table('artists')
     # ### end Alembic commands ###
+
