@@ -13,7 +13,8 @@ class Album(db.Model):
     single = Column(db.Boolean)
     artist_id = Column(Integer, ForeignKey('artists.id'), nullable=False)
 
-    track = db.relationship('Track', cascade='all, delete', backref='album')
+    artist = db.relationship('Artist', cascade='all, delete', backref='album')
+    tracks = db.relationship('Track', cascade='all, delete', backref='album')
 
     def to_dict(self):
         return {

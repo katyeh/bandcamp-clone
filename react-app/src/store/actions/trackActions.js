@@ -8,17 +8,10 @@ export const getTracks = (user) => {
       const data = await res.json();
   
       if (res.ok) {
-        return dispatch({
-          type: GET_TRACKS,
-          tracks: data
-        });
+        return dispatch({type: GET_TRACKS, ...data});
       }
-
-      console.log('!!!', data)
-      return dispatch({
-        type: LOAD_ERROR,
-        ...data
-      })
+      
+      return dispatch({type: LOAD_ERROR, ...data});
 
     } catch(e) {
       console.log(e);

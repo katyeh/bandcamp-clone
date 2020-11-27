@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Home from './Home';
 import { getTracks } from '../../store/actions/trackActions';
 
 const HomeContainer = () => {
   const dispatch = useDispatch();
+  const tracks = useSelector(state => state.tracks);
 
   useEffect(() => {
-    console.log('hi')
-    dispatch(getTracks())
+    dispatch(getTracks());
   }, []);
 
-  return ( 
-    <Home />
+  return (
+    <Home tracks={tracks} />
   );
 }
  

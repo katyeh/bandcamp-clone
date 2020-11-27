@@ -15,12 +15,12 @@ class Track(db.Model):
 
   def to_dict(self):
     return {
-      self.id: {
+      # self.id: {
         "id": self.id,
         "title": self.title,
         "mp3_url": self.mp3_url,
         "lyrics": self.lyrics,
         "album_id": self.album_id,
         "artist_id": self.artist_id
-      }
+      # }
     }
