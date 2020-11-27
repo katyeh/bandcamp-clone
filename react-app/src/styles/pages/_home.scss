@@ -1,0 +1,25 @@
+.home {
+  background-color: $color-grey2;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
+
+  &__contents {
+    grid-column: 2 / span 1;
+    background-color: $color-light;
+    height: 100%;
+    display: flex;
+
+    & * {
+      border: 1px solid black;
+    }
+  }
+
+  &__main {
+    min-width: 70%;
+  }
+
+  &__sidemenu {
+    width: 100%;
+  }
+}

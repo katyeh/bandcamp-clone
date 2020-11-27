@@ -3,10 +3,16 @@ import Player from '../player/Player'
 
 const Home = () => {
   return (
-    <>
-      <h1>Home Page</h1>
-  
-    </>
+    <div className="home">
+      <div className="home__contents">
+        <main className="home__main">
+          Main
+        </main>
+        <aside className="home__sidemenu">
+          Aside
+        </aside>
+      </div>
+    </div>
   )
 }
 
