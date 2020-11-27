@@ -10,7 +10,6 @@ let store;
 if (userInfo) store = configureStore({ token: JSON.parse(userInfo).token });
 else store = configureStore();
 
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

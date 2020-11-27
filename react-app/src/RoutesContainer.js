@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
-import Home from './components/home/Home';
+import HomeContainer from './components/home/HomeContainer';
 import Player from './components/player/Player';
 
 
@@ -20,7 +20,7 @@ function RoutesContainer({authenticated, setAuthenticated}) {
           exact={true}
           authenticated={authenticated}
         >
-          <Home/>
+          <HomeContainer/>
         </Route>
       </Switch>
     </>

@@ -1,9 +1,12 @@
 import { combineReducers } from 'redux';
-import userReducer from './signupReducer';
+import user from './signupReducer';
 import player from './playerReducer'
+import tracks from './trackReducer'
+
 const rootReducer = combineReducers({
-  user: userReducer,
-  player
+  user,
+  player,
+  tracks
 })
 
 export default rootReducer;
