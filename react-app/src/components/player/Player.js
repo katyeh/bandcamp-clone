@@ -12,7 +12,6 @@ function Player({ currentTrackIndex, setCurrentTrackIndex, tracks }) {
   const [duration, setDuration] = useState(0);
   const [clickedTime, setClickedTime] = useState();
 
-  // console.log(audioEl)
 
   useEffect(() => {
     if (isPlaying) {

@@ -1,13 +1,18 @@
-import React from 'react';
-import Player from '../player/Player'
+import React, { useEffect } from 'react';
+
 
 const Home = () => {
+
   return (
-    <>
       <h1>Home Page</h1>
-  
-    </>
   )
 }
 
-export default Home;
+const HomeContainer = () => {
+
+  return (
+    <Home/>
+  )
+}
+
+export default HomeContainer;

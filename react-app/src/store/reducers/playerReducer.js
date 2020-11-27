@@ -1,17 +1,16 @@
-export const LOAD_ALBUM = 'LOAD_ALBUM'
+export const PLAYING_QUEUE = 'NOW_PLAYING'
 
-export const loadAlbum = (album) => ({ type: LOAD_ALBUM, album })
+export const loadTrackList = (tracks) => ({ type: PLAYING_QUEUE, tracks })
 
 
 export default function reducer(state = {}, action) {
   switch(action.type) {
-    case LOAD_ALBUM: {
+    case PLAYING_QUEUE: {
       return {
         ...state,
-        currentPlaylist: action.album
+        currentPlaylist: action.playingQueue
       }
     }
     default: return state;
   }
-
-}
+};

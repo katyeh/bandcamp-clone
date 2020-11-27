@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+//do not delete, important
 import momentDurationFormatSetup from "moment-duration-format";
 
 export default function ProgressBar({ duration, currentTime, onTimeUpdate }) {

@@ -6,7 +6,6 @@ import Player from './components/player/Player';
 
 
 
-
 function RoutesContainer({authenticated, setAuthenticated}) {
 
 
@@ -16,7 +15,7 @@ function RoutesContainer({authenticated, setAuthenticated}) {
       <Player/>
       <Switch>
         <Route
-          path="/"
+          path="/home"
           exact={true}
           authenticated={authenticated}
         >
