@@ -12,10 +12,8 @@ class Transaction(db.Model):
 
 def to_dict(self):
     return {
-        self.id: {
-            "id": self.id,
-            "amount": self.amount,
-            "sender_idd": self.sender_id,
-            "recipient_id": self.recipient_id,
-        }
+        "id": self.id,
+        "amount": self.amount,
+        "sender_idd": self.sender_id,
+        "recipient_id": self.recipient_id,
     }

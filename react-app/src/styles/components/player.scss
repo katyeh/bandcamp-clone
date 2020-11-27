@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker|Rock+Salt");
+
+
+
+  .controls {
+    flex-grow: 1;
+    margin: 0 20px;
+    display: flex;
+    // flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    i {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+
+
+  .bar {
+    user-select: none;
+    width: 35%;
+    display: flex;
+    align-items: center;
+
+    .bar__time {
+      color: white;
+      font-size: 16px;
+    }
+
+    .bar__progress {
+      flex: 1;
+      border-radius: 5px;
+      margin: 0 20px;
+      height: 10px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      .bar__progress__knob {
+        position: relative;
+        height: 16px;
+        width: 16px;
+        // border: 1.5px solid white;
+        border-radius: 50%;
+        background-color: $color-accent-dark
+        ;
+      }
+    }
+  }
+
+  // @media screen and (max-width: 800px) {
+  //   flex-direction: column;
+
+  //   .controls {
+  //     width: 100%;
+  //     margin-top: 20px;
+  //   }
+
+  //   .bar {
+  //     width: 90%;
+  //   }
+  // }
+
+  // @media screen and (max-width: 500px) {
+  //   .song {
+  //     .song__title {
+  //       font-size: 2.5em;
+  //     }
+
+  //     .song__artist {
+  //       font-size: 0.8em;
+  //     }
+  //   }
+  // }
