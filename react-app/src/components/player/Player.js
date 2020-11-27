@@ -1,11 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Controls from './Controls'
+import ProgressBar from './ProgressBar'
+import ArtThumbnail from './ArtThumbnail'
 
 
 
 function Player({ currentTrackIndex, setCurrentTrackIndex, tracks }) {
   const audioEl = useRef(null)
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [clickedTime, setClickedTime] = useState();
+
+  // console.log(audioEl)
 
   useEffect(() => {
     if (isPlaying) {
@@ -13,44 +20,41 @@ function Player({ currentTrackIndex, setCurrentTrackIndex, tracks }) {
     } else {
       audioEl.current.pause();
     }
-  })
 
-  const skipTrack = (forwards = true) => {
-    if (forwards) {
-      setCurrentTrackIndex(() => {
-        let idx = currentTrackIndex;
-        idx++
-
-        if (idx > tracks.length - 1) {
-          idx = 0
-        }
-        return idx
-      });
-    } else {
-      setCurrentTrackIndex(() => {
-        let idx = currentTrackIndex;
-        idx--;
-
-        if (idx < 0) {
-          idx = tracks.length - 1
-        }
-        return idx
-      })
+    if (clickedTime && clickedTime !== currentTime) {
+      audioEl.current.currentTime = clickedTime;
+      setClickedTime(null);
     }
-  }
+  });
+
+
   return (
-    <div style={style}>
-      <audio src={tracks[currentTrackIndex].mp3_url} ref={audioEl}></audio>
-      <h4>Playing now</h4>
-      <Controls
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-        skipTrack={skipTrack}
+    <div style={style} className="player">
+      <audio
+        id='audio'
+        src={tracks[currentTrackIndex].mp3_url}
+        ref={audioEl}
+        onLoadedData={() => {
+          setDuration(audioEl.current.duration);
+          setCurrentTime(audioEl.current.currentTime)
+        }}
+        onTimeUpdate={() => {
+          setCurrentTime(audioEl.current.currentTime);
+        }}
       />
+      <div className='controls'>
+        <Controls className='buttons'
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+          currentTrackIndex={currentTrackIndex}
+          setCurrentTrackIndex={setCurrentTrackIndex}
+          tracks={tracks}
+        />
+        <ProgressBar currentTime={currentTime} duration={duration} onTimeUpdate={(time) =>setClickedTime(time)}/>
+        {/* <ArtThumbnail art={tracks.current.}/> */}
+      </div>
     </div>
   )
-
-
 }
 
 const PlayerContainer = (props) => {

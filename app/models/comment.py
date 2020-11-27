@@ -12,10 +12,8 @@ class Comment(db.Model):
 
   def to_dict(self):
     return {
-      self.id: {
-        "id": self.id,
-        "track_id": self.track_id,
-        "artist_id": self.artist_id,
-        "message": self.message
-      }
+      "id": self.id,
+      "track_id": self.track_id,
+      "artist_id": self.artist_id,
+      "message": self.message
     }

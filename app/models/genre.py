@@ -10,8 +10,6 @@ class Genre(db.Model):
 
     def to_dict(self):
         return {
-            self.id: {
-                "id": self.id,
-                "name": self.name,
-            }
+            "id": self.id,
+            "name": self.name,
         }
