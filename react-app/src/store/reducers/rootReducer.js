@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   user,
   player,
   tracks,
-  errors
+  errors,
   currentArtist:  currentArtistReducer,
   artists: artistReducer,
 });
