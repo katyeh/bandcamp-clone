@@ -11,7 +11,6 @@ function ArtistProfile({getOneArtist,artist}) {
   useEffect(() => {
     getOneArtist(artistId)
   }, [artistId])
-  console.log(artist)
 
   if (!artist) {
     return null;

@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import { getAllArtists } from '../store/actions/artists'
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from "react-router-dom";
 
 const ShowAllArtists = ({ getAllArtists, artists }) => {
 
