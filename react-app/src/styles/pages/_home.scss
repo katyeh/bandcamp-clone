@@ -23,5 +23,16 @@
   &__sidemenu {
     width: 100%;
     padding: 3rem;
+    position: relative;
+
+    &::before {
+      content: "";
+      height: 100%;
+      display: block;
+      border-left: 1px solid $color-grey2;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
   }
 }

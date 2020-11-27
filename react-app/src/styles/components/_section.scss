@@ -1,5 +1,12 @@
 .section {
   height: 30rem;
+
+  &::after {
+    content: "";
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid $color-grey2;
+  }
   
   & > * {
     padding: 1rem;
