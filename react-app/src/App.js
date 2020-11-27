@@ -32,17 +32,8 @@ function App() {
           <Header setAuthenticated={setAuthenticated} />
           <Splash>Splash</Splash>
         </Route>
-<<<<<<< HEAD
-        <Route path="/artists" exact={true}>
-          <Artist />
-        </Route>
-        <Route path="/artists/:id" exact={true}>
-          <ArtistProfile />
-        </Route>
-        <Route path='/home'>
-=======
+    
         <Route path='/'>
->>>>>>> a43646ed61ccc8a91d2d4494b42c28eb3e2353ce
           <RoutesContainer
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
