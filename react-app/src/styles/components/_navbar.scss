@@ -5,11 +5,10 @@
   font-size: 1.4rem;
   height: 5rem;
   display: grid;
-  // grid-template-columns: [left-gutter] left-gutter [contents] repeat(auto-fit, minmax(5rem, 1fr) [right-gutter] right-gutter);
-  // grid-template-columns: [left-gutter] 10rem [contents] 1fr [right-gutter] 10rem;
+  grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
 
   &__contents {
-    // grid-column: contents;
+    grid-column: 2 / span 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
