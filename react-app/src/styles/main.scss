@@ -3,8 +3,11 @@
 @import "utils/typography";
 @import "utils/mixins";
 @import "components/navbar";
-@import "layout/grid";
+@import "components/section";
+@import "components/track";
+@import "pages/home";
 @import "components/modal";
 @import "components/header";
 @import "components/login";
 @import "components/signup";
+@import "components/player"

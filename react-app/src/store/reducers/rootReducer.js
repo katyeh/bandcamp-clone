@@ -1,14 +1,18 @@
 import { combineReducers } from 'redux';
-import userReducer from './signupReducer';
+import user from './signupReducer';
 import player from './playerReducer'
+import tracks from './trackReducer'
+import errors from './errorReducer'
 import artistReducer from './artist'
 import currentArtistReducer from './currentArtist'
 
 const rootReducer = combineReducers({
-  user: userReducer,
-  artists: artistReducer,
+  user,
+  player,
+  tracks,
+  errors,
   currentArtist:  currentArtistReducer,
-  player
-})
+  artists: artistReducer,
+});
 
 export default rootReducer;
