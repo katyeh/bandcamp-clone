@@ -9,7 +9,8 @@ const Section = ({title, subtitle, tracks}) => {
       <div className="section__contents">
         {tracks.map(track => (
           <Track key={track.id}>
-            {track.artist_id}
+            <div className="track__image">
+            </div>
           </Track>
         ))}
       </div>

@@ -4,4 +4,10 @@
   // width: 40rem;
   height: 20rem;
   min-width: 20rem;
+
+  &__image {
+    background-color: pink;
+    width: 80%;
+    height: 80%;
+  }
 }

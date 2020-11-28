@@ -1,7 +1,7 @@
 
 from flask import Blueprint, request, jsonify
 from flask_login import login_required
-from app.models import db, Track, Comment
+from app.models import db, Track, Comment, Album
 from sqlalchemy.orm import joinedload
 import json
 
@@ -10,9 +10,9 @@ track_routes = Blueprint('tracks', __name__)
 
 @track_routes.route('/')
 def all_tracks():
-  tracks = Track.query.options(joinedload(Track.album)).all()
+  tracks = Track.query.all()
   try:
-    return jsonify(tracks = [track.album.to_dict() for track in tracks])
+    return jsonify(tracks = [track.to_dict() for track in tracks])
   except:
     return {'errors':'There are no tracks avaliable'}, 400
 
