@@ -17,8 +17,6 @@ const Splash = () => {
   */
   return (
     <div>
-      <h1>Splash</h1>
-      <div>Banner image goes here.</div>
       <SearchBar />
       <FeaturedTracks />
     </div>

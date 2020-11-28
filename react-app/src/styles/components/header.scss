@@ -33,27 +33,3 @@
     top: 2rem;
 }
 
-.search__div {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    padding: 5rem;
-
-    p {
-        display: flex;
-        justify-content: center;
-        font-weight: 800;
-        color: $color-dark;
-    }
-    .search__container {
-        display: flex;
-        justify-content: center;
-    }
-    input {
-        height: 4rem;
-        width: 40rem;
-        background-color: lightgray;
-        margin-top: 2rem;
-        border: none;
-    }
-}

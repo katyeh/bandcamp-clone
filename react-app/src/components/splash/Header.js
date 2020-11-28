@@ -3,7 +3,6 @@ import Login from "./LoginModal";
 import Signup from "./SignupModal";
 import logo1 from "../../assets/busker_logo.png";
 import logo2 from "../../assets/busker_logo2.png";
-import busker_img from "../../assets/busker.png";
 
 
 const Header = ( {authenticated, setAuthenticated} ) => {
@@ -27,12 +26,6 @@ const Header = ( {authenticated, setAuthenticated} ) => {
               setAuthenticated={setAuthenticated}
             />
           </div>
-        </div>
-      </div>
-      <div className="search__div">
-        <p>Come listen to awesome music, discover new artists, and donate so they can continue making new music.</p>
-        <div class="search__container">
-          <input type="text"></input>
         </div>
       </div>
     </div>
