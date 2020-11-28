@@ -16,9 +16,29 @@ const Example = ({ albums, tracks, getTracks, dispatch }) => {
     dispatch(getTrackPlayer(id))
   }
 
+  const albumHandler = (e) => {
+    const chunks = e.target.id.split('_')
+    const id = parseInt(chunks[chunks.length - 1])
+    dispatch(getTrackPlayer(id))
+  }
+
+
+
   return (
     <>
       <div style={{ heigth: '300px' }} />
+      <div id='3' onClick={albumHandler}>
+        Album1
+        <button></button>
+      </div>
+      <div id='4' onClick={albumHandler}>
+        Album2
+        <button></button>
+      </div>
+      <div id='' onClick={albumHandler}>
+        Album1
+        <button></button>
+      </div>
       {tracks.map((track) => {
         return(
           <div onClick={playHandler} key={track.id}>
