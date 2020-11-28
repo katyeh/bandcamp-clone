@@ -12,7 +12,7 @@ const Section = ({title, subtitle, tracks}) => {
 
   useEffect(() => {
     carousel.current.scrollLeft += 80;
-    if (tracks.random_picks) {
+    if (tracks && tracks.length) {
       setTracksLoaded(true)
     }
   }, [toggle, tracks, tracksLoaded])
@@ -22,7 +22,7 @@ const Section = ({title, subtitle, tracks}) => {
       <h2 className="section__title">{title}</h2>
       <h3 className="section__subtitle">{subtitle}</h3>
       <div ref={carousel} className="section__contents">
-      {tracksLoaded && tracks.random_picks.map(track => (
+      {tracksLoaded && tracks.map(track => (
           <Track key={track.id}>
             <div className="track__image">
               <img src={track.album.album_art_url} />

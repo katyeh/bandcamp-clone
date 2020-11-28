@@ -67,13 +67,17 @@ def home():
   random_picks = Track.query.limit(10).all()
   random.shuffle(random_picks)
 
-  # suggestion
+  # trending
   top_liked = db.session.query(Like.track_id, func.count(Like.track_id)).group_by(Like.track_id).order_by(Like.track_id).limit(10).all()
+
+  # new
+  new_tracks = Track.query.order_by(Track.id.desc()).limit(10).all()
 
   try:
     return jsonify(tracks = {
       "random_picks": [track.to_dict() for track in random_picks],
-      "trending": [Track.query.get(track[0]).to_dict() for track in top_liked]
+      "trending": [Track.query.get(track[0]).to_dict() for track in top_liked],
+      "new": [track.to_dict() for track in new_tracks]
     })
   except:
     return {'errors':'There are no tracks avaliable'}, 400
