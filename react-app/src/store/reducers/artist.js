@@ -9,7 +9,6 @@ const artistReducer = (state = {}, action) => {
             const artists = action.artists.map((artist) => ({ [artist.id]: artist }));
             return merge({}, state, ...artists)
         }
-
         default:
             return state
     }

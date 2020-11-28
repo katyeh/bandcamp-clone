@@ -1,22 +1,28 @@
-export const LOAD_ALBUMS = 'LOAD_ALBUMS'
+export const LOAD_ALBUM = 'LOAD_ALBUM'
+export const LOAD_TRACK = 'LOAD_TRACK'
 export const LOAD_PLAYING_LIST = 'LOAD_PLAYING_LIST'
-
-export const loadAlbums = (albums) => ({ type: LOAD_ALBUMS, albums })
-export const loadPlayingList = (album) => ({ type: LOAD_PLAYING_LIST, album})
 
 
 export default function reducer(state = {}, action) {
+  Object.freeze(state);
+
   switch(action.type) {
-    case LOAD_ALBUMS: {
+    case LOAD_ALBUM: {
       return {
         ...state,
-        albums: action.albums
+        playingNow: action.album
       }
     }
-    case LOAD_PLAYING_LIST: {
+    // case LOAD_PLAYING_LIST: {
+    //   return {
+    //     ...state,
+    //     playingNow: action.album
+    //   }
+    // }
+    case LOAD_TRACK: {
       return {
         ...state,
-        playingList: action.album
+        playingNow: action.track
       }
     }
     default: return state;

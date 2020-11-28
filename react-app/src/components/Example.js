@@ -1,47 +1,50 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { getAlbums } from '../store/actions/playerActions';
-import { loadPlayingList } from '../store/reducers/playerReducer'
+// import { getAlbums } from '../store/actions/playerActions';
+import { getTracks } from '../store/actions/trackActions'
+import { getTrackPlayer } from '../store/actions/playerActions'
 
-const Example = ({ albums, getAlbums, dispatch }) => {
+const Example = ({ albums, tracks, getTracks, dispatch }) => {
 
   useEffect(() => {
-    getAlbums();
+    getTracks();
   }, []);
-  console.log(albums)
-  if (!albums) return null
 
-  console.log('albums from example', albums)
-
-
-  const playHandler = () => {
-    dispatch(loadPlayingList(albums))
+  const playHandler = (e) => {
+    const chunks = e.target.id.split('_')
+    const id = parseInt(chunks[chunks.length - 1])
+    dispatch(getTrackPlayer(id))
   }
 
   return (
     <>
       <div style={{ heigth: '300px' }} />
-      {albums.map(() => {
-
+      {tracks.map((track) => {
+        return(
+          <div onClick={playHandler} key={track.id}>
+            <h2>{track.title}</h2>
+            <h2>{track.artist_name}</h2>
+            <button id={`track_${track.id}`} onClick={playHandler}>play mudafucka!</button>
+          </div>
+        )
       })}
       <h1>Example</h1>
-      <button onClick={playHandler} >play</button>
     </>
   )
 }
 
 
 const ExampleContainer = () => {
-  const albums = useSelector((state) => state.player.albums)
+  const tracks = useSelector(state => state.tracks);
+
   const dispatch = useDispatch();
 
   return (
     <>
-      {/* <h1>hello</h1> */}
       <Example
-        albums={albums}
+        tracks={tracks}
         dispatch={dispatch}
-        getAlbums={() => dispatch(getAlbums())}
+        getTracks={() => dispatch(getTracks())}
       />
     </>
   )

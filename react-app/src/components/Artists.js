@@ -10,7 +10,7 @@ const ShowAllArtists = ({ getAllArtists, artists }) => {
         getAllArtists();
     }, [])
 
-    console.log(artists)
+    // console.log(artists)
 
     if (!artists) return null
     return (
