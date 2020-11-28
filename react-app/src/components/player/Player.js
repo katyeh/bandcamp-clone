@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Controls from './Controls'
-import ProgressBar from './ProgressBar'
-import ArtThumbnail from './ArtThumbnail'
+import { useSelector } from 'react-redux';
+import Controls from './Controls';
+import ProgressBar from './ProgressBar';
+import ArtThumbnail from './ArtThumbnail';
 
 
 
-function Player({ currentTrackIndex, setCurrentTrackIndex, tracks }) {
+function Player({ track }) {
   const audioEl = useRef(null)
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -46,8 +47,8 @@ function Player({ currentTrackIndex, setCurrentTrackIndex, tracks }) {
         <Controls className='buttons'
           isPlaying={isPlaying}
           setIsPlaying={setIsPlaying}
-          currentTrackIndex={currentTrackIndex}
-          setCurrentTrackIndex={setCurrentTrackIndex}
+          // currentTrackIndex={currentTrackIndex}
+          // setCurrentTrackIndex={setCurrentTrackIndex}
           tracks={tracks}
         />
         <ProgressBar currentTime={currentTime} duration={duration} onTimeUpdate={(time) =>setClickedTime(time)}/>
@@ -58,44 +59,19 @@ function Player({ currentTrackIndex, setCurrentTrackIndex, tracks }) {
 }
 
 const PlayerContainer = (props) => {
-  const [tracks, setTracks] = useState([
-    {
-      'title': 'Best I Ever Head',
-      'mp3_url': 'https://busker2.s3.amazonaws.com/songs/drake/Best+I+Ever+Had.mp3',
-      'lyrics': '<<URL HERE>>',
-      "album_id": 6,
-      "artist_id": 2
-    },
-    {
-      'title': 'Farandulera',
-      'mp3_url': 'https://busker2.s3.amazonaws.com/songs/maluma/Farandulera+Maluma+Letra.mp3',
-      'lyrics': '<<URL HERE>>',
-      'album_id': 7,
-      'artist_id': 5
-    },
-    {
-      'title': 'vamos a pasarla bien',
-      'mp3_url': 'https://busker2.s3.amazonaws.com/songs/maluma/vamos+a+pasarla+bien+maluma+letra.mp3',
-      'lyrics': '<<URL HERE>>',
-      'album_id': 8,
-      'artist_id': 5
-    },
-    {
-      'title': 'Beautiful, Dirty, Rich',
-      'mp3_url': 'https://busker2.s3.amazonaws.com/songs/ladygaga/Lady+Gaga+-+Beautiful%2C+Dirty%2C+Rich.mp3',
-      'lyrics': '<<URL HERE>>',
-      'album_id': 9,
-      'artist_id': 6
-    }
-  ])
-  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const tracks = useSelector(state => state.playingNow)
+  const [track, setTrack] = state.playingNow
+
+  useEffect(() => {
+    setTrack(tracks[0])
+  },[tracks])
+
+  if (!track) return null
 
 
   return (
     <Player
-    currentTrackIndex={currentTrackIndex}
-    setCurrentTrackIndex={setCurrentTrackIndex}
-    tracks={tracks}
+    track={track}
     />
   )
 }
