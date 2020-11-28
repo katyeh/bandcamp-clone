@@ -1,8 +1,9 @@
 
 from flask import Blueprint, request, jsonify
 from flask_login import login_required
-from app.models import db, Track, Comment, Album
+from app.models import db, Track, Comment, Album, Like
 from sqlalchemy.orm import joinedload
+from sqlalchemy import func
 import json
 import random
 
@@ -62,12 +63,24 @@ def comment_on_track(id):
 
 @track_routes.route('/home')
 def home():
-  tracks = Track.query.all()
-  random.shuffle(tracks)
+  random_picks = Track.query.limit(10).all()
+  random.shuffle(random_picks)
+
+  # trending = Like.query.order_by(Like.track_id).all()
+  # trending = Like.query.order_by(Like.track_id.count()).all()
+
+  # count_query = Like.query.statement.with_only_columns([func.count()]).group_by(Like.artist_id).order_by(Like.artist_id)
+  # print(db.session.execute(count_query))
+  
+  liked_ranking = db.session.query(Like.artist_id, func.count(Like.artist_id)).group_by(Like.artist_id).order_by(Like.artist_id).all()
+  print('!!!')
+  print(liked_ranking)
+  print('!!!')
+
   try:
     return jsonify(tracks = {
-      "random": [track.to_dict() for track in tracks]
+      "random_picks": [track.to_dict() for track in random_picks],
+
     })
-    # return jsonify(tracks = [track.to_dict() for track in tracks])
   except:
     return {'errors':'There are no tracks avaliable'}, 400

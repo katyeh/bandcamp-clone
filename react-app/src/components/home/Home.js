@@ -7,6 +7,7 @@ const Home = ({tracks}) => {
     <div className="home">
       <div className="home__contents">
         <main className="home__main">
+          <Section tracks={tracks} title="Random Picks" subtitle="Dive in and explore!"/>
           <Section tracks={tracks} title="Suggestion" subtitle="Suggested music based on your likes."/>
           <Section tracks={tracks} title="Trending" subtitle="What's hot right now."/>
           <Section tracks={tracks} title="New" subtitle="New music by various artists."/>
