@@ -22,13 +22,14 @@ function Player({ currentTrackIndex, setCurrentTrackIndex, isPlaying, setIsPlayi
       audioEl.current.pause();
     }
 
-    if (!tracks) return null
 
     if (clickedTime && clickedTime !== currentTime) {
       audioEl.current.currentTime = clickedTime;
       setClickedTime(null);
     }
   });
+
+  if (!tracks) return null
 
   const next = () => {
     if (currentTrackIndex === tracks.length - 1) {
