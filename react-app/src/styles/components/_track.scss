@@ -2,6 +2,7 @@
   background-color: skyblue;
   margin: 1rem;
   // width: 40rem;
+  height: auto;
   height: 20rem;
   min-width: 20rem;
 
@@ -9,5 +10,11 @@
     background-color: pink;
     width: 80%;
     height: 80%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }
