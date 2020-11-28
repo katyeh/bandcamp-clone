@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Track from './Track';
 import {useSpring, animated, config} from 'react-spring';
-
+import { NavLink } from 'react-router-dom';
 
 const Section = ({title, subtitle, tracks}) => {
   const [tracksLoaded, setTracksLoaded] = useState(false);
@@ -50,13 +50,15 @@ const Section = ({title, subtitle, tracks}) => {
         <div className="section__contents--left-scroll" ref={arrowLeft} onClick={handleLeftScroll}>&#9001;</div>
         <animated.div scrollLeft={props.scrollLeft} ref={carousel} className="section__carousel">
           {tracksLoaded && tracks.map(track => (
-            <Track key={track.id}>
-              <div className="track__image">
-                <img src={track.album.album_art_url} />
-              </div>
-              <p className="track__title">{track.title}</p>
-              <p className="track__album-title">{track.album.title}</p>
-            </Track>
+            <NavLink to={`/tracks/${track.id}`}>
+              <Track key={track.id}>
+                <div className="track__image">
+                  <img src={track.album.album_art_url} />
+                </div>
+                <p className="track__title">{track.title}</p>
+                <p className="track__album-title">{track.album.title}</p>
+              </Track>
+            </NavLink>
           ))}
         </animated.div>
       </div>

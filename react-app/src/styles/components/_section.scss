@@ -3,7 +3,7 @@
   height: auto;
   
   &:not(:first-child) {
-    margin: 8rem 0;
+    margin: 5rem 0;
   }
 
   &::after {
@@ -31,13 +31,20 @@
     }
   }
 
-
-
   &__carousel {
     display: flex;
     width: 100%;
     overflow-x: scroll;
     @include hide-scrollbar;
+
+    :not(:first-child) {
+      padding-left: 2rem;
+    }
+
+    & .track {
+      height: auto;
+    }
+
   }
 
   &__subtitle {

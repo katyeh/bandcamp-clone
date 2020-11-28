@@ -7,6 +7,12 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
 
+  a,
+  a::before,
+  a::after {
+    color: $color-light;
+  }
+
   &__contents {
     grid-column: 2 / span 1;
     display: flex;
