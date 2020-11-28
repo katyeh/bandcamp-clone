@@ -4,7 +4,7 @@ from flask_login import login_required
 from app.models import db, Track, Comment, Album
 from sqlalchemy.orm import joinedload
 import json
-
+import random
 
 track_routes = Blueprint('tracks', __name__)
 
@@ -59,3 +59,15 @@ def comment_on_track(id):
     return jsonify(message = f"Commented on track with the id of {id}."), 201
   except:
     return jsonify(error = f"Error commenting on track with the id of {id}."), 404
+
+@track_routes.route('/home')
+def home():
+  tracks = Track.query.all()
+  random.shuffle(tracks)
+  try:
+    return jsonify(tracks = {
+      "random": [track.to_dict() for track in tracks]
+    })
+    # return jsonify(tracks = [track.to_dict() for track in tracks])
+  except:
+    return {'errors':'There are no tracks avaliable'}, 400
