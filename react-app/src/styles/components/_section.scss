@@ -17,15 +17,31 @@
     padding: 1rem;
   }
 
-  &__subtitle {
-    color: $color-grey1;
-    font-size: 1.2rem;
+  &__contents {
+    position: relative;
+
+    &--left-scroll {
+      @include carousel_button();
+      left: 0;
+    }
+
+    &--right-scroll {
+      @include carousel_button();
+      right: 0;
+    }
   }
 
-  &__contents {
+
+
+  &__carousel {
     display: flex;
     width: 100%;
     overflow-x: scroll;
     @include hide-scrollbar;
+  }
+
+  &__subtitle {
+    color: $color-grey1;
+    font-size: 1.2rem;
   }
 }

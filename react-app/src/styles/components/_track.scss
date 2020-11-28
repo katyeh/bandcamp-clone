@@ -5,9 +5,12 @@
   height: auto;
   height: 20rem;
   min-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.4rem;
 
   &__image {
-    background-color: pink;
     width: 80%;
     height: 80%;
 
@@ -16,5 +19,10 @@
       height: 100%;
       object-fit: cover;
     }
+  }
+
+  &__album-title {
+    font-size: 1.2rem;
+    color: $color-grey1;
   }
 }

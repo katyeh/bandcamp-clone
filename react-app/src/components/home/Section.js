@@ -21,16 +21,20 @@ const Section = ({title, subtitle, tracks}) => {
     <section className="section">
       <h2 className="section__title">{title}</h2>
       <h3 className="section__subtitle">{subtitle}</h3>
-      <div ref={carousel} className="section__contents">
-      {tracksLoaded && tracks.map(track => (
-          <Track key={track.id}>
-            <div className="track__image">
-              <img src={track.album.album_art_url} />
-            </div>
-            <p>{track.title}</p>
-            <p onClick={e => setToggle(!toggle)}>{track.album.title}</p>
-          </Track>
-        ))}
+      <div className="section__contents">
+        <div className="section__contents--left-scroll"></div>
+        <div className="section__contents--right-scroll"></div>
+        <div ref={carousel} className="section__carousel">
+          {tracksLoaded && tracks.map(track => (
+            <Track key={track.id}>
+              <div className="track__image">
+                <img src={track.album.album_art_url} />
+              </div>
+              <p className="track__title">{track.title}</p>
+              <p onClick={e => setToggle(!toggle)} className="track__album-title">{track.album.title}</p>
+            </Track>
+          ))}
+        </div>
       </div>
     </section>
   );
