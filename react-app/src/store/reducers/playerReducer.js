@@ -25,7 +25,7 @@ export default function reducer(state = [], action) {
     case LOAD_ALBUM: {
       return {
         ...state,
-        playingNow: action.album
+        playingNow: action.album.tracks
       }
     }
     // case LOAD_PLAYING_LIST: {

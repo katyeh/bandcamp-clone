@@ -6,76 +6,94 @@ import ArtThumbnail from './ArtThumbnail';
 
 
 
-// function Player({ currentTrackIndex, setCurrentTrackIndex, track }) {
-//   const audioEl = useRef(null)
-//   const [isPlaying, setIsPlaying] = useState(false);
-//   const [currentTime, setCurrentTime] = useState(0);
-//   const [duration, setDuration] = useState(0);
-//   const [clickedTime, setClickedTime] = useState();
+function Player({ currentTrackIndex, setCurrentTrackIndex, isPlaying, setIsPlaying, tracks }) {
+  const audioEl = useRef(null)
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [clickedTime, setClickedTime] = useState();
+  // const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
 
-//   // console.log(audioEl)
 
-//   useEffect(() => {
-//     if (isPlaying) {
-//       audioEl.current.play();
-//     } else {
-//       audioEl.current.pause();
-//     }
-
-//     if (clickedTime && clickedTime !== currentTime) {
-//       audioEl.current.currentTime = clickedTime;
-//       setClickedTime(null);
-//     }
-//   });
-
-//   return (
-//     <div style={style} className="player">
-//       <audio
-//         id='audio'
-//         src={track.mp3_url}
-//         ref={audioEl}
-//         onLoadedData={() => {
-//           setDuration(audioEl.current.duration);
-//           setCurrentTime(audioEl.current.currentTime)
-//         }}
-//         onTimeUpdate={() => {
-//           setCurrentTime(audioEl.current.currentTime);
-//         }}
-//       />
-//       <div className='controls'>
-//         <Controls className='buttons'
-//           isPlaying={isPlaying}
-//           setIsPlaying={setIsPlaying}
-//           currentTrackIndex={currentTrackIndex}
-//           setCurrentTrackIndex={setCurrentTrackIndex}
-//           track={track}
-//         />
-//         <ProgressBar currentTime={currentTime} duration={duration} onTimeUpdate={(time) =>setClickedTime(time)}/>
-//       </div>
-//     </div>
-//   )
-// }
-
-const PlayerContainer = (props) => {
-  const music = useSelector(state => state.player.playingNow)
-  const [track, setTrack] = useState()
-  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
 
   useEffect(() => {
-    setTrack(music)
-  },[music])
+    if (isPlaying) {
+      audioEl.current.play();
+    } else {
+      audioEl.current.pause();
+    }
 
-  if(!track) return null
+    if (!tracks) return null
+
+    if (clickedTime && clickedTime !== currentTime) {
+      audioEl.current.currentTime = clickedTime;
+      setClickedTime(null);
+    }
+  });
+
+  const next = () => {
+    if (currentTrackIndex === tracks.length - 1) {
+      setCurrentTrackIndex(0)
+    } else {
+      setCurrentTrackIndex(currentTrackIndex + 1)
+    }
+  }
+
+  const handleEnd = () => {
+    next()
+  }
+
+
+  return (
+    <div style={style} className="player">
+      <audio
+        id='audio'
+        src={tracks[currentTrackIndex].mp3_url}
+        ref={audioEl}
+        onLoadedData={() => {
+          setDuration(audioEl.current.duration);
+          setCurrentTime(audioEl.current.currentTime)
+        }}
+        onTimeUpdate={() => {
+          setCurrentTime(audioEl.current.currentTime);
+        }}
+        onEnded={handleEnd}
+      />
+      <div className='controls'>
+        <Controls className='buttons'
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+          currentTrackIndex={currentTrackIndex}
+          setCurrentTrackIndex={setCurrentTrackIndex}
+          tracks={tracks}
+        />
+        <ProgressBar currentTime={currentTime} duration={duration} onTimeUpdate={(time) =>setClickedTime(time)}/>
+      </div>
+    </div>
+  )
+}
+
+const PlayerContainer = (props) => {
+  const trackList = useSelector(state => state.player.playingNow)
+  const [tracks, setTracks] = useState()
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+
+  useEffect(() => {
+    setTracks(trackList)
+  },[trackList])
+
+  if(!tracks) return null
 
 
 
   return (
-    <h1>Player</h1>
-    // <Player
-    // currentTrackIndex={currentTrackIndex}
-    // setCurrentTrackIndex={setCurrentTrackIndex}
-    // track={track}
-    // />
+    <Player
+    currentTrackIndex={currentTrackIndex}
+    setCurrentTrackIndex={setCurrentTrackIndex}
+    tracks={tracks}
+    isPlaying={isPlaying}
+    setIsPlaying={setIsPlaying}   />
   )
 }
 
