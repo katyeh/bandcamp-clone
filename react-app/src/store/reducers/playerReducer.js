@@ -25,9 +25,11 @@ export default function reducer(state = [], action) {
     case LOAD_ALBUM: {
       return {
         ...state,
-        playingNow: action.album.tracks
-      }
+        playingNow: action.album.tracks,
+        tracksIds: action.album.tracks.map(track => Object.keys(track)[0]),
+        albumId: action.id
     }
+  }
     // case LOAD_PLAYING_LIST: {
     //   return {
     //     ...state,

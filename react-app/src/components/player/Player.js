@@ -74,25 +74,34 @@ const audioEl = useRef(null)
 
 const PlayerContainer = (props) => {
   const trackList = useSelector(state => state.player.playingNow)
+  const tracksIdArray = useSelector(state => state.player.tracksIds)
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
-
   const [tracks, setTracks] = useState()
 
 
   useEffect(() => {
     setTracks(trackList)
+    if (tracks) {
+
+    }
+
+
   },[trackList])
 
   if(!tracks) return null
 
-
+  // tracks.map(track => Object.values(track))
+  // console.log(tracks)
 
   return (
+    <>
+    {/* <h1>{tracks}</h1> */}
     <Player
-    tracks={tracks}
+    track={tracks}
     currentTrackIndex={currentTrackIndex}
     setCurrentTrackIndex={setCurrentTrackIndex}
     />
+    </>
   )
 }
 

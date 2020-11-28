@@ -54,6 +54,6 @@ def delete_album(id):
 def get_album_player(id):
     tracks = Track.query.filter(Track.album_id == id).options(joinedload(Track.album), joinedload(Track.artist)).all()
     if tracks:
-        return {"tracks": [track.to_dict() for track in tracks]}
+        return {"tracks": [{track.id: track.to_dict()} for track in tracks]}
     else:
         return jsonify(error='This album does not exist.')
