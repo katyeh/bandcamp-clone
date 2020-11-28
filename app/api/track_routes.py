@@ -63,24 +63,17 @@ def comment_on_track(id):
 
 @track_routes.route('/home')
 def home():
+  # random picks
   random_picks = Track.query.limit(10).all()
   random.shuffle(random_picks)
 
-  # trending = Like.query.order_by(Like.track_id).all()
-  # trending = Like.query.order_by(Like.track_id.count()).all()
-
-  # count_query = Like.query.statement.with_only_columns([func.count()]).group_by(Like.artist_id).order_by(Like.artist_id)
-  # print(db.session.execute(count_query))
-  
-  liked_ranking = db.session.query(Like.artist_id, func.count(Like.artist_id)).group_by(Like.artist_id).order_by(Like.artist_id).all()
-  print('!!!')
-  print(liked_ranking)
-  print('!!!')
+  # suggestion
+  top_liked = db.session.query(Like.track_id, func.count(Like.track_id)).group_by(Like.track_id).order_by(Like.track_id).limit(10).all()
 
   try:
     return jsonify(tracks = {
       "random_picks": [track.to_dict() for track in random_picks],
-
+      "trending": [Track.query.get(track[0]).to_dict() for track in top_liked]
     })
   except:
     return {'errors':'There are no tracks avaliable'}, 400
