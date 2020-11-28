@@ -6,13 +6,12 @@ import ArtThumbnail from './ArtThumbnail';
 
 
 
-function Player({ currentTrackIndex, setCurrentTrackIndex, isPlaying, setIsPlaying, tracks }) {
-  const audioEl = useRef(null)
+function Player({ tracks, currentTrackIndex, setCurrentTrackIndex }) {
+const audioEl = useRef(null)
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [clickedTime, setClickedTime] = useState();
-  // const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
-
+  const [isPlaying, setIsPlaying] = useState(true);
 
 
   useEffect(() => {
@@ -75,9 +74,9 @@ function Player({ currentTrackIndex, setCurrentTrackIndex, isPlaying, setIsPlayi
 
 const PlayerContainer = (props) => {
   const trackList = useSelector(state => state.player.playingNow)
-  const [tracks, setTracks] = useState()
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+
+  const [tracks, setTracks] = useState()
 
 
   useEffect(() => {
@@ -90,11 +89,10 @@ const PlayerContainer = (props) => {
 
   return (
     <Player
+    tracks={tracks}
     currentTrackIndex={currentTrackIndex}
     setCurrentTrackIndex={setCurrentTrackIndex}
-    tracks={tracks}
-    isPlaying={isPlaying}
-    setIsPlaying={setIsPlaying}   />
+    />
   )
 }
 

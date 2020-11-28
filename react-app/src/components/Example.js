@@ -28,6 +28,7 @@ const Example = () => {
     <>
        <div onClick={albumHandler}>
         <button id='3'>Album3</button>
+        <button id='1'>Album3 Track1</button>
       </div>
       <div onClick={albumHandler}>
         <button id='4' >Album4</button>
