@@ -3,7 +3,6 @@ from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, String, Text
 from sqlalchemy.orm import relationship
 
-
 class Track(db.Model):
   __tablename__ = 'tracks'
 
@@ -21,5 +20,5 @@ class Track(db.Model):
       "mp3_url": self.mp3_url,
       "lyrics": self.lyrics,
       "album_id": self.album_id,
-      "artist_id": self.artist_id
+      "artist_id": self.artist_id,
     }
