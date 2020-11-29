@@ -8,12 +8,12 @@ const HomeContainer = () => {
   const tracks = useSelector(state => state.tracks);
 
   useEffect(() => {
-    dispatch(getTracks());
+    // dispatch(getTracks());
   }, []);
 
   return (
     <Home tracks={tracks} />
   );
 }
- 
+
 export default HomeContainer;

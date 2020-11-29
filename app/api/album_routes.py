@@ -1,5 +1,7 @@
 from flask import Blueprint, redirect, jsonify, request
 from sqlalchemy.orm import joinedload
+from flask_cors import CORS,cross_origin
+
 
 from app.models import db, Album, Track
 
@@ -57,3 +59,11 @@ def get_album_player(id):
         return {"tracks": [{track.id: track.to_dict()} for track in tracks]}
     else:
         return jsonify(error='This album does not exist.')
+
+
+@album_routes.route("/")
+@cross_origin(supports_credentials=True)
+
+def get_albums():
+    albums = Album.query.all()
+    return jsonify([album.to_dict() for album in albums])

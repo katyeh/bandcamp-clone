@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-// import { getAlbums } from '../store/actions/playerActions';
+import { getAlbums } from '../store/actions/albumActions';
 import { getTracks } from '../store/actions/trackActions'
-import { getTrackPlayer, getAlbumPlayer } from '../store/actions/playerActions'
+import { getTrackPlayer, play, getAlbumPlayer } from '../store/actions/playerActions'
+import AlbumCard from "./albumcard/AlbumCard";
 
-// const Example = ({ albums, tracks, getTracks, dispatch }) => {
-const Example = () => {
-  const dispatch = useDispatch()
+const Example = ({ albums, dispatch }) => {
 
   // useEffect(() => {
   //   getTracks();
@@ -22,47 +21,47 @@ const Example = () => {
     const id = parseInt(e.target.id)
     console.log(id)
     dispatch(getAlbumPlayer(id))
+    dispatch(play(true))
   }
+  console.log('hi')
 
   return (
     <>
-       <div onClick={albumHandler}>
-        <button id='3'>Album3</button>
-        <button id='1'>Album3 Track1</button>
-      </div>
-      <div onClick={albumHandler}>
-        <button id='4' >Album4</button>
-      </div>
-      <div onClick={albumHandler}>
-        <button id='5'>Album5</button>
-      </div>
-      {/* <div style={{ heigth: '300px' }} />
-      {tracks.map((track) => {
+      {albums.map((album) => {
         return(
-          <div onClick={playHandler} key={track.id}>
-            <h2>{track.title}</h2>
-            <h2>{track.artist_name}</h2>
-            <button id={`track_${track.id}`} onClick={playHandler}>play mudafucka!</button>
-          </div>
+          <AlbumCard
+            key={album.id}
+            albumCover={album.album_art_url}
+            albumId={album.id}
+            title={album.title}
+            artistName={album.artist.name}
+            tracks={album.tracks}
+            artistId={album.artistd}
+          />
         )
       })}
-      <h1>Example</h1> */}
     </>
   )
 }
 
 
 const ExampleContainer = () => {
-  // const tracks = useSelector(state => state.tracks);
+  const albums = useSelector(state => state.album.albums);
+  const dispatch = useDispatch();
 
-  // const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAlbums());
+  }, []);
+
+  if (!albums) return null
+
+  console.log(albums)
 
   return (
     <>
       <Example
-        // tracks={tracks}
-        // dispatch={dispatch}
-        // getTracks={() => dispatch(getTracks())}
+      albums={albums}
+      dispatch={dispatch}
       />
     </>
   )

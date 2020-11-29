@@ -1,37 +1,26 @@
 import React from 'react';
-
+import { useDispatch } from 'react-redux'
+import { play, pause } from '../../store/actions/playerActions'
 
 const Controls = ({isPlaying, setIsPlaying, currentTrackIndex, setCurrentTrackIndex, tracks}) => {
+  const dispatch = useDispatch()
 
   const skipTrack = (forwards = true) => {
-    if (forwards) {
-      setCurrentTrackIndex(() => {
-        let idx = currentTrackIndex;
-        idx++
-
-        if (idx > tracks.length - 1) {
-          idx = 0
-        }
-        return idx
-      });
-    } else {
-      setCurrentTrackIndex(() => {
-        let idx = currentTrackIndex;
-        idx--;
-
-        if (idx < 0) {
-          idx = tracks.length - 1
-        }
-        return idx
-      })
+    if (forwards && currentTrackIndex < tracks.length - 2) {
+      dispatch(setCurrentTrackIndex(currentTrackIndex + 1))
+    } else if (!forwards && currentTrackIndex > 0) {
+      dispatch(setCurrentTrackIndex(currentTrackIndex - 1))
     }
   }
 
   return (
     <div style={style}>
-        <i className="fa fa-fast-backward" onClick={() => skipTrack(true)}></i>
-        <i className={!isPlaying?"fa fa-play":"fas fa-pause"} onClick={() => setIsPlaying(!isPlaying)}></i>
-        <i className="fa fa-fast-forward" onClick={() => skipTrack(false)}></i>
+        <i className="fa fa-fast-backward" onClick={() => skipTrack(false)}></i>
+        <i
+          className={!isPlaying?"fa fa-play":"fas fa-pause"}
+          onClick={isPlaying?() => dispatch(pause()):() => dispatch(play())}
+        ></i>
+        <i className="fa fa-fast-forward" onClick={() => skipTrack(true)}></i>
         <i className="fas fa-random"></i>
     </div>
   )

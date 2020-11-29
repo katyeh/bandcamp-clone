@@ -1,23 +1,25 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Controls from './Controls';
 import ProgressBar from './ProgressBar';
+// import Visualizer from './Visualizer';
 import ArtThumbnail from './ArtThumbnail';
+import { setCurrentTrackIndex } from '../../store/actions/playerActions'
 
 
 
-function Player({ tracks, currentTrackIndex, setCurrentTrackIndex }) {
-const audioEl = useRef(null)
+function Player({ tracks, track, currentTrackIndex, isPlaying }) {
+  const dispatch = useDispatch()
+  const audioEl = useRef(null)
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [clickedTime, setClickedTime] = useState();
-  const [isPlaying, setIsPlaying] = useState(true);
 
 
   useEffect(() => {
-    if (isPlaying) {
+    if (isPlaying && audioEl.current) {
       audioEl.current.play();
-    } else {
+    } else if (!isPlaying && audioEl.current) {
       audioEl.current.pause();
     }
 
@@ -26,15 +28,19 @@ const audioEl = useRef(null)
       audioEl.current.currentTime = clickedTime;
       setClickedTime(null);
     }
-  });
+  }, [currentTrackIndex, isPlaying, audioEl]);
 
-  if (!tracks) return null
+  if (!tracks || !track ) return null
+
+  // var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  // console.log(audioCtx)
 
   const next = () => {
     if (currentTrackIndex === tracks.length - 1) {
-      setCurrentTrackIndex(0)
+      dispatch(setCurrentTrackIndex(0))
     } else {
-      setCurrentTrackIndex(currentTrackIndex + 1)
+      dispatch(setCurrentTrackIndex(currentTrackIndex + 1))
     }
   }
 
@@ -45,9 +51,10 @@ const audioEl = useRef(null)
 
   return (
     <div style={style} className="player">
+      {/* <Visualizer audioElement={audioEl}/> */}
       <audio
         id='audio'
-        src={tracks[currentTrackIndex].mp3_url}
+        src={track.mp3_url}
         ref={audioEl}
         onLoadedData={() => {
           setDuration(audioEl.current.duration);
@@ -61,7 +68,6 @@ const audioEl = useRef(null)
       <div className='controls'>
         <Controls className='buttons'
           isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying}
           currentTrackIndex={currentTrackIndex}
           setCurrentTrackIndex={setCurrentTrackIndex}
           tracks={tracks}
@@ -73,33 +79,34 @@ const audioEl = useRef(null)
 }
 
 const PlayerContainer = (props) => {
-  const trackList = useSelector(state => state.player.playingNow)
+  const trackList = useSelector(state => state.player.tracksData)
   const tracksIdArray = useSelector(state => state.player.tracksIds)
-  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const isPlaying = useSelector(state => state.player.isPlaying)
+  const currentTrackIndex = useSelector(state => state.player.currentIndex)
+
   const [tracks, setTracks] = useState()
 
 
   useEffect(() => {
-    setTracks(trackList)
-    if (tracks) {
+    (async() => {
+      await setTracks(trackList)
+    })()
 
-    }
-
-
-  },[trackList])
+  },[trackList, currentTrackIndex])
 
   if(!tracks) return null
 
-  // tracks.map(track => Object.values(track))
-  // console.log(tracks)
+  const trackId = tracksIdArray[currentTrackIndex]
+
 
   return (
     <>
     {/* <h1>{tracks}</h1> */}
     <Player
-    track={tracks}
+    track={tracks[currentTrackIndex][trackId]}
+    tracks={tracks}
     currentTrackIndex={currentTrackIndex}
-    setCurrentTrackIndex={setCurrentTrackIndex}
+    isPlaying={isPlaying}
     />
     </>
   )
