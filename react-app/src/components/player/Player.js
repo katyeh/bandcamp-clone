@@ -92,7 +92,7 @@ const PlayerContainer = (props) => {
       await setTracks(trackList)
     })()
 
-  },[trackList, currentTrackIndex])
+  },[trackList, currentTrackIndex, isPlaying, currentTrackIndex])
 
   if(!tracks) return null
 
