@@ -24,7 +24,7 @@ const Section = ({title, subtitle, tracks}) => {
 
   useEffect(() => {
     arrowLeft.current.style.opacity = scroll === 0 ? 0 : 1;
-    arrowRight.current.style.opacity = scroll === 1540 ? 0 : 1;
+    arrowRight.current.style.opacity = scroll === 1320 ? 0 : 1;
   }, [scroll]);
 
   const handleRightScroll = () => {
@@ -32,6 +32,7 @@ const Section = ({title, subtitle, tracks}) => {
       set({scrollLeft: scroll + moveScroll})
       setScroll(scroll + moveScroll);
     }
+    console.log(scroll)
   }
 
   const handleLeftScroll = () => {

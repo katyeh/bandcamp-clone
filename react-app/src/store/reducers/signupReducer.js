@@ -5,14 +5,17 @@ const userReducer = (state = {}, action) => {
     case SIGN_UP:
       return {
         ...state,
-        id: action.user.id,
-        name: action.user.name,
-        username: action.user.username,
-        bio: action.user.bio,
-        country: action.user.country,
-        city: action.user.city,
-        profileImageUrl: action.user.profileImageUrl,
-        coverImageUrl: action.user.coverImageUrl,
+        id: action.id,
+        name: action.name,
+        username: action.username,
+        email: action.email,
+        bio: action.bio,
+        country: action.country,
+        city: action.city,
+        profileImageUrl: action.profile_image_url,
+        coverImageUrl: action.cover_image_url,
+        tipStach: action.tip_stash,
+        dough: action.dough
       }
     default:
       return state;

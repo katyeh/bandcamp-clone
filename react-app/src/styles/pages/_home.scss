@@ -1,6 +1,6 @@
 .home {
   background-color: $color-grey2;
-  height: 100vh;
+  height: auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
 
