@@ -4,8 +4,7 @@ import Splash from "./components/splash/Splash";
 import Header from "./components/splash/Header";
 import { authenticate } from "./services/auth";
 import RoutesContainer from './RoutesContainer';
-import ArtistProfile from './components/ArtistProfile'
-import Artist from './components/Artists'
+
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);

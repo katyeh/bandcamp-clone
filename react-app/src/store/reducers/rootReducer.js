@@ -5,6 +5,9 @@ import tracks from './trackReducer'
 import errors from './errorReducer'
 import artistReducer from './artist'
 import currentArtistReducer from './currentArtist'
+import currentTracks from './currentTracksReducer'
+import currentAlbums from './currentAlbumsReducer'
+import followers from './followersReducer'
 
 const rootReducer = combineReducers({
   user,
@@ -13,6 +16,9 @@ const rootReducer = combineReducers({
   errors,
   currentArtist:  currentArtistReducer,
   artists: artistReducer,
+  currentTracks,
+  currentAlbums,
+  followers
 });
 
 export default rootReducer;
