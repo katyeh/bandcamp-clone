@@ -9,6 +9,15 @@
   }
 }
 
+@mixin opacity-transition2() {
+  opacity: .8;
+  transition: opacity .2s ease-in;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 @mixin hide-scrollbar() {
   -ms-overflow-style: none; 
   scrollbar-width: none;

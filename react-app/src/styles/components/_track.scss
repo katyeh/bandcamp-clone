@@ -1,5 +1,4 @@
 .track {
-  // margin: 1rem;
   height: auto;
   min-width: 15rem;
   display: flex;
@@ -8,7 +7,6 @@
   font-size: 1.4rem;
   line-height: 2rem;
   height: 30rem;
-  // padding: 1rem;
 
   &__image {
     width: 17.5rem;
@@ -25,8 +23,7 @@
   &__title {
     max-width: 80%;
     a {
-      color: red;
-      opacity: 01
+     opacity: 1
     }
   }
 
