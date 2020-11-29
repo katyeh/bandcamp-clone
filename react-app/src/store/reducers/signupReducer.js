@@ -1,22 +1,26 @@
-export const SIGN_UP = 'SIGN_UP'
+export const LOAD_USER = "LOAD_USER";
 
 const userReducer = (state = {}, action) => {
   switch(action.type) {
-    case SIGN_UP:
+    case LOAD_USER:
       return {
         ...state,
-        id: action.user.id,
-        name: action.user.name,
-        username: action.user.username,
-        bio: action.user.bio,
-        country: action.user.country,
-        city: action.user.city,
-        profileImageUrl: action.user.profileImageUrl,
-        coverImageUrl: action.user.coverImageUrl,
+        id: action.id,
+        name: action.name,
+        username: action.username,
+        email: action.email,
+        bio: action.bio,
+        country: action.country,
+        city: action.city,
+        profileImageUrl: action.profile_image_url,
+        coverImageUrl: action.cover_image_url,
+        tipStach: action.tip_stash,
+        dough: action.dough
       }
     default:
       return state;
   }
 };
+
 
 export default userReducer;

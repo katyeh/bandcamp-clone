@@ -4,7 +4,7 @@ import { LOAD_ERROR } from '../reducers/errorReducer';
 export const getTracks = (user) => {
   return async dispatch => {
     try {
-      const res = await fetch(`/api/tracks/`);
+      const res = await fetch(`/api/tracks/home`);
       const data = await res.json();
   
       if (res.ok) {

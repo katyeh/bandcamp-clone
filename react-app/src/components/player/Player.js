@@ -1,38 +1,60 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Controls from './Controls'
-import ProgressBar from './ProgressBar'
-import ArtThumbnail from './ArtThumbnail'
+import { useSelector, useDispatch } from 'react-redux';
+import Controls from './Controls';
+import ProgressBar from './ProgressBar';
+// import Visualizer from './Visualizer';
+import ArtThumbnail from './ArtThumbnail';
+import { setCurrentTrack } from '../../store/actions/playerActions'
 
 
 
-function Player({ currentTrackIndex, setCurrentTrackIndex, tracks }) {
+function Player({ tracks, track, currentTrackIndex, isPlaying }) {
+  const dispatch = useDispatch()
   const audioEl = useRef(null)
-  const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [clickedTime, setClickedTime] = useState();
 
-  // console.log(audioEl)
 
   useEffect(() => {
-    if (isPlaying) {
+    if (isPlaying && audioEl.current) {
       audioEl.current.play();
-    } else {
+    } else if (!isPlaying && audioEl.current) {
       audioEl.current.pause();
     }
+
 
     if (clickedTime && clickedTime !== currentTime) {
       audioEl.current.currentTime = clickedTime;
       setClickedTime(null);
     }
-  });
+  }, [currentTrackIndex, isPlaying, audioEl]);
+
+  if (!tracks || !track ) return null
+
+  // var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  // console.log(audioCtx)
+
+  const next = () => {
+    if (currentTrackIndex === tracks.length - 1) {
+      dispatch(setCurrentTrack(0))
+    } else {
+      dispatch(setCurrentTrack(currentTrackIndex + 1))
+    }
+  }
+
+  const handleEnd = () => {
+    next()
+  }
 
 
   return (
     <div style={style} className="player">
+      {/* <Visualizer audioElement={audioEl}/> */}
       <audio
         id='audio'
-        src={tracks[currentTrackIndex].mp3_url}
+        src={track.mp3_url}
         ref={audioEl}
         onLoadedData={() => {
           setDuration(audioEl.current.duration);
@@ -41,62 +63,54 @@ function Player({ currentTrackIndex, setCurrentTrackIndex, tracks }) {
         onTimeUpdate={() => {
           setCurrentTime(audioEl.current.currentTime);
         }}
+        onEnded={handleEnd}
       />
       <div className='controls'>
         <Controls className='buttons'
           isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying}
           currentTrackIndex={currentTrackIndex}
-          setCurrentTrackIndex={setCurrentTrackIndex}
+          setCurrentTrack={setCurrentTrack}
           tracks={tracks}
         />
         <ProgressBar currentTime={currentTime} duration={duration} onTimeUpdate={(time) =>setClickedTime(time)}/>
-        {/* <ArtThumbnail art={tracks.current.}/> */}
       </div>
     </div>
   )
 }
 
 const PlayerContainer = (props) => {
-  const [tracks, setTracks] = useState([
-    {
-      'title': 'Best I Ever Head',
-      'mp3_url': 'https://busker2.s3.amazonaws.com/songs/drake/Best+I+Ever+Had.mp3',
-      'lyrics': '<<URL HERE>>',
-      "album_id": 6,
-      "artist_id": 2
-    },
-    {
-      'title': 'Farandulera',
-      'mp3_url': 'https://busker2.s3.amazonaws.com/songs/maluma/Farandulera+Maluma+Letra.mp3',
-      'lyrics': '<<URL HERE>>',
-      'album_id': 7,
-      'artist_id': 5
-    },
-    {
-      'title': 'vamos a pasarla bien',
-      'mp3_url': 'https://busker2.s3.amazonaws.com/songs/maluma/vamos+a+pasarla+bien+maluma+letra.mp3',
-      'lyrics': '<<URL HERE>>',
-      'album_id': 8,
-      'artist_id': 5
-    },
-    {
-      'title': 'Beautiful, Dirty, Rich',
-      'mp3_url': 'https://busker2.s3.amazonaws.com/songs/ladygaga/Lady+Gaga+-+Beautiful%2C+Dirty%2C+Rich.mp3',
-      'lyrics': '<<URL HERE>>',
-      'album_id': 9,
-      'artist_id': 6
-    }
-  ])
-  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const trackList = useSelector(state => state.player.tracksData)
+  const tracksIdArray = useSelector(state => state.player.tracksIds)
+  const isPlaying = useSelector(state => state.player.isPlaying)
+
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
+
+
+  const [tracks, setTracks] = useState()
+
+
+  useEffect(() => {
+    (async() => {
+      await setTracks(trackList)
+    })()
+
+  },[trackList, currentTrackIndex, isPlaying, currentTrackIndex])
+
+  if(!tracks) return null
+
+  const trackId = tracksIdArray[currentTrackIndex]
 
 
   return (
+    <>
+    {/* <h1>{tracks}</h1> */}
     <Player
-    currentTrackIndex={currentTrackIndex}
-    setCurrentTrackIndex={setCurrentTrackIndex}
+    track={tracks[currentTrackIndex][trackId]}
     tracks={tracks}
+    currentTrackIndex={currentTrackIndex}
+    isPlaying={isPlaying}
     />
+    </>
   )
 }
 
@@ -107,7 +121,7 @@ let style = {
   width: "100%",
   height: "80px",
   background: "#282828",
-  // zIndex: "99",
+  zIndex: "99",
   padding: "0 20px",
   display: "flex",
   alignItems: "center",

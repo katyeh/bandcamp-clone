@@ -1,3 +1,4 @@
+import { LOAD_USER } from '../reducers/signupReducer';
 
 export const signupUser = (user) => {
   return async dispatch => {
@@ -9,13 +10,29 @@ export const signupUser = (user) => {
 
       if (res.ok) {
         const data = await res.json();
+        dispatch({
+          type: LOAD_USER,
+          ...data
+        });
+        localStorage.setItem("user_id", data.id);
         return data;
       }
 
       return await res.json();
-
     } catch(e) {
       console.log(e);
     }
+  }
+}
+
+export const loadUser = (id) => async (dispatch) => {
+  const response = await fetch(`/api/artists/${id}`)
+
+  if (response.ok) {
+      const data = await response.json();
+      dispatch({
+        type: LOAD_USER,
+        ...data.artist[0]
+      });
   }
 }

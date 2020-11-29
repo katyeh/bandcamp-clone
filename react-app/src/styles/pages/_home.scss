@@ -1,12 +1,12 @@
 .home {
   background-color: $color-grey2;
-  height: 100vh;
+  height: auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
 
   &__contents {
     grid-column: 2 / span 1;
-    background-color: $color-light;
+    background-color: white;
     height: 100%;
     display: flex;
 
@@ -16,7 +16,7 @@
   }
 
   &__main {
-    min-width: 70%;
+    width: 70%;
     padding: 3rem;
   }
 

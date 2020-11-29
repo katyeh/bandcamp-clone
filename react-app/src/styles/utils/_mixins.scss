@@ -9,11 +9,38 @@
   }
 }
 
+@mixin opacity-transition2() {
+  opacity: .8;
+  transition: opacity .2s ease-in;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 @mixin hide-scrollbar() {
   -ms-overflow-style: none; 
   scrollbar-width: none;
 
   &::-webkit-scrollbar {
       display: none;
+  }
+}
+
+@mixin carousel_button() {
+  content: '';
+  font-size: 5rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  cursor: pointer;
+  color: $color-accent;
+  transition: opacity .2s ease-in;
+  opacity: .7;
+
+  &:hover {
+    opacity: 1;
+    transition: opacity .2s ease-in;
   }
 }

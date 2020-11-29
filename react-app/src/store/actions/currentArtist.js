@@ -8,7 +8,7 @@ export const getOneArtist = (id) => async (dispatch) => {
 
     if (response.ok) {
         const current = await response.json();
-        dispatch(setCurrentArtist(current))
+        dispatch(setCurrentArtist(current));
     }
 }
 
