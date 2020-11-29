@@ -44,7 +44,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}
         contentLabel="Login Modal"
-        className="modal"
+        className="login-modal"
         overlayClassName="overlay"
         shouldCloseOnOverlayClick={true}
       >

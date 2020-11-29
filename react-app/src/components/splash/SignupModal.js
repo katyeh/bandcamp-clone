@@ -90,7 +90,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}
         contentLabel="Signup Modal"
-        className="modal"
+        className="signup-modal"
         overlayClassName="overlay"
         shouldCloseOnOverlayClick={true}
       >
@@ -128,7 +128,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               value={email}
             ></input>
           </div>
-          <div className="login-content">
+          {/* <div className="login-content">
             <label>Bio</label>
             <input
               type="text"
@@ -136,7 +136,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               onChange={updateBio}
               value={bio}
             ></input>
-          </div>
+          </div> */}
          {/*  <div className="login-content">
             <label>Country</label>
             <input

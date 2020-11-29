@@ -1,4 +1,4 @@
-.modal {
+.login-modal {
     display: grid;
     grid-template-rows: 10rem 10rem;
     position: absolute;
@@ -9,7 +9,9 @@
     background-color: white;
     padding: 3rem;
     outline: none;
-    height: 40rem;
+    height: 35rem;
+    border-radius: 1rem;
+    // width: 40rem;
 }
 
 .login-header {
