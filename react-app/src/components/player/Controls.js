@@ -2,14 +2,14 @@ import React from 'react';
 import { useDispatch } from 'react-redux'
 import { play, pause } from '../../store/actions/playerActions'
 
-const Controls = ({isPlaying, setIsPlaying, currentTrackIndex, setCurrentTrackIndex, tracks}) => {
+const Controls = ({isPlaying, setIsPlaying, currentTrackIndex, setCurrentTrack, tracks}) => {
   const dispatch = useDispatch()
 
   const skipTrack = (forwards = true) => {
     if (forwards && currentTrackIndex < tracks.length - 2) {
-      dispatch(setCurrentTrackIndex(currentTrackIndex + 1))
+      dispatch(setCurrentTrack(currentTrackIndex + 1))
     } else if (!forwards && currentTrackIndex > 0) {
-      dispatch(setCurrentTrackIndex(currentTrackIndex - 1))
+      dispatch(setCurrentTrack(currentTrackIndex - 1))
     }
   }
 

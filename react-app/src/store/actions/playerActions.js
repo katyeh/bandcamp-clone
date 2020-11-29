@@ -1,11 +1,10 @@
-import { LOAD_TRACK, PLAY, PAUSE, LOAD_ALBUM, SET_INDEX } from '../reducers/playerReducer'
+import { PLAY, PAUSE, LOAD_ALBUM, SET_TRACK } from '../reducers/playerReducer'
 
 
-export const loadTrack = (track) => ({ type: LOAD_TRACK, track })
 export const loadAlbum = (album, id) => ({ type: LOAD_ALBUM, album, id })
 export const play = () => ({ type: PLAY })
 export const pause = () => ({ type: PAUSE })
-export const setCurrentTrackIndex = (idx) => ({ type: SET_INDEX, idx })
+export const setCurrentTrack = (id) => ({ type: SET_TRACK, id })
 
 export const getAlbumPlayer = (id) => async(dispatch) => {
   const response = await fetch(`/api/albums/player/${id}`)
@@ -15,10 +14,10 @@ export const getAlbumPlayer = (id) => async(dispatch) => {
   }
 }
 
-export const getTrackPlayer = (id) => async(dispatch) => {
-  const response = await fetch(`/api/tracks/${id}`)
-  if (response.ok) {
-    const track = await response.json()
-    dispatch(loadTrack(track))
-  }
-}
+// export const getTrackPlayer = (id) => async(dispatch) => {
+//   const response = await fetch(`/api/tracks/${id}`)
+//   if (response.ok) {
+//     const track = await response.json()
+//     dispatch(loadTrack(track))
+//   }
+// }

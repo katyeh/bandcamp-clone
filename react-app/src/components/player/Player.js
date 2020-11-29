@@ -4,7 +4,7 @@ import Controls from './Controls';
 import ProgressBar from './ProgressBar';
 // import Visualizer from './Visualizer';
 import ArtThumbnail from './ArtThumbnail';
-import { setCurrentTrackIndex } from '../../store/actions/playerActions'
+import { setCurrentTrack } from '../../store/actions/playerActions'
 
 
 
@@ -38,9 +38,9 @@ function Player({ tracks, track, currentTrackIndex, isPlaying }) {
 
   const next = () => {
     if (currentTrackIndex === tracks.length - 1) {
-      dispatch(setCurrentTrackIndex(0))
+      dispatch(setCurrentTrack(0))
     } else {
-      dispatch(setCurrentTrackIndex(currentTrackIndex + 1))
+      dispatch(setCurrentTrack(currentTrackIndex + 1))
     }
   }
 
@@ -69,7 +69,7 @@ function Player({ tracks, track, currentTrackIndex, isPlaying }) {
         <Controls className='buttons'
           isPlaying={isPlaying}
           currentTrackIndex={currentTrackIndex}
-          setCurrentTrackIndex={setCurrentTrackIndex}
+          setCurrentTrack={setCurrentTrack}
           tracks={tracks}
         />
         <ProgressBar currentTime={currentTime} duration={duration} onTimeUpdate={(time) =>setClickedTime(time)}/>

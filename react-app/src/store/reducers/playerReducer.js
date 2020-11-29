@@ -1,9 +1,8 @@
 export const LOAD_ALBUM = 'LOAD_ALBUM'
-export const LOAD_TRACK = 'LOAD_TRACK'
 export const LOAD_PLAYING_LIST = 'LOAD_PLAYING_LIST'
 export const PLAY = 'PLAY'
 export const PAUSE = 'PAUSE'
-export const SET_INDEX = 'SET_INDEX' ;
+export const SET_TRACK = 'SET_TRACK' ;
 
 
 const initialSong = {
@@ -33,16 +32,11 @@ export default function reducer(state = [], action) {
         albumId: action.id
     }
   }
-    case LOAD_TRACK: {
+
+    case SET_TRACK: {
       return {
         ...state,
-        tracksData: action.track
-      }
-    }
-    case SET_INDEX: {
-      return {
-        ...state,
-        currentIndex: action.idx
+        currentTrack: action.id
       }
     }
     case PLAY: {
