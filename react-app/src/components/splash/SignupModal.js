@@ -83,12 +83,12 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
 
   return (
     <div>
-      <button className="signup__btn" onClick={() => setIsOpen(true)}>Sign Up</button>
+      <button className="signup__btn" onClick={() => setIsOpen(true)}>Create account</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}
         contentLabel="Signup Modal"
-        className="modal"
+        className="signup-modal"
         overlayClassName="overlay"
         shouldCloseOnOverlayClick={true}
       >
@@ -126,7 +126,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               value={email}
             ></input>
           </div>
-          <div className="login-content">
+          {/* <div className="login-content">
             <label>Bio</label>
             <input
               type="text"
@@ -134,8 +134,8 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               onChange={updateBio}
               value={bio}
             ></input>
-          </div>
-          <div className="login-content">
+          </div> */}
+         {/*  <div className="login-content">
             <label>Country</label>
             <input
               type="text"
@@ -168,7 +168,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               name="cover_image"
               onChange={updateCoverImageUrl}
             ></input>
-          </div>
+          </div> */}
           <div className="login-content">
             <label>Password</label>
             <input
@@ -189,7 +189,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
             ></input>
           </div>
           <div className="login-content">
-            <button type="submit">Sign Up</button>
+            <button className="login-btn" type="submit">Sign Up</button>
           </div>
         </form>
       </Modal>
