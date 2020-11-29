@@ -11,9 +11,11 @@ track_routes = Blueprint('tracks', __name__)
 
 @track_routes.route('/')
 def all_tracks():
-  tracks = Track.query.all()
+  # tracks = Track.query.all()
+  tracks = Track.query.options(joinedload(Track.album), joinedload(Track.artist)).all()
+  # tracks = None
   try:
-    return jsonify(tracks = [track.to_dict() for track in tracks])
+    return {"tracks": [track.to_dict() for track in tracks]}
   except:
     return {'errors':'There are no tracks avaliable'}, 400
 

@@ -23,5 +23,5 @@ const HomeContainer = () => {
     <Home tracks={tracks} artists={artists}/>
   );
 }
- 
+
 export default HomeContainer;

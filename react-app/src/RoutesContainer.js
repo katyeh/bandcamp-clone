@@ -6,6 +6,7 @@ import HomeContainer from './components/home/HomeContainer';
 import Player from './components/player/Player';
 import ArtistProfile from './components/ArtistProfile'
 import Artist from './components/Artists'
+import Example from './components/Example'
 
 
 
@@ -17,6 +18,13 @@ function RoutesContainer({authenticated, setAuthenticated}) {
       <NavBarContainer setAuthenticated={setAuthenticated}/>
       <Player/>
       <Switch>
+        <Route
+          path="/example"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <Example/>
+        </Route>
         <Route
           path="/"
           exact={true}

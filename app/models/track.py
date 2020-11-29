@@ -24,6 +24,9 @@ class Track(db.Model):
       "lyrics": self.lyrics,
       "album_id": self.album_id,
       "artist_id": self.artist_id,
+      'album_title': self.album.title,
+      "album_art_url": self.album.album_art_url,
+      "artist_name": self.artist.name
       "album": {
         "id": self.album.id,
         "title": self.album.title,

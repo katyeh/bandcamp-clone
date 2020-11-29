@@ -13,7 +13,6 @@ const artistReducer = (state = {}, action) => {
           return {
             ...action.artists
           }
-
         default:
             return state
     }

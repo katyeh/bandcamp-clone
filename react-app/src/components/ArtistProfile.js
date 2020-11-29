@@ -5,13 +5,12 @@ import { getOneArtist } from "../store/actions/currentArtist"
 
 function ArtistProfile({getOneArtist,artist}) {
   // const [artist, setArtist] = useState({});
- 
+
   const { id }  = useParams();
   const artistId = Number.parseInt(id);
   useEffect(() => {
     getOneArtist(artistId)
   }, [artistId])
-  console.log(artist)
 
   if (!artist) {
     return null;
@@ -38,7 +37,7 @@ function ArtistProfile({getOneArtist,artist}) {
         <strong>Username</strong> {artist.username}
       </li>
       <ul>
-        
+
       </ul>
       <li>
         <strong>Profile Image</strong> {artist.profile_image_url}
