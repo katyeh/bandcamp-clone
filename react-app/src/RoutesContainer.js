@@ -4,7 +4,7 @@ import NavBar from './components/NavBar';
 import HomeContainer from './components/home/HomeContainer';
 // import HomeContainer from './components/home/HomeContainer';
 import Player from './components/player/Player';
-import ArtistProfile from './components/ArtistProfile'
+import ArtistProfile from './components/artistProfile/ArtistProfile'
 import Artist from './components/Artists'
 
 
