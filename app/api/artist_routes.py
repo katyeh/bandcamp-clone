@@ -22,10 +22,11 @@ def artist(id):
 
 
 @artist_routes.route('/<int:id>/tracks', methods=['GET'])
+@cross_origin()
 def artist_all_tracks(id):
     tracks = Track.query.filter(Track.artist_id == id).all()
     if len(tracks) > 0:
-        return jsonify(tracks=[track.to_dict() for track in tracks])
+        return jsonify([track.to_dict() for track in tracks])
     else:
         return jsonify(error='This artist did not upload any songs yet.')
 
@@ -37,9 +38,22 @@ def artist_all_albums(id):
     if len(albums) > 0:
         # albums=[album.to_dict() for album in albums]
         # return jsonify(albums)
-        return jsonify(albums=[album.to_dict() for album in albums])
+        return jsonify([album.to_dict() for album in albums])
     else:
         return jsonify(error='This artist did not upload any albums yet.')
+
+
+#   album_and_tracks = Album.query.options(joinedload(Album.tracks),joinedload(Album.artist)).all()
+
+#     return jsonify([album.to_dict() for album in album_and_tracks])
+
+@artist_routes.route('/<int:id>/followers', methods=['GET'])
+@cross_origin()
+def artist_all_followers(id):
+    followers = Follower.query.filter(Follower.followed_id == id).all()
+    return jsonify([followers.to_dict() for follower in followers])
+    # else:
+    #     return jsonify(error='This artist did not upload any albums yet.')
 
 
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import SearchIcon from '@material-ui/icons/Search';
+import LoginModal from "./home/Home_LoginModal";
 
 const NavBar = ({ setAuthenticated, user }) => {
   return (
@@ -35,9 +36,7 @@ const NavBar = ({ setAuthenticated, user }) => {
             {user.id ? (
               <LogoutButton setAuthenticated={setAuthenticated} />
             ) : (
-              <NavLink to="/login" exact={true} activeClassName="active">
-                Login
-              </NavLink>
+              <LoginModal />
             )}
           </li>
         </ul>

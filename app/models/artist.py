@@ -18,6 +18,8 @@ class Artist(db.Model, UserMixin):
   dough = db.Column(db.Integer,default=1000000)
   hashed_password = db.Column(db.String(255), nullable = False)
 
+  tracks = db.relationship('Track', cascade='all, delete', backref='artist')
+
 
   @property
   def password(self):

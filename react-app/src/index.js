@@ -5,6 +5,8 @@ import App from './App';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 
+
+const userInfo = localStorage.getItem('user-info');
 const userId = localStorage.getItem('user_id');
 let store;
 if (userId) store = configureStore();

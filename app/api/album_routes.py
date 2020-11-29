@@ -1,4 +1,8 @@
 from flask import Blueprint, redirect, jsonify, request
+from sqlalchemy.orm import joinedload
+from flask_cors import CORS,cross_origin
+
+
 from app.models import db, Album, Track
 
 album_routes = Blueprint("album", __name__)
@@ -47,3 +51,19 @@ def delete_album(id):
         return "Album was successfully deleted."
     except:
         return jsonify(errors = f"Error deleting the album")
+
+@album_routes.route("/player/<int:id>")
+def get_album_player(id):
+    tracks = Track.query.filter(Track.album_id == id).options(joinedload(Track.album), joinedload(Track.artist)).all()
+    if tracks:
+        return {"tracks": [{track.id: track.to_dict()} for track in tracks]}
+    else:
+        return jsonify(error='This album does not exist.')
+
+
+@album_routes.route("/")
+@cross_origin(supports_credentials=True)
+
+def get_albums():
+    albums = Album.query.all()
+    return jsonify([album.to_dict() for album in albums])
