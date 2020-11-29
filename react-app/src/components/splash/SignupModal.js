@@ -137,7 +137,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               value={bio}
             ></input>
           </div>
-          <div className="login-content">
+         {/*  <div className="login-content">
             <label>Country</label>
             <input
               type="text"
@@ -170,7 +170,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               name="cover_image"
               onChange={updateCoverImageUrl}
             ></input>
-          </div>
+          </div> */}
           <div className="login-content">
             <label>Password</label>
             <input
@@ -191,7 +191,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
             ></input>
           </div>
           <div className="login-content">
-            <button type="submit">Sign Up</button>
+            <button className="login-btn" type="submit">Sign Up</button>
           </div>
         </form>
       </Modal>

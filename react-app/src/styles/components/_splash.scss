@@ -20,6 +20,7 @@
     display: flex;
     justify-content: center;
     background-color: rgb(107, 162, 184);
+    padding: 1rem;
 }
 .categories__container span {
     display: inline-block;
@@ -70,10 +71,9 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-gap: 2rem 4rem;
+    padding-right: 3rem;
 
     div {
-        // padding: 3rem;
-        // width: 40rem;
         height: 20vh;
         background-color: $color-grey2;
     }

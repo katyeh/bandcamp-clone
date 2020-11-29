@@ -5,6 +5,8 @@ import FeaturedTracks from './FeaturedTracks';
 import Section from '../home/Section';
 import { getTracks } from '../../store/actions/trackActions';
 import Signup from "./SignupModal";
+import FeaturedArtists from './FeaturedArtists';
+// import "./category.js"
 
 const Splash = ({ tracks, authenticated, setAuthenticated }) => {
   const [activeClass, setActiveClass] = useState({black: false});
@@ -24,16 +26,16 @@ const Splash = ({ tracks, authenticated, setAuthenticated }) => {
         </div>
       </div>
       <div className="categories__container">
-        <span className={btn_class} onClick={changeColor}>electronic</span>
-        <span>rock</span>
-        <span>metal</span>
-        <span>hip-hop</span>
-        <span>punk</span>
-        <span>jazz</span>
-        <span>classic</span>
-        <span>acoustic</span>
-        <span>pop</span>
-        <span>folk</span>
+        <span className="category" onClick={changeColor}>electronic</span>
+        <span className="category">rock</span>
+        <span className="category">metal</span>
+        <span className="category">hip-hop</span>
+        <span className="category">punk</span>
+        <span className="category">jazz</span>
+        <span className="category">classic</span>
+        <span className="category">acoustic</span>
+        <span className="category">pop</span>
+        <span className="category">folk</span>
       </div>
       <div className="signup__container">
         <h1>Join our community.</h1>
@@ -43,54 +45,7 @@ const Splash = ({ tracks, authenticated, setAuthenticated }) => {
           setAuthenticated={setAuthenticated}
         />
       </div>
-      <div className="featured-artists__container">
-        <div className="featured-artists__div">
-          <h1>Featured Artists</h1>
-        </div>
-        <div className="featured-artists__grid">
-
-          <div className="featured-artists__grid-item">
-            <div>
-              <p>Picture here</p>
-            </div>
-            <div className="featured-artist__info">
-              <h3>Mozart</h3>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta doloremque perspiciatis autem omnis!</p>
-            </div>
-          </div>
-
-          <div className="featured-artists__grid-item">
-            <div>
-              <p>Picture here</p>
-            </div>
-            <div className="featured-artist__info">
-              <h3>Lady Gaga</h3>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta doloremque perspiciatis autem omnis!</p>
-            </div>
-          </div>
-
-          <div className="featured-artists__grid-item">
-            <div>
-              <p>Picture here</p>
-            </div>
-            <div className="featured-artist__info">
-              <h3>Blink 182</h3>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta doloremque perspiciatis autem omnis!</p>
-            </div>
-          </div>
-
-          <div className="featured-artists__grid-item">
-            <div>
-              <p>Picture here</p>
-            </div>
-            <div className="featured-artist__info">
-              <h3>Drake</h3>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta doloremque perspiciatis autem omnis!</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
+      <FeaturedArtists />
       <div className="filler__div"></div>
 
       <div class="splash__footer">
