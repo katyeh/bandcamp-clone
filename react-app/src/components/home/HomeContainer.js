@@ -8,6 +8,7 @@ const HomeContainer = () => {
   const dispatch = useDispatch();
   const tracks = useSelector(state => state.tracks);
   const user = useSelector(state => state.user);
+  const artists = useSelector(state => state.artists);
 
   useEffect(() => {
     (async () => {
@@ -15,12 +16,11 @@ const HomeContainer = () => {
       if (user.id) {
         dispatch(getArtists(user.id));
       }
-
     })()
   }, []);
 
   return (
-    <Home tracks={tracks} />
+    <Home tracks={tracks} artists={artists}/>
   );
 }
  

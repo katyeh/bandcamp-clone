@@ -1,8 +1,8 @@
 import React from 'react';
 import Section from '../home/Section';
+import SideMenu from '../home/SideMenu';
 
-
-const Home = ({tracks}) => {
+const Home = ({tracks, artists}) => {
   return (
     <div className="home">
       <div className="home__contents">
@@ -13,7 +13,7 @@ const Home = ({tracks}) => {
           {/* <Section tracks={tracks} title="Suggestion" subtitle="Suggested music based on your likes."/> */}
         </main>
         <aside className="home__sidemenu">
-          Aside
+          <SideMenu artists={artists}/>
         </aside>
       </div>
     </div>
