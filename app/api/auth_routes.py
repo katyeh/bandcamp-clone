@@ -78,6 +78,8 @@ def sign_up():
   """
   
   form = SignUpForm()
+  print('!!!!!!')
+  print(request.cookies)
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():

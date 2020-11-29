@@ -1,8 +1,8 @@
-export const SIGN_UP = 'SIGN_UP'
+export const LOAD_USER = "LOAD_USER";
 
 const userReducer = (state = {}, action) => {
   switch(action.type) {
-    case SIGN_UP:
+    case LOAD_USER:
       return {
         ...state,
         id: action.id,
@@ -21,5 +21,6 @@ const userReducer = (state = {}, action) => {
       return state;
   }
 };
+
 
 export default userReducer;
