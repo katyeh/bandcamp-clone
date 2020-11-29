@@ -7,39 +7,24 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
 
   const parseAlbumId = (st) => {
     const chunks = st.split('_')
-    return [chunks[chunks.length - 1]]
+    return chunks[chunks.length - 2]
   }
 
-  const parseTrackId = (st) => {
+  const parseIndex = (st) => {
     const chunks = st.split('_')
-    return chunks.slice(1)
-  }
-
-  const indexParser = (arr) => {
-      return tracksIds.indexOf((arr))
+    return chunks[chunks.length - 1]
   }
 
   const trackHandler = (e) => {
     if (tracksIds)
     (async () => {
-        const id = parseTrackId(e.target.id)
-        const albumId = id[0]
-        const trackId = id[1]
+        const index = parseIndex(e.target.id)
+        const albumId = parseAlbumId(e.target.id)
         await dispatch(getAlbumPlayer(parseInt(albumId)))
-        console.log(indexParser(trackId))
-        await dispatch(pause())
-        const index = indexParser(trackId)
         await dispatch(setCurrentTrack(index))
-        // console.log('-----------', albumId)
-        // console.log('-----------', trackId)
-        // await indexParser(trackId)
+        await dispatch(pause())
         await dispatch(play())
-        // await dispatch(setCurrentTrack(indexParser(id)))
     })()
-      // dispatch(getAlbumPlayer(parseInt(id[0])))
-      // const index = indexParser(id)
-      // console.log(index)
-
   }
 
   const albumHandler = (e) => {
@@ -49,8 +34,6 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
       if ((!currentAlbum || currentAlbum !== id) || currentAlbum === id && !isPlaying) {
         (async () => {
           await dispatch(getAlbumPlayer(parseAlbumId(e.target.id)))
-          await dispatch(setCurrentTrack(0))
-          // await dispatch(play())
           await dispatch(pause())
           await dispatch(play())
         })()
@@ -72,7 +55,7 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
       <div className='album__container'>
         <div className='left-container'>
           <div className='cover-container'>
-            <img id={`album_${albumId}`} onClick={albumHandler} src={albumCover} className='album-cover'></img>
+            <img id={`album_${albumId}_0`} onClick={albumHandler} src={albumCover} className='album-cover'></img>
           </div>
         </div>
         <div className='right-container'>
@@ -84,10 +67,11 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
           <div className='tracks-table'>
             <table>
               <tbody>
-                {tracks.map(track => {
+                {
+                tracks.map((track, i) => {
                   return (
                     <tr key={track.id}>
-                      <td onClick={trackHandler} id={`track_${albumId}_${track.id}`}>{track.title}</td>
+                      <td onClick={trackHandler} id={`track_${albumId}_${i}`}>{track.title}</td>
                     </tr>
                   )
                 })}

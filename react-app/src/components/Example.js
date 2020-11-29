@@ -7,23 +7,7 @@ import AlbumCard from "./albumcard/AlbumCard";
 
 const Example = ({ albums, dispatch }) => {
 
-  // useEffect(() => {
-  //   getTracks();
-  // }, []);
 
-  // const playHandler = (e) => {
-  //   const chunks = e.target.id.split('_')
-  //   const id = parseInt(chunks[chunks.length - 1])
-  //   dispatch(getTrackPlayer(id))
-  // }
-
-  const albumHandler = (e) => {
-    const id = parseInt(e.target.id)
-    console.log(id)
-    dispatch(getAlbumPlayer(id))
-    dispatch(play(true))
-  }
-  console.log('hi')
 
   return (
     <>

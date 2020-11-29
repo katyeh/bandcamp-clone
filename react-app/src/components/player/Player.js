@@ -82,7 +82,9 @@ const PlayerContainer = (props) => {
   const trackList = useSelector(state => state.player.tracksData)
   const tracksIdArray = useSelector(state => state.player.tracksIds)
   const isPlaying = useSelector(state => state.player.isPlaying)
-  const currentTrackIndex = useSelector(state => state.player.currentIndex)
+
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
+
 
   const [tracks, setTracks] = useState()
 
@@ -119,7 +121,7 @@ let style = {
   width: "100%",
   height: "80px",
   background: "#282828",
-  // zIndex: "99",
+  zIndex: "99",
   padding: "0 20px",
   display: "flex",
   alignItems: "center",
