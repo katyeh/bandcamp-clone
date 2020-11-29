@@ -141,11 +141,9 @@ def home_artists_logged_in(id):
     liked_track_ids = Like.query.filter(Like.artist_id == id).options(joinedload(Like.track)).all()
     artist_ids = [liked_track_id.track.artist_id for liked_track_id in liked_track_ids]
     artists = [Artist.query.get(artist_id) for artist_id in artist_ids]
-    print('!!!!(#)#(@)@*!()#@*')
-    print(set(artists))
     try:
       return jsonify(artists = {
-        "artists": [artist.to_dict() for artist in artists]
+        "artists": [artist.to_dict() for artist in set(artists)]
       })
     except:
       return {'errors':'There are no artists avaliable'}, 400

@@ -27,11 +27,15 @@ export const getRecommendedArtists = (id) => async (dispatch) => {
   console.log('YESSS')
   const res = await fetch(`/api/artists/${id}/home`);
 
-  console.log(await res.json(), '!!!!!!:)')
+  // console.log(await res.json())
 
   if (res.ok) {
-      // const { artists } = await res.json()
-      // dispatch(loadArtists(artists))
+      const { artists } = await res.json();
+      console.log(artists.artists)
+      dispatch({
+        type: LOAD_ARTISTS,
+        artists: artists.artists
+      });
   }
 
 }
