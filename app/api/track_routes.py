@@ -3,7 +3,7 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required
 from app.models import db, Track, Comment, Album, Like
 from sqlalchemy.orm import joinedload
-from sqlalchemy import func
+from sqlalchemy import func, select
 import json
 import random
 
@@ -64,8 +64,7 @@ def comment_on_track(id):
 @track_routes.route('/home')
 def home():
   # random picks
-  random_picks = Track.query.limit(10).all()
-  random.shuffle(random_picks)
+  random_picks = Track.query.order_by(func.random()).limit(10).all()
 
   # trending
   top_liked = db.session.query(Like.track_id, func.count(Like.track_id)).group_by(Like.track_id).order_by(Like.track_id).limit(10).all()

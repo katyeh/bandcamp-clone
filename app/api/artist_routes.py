@@ -3,9 +3,8 @@ from flask_login import login_required
 from flask_cors import cross_origin
 from sqlalchemy.orm import relationship, sessionmaker, joinedload
 from app.models import db, Artist, Track, Album, Follower, Like
-from sqlalchemy import func
+from sqlalchemy import func, select
 import json
-import random
 
 artist_routes = Blueprint('artists', __name__)
 
@@ -143,8 +142,7 @@ def home_artists_logged_in(id):
     artist_ids = [liked_track_id.track.artist_id for liked_track_id in liked_track_ids]
     artists = [Artist.query.get(artist_id) for artist_id in artist_ids]
 
-    random_artists = Artist.query.limit(5).all()
-    random.shuffle(random_artists)
+    random_artists = Artist.query.order_by(func.random()).filter(Artist.id != id).limit(5).all()
     random_artists = set(random_artists) - set(artists)
 
     try:
