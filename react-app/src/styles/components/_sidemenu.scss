@@ -33,6 +33,10 @@
   &__artist-info {
     @include opacity-transition2;
   }
+  
+  &__artist-name {
+    font-weight: bold;
+  }
 
   &__artist-username {
     color: $color-grey1;
