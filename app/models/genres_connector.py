@@ -7,8 +7,8 @@ class GenresConnector(db.Model):
 
     id = Column(db.Integer, primary_key=True)
     genre_id = Column(db.Integer, ForeignKey("genres.id"), nullable=False)
-    album_id = Column(db.Integer, ForeignKey("albums.id"))
     track_id = Column(db.Integer, ForeignKey("tracks.id"))
+    album_id = Column(db.Integer, ForeignKey("albums.id"))
     artist_id = Column(db.Integer, ForeignKey("artists.id"))
 
     def to_dict(self):
