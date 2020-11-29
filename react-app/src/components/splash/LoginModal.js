@@ -31,7 +31,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
     if (!user.errors) {
       setAuthenticated(true);
       setIsOpen(false);
-      history.push("/home")
+      history.push("/")
     } else {
       setErrors(user.errors);
     }

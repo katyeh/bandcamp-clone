@@ -5,9 +5,10 @@ import App from './App';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 
-const userInfo = localStorage.getItem('user-info');
+const userId = localStorage.getItem('user_id');
 let store;
-if (userInfo) store = configureStore({ token: JSON.parse(userInfo).token });
+if (userId) store = configureStore();
+// if (userId) store = configureStore({ token: JSON.parse(userInfo).token });
 else store = configureStore();
 
 ReactDOM.render(

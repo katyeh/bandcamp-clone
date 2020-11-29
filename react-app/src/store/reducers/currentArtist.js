@@ -1,4 +1,4 @@
-import { SET_CURRENT_ARTIST } from '../actions/currentArtist'
+import { SET_CURRENT_ARTIST } from '../actions/currentArtist';
 
 const currentArtistReducer = (state = null, action) => {
     switch (action.type) {

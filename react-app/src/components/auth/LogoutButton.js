@@ -10,7 +10,7 @@ const LogoutButton = ({ setAuthenticated }) => {
     history.push("/splash")
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return <input className="navbar__logout"onClick={onLogout} value="Logout"/>;
 };
 
 export default LogoutButton;

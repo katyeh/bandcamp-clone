@@ -13,11 +13,18 @@ html {
 
 body {
   font-size: 1.6rem;
+  color: $color-dark;
 }
 
-a,
-a::before,
-a::after {
-  color: $color-light;
+a {
+  color: $color-dark;
   text-decoration: none;
+  opacity: 1;
+  transition: opacity .2s ease-in;
+
+  p {
+    &:hover {
+      opacity: .8;
+    }
+  }
 }

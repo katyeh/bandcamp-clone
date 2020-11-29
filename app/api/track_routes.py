@@ -1,21 +1,19 @@
 
 from flask import Blueprint, request, jsonify
 from flask_login import login_required
-from app.models import db, Track, Comment
+from app.models import db, Track, Comment, Album, Like
 from sqlalchemy.orm import joinedload
+from sqlalchemy import func, select
 import json
-
+import random
 
 track_routes = Blueprint('tracks', __name__)
 
 @track_routes.route('/')
 def all_tracks():
-  # tracks = Track.query.all()
-  tracks = Track.query.options(joinedload(Track.album)).all()
-  # tracks = None
+  tracks = Track.query.all()
   try:
-    print([track.to_dict() for track in tracks])
-    return {"tracks": [track.to_dict() for track in tracks]}
+    return jsonify(tracks = [track.to_dict() for track in tracks])
   except:
     return {'errors':'There are no tracks avaliable'}, 400
 
@@ -62,3 +60,23 @@ def comment_on_track(id):
     return jsonify(message = f"Commented on track with the id of {id}."), 201
   except:
     return jsonify(error = f"Error commenting on track with the id of {id}."), 404
+
+@track_routes.route('/home')
+def home():
+  # random picks
+  random_picks = Track.query.order_by(func.random()).limit(10).all()
+
+  # trending
+  top_liked = db.session.query(Like.track_id, func.count(Like.track_id)).group_by(Like.track_id).order_by(Like.track_id).limit(10).all()
+
+  # new
+  new_tracks = Track.query.order_by(Track.id.desc()).limit(10).all()
+
+  try:
+    return jsonify(tracks = {
+      "random_picks": [track.to_dict() for track in random_picks],
+      "trending": [Track.query.get(track[0]).to_dict() for track in top_liked],
+      "new": [track.to_dict() for track in new_tracks]
+    })
+  except:
+    return {'errors':'There are no tracks avaliable'}, 400
