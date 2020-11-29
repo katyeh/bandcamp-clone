@@ -1,5 +1,10 @@
 .section {
-  height: 30rem;
+  // height: 30rem;
+  height: auto;
+  
+  &:not(:first-child) {
+    margin: 5rem 0;
+  }
 
   &::after {
     content: "";
@@ -12,15 +17,39 @@
     padding: 1rem;
   }
 
-  &__subtitle {
-    color: $color-grey1;
-    font-size: 1.2rem;
+  &__contents {
+    position: relative;
+    margin-bottom: 5rem;
+
+    &--left-scroll {
+      @include carousel_button();
+      left: -1rem;
+    }
+
+    &--right-scroll {
+      @include carousel_button();
+      right: -1rem;
+    }
   }
 
-  &__contents {
+  &__carousel {
     display: flex;
     width: 100%;
     overflow-x: scroll;
-    // @include hide-scrollbar;
+    @include hide-scrollbar;
+
+    :not(:first-child):not(.track__title):not(.track__album-title) {
+      padding-left: 2rem;
+    }
+
+    & .track {
+      height: auto;
+    }
+
+  }
+
+  &__subtitle {
+    color: $color-grey1;
+    font-size: 1.2rem;
   }
 }

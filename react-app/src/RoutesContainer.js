@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import NavBar from './components/NavBar';
+import NavBarContainer from './components/NavBarContainer';
 import HomeContainer from './components/home/HomeContainer';
 // import HomeContainer from './components/home/HomeContainer';
 import Player from './components/player/Player';
@@ -14,7 +14,7 @@ function RoutesContainer({authenticated, setAuthenticated}) {
 
   return (
     <>
-      <NavBar setAuthenticated={setAuthenticated}/>
+      <NavBarContainer setAuthenticated={setAuthenticated}/>
       <Player/>
       <Switch>
         <Route
