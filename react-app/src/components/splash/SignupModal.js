@@ -85,7 +85,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
 
   return (
     <div>
-      <button className="signup__btn" onClick={() => setIsOpen(true)}>Sign Up</button>
+      <button className="signup__btn" onClick={() => setIsOpen(true)}>Create account</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}

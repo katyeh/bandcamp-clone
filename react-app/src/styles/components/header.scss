@@ -8,8 +8,10 @@
     padding: 2rem;
     background-color: $color-dark;
     background-image: url("../../assets/busker.png");
+    background-size: cover;
     height: 40rem;
 }
+
 .header-btn__container {
     display: flex;
 
@@ -32,4 +34,3 @@
     position: relative;
     top: 2rem;
 }
-

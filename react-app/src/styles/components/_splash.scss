@@ -3,6 +3,7 @@
     grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
     height: 100%;
     background-color: #eeeeee;
+    padding: 5rem;
 }
 
 .featured__div {
@@ -18,7 +19,7 @@
 .categories__container {
     display: flex;
     justify-content: center;
-    background-color: skyblue;
+    background-color: rgb(107, 162, 184);
 }
 .categories__container span {
     display: inline-block;
@@ -28,7 +29,7 @@
     font-weight: 600;
     color: #fff;
     cursor: pointer;
-    background-color: skyblue;
+    // background-color: rgb(117, 174, 197);
 }
 
 .categories__container span.selected {
@@ -40,5 +41,91 @@
 }
 
 .blueButton {
-    background-color: skyblue;
+    background-color:rgb(107, 162, 184);
+}
+
+.signup__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8rem;
+    height: 40vh;
+    background-color: rgb(68, 68, 68);
+    color: #fff;
+
+    p {
+        padding: 2rem 0;
+        font-weight: 400;
+        color: #fff;
+    }
+}
+
+.featured-artists__container {
+    display: flex;
+    justify-content: space-around;
+    padding: 5rem 10rem;
+}
+.featured-artists__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 2rem 4rem;
+
+    div {
+        // padding: 3rem;
+        // width: 40rem;
+        height: 20vh;
+        background-color: $color-grey2;
+    }
+}
+
+.featured-artists__grid-item {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    width: 50rem;
+}
+.featured-artist__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+
+    p {
+        padding: 1.5rem .5rem;
+
+    }
+}
+
+.filler__div {
+    background-color: $color-grey2;
+    height: 23vh;
+}
+
+.splash__footer {
+    // position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(107, 162, 184);
+    height: 25vh;
+    padding: 5rem 15rem;
+}
+
+.about-site__container {
+    display: flex;
+    flex-direction: column;
+    // padding: 5rem;
+
+    a {
+        padding: 1rem;
+    }
+}
+
+.contributors__container {
+    display: flex;
+    flex-direction: column;
+
+    a {
+        padding: .8rem;
+    }
 }
