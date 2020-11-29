@@ -1,0 +1,44 @@
+.featured__container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
+    height: 100%;
+    background-color: #eeeeee;
+}
+
+.featured__div {
+    grid-column: 2/span 1;
+    overflow-y: hidden;
+
+    h2 {
+        color: #626262;
+        font-weight: bolder;
+    }
+}
+
+.categories__container {
+    display: flex;
+    justify-content: center;
+    background-color: skyblue;
+}
+.categories__container span {
+    display: inline-block;
+    padding: 6px 10px;
+    margin: 7px 0;
+    border-radius: 14px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    background-color: skyblue;
+}
+
+.categories__container span.selected {
+    background-color: black;
+}
+
+.blackButton {
+    background-color: black;
+}
+
+.blueButton {
+    background-color: skyblue;
+}
