@@ -2,7 +2,7 @@ from .db import db
 from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, String, Text
 from sqlalchemy.orm import relationship
-
+from flask import Blueprint, request, jsonify
 
 class Track(db.Model):
   __tablename__ = 'tracks'
@@ -14,6 +14,7 @@ class Track(db.Model):
   album_id = Column(Integer, ForeignKey("albums.id"), nullable=False)
   artist_id = Column(Integer, ForeignKey("artists.id"), nullable=False)
 
+  likes = db.relationship('Like', cascade='all, delete', backref='track')
 
   def to_dict(self):
     return {
@@ -26,4 +27,11 @@ class Track(db.Model):
       'album_title': self.album.title,
       "album_art_url": self.album.album_art_url,
       "artist_name": self.artist.name
+      "album": {
+        "id": self.album.id,
+        "title": self.album.title,
+        "album_art_url": self.album.album_art_url,
+        "release_date": self.album.release_date,
+        "single": self.album.single,
+      }
     }

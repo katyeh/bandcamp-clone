@@ -1,5 +1,5 @@
 import merge from "lodash/merge";
-import { LOAD_ARTISTS } from "../actions/artists";
+import { LOAD_ARTISTS, LOAD_ARTISTS_FOR_HOME } from "../actions/artists";
 
 const artistReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -9,6 +9,10 @@ const artistReducer = (state = {}, action) => {
             const artists = action.artists.map((artist) => ({ [artist.id]: artist }));
             return merge({}, state, ...artists)
         }
+        case LOAD_ARTISTS_FOR_HOME:
+          return {
+            ...action.artists
+          }
         default:
             return state
     }

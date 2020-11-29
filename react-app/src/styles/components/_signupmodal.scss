@@ -1,0 +1,50 @@
+.signup-modal {
+  display: grid;
+  grid-template-rows: 10rem 10rem;
+  position: absolute;
+  top: 8rem;
+  left: 50rem;
+  right: 50rem;
+  bottom: 60rem;
+  background-color: white;
+  padding: 3rem;
+  outline: none;
+  height: 50rem;
+  border-radius: 1rem;
+}
+
+.login-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 2rem;
+}
+
+.close-btn {
+  padding: .3rem;
+  background-color: white;
+}
+
+.login-btn {
+  padding: .8rem;
+  border-radius: 8px;
+  color: #fff;
+  background-color: $color-accent;
+  width: 10rem;
+}
+
+.login-content {
+  padding-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  outline: none;
+  background-color: rgb(255, 255, 255, 0.8);
+}

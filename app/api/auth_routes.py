@@ -78,6 +78,8 @@ def sign_up():
   """
   
   form = SignUpForm()
+  print('!!!!!!')
+  print(request.cookies)
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
@@ -120,9 +122,3 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return {'errors': ['Unauthorized']}, 401
-
-
-  # if len(form.data['profile_image_url']):
-    #     form.data['profile_image_url'] = 'https://busker2.s3.amazonaws.com/defaultimage2.jpeg'
-    # if len(form.data['cover_image_url']) == 0:
-    #     form.data['cover_image_url'] = 'https://busker2.s3.amazonaws.com/busker_logo.png'
