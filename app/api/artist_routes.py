@@ -143,8 +143,10 @@ def home_artists_logged_in(id):
     artist_ids = [liked_track_id.track.artist_id for liked_track_id in liked_track_ids]
     artists = [Artist.query.get(artist_id) for artist_id in artist_ids]
 
-    random_artists = Artist.query.limit(8).all()
+    random_artists = Artist.query.limit(5).all()
     random.shuffle(random_artists)
+    random_artists = set(random_artists) - set(artists)
+
     try:
       return jsonify(artists = {
         "based_on_likes": [artist.to_dict() for artist in set(artists)],
