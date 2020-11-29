@@ -1,9 +1,10 @@
 .sidemenu {
   position: sticky;
   top: 0;
+  padding: 1rem;
 
   & > *:not(:first-child) {
-    margin: 2rem 0;
+    padding: 2rem 0;
   }
 
   &__title {
