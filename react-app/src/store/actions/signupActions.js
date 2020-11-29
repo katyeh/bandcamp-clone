@@ -14,12 +14,11 @@ export const signupUser = (user) => {
           type: LOAD_USER,
           ...data
         });
-        localStorage.setItem("user_id", data.id)
+        localStorage.setItem("user_id", data.id);
         return data;
       }
 
       return await res.json();
-
     } catch(e) {
       console.log(e);
     }
@@ -31,8 +30,6 @@ export const loadUser = (id) => async (dispatch) => {
 
   if (response.ok) {
       const data = await response.json();
-      console.log('DATA')
-      console.log(data.artist[0])
       dispatch({
         type: LOAD_USER,
         ...data.artist[0]

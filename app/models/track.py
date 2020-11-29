@@ -14,6 +14,8 @@ class Track(db.Model):
   album_id = Column(Integer, ForeignKey("albums.id"), nullable=False)
   artist_id = Column(Integer, ForeignKey("artists.id"), nullable=False)
 
+  likes = db.relationship('Like', cascade='all, delete', backref='track')
+
   def to_dict(self):
     return {
       "id": self.id,

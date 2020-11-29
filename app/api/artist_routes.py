@@ -2,7 +2,8 @@ from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required
 from flask_cors import cross_origin
 from sqlalchemy.orm import relationship, sessionmaker, joinedload
-from app.models import db, Artist, Track, Album, Follower
+from app.models import db, Artist, Track, Album, Follower, Like
+from sqlalchemy import func
 import json
 
 artist_routes = Blueprint('artists', __name__)
@@ -112,3 +113,39 @@ def unfollow(artistId, followerId):
     return jsonify(message = f"Unfollowed artist with the id of {artistId}."), 204
   except:
     return jsonify(error = f"Error unfollowing artist with the id of {artistId}."), 404
+
+@artist_routes.route('/home')
+def home_artists_not_logged_in(id):
+  # liked_tracks = Like.query.filter(like.artist_id == id).joinedload(Like.track).limit(8).all()
+  # for track in liked_tracks:
+  #   print(track)
+  # # random picks
+  # random_picks = Track.query.limit(10).all()
+  # random.shuffle(random_picks)
+
+  # # trending
+  # top_liked = db.session.query(Like.track_id, func.count(Like.track_id)).group_by(Like.track_id).order_by(Like.track_id).limit(10).all()
+
+  # # new
+  # new_tracks = Track.query.order_by(Track.id.desc()).limit(10).all()
+
+  try:
+    return jsonify(artists = {
+      "a": "a"
+    })
+  except:
+    return {'errors':'There are no tracks avaliable'}, 400
+
+@artist_routes.route('/<int:id>/home')
+def home_artists_logged_in(id):
+    liked_track_ids = Like.query.filter(Like.artist_id == id).options(joinedload(Like.track)).all()
+    artist_ids = [liked_track_id.track.artist_id for liked_track_id in liked_track_ids]
+    artists = [Artist.query.get(artist_id) for artist_id in artist_ids]
+    print('!!!!(#)#(@)@*!()#@*')
+    print(set(artists))
+    try:
+      return jsonify(artists = {
+        "artists": [artist.to_dict() for artist in artists]
+      })
+    except:
+      return {'errors':'There are no artists avaliable'}, 400
