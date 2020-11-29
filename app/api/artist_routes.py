@@ -5,6 +5,7 @@ from sqlalchemy.orm import relationship, sessionmaker, joinedload
 from app.models import db, Artist, Track, Album, Follower, Like
 from sqlalchemy import func
 import json
+import random
 
 artist_routes = Blueprint('artists', __name__)
 
@@ -115,7 +116,7 @@ def unfollow(artistId, followerId):
     return jsonify(error = f"Error unfollowing artist with the id of {artistId}."), 404
 
 @artist_routes.route('/home')
-def home_artists_not_logged_in(id):
+def home_artists_not_logged_in():
   # liked_tracks = Like.query.filter(like.artist_id == id).joinedload(Like.track).limit(8).all()
   # for track in liked_tracks:
   #   print(track)
@@ -141,9 +142,13 @@ def home_artists_logged_in(id):
     liked_track_ids = Like.query.filter(Like.artist_id == id).options(joinedload(Like.track)).all()
     artist_ids = [liked_track_id.track.artist_id for liked_track_id in liked_track_ids]
     artists = [Artist.query.get(artist_id) for artist_id in artist_ids]
+
+    random_artists = Artist.query.limit(8).all()
+    random.shuffle(random_artists)
     try:
       return jsonify(artists = {
-        "artists": [artist.to_dict() for artist in set(artists)]
+        "based_on_likes": [artist.to_dict() for artist in set(artists)],
+        "random_artists": [artist.to_dict() for artist in random_artists]
       })
     except:
       return {'errors':'There are no artists avaliable'}, 400
