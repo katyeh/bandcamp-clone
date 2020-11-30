@@ -14,7 +14,7 @@ const SearchBar = () => {
     const albumres = [];
     const artistres = [];
     const mainsearch = async() => {
-      const searchresults = await fetch(`/api/search/tracks`)
+      const searchresults = await fetch(`/api/search/tracks?searchterm=${search}`)
       // console.log(await searchresults.json())
       const show = await searchresults.json()
       // console.log(show.trackresults)
