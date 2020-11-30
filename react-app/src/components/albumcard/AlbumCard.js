@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { play, pause, getAlbumPlayer, setCurrentTrack } from '../../store/actions/playerActions';
 
-const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, currentIndex, isPlaying, currentAlbum, tracksIds }) => {
+const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, currentTrackIndex, isPlaying, currentAlbum, tracksIds }) => {
   const dispatch = useDispatch();
 
   const parseAlbumId = (st) => {
@@ -15,31 +15,24 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
     return chunks[chunks.length - 1]
   }
 
-  const trackHandler = (e) => {
-    if (tracksIds)
-    (async () => {
-        const index = parseIndex(e.target.id)
-        const albumId = parseAlbumId(e.target.id)
-        await dispatch(getAlbumPlayer(parseInt(albumId)))
-        await dispatch(setCurrentTrack(index))
-        await dispatch(pause())
-        await dispatch(play())
-    })()
-  }
-
-  const albumHandler = (e) => {
-
-
+  const clickHandler = (e) => {
       const id = parseAlbumId(e.target.id)
-      if ((!currentAlbum || currentAlbum !== id) || currentAlbum === id && !isPlaying) {
+      const index = parseIndex(e.target.id)
+
+      if (currentAlbum === id && currentTrackIndex === index) {
+        if (isPlaying) {
+          dispatch(pause())
+        } else {
+          dispatch(play())
+        }
+      } else {
         (async () => {
-          await dispatch(getAlbumPlayer(parseAlbumId(e.target.id)))
+          await dispatch(setCurrentTrack(index))
+          await dispatch(getAlbumPlayer((id)))
           await dispatch(pause())
           await dispatch(play())
         })()
 
-      } else if (currentAlbum === id) {
-        dispatch(pause())
       }
 
   }
@@ -55,7 +48,7 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
       <div className='album__container'>
         <div className='left-container'>
           <div className='cover-container'>
-            <img id={`album_${albumId}_0`} onClick={albumHandler} src={albumCover} className='album-cover'></img>
+            <img id={`album_${albumId}_0`} onClick={clickHandler} src={albumCover} className='album-cover'></img>
           </div>
         </div>
         <div className='right-container'>
@@ -71,7 +64,7 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
                 tracks.map((track, i) => {
                   return (
                     <tr key={track.id}>
-                      <td onClick={trackHandler} id={`track_${albumId}_${i}`}>{track.title}</td>
+                      <td onClick={clickHandler} id={`track_${albumId}_${i}`}>{track.title}</td>
                     </tr>
                   )
                 })}
@@ -85,7 +78,7 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
 }
 
 const AlbumCardContainer = ({ albumCover, albumId, title, artistName, tracks, artistId }) => {
-  const currentTrack = useSelector(state => state.player.currentTrack)
+  const currentTrackIndex = useSelector(state => state.player.currentTrackIndex)
   const isPlaying = useSelector(state => state.player.isPlaying)
   const currentAlbum = useSelector(state => state.player.albumId)
   const tracksIds = useSelector(state => state.player.tracksIds)
@@ -98,7 +91,7 @@ const AlbumCardContainer = ({ albumCover, albumId, title, artistName, tracks, ar
       artistName={artistName}
       tracks={tracks}
       artistId={artistId}
-      currentTrack={currentTrack}
+      currentTrackIndex={currentTrackIndex}
       isPlaying={isPlaying}
       currentAlbum={currentAlbum}
       tracksIds={tracksIds}
