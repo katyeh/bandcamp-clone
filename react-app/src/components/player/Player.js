@@ -28,7 +28,7 @@ function Player({ tracks, track, currentTrackIndex, isPlaying }) {
       audioEl.current.currentTime = clickedTime;
       setClickedTime(null);
     }
-  }, [currentTrackIndex, isPlaying, audioEl]);
+  });
 
   if (!tracks || !track ) return null
 
@@ -37,10 +37,11 @@ function Player({ tracks, track, currentTrackIndex, isPlaying }) {
   // console.log(audioCtx)
 
   const next = () => {
-    if (currentTrackIndex === tracks.length - 1) {
+    const nextIndex = parseInt(currentTrackIndex) + 1
+    if (nextIndex >  tracks.length - 1){
       dispatch(setCurrentTrack(0))
     } else {
-      dispatch(setCurrentTrack(currentTrackIndex + 1))
+      dispatch(setCurrentTrack(nextIndex))
     }
   }
 
@@ -63,10 +64,10 @@ function Player({ tracks, track, currentTrackIndex, isPlaying }) {
         onTimeUpdate={() => {
           setCurrentTime(audioEl.current.currentTime);
         }}
-        onEnded={handleEnd}
+        onEnded={next}
       />
       <div className='controls'>
-        <Controls className='buttons'
+      <Controls className='buttons'
           isPlaying={isPlaying}
           currentTrackIndex={currentTrackIndex}
           setCurrentTrack={setCurrentTrack}
@@ -91,10 +92,11 @@ const PlayerContainer = (props) => {
       await setTracks(trackList)
     })()
 
-  },[trackList, isPlaying, currentTrackIndex])
+  })
 
   if(!tracks ) return null
-
+  console.log('----------------------------------------')
+  console.log(tracksIdArray, currentTrackIndex, tracks)
   const trackId = tracksIdArray[currentTrackIndex]
   const track = tracks[currentTrackIndex][trackId]
 

@@ -26,10 +26,10 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
         dispatch(play())
       }
     } else {
-      (async () => {
+      (async () => {console.log('index', index)
         await dispatch(setCurrentTrack(index))
         await dispatch(getAlbumPlayer((id)))
-        await dispatch(pause())
+        // await dispatch(pause())
         await dispatch(play())
       })()
 
@@ -51,8 +51,8 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
       </div>
       <div className='right-container'>
         <div className='button-album-info'>
-            <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x icon-background"></i>
+            <span className="fa-stack fa-lg">
+              <i className="fa fa-circle fa-stack-2x icon-background"></i>
               <i id={`album_${albumId}_0`} onClick={clickHandler} className={isPlaying && parseInt(albumId) === parseInt(currentAlbum) ? "fas fa-pause fa-stack-1x pause" : "fa fa-play fa-stack-1x play" } />
             </span>
 
