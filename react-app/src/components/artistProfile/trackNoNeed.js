@@ -8,14 +8,15 @@ import Modal from "react-modal";
 Modal.setAppElement('#root');
 
 
-const UploadTrack = ({user, albumId}) => {
+const UploadTrack = ({modalIsOpen, user}) => {
+
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [title, setTitle] = useState("");
   const [lyrics, setLyrics] = useState("");
   const [newTrackUrl, setNewTrackUrl] = useState("");
-  const [modalIsOpen, setIsOpen] = useState(true);
+  const [modalIsOpen2, setIsOpen2] = useState("");
 
   const updateTitle = (e) => {
     setTitle(e.target.value);
@@ -39,8 +40,6 @@ const UploadTrack = ({user, albumId}) => {
       track.append('artistId',user.id)
   
       track = await dispatch(uploadNewTrack(track));
-
-      if (user && !user.errors) {
         setIsOpen(false)
         history.push("/artists");
       }
@@ -50,8 +49,8 @@ const UploadTrack = ({user, albumId}) => {
   return (
   <>
     <Modal
-      isOpen={modalIsOpen}
-      onRequestClose={() => setIsOpen(false)}
+      isOpen={modalIsOpen2}
+      onRequestClose={() => setIsOpen2(false)}
       contentLabel="Signup Modal"
       className="signup-modal"
       overlayClassName="overlay"
@@ -59,7 +58,7 @@ const UploadTrack = ({user, albumId}) => {
     >
       <div className="login-header">
         <h2>Sign Up</h2>
-        <button className="close-btn" onClick={() => setIsOpen(false)}>X</button>
+        <button className="close-btn" onClick={() => setIsOpen2(false)}>X</button>
       </div>
 
       <form onSubmit={onUpload}>

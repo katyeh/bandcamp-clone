@@ -23,12 +23,19 @@ function ArtistProfile({ getOneArtist, artist, user}) {
     return null;
   }
 
+  console.log('user', user)
+
   return (
     <>
         {!userProfile ? (
           <TipModal user={user} artist={artist}/>
         ) : (
+          <>
             <UploadAlbum user={user} />
+            <div className="stash">
+              <p>Dough: {artist.tip_stash}</p>
+            </div>
+          </>
           )}
       <div className="cover_imgage_container">
         <img src={artist.cover_image_url} alt={artist.cover_image_url} className="cover_image" /> 
