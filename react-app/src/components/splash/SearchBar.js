@@ -15,14 +15,12 @@ const SearchBar = () => {
     const artistres = [];
     const mainsearch = async() => {
       const searchresults = await fetch(`/api/search/tracks?searchterm=${search}`)
-      // console.log(await searchresults.json())
       const show = await searchresults.json()
-      // console.log(show.trackresults)
-      console.log(show.artistresults)
       show.trackresults.map(value => trackres.push(value))
       show.albumresults.map(value => albumres.push(value))
       show.artistresults.map(value => artistres.push(value))
       setTrackOptions(trackres);
+      console.log(trackOptions)
       setAlbumOptions(albumres);
       setArtistOptions(artistres);
       setResults(searchresults)
@@ -62,10 +60,8 @@ const SearchBar = () => {
       />
       {display && (
         <div className="autoContainer">
-
           <div>Tracks</div>
           {trackOptions
-            // .filter(({ title }) => title.indexOf(search.toLowerCase()) > -1)
             .map((value, i) => {
               return (
                 <div
@@ -79,10 +75,8 @@ const SearchBar = () => {
             )
           })
           }
-
           <div>Albums</div>
           {albumOptions
-            // .filter(({ title }) => title.indexOf(search.toLowerCase()) > -1)
             .map((value, i) => {
               return (
                 <div
@@ -99,7 +93,6 @@ const SearchBar = () => {
 
           <div>Artists</div>
           {artistOptions
-            // .filter(({ title }) => title.indexOf(search.toLowerCase()) > -1)
             .map((value, i) => {
               return (
                 <div
