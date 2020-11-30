@@ -36,7 +36,7 @@ export default function reducer(state = [], action) {
     case SET_TRACK: {
       return {
         ...state,
-        currentTrack: action.id
+        currentTrackIndex: action.idx
       }
     }
     case PLAY: {
