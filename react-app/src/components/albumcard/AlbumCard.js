@@ -16,24 +16,24 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
   }
 
   const clickHandler = (e) => {
-      const id = parseAlbumId(e.target.id)
-      const index = parseIndex(e.target.id)
+    const id = parseAlbumId(e.target.id)
+    const index = parseIndex(e.target.id)
 
-      if (currentAlbum === id && currentTrackIndex === index) {
-        if (isPlaying) {
-          dispatch(pause())
-        } else {
-          dispatch(play())
-        }
+    if (currentAlbum === id && currentTrackIndex === index) {
+      if (isPlaying) {
+        dispatch(pause())
       } else {
-        (async () => {
-          await dispatch(setCurrentTrack(index))
-          await dispatch(getAlbumPlayer((id)))
-          await dispatch(pause())
-          await dispatch(play())
-        })()
-
+        dispatch(play())
       }
+    } else {
+      (async () => {
+        await dispatch(setCurrentTrack(index))
+        await dispatch(getAlbumPlayer((id)))
+        await dispatch(pause())
+        await dispatch(play())
+      })()
+
+    }
 
   }
   const artistNameHandler = (e) => {
@@ -42,38 +42,48 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
 
 
 
-  console.log(albumCover)
   return (
-    <>
-      <div className='album__container'>
-        <div className='left-container'>
-          <div className='cover-container'>
-            <img id={`album_${albumId}_0`} onClick={clickHandler} src={albumCover} className='album-cover'></img>
+    <div className='album__container'>
+      <div className='left-container'>
+        <div className='album__image'>
+          <img className='track' id={`album_${albumId}_0`} src={albumCover} className='album-cover'></img>
+        </div>
+      </div>
+      <div className='right-container'>
+        <div className='button-album-info'>
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x icon-background"></i>
+              <i id={`album_${albumId}_0`} onClick={clickHandler} className={isPlaying && parseInt(albumId) === parseInt(currentAlbum) ? "fas fa-pause fa-stack-1x pause" : "fa fa-play fa-stack-1x play" } />
+            </span>
+
+          <div>
+            <p className="artist" id={artistId} onClick={artistNameHandler}>{artistName}</p>
+            <p className="title">{tracks.length === 1 ? tracks[0].title : title}</p>
           </div>
         </div>
-        <div className='right-container'>
-          <div className='button-album-info'>
-            <h6 id={artistId} onClick={artistNameHandler}>{artistName}</h6>
-            <h4>{title}</h4>
-          </div>
-          <div className='graphic'>Wave</div>
-          <div className='tracks-table'>
-            <table>
+        <div className='graphic'></div>
+        {tracks.length > 1 ?
+
+          <div className='table__container'>
+            <table className='table'>
               <tbody>
                 {
-                tracks.map((track, i) => {
-                  return (
-                    <tr key={track.id}>
-                      <td onClick={clickHandler} id={`track_${albumId}_${i}`}>{track.title}</td>
-                    </tr>
-                  )
-                })}
+                  tracks.map((track, i) => {
+                    return (
+                      <tr key={track.id} className='table__row'>
+                        <td onClick={clickHandler} id={`track_${albumId}_${i}`}><img src={albumCover}/>{"      "+`  ${i + 1}      ${track.title}`}</td>
+                      </tr>
+                    )
+                  })}
               </tbody>
             </table>
           </div>
-        </div>
+
+          :  null
+
+       }
       </div>
-    </>
+    </div>
   )
 }
 
