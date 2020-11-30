@@ -12,31 +12,15 @@ const TipModal = ({user, artist}) => {
     
     const [modalIsOpen, setIsOpen] = useState(false);
 
-    let history = useHistory();
-
     const updateAmount = (e) => {
         setAmount(e.target.value);
     };
 
-
-
-    // onSubmit = { onTip }
-    // const onTip = async (e) => {
-    //     e.preventDefault();
-    //     const 
-    // }
-
-    // const onLogin = async (e) => {
-    //     e.preventDefault();
-    //     const user = await login(email, password);
-    //     if (!user.errors) {
-    //         setAuthenticated(true);
-    //         setIsOpen(false);
-    //         history.push("/")
-    //     } else {
-    //         setErrors(user.errors);
-    //     }
-    // };
+    const onTip = async (e) => {
+        e.preventDefault();
+        setIsOpen(false)
+        alert(`Thanks for your support! yours ${user.username}`);
+    }
 
     return (
         <div>
@@ -54,7 +38,7 @@ const TipModal = ({user, artist}) => {
                     <button className="close-btn" onClick={() => setIsOpen(false)}>X</button>
                 </div>
 
-                <form >
+                <form onSubmit={onTip} >
                     <div className="login-content">
                         <label for="points">Choose Amount</label>
                         <input
@@ -69,7 +53,7 @@ const TipModal = ({user, artist}) => {
                         ></input>
                     </div>
                     <div className="login-content">
-                        Amount: {amount} 
+                        Amount: {amount} dough
                     </div>
                     <div>
                         <image src="./dough2.png"></image>

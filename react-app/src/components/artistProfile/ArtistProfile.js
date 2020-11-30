@@ -79,7 +79,11 @@ function ArtistProfile({ getOneArtist, artist, user}) {
           {!userProfile ? (
             <TipModal user={user} artist={artist}/>
             ) : (
-            <UploadAlbum user={user} />
+            <div><UploadAlbum user={user} />
+            <div className="stash">
+              <p>Dough: {artist.tip_stash}</p>
+            </div>
+            </div>
           )}
           <ul>
             {/* <li>
