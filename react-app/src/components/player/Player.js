@@ -93,7 +93,7 @@ const PlayerContainer = (props) => {
 
   },[trackList, isPlaying, currentTrackIndex])
 
-  if(!tracks) return null
+  if(!tracks ) return null
 
   const trackId = tracksIdArray[currentTrackIndex]
   const track = tracks[currentTrackIndex][trackId]
