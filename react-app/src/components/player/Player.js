@@ -82,10 +82,7 @@ const PlayerContainer = (props) => {
   const trackList = useSelector(state => state.player.tracksData)
   const tracksIdArray = useSelector(state => state.player.tracksIds)
   const isPlaying = useSelector(state => state.player.isPlaying)
-
-  const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
-
-
+  const currentTrackIndex = useSelector(state => state.player.currentTrackIndex)
   const [tracks, setTracks] = useState()
 
 
@@ -94,18 +91,18 @@ const PlayerContainer = (props) => {
       await setTracks(trackList)
     })()
 
-  },[trackList, currentTrackIndex, isPlaying, currentTrackIndex])
+  },[trackList, isPlaying, currentTrackIndex])
 
   if(!tracks) return null
 
   const trackId = tracksIdArray[currentTrackIndex]
+  const track = tracks[currentTrackIndex][trackId]
 
 
   return (
     <>
-    {/* <h1>{tracks}</h1> */}
     <Player
-    track={tracks[currentTrackIndex][trackId]}
+    track={track}
     tracks={tracks}
     currentTrackIndex={currentTrackIndex}
     isPlaying={isPlaying}
