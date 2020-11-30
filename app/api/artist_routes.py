@@ -20,6 +20,22 @@ def artist(id):
     artist = Artist.query.get(id)
     return jsonify(artist=[artist.to_dict()])
 
+@artist_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def update_artist(id):
+    try:
+        artist = Artist.query.get(id)
+        tip_stash = request.json['tip_stash']
+        dough = request.json['dough']
+
+        artist.tip_stash = tip_stash
+        artist.dough = dough
+
+        db.session.commit()
+        return "Thank you for your Tip!"
+    except:
+        return jsonify("Error during the payment")
+
 
 @artist_routes.route('/<int:id>/tracks', methods=['GET'])
 @cross_origin()

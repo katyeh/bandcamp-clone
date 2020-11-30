@@ -6,8 +6,7 @@ import Albums from './CurrentAlbums'
 import CurrentTracks from './CurrentTracks'
 import ArtistFollowers from './ArtistFollowers'
 import TipModal from './TipModal'
-import './ArtistProfile.css'
-
+import UploadAlbum from './UploadAlbum'
 
 function ArtistProfile({ getOneArtist, artist, user}) { 
   let userProfile = false;
@@ -26,11 +25,10 @@ function ArtistProfile({ getOneArtist, artist, user}) {
 
   return (
     <>
-    <div className="grid-container">
         {!userProfile ? (
-          <TipModal />
+          <TipModal user={user} artist={artist}/>
         ) : (
-            <div></div>
+            <UploadAlbum user={user} />
           )}
       <div className="cover_imgage_container">
         <img src={artist.cover_image_url} alt={artist.cover_image_url} className="cover_image" /> 
@@ -69,7 +67,6 @@ function ArtistProfile({ getOneArtist, artist, user}) {
             <strong>Username</strong> {artist.username}
           </li>
         </ul>
-      </div>
       </div>
     </>
   );

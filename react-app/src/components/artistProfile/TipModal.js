@@ -6,7 +6,7 @@ import './TipModal.css'
 
 Modal.setAppElement('#root');
 
-const TipModal = () => {
+const TipModal = ({user, artist}) => {
     // const [errors, setErrors] = useState([]);
     const [amount, setAmount] = useState("0");
     
