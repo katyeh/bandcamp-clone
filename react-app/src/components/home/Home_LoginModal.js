@@ -5,7 +5,9 @@ import Modal from "react-modal";
 
 Modal.setAppElement('#root');
 
-const Login = ({ authenticated, setAuthenticated }) => {
+const Login = ({ setAuthenticated }) => {
+  // console.log(authenticated)
+  // console.log(setAuthenticated)
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
