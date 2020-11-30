@@ -22,7 +22,8 @@ const Splash = ({ tracks, authenticated, setAuthenticated }) => {
       {/* <FeaturedTracks /> */}
       <div className="featured__container">
         <div className="featured__div">
-          <Section tracks={tracks} title="Featured Tracks"/>
+          <Section tracks={tracks.trending} title="Trending" subtitle="What's hot right now."/>
+          {/* <Section tracks={tracks} title="Featured Tracks"/> */}
         </div>
       </div>
       <div className="categories__container">

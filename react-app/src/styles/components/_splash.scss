@@ -8,12 +8,8 @@
 
 .featured__div {
     grid-column: 2/span 1;
-    overflow-y: hidden;
+    // overflow-y: hidden;
 
-    h2 {
-        color: #626262;
-        font-weight: bolder;
-    }
 }
 
 .categories__container {
