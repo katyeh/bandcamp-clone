@@ -1,14 +1,25 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import AudioMotionAnalyzer from 'audiomotion-analyzer';
 
-const AudioMotion = () => {
+const AudioMotion = ({source}) => {
   const container = useRef();
   const audioMotion = new AudioMotionAnalyzer(
-  //   document.getElementById('container'),
-  //   {
-  //     source: document.getElementById('audio')
-  //   }
+    container.current,
+    {
+      source: source,
+      options: {
+        height: 1,
+        isFullscreen: false
+      }
+    }
   );
+
+  useEffect(() => {
+    console.log('CONNECTED')
+    return () => {
+      console.log('CLEAN UP')
+    }
+  });
 
   return ( 
     <div className="audio-motion">

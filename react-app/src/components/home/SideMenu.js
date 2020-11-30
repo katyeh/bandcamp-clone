@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import AudioMotion from './AudioMotion';
 
 const SideMenu = ({artists}) => {
   const user = useSelector(state => state.user);
@@ -40,7 +39,7 @@ const SideMenu = ({artists}) => {
       </div>
     );
   } else {
-    return <AudioMotion />
+    return ''
   }
   
 }

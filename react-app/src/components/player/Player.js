@@ -5,7 +5,7 @@ import ProgressBar from './ProgressBar';
 // import Visualizer from './Visualizer';
 import ArtThumbnail from './ArtThumbnail';
 import { setCurrentTrack } from '../../store/actions/playerActions'
-
+import AudioMotion from '../home/AudioMotion'
 
 
 function Player({ tracks, track, currentTrackIndex, isPlaying }) {
@@ -14,6 +14,31 @@ function Player({ tracks, track, currentTrackIndex, isPlaying }) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [clickedTime, setClickedTime] = useState();
+
+
+
+  let audio, context, analyzer, source;
+  
+  useEffect(() => {
+    if (audioEl.current) {
+      audio = new Audio(audioEl.current.src);
+      context = new AudioContext();
+      analyzer = context.createAnalyser();
+  
+      source = context.createMediaElementSource(audio);
+      source.connect(analyzer);
+      
+      analyzer.connect(context.destination);
+      
+      console.log('audio', audio)
+      console.log('analyzer', analyzer)
+      console.log('context', context)
+    }
+
+    return () => {
+      console.log('CLEEANNN')
+    }
+  })
 
 
   useEffect(() => {
@@ -52,6 +77,19 @@ function Player({ tracks, track, currentTrackIndex, isPlaying }) {
   return (
     <div style={style} className="player">
       {/* <Visualizer audioElement={audioEl}/> */}
+      {/* <div
+        id='audio'
+        ref={audioEl}
+        onLoadedData={() => {
+          setDuration(audioEl.current.duration);
+          setCurrentTime(audioEl.current.currentTime)
+        }}
+        onTimeUpdate={() => {
+          setCurrentTime(audioEl.current.currentTime);
+        }}
+        onEnded={handleEnd}
+      /> */}
+
       <audio
         id='audio'
         src={track.mp3_url}
@@ -65,6 +103,7 @@ function Player({ tracks, track, currentTrackIndex, isPlaying }) {
         }}
         onEnded={handleEnd}
       />
+      
       <div className='controls'>
         <Controls className='buttons'
           isPlaying={isPlaying}
@@ -73,6 +112,7 @@ function Player({ tracks, track, currentTrackIndex, isPlaying }) {
           tracks={tracks}
         />
         <ProgressBar currentTime={currentTime} duration={duration} onTimeUpdate={(time) =>setClickedTime(time)}/>
+        <AudioMotion source={source}/>
       </div>
     </div>
   )
@@ -85,13 +125,16 @@ const PlayerContainer = (props) => {
   const currentTrackIndex = useSelector(state => state.player.currentTrackIndex)
   const [tracks, setTracks] = useState()
 
-
   useEffect(() => {
     (async() => {
       await setTracks(trackList)
     })()
 
   },[trackList, isPlaying, currentTrackIndex])
+
+  useEffect(() => {
+    console.log('HIIHHIi')
+  })
 
   if(!tracks) return null
 
