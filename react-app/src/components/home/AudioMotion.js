@@ -7,10 +7,8 @@ const AudioMotion = ({source}) => {
     container.current,
     {
       source: source,
-      options: {
-        height: 1,
-        isFullscreen: false
-      }
+      height: 3,
+      width: 1
     }
   );
 
@@ -24,7 +22,6 @@ const AudioMotion = ({source}) => {
   return ( 
     <div className="audio-motion">
       <div ref={container} className="audio-motion__container">
-        C
       </div>
     </div>
   );
