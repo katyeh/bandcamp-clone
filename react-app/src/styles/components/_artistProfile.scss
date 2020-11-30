@@ -1,31 +1,84 @@
-.grid-container {
-   height: 90vh;
-   width: 90vw;
-   margin: 2rem auto;
-   display: grid;
-   grid-template-areas: ". header header ."
-                        ". left right ."
-                        "footer footer footer footer";
-   grid-template-rows: 15% 50% 20% 15%;
-   grid-template-columns: 20% 60% 20%;
+.profile__main {
+   width: 70%;
+   margin: 0 auto;
 }
-.cover_imgage_container {
-   grid-area: header;
+
+.cover-image__container {
+   background-size: cover;
+   height: 30rem;
+   display: flex;
+   align-items: center;
+   padding: 3rem;
 }
-.albums-tracks-container {
-   grid-area: left;
+
+.profile_image {
+   height: 20rem;
+   width: 20rem;
+   border-radius: 50%;
 }
-.artist-info-container{
-   background: gold;
-   grid-area: right;
+
+.artist-name {
+   color: #fff;
+   font-weight: bolder;
+   padding: 3rem;
+   bottom: 4rem;
+   position: relative;
 }
-.cell-5 {
-   background: blueviolet;
-   grid-area: footer;
+
+.profile__body {
+   display: flex;
+   justify-content: space-between;
+   padding: 2rem 3rem;
+
+   li {
+      list-style: none;
+      padding: .5rem;
+      padding-top: 2rem;
+   }
 }
-.cell {
-   color: white;
-   font-size: 2.5rem;
-   text-align: center;
-   padding: 4rem;
+
+.artist-info__container {
+   width: 40rem;
 }
+
+.album__container {
+   display: flex;
+   justify-content: space-between;
+   padding: 3rem 0;
+
+   .right-container {
+      width: 35rem;
+   }
+}
+
+// .grid-container {
+//    height: 90vh;
+//    width: 90vw;
+//    margin: 2rem auto;
+//    display: grid;
+//    grid-template-areas: ". header header ."
+//                         ". left right ."
+//                         "footer footer footer footer";
+//    grid-template-rows: 15% 50% 20% 15%;
+//    grid-template-columns: 20% 60% 20%;
+// }
+// .cover_imgage_container {
+//    grid-area: header;
+// }
+// .albums-tracks-container {
+//    grid-area: left;
+// }
+// .artist-info-container{
+//    background: gold;
+//    grid-area: right;
+// }
+// .cell-5 {
+//    background: blueviolet;
+//    grid-area: footer;
+// }
+// .cell {
+//    color: white;
+//    font-size: 2.5rem;
+//    text-align: center;
+//    padding: 4rem;
+// }
