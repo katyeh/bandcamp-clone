@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SearchBar from './SearchBar';
+import SearchContainer from './SearchBar';
 import { useDispatch, useSelector } from 'react-redux';
 import FeaturedTracks from './FeaturedTracks';
 import Section from '../home/Section';
@@ -18,7 +18,7 @@ const Splash = ({ tracks, authenticated, setAuthenticated }) => {
  let btn_class = activeClass.black ? "blackButton" : "blueButton"
  return (
    <div>
-      <SearchBar />
+      <SearchContainer />
       {/* <FeaturedTracks /> */}
       <div className="featured__container">
         <div className="featured__div">
