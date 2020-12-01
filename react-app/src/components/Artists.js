@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import { getAllArtists } from '../store/actions/artists'
 import { useSelector, useDispatch } from 'react-redux';

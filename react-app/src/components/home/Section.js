@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Track from './Track';
+import AlbumImage from './AlbumImage';
 import {useSpring, animated, config} from 'react-spring';
 import { NavLink } from 'react-router-dom';
 
@@ -11,7 +12,8 @@ const Section = ({title, subtitle, tracks}) => {
   const [scroll, setScroll] = useState(0);
   const moveScroll = 220;
 
-  const [props, set] = useSpring(() => ({
+  
+  const [scrollProps, setScrollAnim] = useSpring(() => ({
     scrollLeft: 0,
     config: config.slow
   }));
@@ -29,15 +31,14 @@ const Section = ({title, subtitle, tracks}) => {
 
   const handleRightScroll = () => {
     if (scroll < carousel.current.scrollWidth - carousel.current.clientWidth) {
-      set({scrollLeft: scroll + moveScroll})
+      setScrollAnim({scrollLeft: scroll + moveScroll})
       setScroll(scroll + moveScroll);
     }
-    console.log(scroll)
   }
 
   const handleLeftScroll = () => {
     if (scroll > 0) {
-      set({scrollLeft: scroll - moveScroll})
+      setScrollAnim({scrollLeft: scroll - moveScroll})
       setScroll(scroll - moveScroll)
     }
   }
@@ -49,13 +50,11 @@ const Section = ({title, subtitle, tracks}) => {
       <div className="section__contents">
         <div className="section__contents--right-scroll" ref={arrowRight} onClick={handleRightScroll}>&#9002;</div>
         <div className="section__contents--left-scroll" ref={arrowLeft} onClick={handleLeftScroll}>&#9001;</div>
-        <animated.div scrollLeft={props.scrollLeft} ref={carousel} className="section__carousel">
+        <animated.div scrollLeft={scrollProps.scrollLeft} ref={carousel} className="section__carousel">
           {tracksLoaded && tracks.map(track => (
-            <NavLink to={`/tracks/${track.id}`}>
+            <NavLink to={`/tracks/${track.id}`} key={track.id}>
               <Track key={track.id}>
-                <div className="track__image">
-                  <img src={track.album.album_art_url} />
-                </div>
+                <AlbumImage track={track}/>
                 <p className="track__title">{track.title}</p>
                 <p className="track__album-title">{track.album.title}</p>
               </Track>

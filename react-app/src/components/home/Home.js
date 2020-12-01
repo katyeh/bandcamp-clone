@@ -10,7 +10,6 @@ const Home = ({tracks, artists}) => {
           <Section tracks={tracks.new} title="New" subtitle="New music by various artists."/>
           <Section tracks={tracks.random_picks} title="Random Picks" subtitle="Dive in and explore!"/>
           <Section tracks={tracks.trending} title="Trending" subtitle="What's hot right now."/>
-          {/* <Section tracks={tracks} title="Suggestion" subtitle="Suggested music based on your likes."/> */}
         </main>
         <aside className="home__sidemenu">
           <SideMenu artists={artists}/>

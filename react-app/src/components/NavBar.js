@@ -36,7 +36,7 @@ const NavBar = ({ setAuthenticated, user }) => {
             {user.id ? (
               <LogoutButton setAuthenticated={setAuthenticated} />
             ) : (
-              <LoginModal />
+              <LoginModal setAuthenticated={setAuthenticated}/>
             )}
           </li>
         </ul>
@@ -49,10 +49,10 @@ const NavBar = ({ setAuthenticated, user }) => {
           </div>
         </form>
         {user.id && (
-          <div className="navbar__menu">
-          <img src={user.profileImageUrl} />
-          <div>{user.name}</div>
-        </div>
+          <NavLink className="navbar__menu" to={`artists/${user.id}`}>
+            <img src={user.profileImageUrl} />
+            <div>{user.username}</div>
+          </NavLink>
         )}
       </div>
     </nav>

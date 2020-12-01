@@ -7,11 +7,13 @@ import { setCurrentTrack } from '../../store/actions/playerActions'
 import AudioMotion from './AudioMotion'
 
 
+
 function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
   const [clickedTime, setClickedTime] = useState();
   const dispatch = useDispatch()
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+
 
   const handleEnd = () => {
     const nextIndex = parseInt(currentTrackIndex) + 1;
@@ -33,10 +35,10 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
         setCurrentTime(audio.currentTime);
       };
       audio.onended = handleEnd;
+
     } else if (!isPlaying && audio) {
       audio.pause();
     }
-
 
     if (clickedTime && clickedTime !== currentTime) {
       audio.currentTime = clickedTime;
@@ -44,10 +46,12 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
     }
   });
 
+
   if (!audio) return null;
 
   return (
     <div style={style} className="player">
+
       <div className='controls'>
         <Controls className='buttons'
           isPlaying={isPlaying}
@@ -79,10 +83,16 @@ const PlayerContainer = () => {
 
 
 
-  useEffect(() => {
-    (async() => {
-      await setTracks(trackList)
-    })()
+  const dispatch = useDispatch()
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  const trackIndex = useSelector(state => Number(state.player.currentTrackIndex));
+  const trackUrl = useSelector(state => {
+    if (!state.player.tracksData) return '';
+    return state.player.tracksData[trackIndex][Object.keys(state.player
+          .tracksData[trackIndex])[0]].mp3_url;
+  });
 
     if (!audioRef.current) {
       audioRef.current = new Audio();
@@ -93,10 +103,6 @@ const PlayerContainer = () => {
       }
     }, [trackUrl])
 
-  // if(!tracks ) return null
-  console.log('----------------------------------------')
-  // console.log(tracksData)
-  // const track = tracks[currentTrackIndex]
 
   return (
     <>
@@ -106,8 +112,7 @@ const PlayerContainer = () => {
       currentTrackIndex={trackIndex}
       isPlaying={isPlaying}
       audio={audioRef.current}
-      // currentTime={currentTime}
-      // duration={duration}
+   
       />
       <AudioMotion audio={audioRef.current} />
     </>
