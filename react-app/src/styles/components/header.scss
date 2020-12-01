@@ -8,8 +8,8 @@
     display: flex;
     justify-content: space-between;
     padding: 2rem;
-    background-color: $color-dark;
-    background-image: url("../../assets/busker.png");
+    background-image: linear-gradient(125deg, rgba(0, 0, 0, .4) 20%, rgba(0, 0, 0, .6) 90%),
+                      url("../../assets/busker_header.jpeg");
     background-size: cover;
     height: 40rem;
 }
