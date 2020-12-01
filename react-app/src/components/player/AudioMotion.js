@@ -25,15 +25,7 @@ const AudioMotion = ({audio, analyzer}) => {
           reflexRatio: .5
         });
     } 
-      
-    // let song = state.player.tracksData[track].mp3_url
-
-    // console.log(trackUrl)
-    // debugger;
-    // return null;
   }, [audio]);
-
-  // if (!audio) return null;
 
   return ( 
     <div className="audio-motion">
