@@ -92,7 +92,7 @@ def upgrade():
 
             {
                 'title': 'Lady Gaga 1',
-                'album_art_url': '',
+                'album_art_url': 'https://busker2.s3.amazonaws.com/defaultalbumcover.jpg',
                 'release_date': datetime(2010, 3, 9),
                 'single': True,
                 'artist_id': 6

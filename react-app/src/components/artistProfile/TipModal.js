@@ -9,8 +9,10 @@ Modal.setAppElement('#root');
 const TipModal = ({user, artist}) => {
     // const [errors, setErrors] = useState([]);
     const [amount, setAmount] = useState("0");
-    
     const [modalIsOpen, setIsOpen] = useState(false);
+
+    let userId = user.id
+    let artistId = artist.id
 
     const updateAmount = (e) => {
         setAmount(e.target.value);
