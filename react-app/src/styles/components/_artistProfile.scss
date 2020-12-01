@@ -38,6 +38,7 @@
    display: flex;
    justify-content: space-between;
    height: 110vh;
+   position: relative;
 
    li {
       list-style: none;
@@ -55,9 +56,13 @@
 
 .albums-tracks__container {
    width: 95rem;
+   position: absolute;
+   left: 0;
 }
 
 .artist-info__container {
+   position: absolute;
+   right: 0;
    background-color: $color-dark;
    width: 40rem;
    li {
@@ -75,7 +80,9 @@
    }
 
    .right-container {
-      width: 80rem;
+      position: relative;
+      width: 70rem;
+      right: 12rem;
       padding-right: 1rem;
    }
 }

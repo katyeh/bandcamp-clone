@@ -90,9 +90,6 @@ function ArtistProfile({ getOneArtist, artist, user}) {
 
           <div className="artist-info__container">
           <ul>
-            {/* <li>
-              <strong>Artist Id</strong> {artistId}
-            </li> */}
             <li>
               <strong>Name</strong> {artist.name}
             </li>
