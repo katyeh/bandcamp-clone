@@ -24,8 +24,14 @@ const ShowAllArtists = ({ getAllArtists, artists }) => {
                         <img onClick={() => history.push(`/artists/${artist.id}`)} src={artist.profile_image_url}></img>
                       </div>
                       <div className="artists-container__right">
-                        <div onClick={() => history.push(`/artists/${artist.id}`)} key={artist.name}>{artist.name}</div>
-                        <div>{artist.city},{artist.country}</div>
+                        <div className="artist-right__item">
+                          <h4>Name</h4>
+                          <div className="artist__name" key={artist.name}>{artist.name}</div>
+                        </div>
+                        <div className="artist-right__item">
+                          <h4>Location</h4>
+                          <div className="artist__location">{artist.city},{artist.country}</div>
+                        </div>
                       </div>
                     </div>
                     )
