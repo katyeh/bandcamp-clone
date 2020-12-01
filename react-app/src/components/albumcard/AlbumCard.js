@@ -26,21 +26,19 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
         dispatch(play())
       }
     } else {
-      (async () => {console.log('index', index)
+      (async () => {
+
+        console.log('index', index)
         await dispatch(setCurrentTrack(index))
-        await dispatch(getAlbumPlayer((id)))
+        await dispatch(getAlbumPlayer(id))
         // await dispatch(pause())
         await dispatch(play())
       })()
-
     }
-
   }
   const artistNameHandler = (e) => {
     console.log(e.target.id)
   }
-
-
 
   return (
     <div className='album__container'>
