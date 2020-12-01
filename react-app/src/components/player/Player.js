@@ -82,17 +82,10 @@ const PlayerContainer = () => {
   const audioRef = useRef();
 
 
+  useEffect(() => {
 
-  const dispatch = useDispatch()
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+    setTracks(trackList)
 
-  const trackIndex = useSelector(state => Number(state.player.currentTrackIndex));
-  const trackUrl = useSelector(state => {
-    if (!state.player.tracksData) return '';
-    return state.player.tracksData[trackIndex][Object.keys(state.player
-          .tracksData[trackIndex])[0]].mp3_url;
-  });
 
     if (!audioRef.current) {
       audioRef.current = new Audio();
@@ -112,7 +105,7 @@ const PlayerContainer = () => {
       currentTrackIndex={trackIndex}
       isPlaying={isPlaying}
       audio={audioRef.current}
-   
+
       />
       <AudioMotion audio={audioRef.current} />
     </>
