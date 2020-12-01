@@ -2,10 +2,11 @@ import React from 'react';
 import { useDispatch } from 'react-redux'
 import { play, pause } from '../../store/actions/playerActions'
 
-const Controls = ({isPlaying, currentTrackIndex, setCurrentTrack, tracks, setIsPlaying}) => {
+const Controls = ({isPlaying, currentTrackIndex, setCurrentTrack, tracks}) => {
   const dispatch = useDispatch()
 
   const skipTrack = (forwards = true) => {
+    debugger
     if (forwards && currentTrackIndex < tracks.length - 1) {
       console.log(currentTrackIndex)
       console.log(parseInt(currentTrackIndex + 1))
