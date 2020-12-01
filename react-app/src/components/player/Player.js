@@ -133,7 +133,7 @@ const PlayerContainer = () => {
       currentTime={currentTime}
       duration={duration}
       />
-      <AudioMotion audio={audioRef.current} />
+      {/* <AudioMotion audio={audioRef.current} /> */}
     </>
   )
 }

@@ -11,6 +11,9 @@ import UploadAlbum from './UploadAlbum'
 function ArtistProfile({ getOneArtist, artist, user}) {
   const [trackDisplay, setTrackDisplay] = useState(false);
   const [albumDisplay, setAlbumDisplay] = useState(true);
+  const [albumClass, setAlbumClass] = useState(true);
+  const [trackClass, setTrackClass] = useState(false);
+
   let userProfile = false;
   const { id }  = useParams();
   const artistId = Number.parseInt(id);
@@ -25,15 +28,23 @@ function ArtistProfile({ getOneArtist, artist, user}) {
     return null;
   }
 
-  const showTracks = () => {
-    setTrackDisplay(true);
-    setAlbumDisplay(false);
-  }
+  // let album_class = albumClass.selected ? "white-btn" : "black-btn"
+  // let track_class = trackClass.selected ? "white-btn" : "black-btn"
 
   const showAlbums = () => {
     setAlbumDisplay(true);
     setTrackDisplay(false);
+    setAlbumClass(true);
+    setTrackClass(false);
   }
+
+  const showTracks = () => {
+    setTrackDisplay(true);
+    setAlbumDisplay(false);
+    setTrackClass(true);
+    setAlbumClass(false);
+  }
+
 
   return (
     <div className="profile-main__container">
@@ -48,15 +59,15 @@ function ArtistProfile({ getOneArtist, artist, user}) {
           {/* <img src={artist.cover_image_url} alt={artist.cover_image_url} className="cover_image" />  */}
           <img src={artist.profile_image_url} alt={artist.profile_image_url} className="profile_image" />
           <div className="artist-name">
-            <h1>{artist.name}</h1>
+            <h1>{artist.username}</h1>
           </div>
         </div>
 
         <div className="profile__body">
           <div className="albums-tracks__container">
             <div className="album-track__btns">
-              <button className="profile-btn album-btn" onClick={() => showAlbums()}>Albums</button>
-              <button className="profile-btn track-btn" onClick={() => showTracks()}>Tracks</button>
+              <button className={`profile-btn album-btn ${albumClass == true ? "white-btn" : ""}`} onClick={() => showAlbums()}>Albums</button>
+              <button className={`profile-btn track-btn ${trackClass == true ? "white-btn" : ""}`} onClick={() => showTracks()}>Tracks</button>
             </div>
             {trackDisplay ?
               <div className="tracks__container">
@@ -94,6 +105,9 @@ function ArtistProfile({ getOneArtist, artist, user}) {
           {/*  <li>
               <strong>Artistname</strong> {artist.name}
             </li> */}
+            <li>
+              <strong>Name</strong> {artist.name}
+            </li>
             <li className="bio">
               <strong>Bio</strong> {artist.bio}
             </li>
@@ -102,9 +116,6 @@ function ArtistProfile({ getOneArtist, artist, user}) {
             </li>
             <li>
               <strong>City</strong> {artist.city}
-            </li>
-            <li>
-              <strong>Username</strong> {artist.username}
             </li>
           </ul>
         </div>
