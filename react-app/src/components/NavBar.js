@@ -49,7 +49,7 @@ const NavBar = ({ setAuthenticated, user }) => {
           </div>
         </form>
         {user.id && (
-          <NavLink className="navbar__menu" to={`artists/${user.id}`}>
+          <NavLink className="navbar__menu" to={`/artists/${user.id}`}>
             <img src={user.profileImageUrl} />
             <div>{user.username}</div>
           </NavLink>
