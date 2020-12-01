@@ -109,6 +109,7 @@ const UploadAlbum = ({ user }) => {
                         type="file"
                         name="album_cover"
                         onChange={updateNewAlbumCover}
+                        className="file-upload"
                     ></input>
                 </div>
                 <div className="login-content">
@@ -155,6 +156,7 @@ const UploadAlbum = ({ user }) => {
                         type="file"
                         name="song_url"
                         onChange={updateNewTrackUrl}
+                        className="file-upload"
                     ></input>
                 </div>
                 <div className="login-content">

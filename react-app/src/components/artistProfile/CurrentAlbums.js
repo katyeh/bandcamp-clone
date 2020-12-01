@@ -13,7 +13,7 @@ const artistId = Number.parseInt(id);
     getAlbums(artistId)
   }, [artistId])
 
-if (!albums) return null
+if (!albums || !albums.length) return null
 return (
     <div>
         {/* <div className='albums__section'>

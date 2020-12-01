@@ -52,7 +52,7 @@ const Section = ({title, subtitle, tracks}) => {
         <div className="section__contents--left-scroll" ref={arrowLeft} onClick={handleLeftScroll}>&#9001;</div>
         <animated.div scrollLeft={scrollProps.scrollLeft} ref={carousel} className="section__carousel">
           {tracksLoaded && tracks.map(track => (
-            <NavLink to={`/tracks/${track.id}`} key={track.id}>
+            <NavLink to={`/artists/${track.artist_id}`} key={track.id}>
               <Track key={track.id}>
                 <AlbumImage track={track}/>
                 <p className="track__title">{track.title}</p>

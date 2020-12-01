@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Login from "./LoginModal";
 import Signup from "./SignupModal";
 import logo1 from "../../assets/busker_logo.png";
@@ -9,10 +10,12 @@ const Header = ( {authenticated, setAuthenticated} ) => {
   return (
     <div>
       <div className="header__container">
+        <NavLink to='/splash'>
         <div className="header__logo">
           <img className="header__img1" src={logo1}></img>
           <img className="header__img2" src={logo2}></img>
         </div>
+        </NavLink>
         <div className="header-btn__container">
           <div className="header-btn__wrapper">
             <Login
