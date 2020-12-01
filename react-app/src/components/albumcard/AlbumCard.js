@@ -27,7 +27,6 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
       }
     } else {
       (async () => {
-
         console.log('index', index)
         console.log('________________________')
         console.log(id)

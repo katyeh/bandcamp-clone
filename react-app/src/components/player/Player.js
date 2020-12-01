@@ -81,13 +81,9 @@ const PlayerContainer = () => {
 
   const audioRef = useRef();
 
-
-
-  const dispatch = useDispatch()
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-
   useEffect(() => {
+    setTracks(trackList)
+
     if (!audioRef.current) {
       audioRef.current = new Audio();
       audioRef.current.crossOrigin = 'anonymous';
@@ -106,9 +102,9 @@ const PlayerContainer = () => {
       currentTrackIndex={trackIndex}
       isPlaying={isPlaying}
       audio={audioRef.current}
-   
+
       />
-      <AudioMotion audio={audioRef.current} />
+      {/* <AudioMotion audio={audioRef.current} /> */}
     </>
   )
 }
