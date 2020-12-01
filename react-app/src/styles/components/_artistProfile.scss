@@ -55,7 +55,7 @@
 }
 
 .albums-tracks__container {
-   width: 95rem;
+   width: 100%;
    position: absolute;
    left: 0;
 }
@@ -63,8 +63,10 @@
 .artist-info__container {
    position: absolute;
    right: 0;
+   top: 5rem;
    background-color: $color-dark;
    width: 40rem;
+   height: 100%;
    li {
       color: #fff;
    }
@@ -90,6 +92,7 @@
 .album-track__btns {
    background-color: $color-dark;
    outline: none;
+   width: 100%;
 
    .profile-btn {
       background-color: $color-dark;
