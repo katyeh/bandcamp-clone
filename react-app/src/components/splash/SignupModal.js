@@ -156,6 +156,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
           <div className="login-content">
             <label>Profile Image</label>
             <input
+              className="file-upload"
               type="file"
               name="profile_image"
               onChange={updateProfileImageUrl}
@@ -164,6 +165,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
           <div className="login-content">
             <label>Cover Image</label>
             <input
+              className="file-upload"
               type="file"
               name="cover_image"
               onChange={updateCoverImageUrl}

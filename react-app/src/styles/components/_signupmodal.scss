@@ -9,11 +9,20 @@
   background-color: white;
   padding: 3rem;
   outline: none;
-  height: 90rem;
+  height: 80rem;
   width: 70rem;
   border-radius: 1rem;
   margin: 0 auto;
+  overflow-y: scroll;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
+
 
 .login-header {
   display: flex;
@@ -37,6 +46,7 @@
 
 .login-content {
   // padding-top: 3rem;
+  // height: 5rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }

@@ -62,7 +62,7 @@ const SearchBar = () => {
       />
       {display && (
         <div className="autoContainer">
-          {trackOptions < 0 ? <div>Tracks</div> : null}
+          {trackOptions > 0 ? <div>Tracks</div> : null}
           {trackOptions
             .map((value, i) => {
               return (
@@ -77,7 +77,7 @@ const SearchBar = () => {
             )
           })
           }
-          {albumOptions < 0 ? <div>Albums</div> : null}
+          {albumOptions > 0 ? <div>Albums</div> : null}
           {albumOptions
             .map((value, i) => {
               return (
@@ -93,7 +93,7 @@ const SearchBar = () => {
           })
           }
 
-          {artistOptions.length < 0 ? <div>Artists</div> : null}
+          {artistOptions.length > 0 ? <div>Artists</div> : null}
           {artistOptions
             .map((value, i) => {
               return (
