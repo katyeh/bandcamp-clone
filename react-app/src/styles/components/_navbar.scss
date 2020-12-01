@@ -7,6 +7,9 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
 
+  #nas {
+  }
+
   a,
   a::before,
   a::after {
@@ -117,6 +120,8 @@
       // height: 2.8rem;
       width: 25rem;
       position: relative;
+      margin: 0;
+      height: 100%;
 
 
       &:focus {
