@@ -39,6 +39,12 @@
     padding-top: 3rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+
+    .file-upload {
+      padding: 0;
+      height: auto;
+      border: none;
+    }
 }
 
 .overlay {
