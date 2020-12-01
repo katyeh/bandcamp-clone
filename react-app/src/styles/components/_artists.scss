@@ -1,9 +1,12 @@
 .artists__container {
     background-color: lightgray;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
 }
 
 .artists__main {
-    width: 70%;
+    grid-column: 2 / span 1;
+    width: 100%;
     margin: 0 auto;
     background-color: #fff;
 }
