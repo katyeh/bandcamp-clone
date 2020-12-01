@@ -22,7 +22,6 @@ const SearchBar = () => {
       show.albumresults.map(value => albumres.push(value))
       show.artistresults.map(value => artistres.push(value))
       setTrackOptions(trackres);
-      console.log(trackOptions)
       setAlbumOptions(albumres);
       setArtistOptions(artistres);
       setResults(searchresults)
@@ -62,12 +61,14 @@ const SearchBar = () => {
       />
       {display && (
         <div className="autoContainer">
-          {trackOptions > 0 ? <div>Tracks</div> : null}
+          <div>Tracks</div>
+          {/* {trackOptions > 0 ? <div>Tracks</div> : null} */}
           {trackOptions
             .map((value, i) => {
               return (
                 <div
-                  onClick={() => updateResults(value.title)}
+                  onClick={() => history.push(`/artists/${value.artist_id}`)}
+                  // onClick={() => updateResults(value.title)}
                   className="option"
                   key={i}
                   tabIndex="0"
@@ -77,12 +78,14 @@ const SearchBar = () => {
             )
           })
           }
-          {albumOptions > 0 ? <div>Albums</div> : null}
+          <div>Albums</div>
+          {/* {albumOptions > 0 ? <div>Albums</div> : null} */}
           {albumOptions
             .map((value, i) => {
               return (
                 <div
-                  onClick={() => updateResults(value.title)}
+                  onClick={() => history.push(`/artists/${value.artist_id}`)}
+                  // onClick={() => updateResults(value.title)}
                   className="option"
                   key={i}
                   tabIndex="0"
