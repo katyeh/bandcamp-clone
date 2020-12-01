@@ -12,7 +12,7 @@ const AudioMotion = ({audio, analyzer}) => {
         container.current,
         {
           source: audio,
-          height: 200,
+          height: 70,
           width: 400,
           // overlay: true
           mode: 10,
@@ -22,14 +22,14 @@ const AudioMotion = ({audio, analyzer}) => {
           fillAlpha: .6,
           reflexAlpha: 1,
           reflexBright: 1,
-          reflexRatio: .5
+          reflexRatio: .5,
         });
     } 
   }, [audio]);
 
   return ( 
     <div className="audio-motion">
-      <div ref={container} className="audio-motion__container">
+      <div ref={container} className="audio-motion__container--hidden">
       </div>
     </div>
   );
