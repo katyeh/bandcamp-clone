@@ -81,11 +81,8 @@ const PlayerContainer = () => {
 
   const audioRef = useRef();
 
-
   useEffect(() => {
-
     setTracks(trackList)
-
 
     if (!audioRef.current) {
       audioRef.current = new Audio();
