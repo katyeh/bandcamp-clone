@@ -104,7 +104,7 @@ const PlayerContainer = () => {
       audio={audioRef.current}
 
       />
-      <AudioMotion audio={audioRef.current} />
+      {/* <AudioMotion audio={audioRef.current} /> */}
     </>
   )
 }
