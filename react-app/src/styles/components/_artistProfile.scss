@@ -1,11 +1,14 @@
 .profile-main__container {
    background-color: lightgray;
+   display: grid;
+   grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
 }
 
 .profile__main {
-   width: 70%;
+   width: 100%;
    margin: 0 auto;
    background-color: #fff;
+   grid-column: 2 / span 1;
 }
 
 .cover-image__container {

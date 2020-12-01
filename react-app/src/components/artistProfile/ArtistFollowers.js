@@ -15,7 +15,7 @@ const Followers = ({ getFollowers, followers }) => {
     return (
         <div>
             <div className='followers__section'>
-                <div>Followers: {followers.followed_id}</div>
+                {/* <div>Followers: {followers.followed_id}</div> */}
             </div>
         </div>
     );
