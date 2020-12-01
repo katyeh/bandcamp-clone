@@ -12,7 +12,6 @@ import Example from './components/Example'
 
 function RoutesContainer({authenticated, setAuthenticated}) {
 
-
   return (
     <>
       <NavBarContainer setAuthenticated={setAuthenticated}/>
@@ -41,8 +40,6 @@ function RoutesContainer({authenticated, setAuthenticated}) {
       </Switch>
     </>
   )
-
 }
-
 
 export default RoutesContainer;

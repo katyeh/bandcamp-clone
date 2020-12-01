@@ -126,7 +126,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               value={email}
             ></input>
           </div>
-          {/* <div className="login-content">
+          <div className="login-content">
             <label>Bio</label>
             <input
               type="text"
@@ -134,8 +134,8 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               onChange={updateBio}
               value={bio}
             ></input>
-          </div> */}
-         {/*  <div className="login-content">
+          </div>
+          <div className="login-content">
             <label>Country</label>
             <input
               type="text"
@@ -153,7 +153,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               value={city}
             ></input>
           </div>
-          <div className="login-content">
+          {/* <div className="login-content">
             <label>Profile Image</label>
             <input
               type="file"
