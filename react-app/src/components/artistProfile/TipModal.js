@@ -21,7 +21,7 @@ const TipModal = ({user, artist}) => {
     const onTip = async (e) => {
         e.preventDefault();
         setIsOpen(false)
-        alert(`Thanks for your support! yours ${user.username}`);
+        alert(`Thanks for your support! yours ${artist.username}`);
     }
 
     return (

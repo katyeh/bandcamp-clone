@@ -15,23 +15,23 @@ const NavBar = ({ setAuthenticated, user }) => {
           </div>
         </NavLink>
         <ul className="navbar__links">
-          <li>
+          {/* <li>
             <NavLink to="/splash" exact={true} activeClassName="active">
               Splash
             </NavLink>
-          </li>
+          </li> */}
           <li>
             {/* route needs user Id */}
             <NavLink to={`/artists/`} exact={true} activeClassName="active">
               Artists
             </NavLink>
           </li>
-          <li>
+          {/* <li> */}
             {/* route needs user Id */}
-            <NavLink to='/upload/' exact={true} activeClassName="active">
+            {/* <NavLink to='/upload/' exact={true} activeClassName="active">
               Upload
             </NavLink>
-          </li>
+          </li> */}
           <li>
             {user.id ? (
               <LogoutButton setAuthenticated={setAuthenticated} />
