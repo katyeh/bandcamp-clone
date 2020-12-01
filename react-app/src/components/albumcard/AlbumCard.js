@@ -28,7 +28,7 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
     } else {
       (async () => {
         await dispatch(setCurrentTrack(index))
-        await dispatch(getAlbumPlayer((id)))
+        await dispatch(getAlbumPlayer(id))
         await dispatch(pause())
         await dispatch(play())
       })()
