@@ -93,10 +93,6 @@ const PlayerContainer = () => {
       }
     }, [trackUrl])
 
-  // if(!tracks ) return null
-  console.log('----------------------------------------')
-  // console.log(tracksData)
-  // const track = tracks[currentTrackIndex]
 
   return (
     <>
