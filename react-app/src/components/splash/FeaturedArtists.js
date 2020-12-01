@@ -31,7 +31,8 @@ const FeaturedArtists = () => {
   const dispatch = useDispatch()
   const artists = useSelector(state => state.artists);
   const artistsValues = Object.values(artists);
-  console.log('ARTISTS:', artistsValues)
+  const artistValues = artistsValues.slice(0, 4)
+  console.log('ARTISTS:', artistValues)
   useEffect(() => {
     dispatch(getAllArtists())
   }, [])
@@ -41,42 +42,20 @@ const FeaturedArtists = () => {
         <h1>Featured Artists</h1>
       </div>
       <div className="featured-artists__grid">
-        <div className="featured-artists__grid-item">
-          <div>
-            <p>Picture here</p>
+
+        {artistValues.map((artist) => {
+          return (
+          <div className="featured-artists__grid-item">
+            <div>
+              <img className="featured-artist__pic" src={artist.profile_image_url}></img>
+            </div>
+            <div className="featured-artist__info">
+              <h3>{artist.name}</h3>
+              <p>{artist.bio.substring(0, 100) + "..."}</p>
+            </div>
           </div>
-          <div className="featured-artist__info">
-            <h3>Mozart</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta doloremque perspiciatis autem omnis!</p>
-          </div>
-        </div>
-        <div className="featured-artists__grid-item">
-          <div>
-            <p>Picture here</p>
-          </div>
-          <div className="featured-artist__info">
-            <h3>Lady Gaga</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta doloremque perspiciatis autem omnis!</p>
-          </div>
-        </div>
-        <div className="featured-artists__grid-item">
-          <div>
-            <p>Picture here</p>
-          </div>
-          <div className="featured-artist__info">
-            <h3>Blink 182</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta doloremque perspiciatis autem omnis!</p>
-          </div>
-        </div>
-        <div className="featured-artists__grid-item">
-          <div>
-            <p>Picture here</p>
-          </div>
-          <div className="featured-artist__info">
-            <h3>Drake</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta doloremque perspiciatis autem omnis!</p>
-          </div>
-        </div>
+          )
+        })}
       </div>
     </div>
   )
