@@ -70,13 +70,27 @@ def logout():
     logout_user()
     return {'message': 'Artist logged out'}
 
+@auth_routes.route('/profile_pic/<id>', methods=["PUT"])
+def profile_pic(id):
+    """
+    Edits profile picture
+    """
+    try:
+        artist = Artist.query.get(id)
+        profile_image_url = request.json["profile_image_url"]
+        artist.profile_image_url = profile_image_url
+
+        db.session.commit()
+        return "Profile picture was successfully updated."
+    except:
+        return "Error updating profile picture."
 
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():
   """
   Creates a new user and logs them in
   """
-  
+
   form = SignUpForm()
   print('!!!!!!')
   print(request.cookies)
@@ -95,7 +109,7 @@ def sign_up():
           cover_image_data = request.files["coverImage"]
           cover_image_key = f"coverimage/{cover_image_data.filename}_{uuid.uuid4()}"
           client.put_object(Body=cover_image_data, Bucket="busker2", Key=cover_image_key, ContentType=cover_image_data.mimetype, ACL="public-read")
-    
+
       user = Artist(
           name=form.data['name'],
           username=form.data['username'],

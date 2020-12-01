@@ -41,10 +41,15 @@
 
    li {
       list-style: none;
-      padding: .5rem;
+      padding: 1rem;
       padding-top: 2rem;
       display: flex;
       flex-direction: column;
+
+      strong {
+         background-color:#fff;
+         color: $color-dark;
+      }
    }
 }
 
@@ -98,6 +103,15 @@
       color: #000;
       border-top: 1px solid $color-dark;
       border-bottom: 1px solid #fff;
+   }
+}
+
+.tip__div {
+   color: #fff;
+   padding: 10rem 1rem;
+
+   h4 {
+      padding-bottom: 2rem;
    }
 }
 

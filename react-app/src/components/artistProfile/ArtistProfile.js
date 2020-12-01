@@ -89,21 +89,9 @@ function ArtistProfile({ getOneArtist, artist, user}) {
           </div>
 
           <div className="artist-info__container">
-          {!userProfile ? (
-            <TipModal user={user} artist={artist}/>
-            ) : (
-            <div><UploadAlbum user={user} />
-            <div className="stash">
-              <p>Dough: {artist.tip_stash}</p>
-            </div>
-            </div>
-          )}
           <ul>
             {/* <li>
               <strong>Artist Id</strong> {artistId}
-            </li> */}
-          {/*  <li>
-              <strong>Artistname</strong> {artist.name}
             </li> */}
             <li>
               <strong>Name</strong> {artist.name}
@@ -117,6 +105,18 @@ function ArtistProfile({ getOneArtist, artist, user}) {
             <li>
               <strong>City</strong> {artist.city}
             </li>
+            <div className="tip__div">
+              <h4>Enjoy my music? Leave a tip!</h4>
+              {!userProfile ? (
+                <TipModal user={user} artist={artist}/>
+                ) : (
+                <div><UploadAlbum user={user} />
+                <div className="stash">
+                  <p>Dough: {artist.tip_stash}</p>
+                </div>
+                </div>
+              )}
+            </div>
           </ul>
         </div>
         </div>

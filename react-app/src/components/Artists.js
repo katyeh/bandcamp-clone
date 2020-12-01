@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { getAllArtists } from '../store/actions/artists'
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const ShowAllArtists = ({ getAllArtists, artists }) => {
+  const history = useHistory();
 
     useEffect(() => {
         getAllArtists();
@@ -15,7 +17,9 @@ const ShowAllArtists = ({ getAllArtists, artists }) => {
             <div className='artist__section'>
                 {artists.map((artist) => {
                     return (
-                    <li key={artist.name}>{artist.name}</li>
+                    <div>
+                      <li onClick={() => history.push(`/artists/${artist.id}`)} key={artist.name}>{artist.name}</li>
+                    </div>
                     )
                 })}
             </div>
