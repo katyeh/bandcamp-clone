@@ -1,6 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllArtists } from "../../store/actions/artists";
+
+// function shuffle(array) {
+//   var currentIndex = array.length, temporaryValue, randomIndex;
+
+//   // While there remain elements to shuffle...
+//   while (0 !== currentIndex) {
+
+//     // Pick a remaining element...
+//     randomIndex = Math.floor(Math.random() * currentIndex);
+//     currentIndex -= 1;
+
+//     // And swap it with the current element.
+//     temporaryValue = array[currentIndex];
+//     array[currentIndex] = array[randomIndex];
+//     array[randomIndex] = temporaryValue;
+//   }
+
+//   return array;
+// }
+
+// Used like so
+// var arr = [2, 11, 37, 42];
+// shuffle(arr);
+// console.log(arr);
+
 
 const FeaturedArtists = () => {
+  const dispatch = useDispatch()
+  const artists = useSelector(state => state.artists);
+  const artistsValues = Object.values(artists);
+  console.log('ARTISTS:', artistsValues)
+  useEffect(() => {
+    dispatch(getAllArtists())
+  }, [])
   return (
     <div className="featured-artists__container">
       <div className="featured-artists__div">
