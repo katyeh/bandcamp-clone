@@ -14,7 +14,7 @@ const HomeContainer = () => {
     (async () => {
       await dispatch(getTracks());
       if (user.id) {
-        dispatch(getArtists(user.id));
+        await dispatch(getArtists(user.id));
       }
     })()
   }, []);

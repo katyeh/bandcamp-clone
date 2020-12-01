@@ -39,6 +39,7 @@ const FeaturedArtists = () => {
   useEffect(() => {
     dispatch(getAllArtists())
   }, [])
+
   return (
     <div className="featured-artists__container">
       <div className="featured-artists__div">
@@ -54,7 +55,7 @@ const FeaturedArtists = () => {
             </div>
             <div className="featured-artist__info">
               <h3>{artist.name}</h3>
-              <p>{artist.bio.substring(0, 100) + "..."}</p>
+              {artist.bio && <p>{artist.bio.substring(0, 100) + "..."}</p>}
             </div>
           </div>
           )

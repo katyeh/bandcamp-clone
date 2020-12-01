@@ -7,4 +7,9 @@
     color: white;
     background-color: $color-accent;
     border-radius: .4rem;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
 }
