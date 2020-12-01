@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux'
 import { play, pause } from '../../store/actions/playerActions'
 
-const Controls = ({isPlaying, setIsPlaying, currentTrackIndex, setCurrentTrack, tracks}) => {
+const Controls = ({isPlaying, currentTrackIndex, setCurrentTrack, tracks, setIsPlaying}) => {
   const dispatch = useDispatch()
 
   const skipTrack = (forwards = true) => {
@@ -14,12 +14,12 @@ const Controls = ({isPlaying, setIsPlaying, currentTrackIndex, setCurrentTrack, 
       dispatch(setCurrentTrack(parseInt(currentTrackIndex - 1)))
     }
   }
-
   return (
     <div style={style}>
         <i className="fa fa-fast-backward" onClick={() => skipTrack(false)}></i>
         <i
           className={!isPlaying?"fa fa-play":"fas fa-pause"}
+          // onClick={() => isPlaying ? setIsPlaying(false) : setIsPlaying(true)}
           onClick={isPlaying?() => dispatch(pause()):() => dispatch(play())}
         ></i>
         <i className="fa fa-fast-forward" onClick={() => skipTrack(true)}></i>

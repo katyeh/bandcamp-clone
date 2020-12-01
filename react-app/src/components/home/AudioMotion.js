@@ -1,23 +1,39 @@
 import React, { useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import AudioMotionAnalyzer from 'audiomotion-analyzer';
 
-const AudioMotion = ({source}) => {
+const AudioMotion = ({audio, analyzer}) => {
   const container = useRef();
-  const audioMotion = new AudioMotionAnalyzer(
-    container.current,
-    {
-      source: source,
-      height: 3,
-      width: 1
-    }
-  );
-
+  const audioMotionRef = useRef();
+  
   useEffect(() => {
-    console.log('CONNECTED')
-    return () => {
-      console.log('CLEAN UP')
-    }
-  });
+    if (!audioMotionRef.current && audio) {
+      audioMotionRef.current = new AudioMotionAnalyzer(
+        container.current,
+        {
+          source: audio,
+          height: 200,
+          width: 400,
+          // overlay: true
+          mode: 10,
+          lineWidth: 2,
+          radial: false,
+          showPeaks: false,
+          fillAlpha: .6,
+          reflexAlpha: 1,
+          reflexBright: 1,
+          reflexRatio: .5
+        });
+    } 
+      
+    // let song = state.player.tracksData[track].mp3_url
+
+    // console.log(trackUrl)
+    // debugger;
+    // return null;
+  }, [audio]);
+
+  // if (!audio) return null;
 
   return ( 
     <div className="audio-motion">
