@@ -20,12 +20,12 @@ const NavBar = ({ setAuthenticated, user }) => {
               Splash
             </NavLink>
           </li> */}
-          {/* <li> */}
+          <li>
             {/* route needs user Id */}
-            {/* <NavLink to={`/artists/`} exact={true} activeClassName="active">
+            <NavLink to={`/artists/`} exact={true} activeClassName="active">
               Artists
             </NavLink>
-          </li> */}
+          </li>
           {/* <li> */}
             {/* route needs user Id */}
             {/* <NavLink to='/upload/' exact={true} activeClassName="active">
