@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useSpring, animated, config} from 'react-spring';
 
-const calc = (x, y) => [-(y - window.innerHeight / 2) / 20, (x - window.innerWidth / 2) / 20, 1.1]
+const calc = (x, y) => [-(y - window.innerHeight / 2) / 30, (x - window.innerWidth / 2) / 30, 1.1]
 const trans = (x, y, s) => `perspective(400px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
 
 const AlbumImage = ({track}) => {

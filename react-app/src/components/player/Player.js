@@ -87,13 +87,7 @@ const PlayerContainer = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  const trackIndex = useSelector(state => Number(state.player.currentTrackIndex));
-  const trackUrl = useSelector(state => {
-    if (!state.player.tracksData) return '';
-    return state.player.tracksData[trackIndex][Object.keys(state.player
-          .tracksData[trackIndex])[0]].mp3_url;
-  });
-
+  useEffect(() => {
     if (!audioRef.current) {
       audioRef.current = new Audio();
       audioRef.current.crossOrigin = 'anonymous';
