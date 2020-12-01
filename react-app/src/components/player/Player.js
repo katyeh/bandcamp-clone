@@ -11,7 +11,6 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
   const [clickedTime, setClickedTime] = useState();
   const dispatch = useDispatch()
   const [currentTime, setCurrentTime] = useState(0);
-  // debugger;
   const [duration, setDuration] = useState(0);
   
   const handleEnd = () => {
@@ -48,36 +47,7 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
   if (!audio) return null;
 
   return (
-    <div style={style} className="player">
-      {/* <div
-        id='audio'
-        ref={audioEl}
-        onLoadedData={() => {
-          setDuration(audioEl.current.duration);
-          setCurrentTime(audioEl.current.currentTime)
-        }}
-        onTimeUpdate={() => {
-          setCurrentTime(audioEl.current.currentTime);
-        }}
-        onEnded={handleEnd}
-      /> */}
-      {/* <audio
-        id='audio'
-        // src={track.mp3_url}
-        src="https://elasticbeanstalk-us-east-2-183201666743.s3.us-east-2.amazonaws.com/Blink_FreakScene.mp3"
-        ref={audioEl}
-        // controls
-        crossOrigin='anonymous'
-        onLoadedData={() => {
-          setDuration(audioEl.current.duration);
-          setCurrentTime(audioEl.current.currentTime)
-        }}
-        onTimeUpdate={() => {
-          setCurrentTime(audioEl.current.currentTime);
-        }}
-        onEnded={handleEnd}
-      />  */}
-      
+    <div style={style} className="player">   
       <div className='controls'>
         <Controls className='buttons'
           isPlaying={isPlaying}

@@ -89,7 +89,7 @@ def upgrade():
             'country': 'USA',
             'city': 'New Jersey',
             'profile_image_url': 'https://busker2.s3.amazonaws.com/images/bonjovi_prof.jpg',
-            'cover_image_url': '',
+            'cover_image_url': 'https://busker2.s3.amazonaws.com/busker_logo.png',
             'tip_stash': 275,
             'dough': 78,
             'hashed_password': 'pbkdf2:sha256:150000$0Y70Jx11$5170eba1cde3b4481c1a289401d7273375faa4691e3ff10e8bd1ac4e9784a5c6'
@@ -127,7 +127,7 @@ def upgrade():
             'country': 'USA',
             'city': 'NY',
             'profile_image_url': 'https://busker2.s3.amazonaws.com/images/ladygaga.jpeg',
-            'cover_image_url': '<https://busker2.s3.amazonaws.com/coverimage/ladygagacover.jpeg',
+            'cover_image_url': 'https://busker2.s3.amazonaws.com/coverimage/ladygagacover.jpeg',
             'tip_stash': 82,
             'dough': 1000,
             'hashed_password': 'pbkdf2:sha256:150000$0Y70Jx11$5170eba1cde3b4481c1a289401d7273375faa4691e3ff10e8bd1ac4e9784a5c6'

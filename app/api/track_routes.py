@@ -6,8 +6,24 @@ from sqlalchemy.orm import joinedload
 from sqlalchemy import func, select
 import json
 import random
+from app.forms import UploadTrackForm
+
+
+import binascii
+import os
+import boto3
+from botocore.exceptions import ClientError
+import uuid
 
 track_routes = Blueprint('tracks', __name__)
+
+
+s3 = boto3.resource('s3')
+client = boto3.client('s3',
+                      aws_access_key_id=os.environ.get('AWS_ACCESS_KEY'),
+                      aws_secret_access_key=os.environ.get(
+                          'AWS_SECRET_ACCESS_KEY')
+                      )
 
 @track_routes.route('/')
 def all_tracks():
@@ -82,3 +98,35 @@ def home():
     })
   except:
     return {'errors':'There are no tracks avaliable'}, 400
+
+
+@track_routes.route('/', methods=['POST'])
+def upload_track():
+
+  form = UploadTrackForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+      key_list = request.files.keys()
+
+      if "newTrackUrl" in key_list:
+        new_track_data = request.files["newTrackUrl"]
+        new_track_key = f"songs/{new_track_data.filename}_{uuid.uuid4()}"
+        client.put_object(Body=new_track_data, Bucket="busker2", Key=new_track_key,
+                          ContentType=new_track_data.mimetype, ACL="public-read")
+
+      track = Track(
+          title=form.data['name'],
+          mp3_url=f"https://busker2.s3.amazonaws.com/{new_track_key}",
+          lyrics=form.data['lyrics'],
+          album_id=form.data['albumId'],
+          artist_id=form.data['artistId'],
+          # album_title=form.data['albumTitle'],
+          # album_art_url=f"https://busker2.s3.amazonaws.com/{cover_image_key}"
+          # if "profileImage" in key_list else "https://busker2.s3.amazonaws.com/defaultimage2.jpeg",
+          # artist_name=form.data['artistName']
+          )
+      db.session.add(track)
+      db.session.commit()
+      return track.to_dict()
+  return {'errors': 'error while uploading'}, 404
