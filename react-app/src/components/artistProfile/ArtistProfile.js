@@ -9,8 +9,8 @@ import TipModal from './TipModal'
 import UploadAlbum from './UploadAlbum'
 
 function ArtistProfile({ getOneArtist, artist, user}) {
-  const [trackDisplay, setTrackDisplay] = useState(true);
-  const [albumDisplay, setAlbumDisplay] = useState(false);
+  const [trackDisplay, setTrackDisplay] = useState(false);
+  const [albumDisplay, setAlbumDisplay] = useState(true);
   let userProfile = false;
   const { id }  = useParams();
   const artistId = Number.parseInt(id);
@@ -36,7 +36,8 @@ function ArtistProfile({ getOneArtist, artist, user}) {
   }
 
   return (
-    <div className="profile__main">
+    <div className="profile-main__container">
+      <div className="profile__main">
       <div className="profile__container">
         <div
           className="cover-image__container"
@@ -53,9 +54,10 @@ function ArtistProfile({ getOneArtist, artist, user}) {
 
         <div className="profile__body">
           <div className="albums-tracks__container">
-            <button onClick={() => showTracks()} className="tracks-btn">Tracks</button>
-            <button onClick={() => showAlbums()} className="albums-btn">Albums</button>
-
+            <div className="album-track__btns">
+              <button className="profile-btn album-btn" onClick={() => showAlbums()}>Albums</button>
+              <button className="profile-btn track-btn" onClick={() => showTracks()}>Tracks</button>
+            </div>
             {trackDisplay ?
               <div className="tracks__container">
                 <CurrentTracks />
@@ -110,6 +112,8 @@ function ArtistProfile({ getOneArtist, artist, user}) {
         </div>
 
     </div>
+    </div>
+
   );
 }
 
