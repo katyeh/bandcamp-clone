@@ -23,7 +23,7 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio, currentTim
       setClickedTime(null);
     }
   });
-  
+
   if (!audio) return null
 
 
@@ -57,7 +57,7 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio, currentTim
         }}
         onEnded={handleEnd}
       />  */}
-      
+
       <div className='controls'>
         <Controls className='buttons'
           isPlaying={isPlaying}
@@ -102,9 +102,9 @@ const PlayerContainer = () => {
   const handleEnd = () => {
     next()
   };
-  
+
   const audioRef = useRef();
-  
+
   useEffect(() => {
     if (!audioRef.current) {
       audioRef.current = new Audio();
