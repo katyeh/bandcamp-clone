@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const SearchBar = () => {
   const [display, setDisplay] = useState(false);
@@ -8,6 +9,7 @@ const SearchBar = () => {
   const [albumOptions, setAlbumOptions] = useState([]);
   const [artistOptions, setArtistOptions] = useState([]);
   const wrapperRef = useRef(null);
+  const history = useHistory();
 
   useEffect(() => {
     const trackres = [];
@@ -20,7 +22,6 @@ const SearchBar = () => {
       show.albumresults.map(value => albumres.push(value))
       show.artistresults.map(value => artistres.push(value))
       setTrackOptions(trackres);
-      console.log(trackOptions)
       setAlbumOptions(albumres);
       setArtistOptions(artistres);
       setResults(searchresults)
@@ -65,7 +66,10 @@ const SearchBar = () => {
             .map((value, i) => {
               return (
                 <div
-                  onClick={() => updateResults(value.title)}
+                  onClick={() => {
+                    // console.log('ALBUM ID:', value.album_id)
+                    history.push(`/music/${value.album_id}`)
+                  }}
                   className="option"
                   key={i}
                   tabIndex="0"
@@ -96,7 +100,9 @@ const SearchBar = () => {
             .map((value, i) => {
               return (
                 <div
-                  onClick={() => updateResults(value.name)}
+                  onClick={() => {
+                    history.push(`/artists/${value.id}`)
+                  }}
                   className="option"
                   key={i}
                   tabIndex="0"

@@ -8,7 +8,6 @@ export const setPlay = () => ({ type: PLAY })
 export const setPause = () => ({ type: PAUSE })
 export const setCurrentTrack = (idx) => ({ type: SET_TRACK, idx })
 
-
 export const play = () => async(dispatch) => {
    await dispatch(setPlay())
 }

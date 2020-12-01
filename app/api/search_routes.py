@@ -10,6 +10,6 @@ def search():
     trackresults = Track.query.filter(Track.title.ilike(f"%{keyword}%")).all()
     albumresults = Album.query.filter(Album.title.ilike(f"${keyword}%")).all()
     artistresults = Artist.query.filter(Artist.name.ilike(f"%{keyword}%")).all()
-    return jsonify(trackresults = [{'id': trackresult.id, 'title': trackresult.title} for trackresult in trackresults],
+    return jsonify(trackresults = [{'id': trackresult.id, 'title': trackresult.title, 'album_id': trackresult.album_id} for trackresult in trackresults],
                    albumresults = [{'id': albumresult.id, 'title': albumresult.title} for albumresult in albumresults],
                    artistresults = [{'id': artistresult.id, 'name': artistresult.name} for artistresult in artistresults])

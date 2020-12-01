@@ -5,8 +5,9 @@ import HomeContainer from './components/home/HomeContainer';
 // import HomeContainer from './components/home/HomeContainer';
 import Player from './components/player/Player';
 import ArtistProfile from './components/artistProfile/ArtistProfile'
-import Artist from './components/Artists'
-import Example from './components/Example'
+import Artist from './components/Artists';
+import Example from './components/Example';
+import Tracks from './components/Tracks';
 
 
 
@@ -36,6 +37,9 @@ function RoutesContainer({authenticated, setAuthenticated}) {
         </Route>
         <Route path="/artists/:id" exact={true}>
           <ArtistProfile />
+        </Route>
+        <Route path="/music/:id" exact={true}>
+          <Tracks />
         </Route>
       </Switch>
     </>
