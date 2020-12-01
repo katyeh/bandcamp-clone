@@ -24,11 +24,13 @@
     &--left-scroll {
       @include carousel_button();
       left: -1rem;
+      z-index: 1;
     }
 
     &--right-scroll {
       @include carousel_button();
       right: -1rem;
+      z-index: 1;
     }
   }
 
