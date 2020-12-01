@@ -1,5 +1,7 @@
 .header__logo {
     display: flex;
+    height: max-content;
+    cursor: pointer;
 }
 
 .header__container {
