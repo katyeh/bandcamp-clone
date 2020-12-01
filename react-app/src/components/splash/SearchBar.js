@@ -2,26 +2,33 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const SearchBar = () => {
   const [display, setDisplay] = useState(false);
-  const [options, setOptions] = useState([]);
+  const [trackresults, setResults] = useState("");
   const [search, setSearch] = useState("");
+  const [trackOptions, setTrackOptions] = useState([]);
+  const [albumOptions, setAlbumOptions] = useState([]);
+  const [artistOptions, setArtistOptions] = useState([]);
   const wrapperRef = useRef(null);
 
   useEffect(() => {
-    const pokemon = [];
-    const promises = new Array(20)
-      .fill()
-      .map((v, i) => fetch(`https://pokeapi.co/api/v2/pokemon-form/${i + 1}`));
-    Promise.all(promises).then(pokemonArr => {
-      return pokemonArr.map(value =>
-        value
-          .json()
-          .then(({ name, sprites: { front_default: sprite } }) =>
-            pokemon.push({ name, sprite })
-          )
-      );
-    });
-    setOptions(pokemon);
-  }, []);
+    const trackres = [];
+    const albumres = [];
+    const artistres = [];
+    const mainsearch = async() => {
+      const searchresults = await fetch(`/api/search/tracks?searchterm=${search}`)
+      const show = await searchresults.json()
+      show.trackresults.map(value => trackres.push(value))
+      show.albumresults.map(value => albumres.push(value))
+      show.artistresults.map(value => artistres.push(value))
+      setTrackOptions(trackres);
+      console.log(trackOptions)
+      setAlbumOptions(albumres);
+      setArtistOptions(artistres);
+      setResults(searchresults)
+    }
+    if (search !== "") {
+      mainsearch()
+    }
+  }, [search]);
 
   useEffect(() => {
     window.addEventListener("mousedown", handleClickOutside);
@@ -37,8 +44,8 @@ const SearchBar = () => {
     }
   };
 
-  const updatePokeDex = poke => {
-    setSearch(poke);
+  const updateResults = result => {
+    setSearch(result);
     setDisplay(false);
   };
 
@@ -53,21 +60,53 @@ const SearchBar = () => {
       />
       {display && (
         <div className="autoContainer">
-          {options
-            .filter(({ name }) => name.indexOf(search.toLowerCase()) > -1)
+          <div>Tracks</div>
+          {trackOptions
             .map((value, i) => {
               return (
                 <div
-                  onClick={() => updatePokeDex(value.name)}
+                  onClick={() => updateResults(value.title)}
                   className="option"
                   key={i}
                   tabIndex="0"
                 >
-                  <span>{value.name}</span>
-                  <img src={value.sprite} alt="pokemon" />
-                </div>
-              );
-            })}
+              <span>{value.title}</span>
+            </div>
+            )
+          })
+          }
+          <div>Albums</div>
+          {albumOptions
+            .map((value, i) => {
+              return (
+                <div
+                  onClick={() => updateResults(value.title)}
+                  className="option"
+                  key={i}
+                  tabIndex="0"
+                >
+              <span>{value.title}</span>
+            </div>
+            )
+          })
+          }
+
+          <div>Artists</div>
+          {artistOptions
+            .map((value, i) => {
+              return (
+                <div
+                  onClick={() => updateResults(value.name)}
+                  className="option"
+                  key={i}
+                  tabIndex="0"
+                >
+              <span>{value.name}</span>
+            </div>
+            )
+          })
+          }
+
         </div>
       )}
     </div>
