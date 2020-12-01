@@ -51,6 +51,7 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
 
   return (
     <div style={style} className="player">
+    <AudioMotion audio={audio} />
 
       <div className='controls'>
         <Controls className='buttons'
