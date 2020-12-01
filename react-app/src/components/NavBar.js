@@ -36,7 +36,7 @@ const NavBar = ({ setAuthenticated, user }) => {
             {user.id ? (
               <LogoutButton setAuthenticated={setAuthenticated} />
             ) : (
-              <LoginModal />
+              <LoginModal setAuthenticated={setAuthenticated}/>
             )}
           </li>
         </ul>

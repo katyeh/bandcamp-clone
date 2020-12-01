@@ -6,7 +6,8 @@ import { getTrackPlayer, play, getAlbumPlayer } from '../store/actions/playerAct
 import AlbumCard from "./albumcard/AlbumCard";
 
 const Example = ({ albums, dispatch }) => {
-
+  useEffect(() => {
+  })
 
 
   return (

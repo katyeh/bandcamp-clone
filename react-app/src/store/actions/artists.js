@@ -1,4 +1,3 @@
-
 export const LOAD_ARTISTS = "LOAD_ARTISTS";
 export const LOAD_ARTISTS_FOR_HOME = "LOAD_ARTISTS_FOR_HOME";
 export const loadArtists = (artists) => ({ type: LOAD_ARTISTS, artists });
