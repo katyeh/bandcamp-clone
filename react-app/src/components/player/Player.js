@@ -7,39 +7,24 @@ import { setCurrentTrack } from '../../store/actions/playerActions'
 import AudioMotion from './AudioMotion'
 
 
-function Player({ tracks, track, currentTrackIndex, isPlaying, source }) {
-  const dispatch = useDispatch()
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+function Player({ tracks, track, currentTrackIndex, isPlaying, audio, currentTime, duration }) {
   const [clickedTime, setClickedTime] = useState();
 
 
   useEffect(() => {
-    if (isPlaying && source) {
-      source.play();
-    } else if (!isPlaying && source) {
-      source.pause();
+    if (isPlaying && audio) {
+      audio.play();
+    } else if (!isPlaying && audio) {
+      audio.pause();
     }
 
     if (clickedTime && clickedTime !== currentTime) {
-      source.currentTime = clickedTime;
+      audio.currentTime = clickedTime;
       setClickedTime(null);
     }
   });
   
-  if (!source) return null
-
-  const next = () => {
-    if (currentTrackIndex === tracks.length - 1) {
-      dispatch(setCurrentTrack(0))
-    } else {
-      dispatch(setCurrentTrack(currentTrackIndex + 1))
-    }
-  }
-
-  const handleEnd = () => {
-    next()
-  }
+  if (!audio) return null
 
 
   return (
@@ -89,11 +74,15 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, source }) {
 }
 
 const PlayerContainer = () => {
-  // const trackList = useSelector(state => state.player.tracksData)
-  // const tracksIdArray = useSelector(state => state.player.tracksIds)
+  const trackList = useSelector(state => state.player.tracksData)
+  const tracksIdArray = useSelector(state => state.player.tracksIds)
   const isPlaying = useSelector(state => state.player.isPlaying)
   const currentTrackIndex = useSelector(state => state.player.currentTrackIndex)
-  const [tracks, setTracks] = useState()
+  const [tracks, setTracks] = useState();
+
+  const dispatch = useDispatch()
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   const trackIndex = useSelector(state => Number(state.player.currentTrackIndex));
   const trackUrl = useSelector(state => {
@@ -101,6 +90,18 @@ const PlayerContainer = () => {
     return state.player.tracksData[trackIndex][Object.keys(state.player
           .tracksData[trackIndex])[0]].mp3_url;
   });
+
+  const next = () => {
+    if (currentTrackIndex === tracks.length - 1) {
+      dispatch(setCurrentTrack(0))
+    } else {
+      dispatch(setCurrentTrack(currentTrackIndex + 1))
+    }
+  }
+
+  const handleEnd = () => {
+    next()
+  };
   
   const audioRef = useRef();
   
@@ -108,6 +109,14 @@ const PlayerContainer = () => {
     if (!audioRef.current) {
       audioRef.current = new Audio();
       audioRef.current.crossOrigin = 'anonymous';
+      audioRef.current.onLoadedData=() => {
+        setDuration(audioRef.current.duration);
+        setCurrentTime(audioRef.current.currentTime)
+      };
+      audioRef.current.TimeUpdate=() => {
+        setCurrentTime(audioRef.current.currentTime);
+      };
+      audioRef.current.onEnded = handleEnd;
       } else {
         audioRef.current.src = trackUrl;
       }
@@ -120,7 +129,9 @@ const PlayerContainer = () => {
       tracks={tracks}
       currentTrackIndex={currentTrackIndex}
       isPlaying={isPlaying}
-      source={audioRef.current}
+      audio={audioRef.current}
+      currentTime={currentTime}
+      duration={duration}
       />
       <AudioMotion audio={audioRef.current} />
     </>
