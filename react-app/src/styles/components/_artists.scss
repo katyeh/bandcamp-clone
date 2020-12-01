@@ -1,0 +1,55 @@
+.artists__container {
+    background-color: lightgray;
+}
+
+.artists__main {
+    width: 70%;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.artists__header {
+    display: flex;
+    padding-top: 5rem;
+    padding-left: 5rem;
+}
+
+.artists__body {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    li {
+        list-style: none;
+        padding: 1rem;
+        padding-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        cursor:pointer;
+    }
+
+}
+
+.artist__profileimage {
+    // position: relative;
+    right: 50vw;
+    img {
+        height: 20rem;
+        width: 20rem;
+        border-radius: 50%;
+        margin: 5rem;
+        cursor: pointer;
+        object-fit: contain;
+        background-color:#000;
+    }
+}
+
+.artists-container__right {
+    position: absolute;
+    left: 25rem;
+    top: 4vh;
+    padding: 2rem;
+}
+
+.artist-right__item {
+    padding: 2rem;
+}

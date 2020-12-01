@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const SearchBar = () => {
   const [display, setDisplay] = useState(false);
@@ -8,6 +9,7 @@ const SearchBar = () => {
   const [albumOptions, setAlbumOptions] = useState([]);
   const [artistOptions, setArtistOptions] = useState([]);
   const wrapperRef = useRef(null);
+  const history = useHistory();
 
   useEffect(() => {
     const trackres = [];
@@ -96,7 +98,7 @@ const SearchBar = () => {
             .map((value, i) => {
               return (
                 <div
-                  onClick={() => updateResults(value.name)}
+                  onClick={() => history.push(`/artists/${value.id}`)}
                   className="option"
                   key={i}
                   tabIndex="0"

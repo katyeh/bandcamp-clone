@@ -7,13 +7,35 @@ import { setCurrentTrack } from '../../store/actions/playerActions'
 import AudioMotion from './AudioMotion'
 
 
-function Player({ tracks, track, currentTrackIndex, isPlaying, audio, currentTime, duration }) {
-  const [clickedTime, setClickedTime] = useState();
 
+function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
+  const [clickedTime, setClickedTime] = useState();
+  const dispatch = useDispatch()
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+
+  const handleEnd = () => {
+    const nextIndex = parseInt(currentTrackIndex) + 1;
+    if (tracks && nextIndex > tracks.length - 1) {
+      dispatch(setCurrentTrack(0))
+    } else {
+      dispatch(setCurrentTrack(nextIndex))
+    }
+  };
 
   useEffect(() => {
     if (isPlaying && audio) {
       audio.play();
+      audio.onloadedmetadata = () => {
+        setDuration(audio.duration);
+        setCurrentTime(audio.currentTime)
+      };
+      audio.ontimeupdate = () => {
+        setCurrentTime(audio.currentTime);
+      };
+      audio.onended = handleEnd;
+
     } else if (!isPlaying && audio) {
       audio.pause();
     }
@@ -24,39 +46,11 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio, currentTim
     }
   });
 
-  if (!audio) return null
 
+  if (!audio) return null;
 
   return (
     <div style={style} className="player">
-      {/* <div
-        id='audio'
-        ref={audioEl}
-        onLoadedData={() => {
-          setDuration(audioEl.current.duration);
-          setCurrentTime(audioEl.current.currentTime)
-        }}
-        onTimeUpdate={() => {
-          setCurrentTime(audioEl.current.currentTime);
-        }}
-        onEnded={handleEnd}
-      /> */}
-      {/* <audio
-        id='audio'
-        // src={track.mp3_url}
-        src="https://elasticbeanstalk-us-east-2-183201666743.s3.us-east-2.amazonaws.com/Blink_FreakScene.mp3"
-        ref={audioEl}
-        // controls
-        crossOrigin='anonymous'
-        onLoadedData={() => {
-          setDuration(audioEl.current.duration);
-          setCurrentTime(audioEl.current.currentTime)
-        }}
-        onTimeUpdate={() => {
-          setCurrentTime(audioEl.current.currentTime);
-        }}
-        onEnded={handleEnd}
-      />  */}
 
       <div className='controls'>
         <Controls className='buttons'
@@ -73,65 +67,42 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio, currentTim
   )
 }
 
+
 const PlayerContainer = () => {
   const trackList = useSelector(state => state.player.tracksData)
-  const tracksIdArray = useSelector(state => state.player.tracksIds)
   const isPlaying = useSelector(state => state.player.isPlaying)
-  const currentTrackIndex = useSelector(state => state.player.currentTrackIndex)
-  const [tracks, setTracks] = useState();
-
-  const dispatch = useDispatch()
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-
+  const [tracks, setTracks] = useState()
   const trackIndex = useSelector(state => Number(state.player.currentTrackIndex));
+
   const trackUrl = useSelector(state => {
     if (!state.player.tracksData) return '';
-    return state.player.tracksData[trackIndex][Object.keys(state.player
-          .tracksData[trackIndex])[0]].mp3_url;
+    return state.player.tracksData[trackIndex].mp3_url;
   });
-
-  const next = () => {
-    if (currentTrackIndex === tracks.length - 1) {
-      dispatch(setCurrentTrack(0))
-    } else {
-      dispatch(setCurrentTrack(currentTrackIndex + 1))
-    }
-  }
-
-  const handleEnd = () => {
-    next()
-  };
 
   const audioRef = useRef();
 
   useEffect(() => {
+    setTracks(trackList)
+
     if (!audioRef.current) {
       audioRef.current = new Audio();
       audioRef.current.crossOrigin = 'anonymous';
-      audioRef.current.onLoadedData=() => {
-        setDuration(audioRef.current.duration);
-        setCurrentTime(audioRef.current.currentTime)
-      };
-      audioRef.current.TimeUpdate=() => {
-        setCurrentTime(audioRef.current.currentTime);
-      };
-      audioRef.current.onEnded = handleEnd;
+      // audioRef.current.duration = duration;
       } else {
         audioRef.current.src = trackUrl;
       }
     }, [trackUrl])
+
 
   return (
     <>
       <Player
       // track={track}
       tracks={tracks}
-      currentTrackIndex={currentTrackIndex}
+      currentTrackIndex={trackIndex}
       isPlaying={isPlaying}
       audio={audioRef.current}
-      currentTime={currentTime}
-      duration={duration}
+
       />
       {/* <AudioMotion audio={audioRef.current} /> */}
     </>
