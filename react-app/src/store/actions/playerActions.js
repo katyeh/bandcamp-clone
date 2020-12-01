@@ -16,6 +16,7 @@ export const pause = () => async(dispatch) => {
    await dispatch(setPause())
 }
 export const getAlbumPlayer = (id) => async(dispatch) => {
+  console.log(id)
   const response = await fetch(`/api/albums/player/${id}`)
   if (response.ok) {
     const album = await response.json()
