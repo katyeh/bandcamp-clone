@@ -153,7 +153,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               value={city}
             ></input>
           </div>
-          {/* <div className="login-content">
+          <div className="login-content">
             <label>Profile Image</label>
             <input
               type="file"
@@ -168,7 +168,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               name="cover_image"
               onChange={updateCoverImageUrl}
             ></input>
-          </div> */}
+          </div>
           <div className="login-content">
             <label>Password</label>
             <input

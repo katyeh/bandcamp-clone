@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllArtists } from "../../store/actions/artists";
+import { useHistory } from 'react-router-dom';
 
 // function shuffle(array) {
 //   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -32,6 +33,8 @@ const FeaturedArtists = () => {
   const artists = useSelector(state => state.artists);
   const artistsValues = Object.values(artists);
   const artistValues = artistsValues.slice(0, 4)
+  const history = useHistory();
+
   console.log('ARTISTS:', artistValues)
   useEffect(() => {
     dispatch(getAllArtists())
@@ -47,7 +50,7 @@ const FeaturedArtists = () => {
           return (
           <div className="featured-artists__grid-item">
             <div>
-              <img className="featured-artist__pic" src={artist.profile_image_url}></img>
+              <img onClick={() => history.push(`/artists/${artist.id}`)} className="featured-artist__pic" src={artist.profile_image_url}></img>
             </div>
             <div className="featured-artist__info">
               <h3>{artist.name}</h3>
