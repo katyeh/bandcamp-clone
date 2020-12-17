@@ -6,11 +6,11 @@ const uploadTrackReducer = (state = {}, action) => {
             return {
                 ...state,
                 id: action.id,
-                title: action.title,
+                track_title: action.track_title,
                 lyrics: action.lyrics,
-                newTrackUrl: action.mp3_url, 
-                albumId: action.album_id,
-                artistId: action.artist_id,
+                mp3_url: action.mp3_url, 
+                album_id: action.album_id,
+                artist_id: action.artist_id,
             }
         default:
             return state;

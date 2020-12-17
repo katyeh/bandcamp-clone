@@ -102,31 +102,29 @@ def home():
 
 @track_routes.route('/', methods=['POST'])
 def upload_track():
+  try:
 
-  form = UploadTrackForm()
-  form['csrf_token'].data = request.cookies['csrf_token']
+    form = UploadTrackForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-  if form.validate_on_submit():
-      key_list = request.files.keys()
+    if form.validate_on_submit():
+        key_list = request.files.keys()
+        if request.files:
+          if "mp3_url" in key_list:
+            new_track_data = request.files["mp3_url"]
+            new_track_key = f"songs/{new_track_data.filename}_{uuid.uuid4()}"
+            client.put_object(Body=new_track_data, Bucket="busker2", Key=new_track_key,
+                              ContentType=new_track_data.mimetype, ACL="public-read")
 
-      if "newTrackUrl" in key_list:
-        new_track_data = request.files["newTrackUrl"]
-        new_track_key = f"songs/{new_track_data.filename}_{uuid.uuid4()}"
-        client.put_object(Body=new_track_data, Bucket="busker2", Key=new_track_key,
-                          ContentType=new_track_data.mimetype, ACL="public-read")
-
-      track = Track(
-          title=form.data['name'],
-          mp3_url=f"https://busker2.s3.amazonaws.com/{new_track_key}",
-          lyrics=form.data['lyrics'],
-          album_id=form.data['albumId'],
-          artist_id=form.data['artistId'],
-          # album_title=form.data['albumTitle'],
-          # album_art_url=f"https://busker2.s3.amazonaws.com/{cover_image_key}"
-          # if "profileImage" in key_list else "https://busker2.s3.amazonaws.com/defaultimage2.jpeg",
-          # artist_name=form.data['artistName']
-          )
-      db.session.add(track)
-      db.session.commit()
-      return track.to_dict()
-  return {'errors': 'error while uploading'}, 404
+            track = Track(
+                title=form.data['track_title'],
+                lyrics=form.data['lyrics'],
+                mp3_url=f"https://busker2.s3.amazonaws.com/{new_track_key}",
+                album_id=form.data['album_id'],
+                artist_id=form.data['artist_id'],
+                )
+            db.session.add(track)
+            db.session.commit()
+            return track.to_dict()
+  except Exception as error:
+    return jsonify(error=repr(error))

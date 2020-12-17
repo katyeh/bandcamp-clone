@@ -5,8 +5,8 @@ from app.models import Artist
 
 
 class UploadTrackForm(FlaskForm):
-    title = StringField('title', validators=[DataRequired()])
+    track_title = StringField('track_title', validators=[DataRequired()])
     lyrics = StringField('lyrics')
     mp3_url = FileField('mp3_url', validators=[DataRequired()])
-    album_id = IntegerField('artist_id', validators=[DataRequired()])
+    album_id = IntegerField('album_id', validators=[DataRequired()])
     artist_id = IntegerField('artist_id', validators=[DataRequired()])

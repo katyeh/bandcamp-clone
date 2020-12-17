@@ -1,4 +1,4 @@
-import React, { useState,  } from "react";
+import React, { useState, useEffect  } from "react";
 import { useHistory} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "react-modal";
@@ -6,22 +6,44 @@ import { uploadNewAlbum } from '../../store/actions/uploadAlbumAction'
 import { uploadNewTrack } from '../../store/actions/uploadTrackAction'
 
 
+//loading icon 
+
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        '& > * + *': {
+            marginLeft: theme.spacing(2),
+        },
+    },
+}));
+
+//loading icon
+
+
 Modal.setAppElement('#root');
 
 
-const UploadAlbum = ({ user }) => {
+const UploadAlbum = ({ user, albums }) => {
     let newAlbumId
+    if(albums && albums.albums) {
+        newAlbumId = albums.albums.length + 1
+    }
+    
 
     const history = useHistory();
     const dispatch = useDispatch();
     const single = true;
+    const [loading, setLoading] = useState(false)
     const [title, setTitle] = useState("");
-    const [newAlbumCover, setNewAlbumCover] = useState("");
+    const [album_art_url, setNewAlbumCover] = useState("");
     const [modalIsOpen, setIsOpen] = useState(false);
     //track
-    const [trackTitle, setTrackTitle] = useState("");
+    const [track_title, setTrackTitle] = useState("");
     const [lyrics, setLyrics] = useState("");
-    const [newTrackUrl, setNewTrackUrl] = useState("");
+    const [mp3_url, setNewTrackUrl] = useState("");
     const [modalIsOpen2, setIsOpen2] = useState("");
   
 
@@ -48,12 +70,12 @@ const UploadAlbum = ({ user }) => {
         if (user) {
             let album = new FormData();
             album.append('title', title);
-            album.append('newAlbumCover', newAlbumCover);
+            album.append('album_art_url', album_art_url);
             album.append('single', single);
-            album.append('artistId', user.id)
+            album.append('artist_id', user.id)
 
-            album = await dispatch(uploadNewAlbum(album));
-            newAlbumId = user.id + 10
+            await dispatch(uploadNewAlbum(album));
+            
             setIsOpen(false);
             
             // history.push("/home")
@@ -63,18 +85,20 @@ const UploadAlbum = ({ user }) => {
     ///track upload
     const onUpload2 = async (e) => {
         e.preventDefault();
+        setLoading(true)
         if (user) {
             let track = new FormData();
-            track.append('trackTitle', trackTitle);
+            track.append('track_title', track_title);
             track.append('lyrics', lyrics);
-            track.append('newTrackUrl', newTrackUrl);
-            track.append('albumId', newAlbumId);
-            track.append('artistId', user.id)
-
-            track = await dispatch(uploadNewTrack(track));
+            track.append('mp3_url', mp3_url);
+            track.append('album_id', newAlbumId);
+            track.append('artist_id', user.id)
+            await dispatch(uploadNewTrack(track));
+            setLoading(false)
             setIsOpen2(false)
         }
     }
+    const classes = useStyles();
 
     return (
     <>
@@ -138,7 +162,7 @@ const UploadAlbum = ({ user }) => {
                         type="text"
                         name="title"
                         onChange={updateTrackTitle}
-                        value={trackTitle}
+                        value={track_title}
                     ></input>
                 </div>
                 <div className="login-content">
@@ -160,13 +184,22 @@ const UploadAlbum = ({ user }) => {
                     ></input>
                 </div>
                 <div className="login-content">
+                {loading ? (
+                    <div className={classes.root}>
+                        <CircularProgress color="secondary" />
+                    </div>
+                ) : (
+                    
                     <button className="login-btn" type="submit">Upload</button>
+                )}
                 </div>
             </form>
         </Modal>
     </>
   )
 }
+
+
 
 
 export default UploadAlbum;
