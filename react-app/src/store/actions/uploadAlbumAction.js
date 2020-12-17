@@ -3,7 +3,7 @@ import { UPLOAD_ALBUM } from '../reducers/uploadAlbumReducer';
 export const uploadNewAlbum = (album) => {
     return async dispatch => {
         try {
-            const res = await fetch(`/api/albums`, {
+            const res = await fetch(`/api/albums/`, {
                 method: 'POST',
                 body: album
             });

@@ -7,12 +7,20 @@ import CurrentTracks from './CurrentTracks'
 import ArtistFollowers from './ArtistFollowers'
 import TipModal from './TipModal'
 import UploadAlbum from './UploadAlbum'
+import { getAlbums } from '../../store/actions/albumActions'
 
-function ArtistProfile({ getOneArtist, artist, user}) {
+function ArtistProfile({ getOneArtist, artist, user, albums, getAlbums}) {
   const [trackDisplay, setTrackDisplay] = useState(false);
   const [albumDisplay, setAlbumDisplay] = useState(true);
   const [albumClass, setAlbumClass] = useState(true);
   const [trackClass, setTrackClass] = useState(false);
+
+
+  useEffect(() => {
+    getAlbums()
+  }, [])
+
+
 
   let userProfile = false;
   const { id }  = useParams();
@@ -107,7 +115,7 @@ function ArtistProfile({ getOneArtist, artist, user}) {
               {!userProfile ? (
                 <TipModal user={user} artist={artist}/>
                 ) : (
-                <div><UploadAlbum user={user} />
+                <div><UploadAlbum user={user} albums={albums} />
                 <div className="stash">
                   <p>Dough: {artist.tip_stash}</p>
                 </div>
@@ -130,12 +138,15 @@ const ArtistProfileContainer = () => {
 
   const artist = useSelector((state) => state.currentArtist);
   const user = useSelector((state) => state.user)
+  const albums = useSelector((state) => state.album)
   const dispatch = useDispatch()
   return (
     <ArtistProfile
       artist={artist}
       getOneArtist={(id) => dispatch(getOneArtist(id))}
       user={user}
+      getAlbums={() => dispatch(getAlbums())}
+      albums={albums}
     />
   );
 }

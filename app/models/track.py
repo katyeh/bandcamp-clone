@@ -9,8 +9,8 @@ class Track(db.Model):
 
   id = Column(Integer, primary_key = True)
   title = Column(String, nullable=False)
-  mp3_url = Column(String, nullable=False)
   lyrics = Column(Text)
+  mp3_url = Column(String, nullable=False)
   album_id = Column(Integer, ForeignKey("albums.id"), nullable=False)
   artist_id = Column(Integer, ForeignKey("artists.id"), nullable=False)
 

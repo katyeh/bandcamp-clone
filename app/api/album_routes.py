@@ -24,6 +24,13 @@ client = boto3.client('s3',
                           'AWS_SECRET_ACCESS_KEY')
                       )
 
+
+# @album_routes.route("/")
+# def get_albums():
+#     albums = Album.query.all()
+#     if albums:
+#         return {"albuns": [album.to_dict() for album in albums]}
+
 @album_routes.route("/<int:id>")
 def get_album(id):
     album = Album.query.get(id)
@@ -78,9 +85,8 @@ def get_album_player(id):
         return jsonify(error='This album does not exist.')
 
 
-@album_routes.route("/")
+@album_routes.route("/", methods=['GET'])
 @cross_origin(supports_credentials=True)
-
 def get_albums():
     albums = Album.query.all()
     return jsonify([album.to_dict() for album in albums])
@@ -88,31 +94,27 @@ def get_albums():
 
 @album_routes.route('/', methods=['POST'])
 def upload_album():
+    try:
+        form = UploadAlbumForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
 
-  form = UploadAlbumForm()
-  form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            key_list = request.files.keys()
+            if request.files:
+                if "album_art_url" in key_list:
+                    cover_image_data = request.files["album_art_url"]
+                    cover_image_key = f"albumeimage/{cover_image_data.filename}_{uuid.uuid4()}"
+                    client.put_object(Body=cover_image_data, Bucket="busker2", Key=cover_image_key,
+                                    ContentType=cover_image_data.mimetype, ACL="public-read")
 
-  if form.validate_on_submit():
-      key_list = request.files.keys()
-
-      if "newAlbumCover" in key_list:
-        cover_image_data = request.files["newAlbumCover"]
-        cover_image_key = f"albumeimage/{cover_image_data.filename}_{uuid.uuid4()}"
-        client.put_object(Body=cover_image_data, Bucket="busker2", Key=cover_image_key,
-                          ContentType=cover_image_data.mimetype, ACL="public-read")
-
-      album = Album(
-          title=form.data['name'],
-          album_art_url=f"https://busker2.s3.amazonaws.com/{cover_image_key}"
-          if "profileImage" in key_list else "https://busker2.s3.amazonaws.com/defaultalbumcover.jpg",
-          single=form.data['single'],
-          artist_id=form.data['artistId'],
-          # album_title=form.data['albumTitle'],
-          # album_art_url=f"https://busker2.s3.amazonaws.com/{cover_image_key}"
-          # if "profileImage" in key_list else "https://busker2.s3.amazonaws.com/defaultimage2.jpeg",
-          # artist_name=form.data['artistName']
-      )
-      db.session.add(album)
-      db.session.commit()
-      return album.to_dict()
-  return {'errors': 'error while uploading'}, 404
+                    album = Album(
+                        title=form.data['title'],
+                        album_art_url=f"https://busker2.s3.amazonaws.com/{cover_image_key}",
+                        single=form.data['single'],
+                        artist_id=form.data['artist_id'],
+                    )
+                    db.session.add(album)
+                    db.session.commit()
+                    return album.to_dict()
+    except Exception as error:
+        return jsonify(error=repr(error))
