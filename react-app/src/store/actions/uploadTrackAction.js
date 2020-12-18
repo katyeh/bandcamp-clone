@@ -3,7 +3,7 @@ import { UPLOAD_TRACK } from '../reducers/uploadTrackReducer';
 export const uploadNewTrack = (track) => {
     return async dispatch => {
         try {
-            const res = await fetch(`/api/tracks/`, {
+            const res = await fetch(`/api/tracks`, {
                 method: 'POST',
                 body: track
             });

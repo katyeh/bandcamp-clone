@@ -85,7 +85,7 @@ def get_album_player(id):
         return jsonify(error='This album does not exist.')
 
 
-@album_routes.route("/", methods=['GET'])
+@album_routes.route("", methods=['GET'])
 @cross_origin(supports_credentials=True)
 def get_albums():
     albums = Album.query.all()

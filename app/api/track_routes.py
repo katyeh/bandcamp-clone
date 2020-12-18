@@ -100,7 +100,7 @@ def home():
     return {'errors':'There are no tracks avaliable'}, 400
 
 
-@track_routes.route('/', methods=['POST'])
+@track_routes.route('', methods=['POST'])
 def upload_track():
   try:
 

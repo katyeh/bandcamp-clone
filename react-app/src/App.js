@@ -15,18 +15,24 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // debugger
     (async() => {
-      const user = await authenticate();
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
       const userId = localStorage.getItem("user_id");
-      (async () => {
-        await dispatch(loadUser(userId));
+      if (userId) {
+        const user = await authenticate();
+        if (!user.errors) {
+          setAuthenticated(true);
+        }
+        (async () => {
+          // debugger
+          await dispatch(loadUser(userId));
+          setLoaded(true);
+        })()
+      } else {
         setLoaded(true);
-      })()
+      }
     })();
-  }, []);
+  }, [dispatch, setAuthenticated]);
 
   if (!loaded) {
     return null;
