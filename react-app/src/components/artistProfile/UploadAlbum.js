@@ -94,9 +94,9 @@ const UploadAlbum = ({ user, albums }) => {
             track.append('artist_id', user.id)
             await dispatch(uploadNewTrack(track));
             setLoading(false)
-            alert('Album upload successfully')
-            history.push("/")
             setIsOpen2(false)
+            history.push("/")
+            alert('Album upload successfully')
         }
     }
     const classes = useStyles();
