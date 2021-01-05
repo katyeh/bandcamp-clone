@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { login } from "../../services/auth";
 import Modal from "react-modal";
+import {loadUser} from '../../store/actions/signupActions'
+import { useDispatch} from 'react-redux';
+
 
 Modal.setAppElement('#root');
 
@@ -10,6 +13,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch()
 
   let history = useHistory();
 
@@ -30,6 +34,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
     const user = await login(email, password);
     if (!user.errors) {
       setAuthenticated(true);
+      dispatch(loadUser(user.id))
       setIsOpen(false);
       history.push("/")
     } else {
