@@ -6,7 +6,7 @@ Check out the app: <a href="https://busker-app.herokuapp.com/" target="_blank">L
 
 ![Busker main image](https://raw.githubusercontent.com/katyeh/busker/main/react-app/public/busker.gif)
 
-### Technologies Used
+### 🎹 Technologies Used
 
 * HTML5
 * CSS3
@@ -18,7 +18,7 @@ Check out the app: <a href="https://busker-app.herokuapp.com/" target="_blank">L
 * SQLAlchemy
 * WTForms
 
-### Instruction
+### 🎻 Instruction
 
 1. Clone the repository.
 2. Run `pipenv install` on the terminal from the root directory.
@@ -27,7 +27,7 @@ Check out the app: <a href="https://busker-app.herokuapp.com/" target="_blank">L
 5. Run `npm install` to install all frontend dependencies.
 6. Run `npm start` to start up the app.
 
-### Documentation
+### 🥁 Documentation
 
 * [Feature List](/documentation/featureList.md)
 * [MVP](/documentation/MVP.md)
