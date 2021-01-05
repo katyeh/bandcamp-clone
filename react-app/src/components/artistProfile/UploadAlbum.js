@@ -75,7 +75,6 @@ const UploadAlbum = ({ user, albums }) => {
             album.append('artist_id', user.id)
 
             await dispatch(uploadNewAlbum(album));
-            
             setIsOpen(false);
             
             // history.push("/home")
@@ -95,6 +94,8 @@ const UploadAlbum = ({ user, albums }) => {
             track.append('artist_id', user.id)
             await dispatch(uploadNewTrack(track));
             setLoading(false)
+            alert('Album upload successfully')
+            history.push("/")
             setIsOpen2(false)
         }
     }

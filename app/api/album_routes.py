@@ -92,7 +92,7 @@ def get_albums():
     return jsonify([album.to_dict() for album in albums])
 
 
-@album_routes.route('/', methods=['POST'])
+@album_routes.route('', methods=['POST'])
 def upload_album():
     try:
         form = UploadAlbumForm()
