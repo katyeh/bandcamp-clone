@@ -1,3 +1,5 @@
+# Feature List
+
 1. Artists
 
    * Artist registration with validations
