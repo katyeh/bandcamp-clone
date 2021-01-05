@@ -37,6 +37,18 @@ const Login = ({ authenticated, setAuthenticated }) => {
     }
   };
 
+  const onDemo = async (e) => {
+    e.preventDefault();
+    const user = await login('ladygaga@queen.com', 'password');
+    if (!user.errors) {
+      setAuthenticated(true);
+      setIsOpen(false);
+      history.push("/")
+    } else {
+      setErrors(user.errors);
+    }
+  };
+
   return (
     <div>
       <button className="login__btn" onClick={() => setIsOpen(true)}>Sign in</button>
@@ -80,6 +92,8 @@ const Login = ({ authenticated, setAuthenticated }) => {
             />
           <div className="login-content">
             <button className="login-btn" type="submit">Login</button>
+
+            <button className="login-btn" onClick={onDemo} >Demo User</button>
           </div>
           </div>
         </form>
