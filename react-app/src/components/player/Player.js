@@ -51,8 +51,6 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
 
   return (
     <div className="player">
-    <AudioMotion audio={audio} />
-
       <div className='controls'>
         <Controls className='buttons'
           isPlaying={isPlaying}
@@ -62,8 +60,8 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
           tracks={tracks}
         />
         <ProgressBar currentTime={currentTime} duration={duration} onTimeUpdate={(time) =>setClickedTime(time)}/>
-
       </div>
+      <AudioMotion audio={audio} />
     </div>
   )
 }
@@ -108,20 +106,6 @@ const PlayerContainer = () => {
       {/* <AudioMotion audio={audioRef.current} /> */}
     </>
   )
-}
-
-let style = {
-  position: "fixed",
-  bottom: "0",
-  left: "0",
-  width: "100%",
-  height: "80px",
-  background: "#282828",
-  zIndex: "99",
-  padding: "0 20px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
 }
 
 export default PlayerContainer;
