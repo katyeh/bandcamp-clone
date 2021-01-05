@@ -51,14 +51,13 @@ const Splash = ({ tracks, authenticated, setAuthenticated }) => {
 
       <div class="splash__footer">
         <div className="about-site__container">
-          <a href="">About Us</a>
-          <a href="https://github.com/katyeh/busker">Github</a>
+          <a className="splash__footer-link" href="https://github.com/katyeh/busker">Github</a>
         </div>
         <div className="contributors__container">
-          <a target="_blank" href="https://github.com/Alejandro-Larumbe">Alejandro Larumbe</a>
-          <a target="_blank" href="https://github.com/gane11">Aleksandar Dordevic</a>
-          <a target="_blank" href="https://github.com/smilelk4">Yuka Moribe</a>
-          <a target="_blank" href="https://github.com/katyeh/">Kathleen Yeh</a>
+          <a className="splash__footer-link" target="_blank" href="https://github.com/Alejandro-Larumbe">Alejandro Larumbe</a>
+          <a className="splash__footer-link" target="_blank" href="https://github.com/gane11">Aleksandar Dordevic</a>
+          <a className="splash__footer-link" target="_blank" href="https://github.com/smilelk4">Yuka Moribe</a>
+          <a className="splash__footer-link" target="_blank" href="https://github.com/katyeh/">Kathleen Yeh</a>
         </div>
       </div>
 

@@ -11,7 +11,7 @@
     outline: none;
     height: 35rem;
     border-radius: 1rem;
-    width: 68rem;
+    width: 60rem;
     margin: 0 auto;
 }
 
@@ -28,12 +28,16 @@
 }
 
 .login-btn {
-    padding: .8rem;
+    padding: 1rem;
+    margin-top: 2rem;
     border-radius: 8px;
     color: #fff;
     background-color: $color-accent;
-    width: 10rem;
+    width: 30rem;
     cursor: pointer;
+    // border: none;
+    font-size: 1.6rem;
+    font-weight: 600;
 }
 
 .login-content {
@@ -41,10 +45,39 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 
-    .file-upload {
-      padding: 0;
-      height: auto;
-      border: none;
+    // input {
+    //     padding: 2rem;
+    //     border-radius: .8rem;
+    //     border: none;
+    //     outline: none;
+    // }
+    // input:focus {
+    //     background-color: #f8e4ff;
+    // }
+
+    // .file-upload {
+    //   padding: 0;
+    //   height: auto;
+    //   border: none;
+    // }
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: -6rem;
+    height: 10rem;
+
+    input {
+        padding: 2rem;
+        border-radius: .8rem;
+        border: none;
+        outline: none;
+    }
+    input:focus {
+        background-color: #f8e4ff;
     }
 }
 
@@ -58,3 +91,20 @@
     background-color: rgba(255, 255, 255, 0.8);
     z-index: 2;
   }
+
+// React modal transitions
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+}

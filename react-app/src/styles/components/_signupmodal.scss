@@ -9,7 +9,7 @@
   background-color: white;
   padding: 3rem;
   outline: none;
-  height: 80rem;
+  height: 65rem;
   width: 70rem;
   border-radius: 1rem;
   margin: 0 auto;
@@ -36,13 +36,13 @@
   background-color: white;
 }
 
-.login-btn {
-  padding: .8rem;
-  border-radius: 8px;
-  color: #fff;
-  background-color: $color-accent;
-  width: 10rem;
-}
+// .login-btn {
+//   padding: .8rem;
+//   border-radius: 8px;
+//   color: #fff;
+//   background-color: $color-accent;
+//   width: 10rem;
+// }
 
 .login-content {
   // padding-top: 3rem;
@@ -59,4 +59,27 @@
   bottom: 0;
   outline: none;
   background-color: rgba(255, 255, 255, 0.8);
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: -6rem;
+  height: 10rem;
+
+  input {
+      padding: 2rem;
+      border-radius: .8rem;
+      border: none;
+      outline: none;
+  }
+  input:focus {
+      background-color: #f8e4ff;
+  }
+}
+
+.close-btn {
+  cursor: pointer;
 }

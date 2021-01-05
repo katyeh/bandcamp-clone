@@ -4,6 +4,7 @@ import { login } from "../../services/auth";
 import Modal from "react-modal";
 import {loadUser} from '../../store/actions/signupActions'
 import { useDispatch} from 'react-redux';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 Modal.setAppElement('#root');
@@ -52,20 +53,22 @@ const Login = ({ authenticated, setAuthenticated }) => {
         className="login-modal"
         overlayClassName="overlay"
         shouldCloseOnOverlayClick={true}
+        closeTimeoutMS={500}
       >
         <div className="login-header">
           <h2>Login</h2>
-          <button className="close-btn" onClick={() => setIsOpen(false)}>X</button>
+          <div className="close-btn" onClick={() => setIsOpen(false)}>
+            <CloseIcon style={{fontSize: 30}} />
+          </div>
         </div>
 
-        <form onSubmit={onLogin}>
+        <form className="login-form" onSubmit={onLogin}>
           <div>
             {errors.map((error) => (
               <div>{error}</div>
             ))}
           </div>
           <div className="login-content">
-            <label htmlFor="email">Email</label>
             <input
               name="email"
               type="text"
@@ -75,7 +78,6 @@ const Login = ({ authenticated, setAuthenticated }) => {
             />
           </div>
           <div className="login-content">
-            <label htmlFor="password">Password</label>
             <input
               name="password"
               type="password"
@@ -83,9 +85,9 @@ const Login = ({ authenticated, setAuthenticated }) => {
               value={password}
               onChange={updatePassword}
             />
-          <div className="login-content">
-            <button className="login-btn" type="submit">Login</button>
           </div>
+          <div className="login-btn__div">
+            <button className="login-btn" type="submit">Login</button>
           </div>
         </form>
 

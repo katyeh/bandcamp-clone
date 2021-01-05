@@ -48,14 +48,19 @@
     height: 23vh;
 }
 
-.splash__footer {
-    // position: fixed;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(107, 162, 184);
-    height: 25vh;
-    padding: 5rem 15rem;
+.splash {
+    &__footer {
+        // position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(107, 162, 184);
+        height: 25vh;
+        padding: 5rem 15rem;
+    }
+    &__footer-link {
+        color: #fff;
+    }
 }
 
 .about-site__container {
