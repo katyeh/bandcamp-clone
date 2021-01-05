@@ -50,7 +50,7 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
   if (!audio) return null;
 
   return (
-    <div style={style} className="player">
+    <div className="player">
     <AudioMotion audio={audio} />
 
       <div className='controls'>
