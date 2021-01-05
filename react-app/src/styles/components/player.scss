@@ -1,12 +1,28 @@
 @import url("https://fonts.googleapis.com/css?family=Permanent+Marker|Rock+Salt");
 
+.player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8rem;
+  background: #282828;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 
+.audio-motion {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 30%;
+}
 
-  .controls {
-    flex-grow: 1;
-    margin: 0 20px;
+.controls {
+    width: 35%;
     display: flex;
-    // flex-direction: column;
     justify-content: center;
     align-items: center;
     i {
@@ -16,15 +32,14 @@
   }
   i:hover{
     color: $color-accent-light;
-}
-
-
+  }
 
   .bar {
     user-select: none;
-    width: 35%;
+    // width: 35%;
     display: flex;
     align-items: center;
+    width: 100%;
 
     .bar__time {
       color: white;
@@ -46,9 +61,24 @@
         width: 16px;
         // border: 1.5px solid white;
         border-radius: 50%;
-        background-color: $color-accent-dark
-        ;
+        background-color: $color-accent-dark;
       }
+    }
+  }
+
+  @media only screen and (max-width: 1700px) {
+    .audio-motion {
+      position: relative;
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .audio-motion {
+      display: none;
+    }
+
+    .controls {
+      width: 70%;
     }
   }
 
