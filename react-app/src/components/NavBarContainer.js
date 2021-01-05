@@ -4,9 +4,9 @@ import NavBar from './NavBar';
 
 const NavBarContainer = ({setAuthenticated}) => {
   const user = useSelector(state => state.user);
-  return ( 
+  return (
     <NavBar setAuthenticated={setAuthenticated} user={user}/>
   );
 }
- 
+
 export default NavBarContainer;

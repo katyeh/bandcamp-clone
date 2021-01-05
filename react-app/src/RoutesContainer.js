@@ -10,7 +10,6 @@ import Example from './components/Example'
 
 
 function RoutesContainer({ authenticated, setAuthenticated }) {
-
   return (
     <>
       <NavBarContainer setAuthenticated={setAuthenticated}/>

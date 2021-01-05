@@ -55,7 +55,8 @@ function App() {
             <ProtectedRoute
               authenticated={authenticated}
               setAuthenticated={setAuthenticated}
-              component={RoutesContainer}
+              render={(props) => <RoutesContainer {...props} setAuthenticated={setAuthenticated} />}
+              /* component={RoutesContainer} */
             >
             </ProtectedRoute>
         </Route>

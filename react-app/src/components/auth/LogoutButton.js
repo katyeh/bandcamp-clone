@@ -6,10 +6,8 @@ const LogoutButton = ({ setAuthenticated }) => {
   let history = useHistory();
   const onLogout = async (e) => {
     await logout();
-    if (setAuthenticated) {
-      setAuthenticated(false);
-      history.push("/splash")
-    }
+    setAuthenticated(false);
+    history.push("/splash")
   };
 
   return <input className="navbar__logout"onClick={onLogout} value="Logout" readOnly/>;
