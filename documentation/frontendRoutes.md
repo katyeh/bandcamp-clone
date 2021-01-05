@@ -1,4 +1,4 @@
-# Front End Routes
+# Frontend Routes
 
 * / (splash)
 * /login

@@ -1,4 +1,4 @@
-# Back End Routes
+# Backend Routes
 
 * artists
   * GET /artists/:id => get a single artists info
