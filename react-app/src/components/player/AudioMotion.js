@@ -14,7 +14,6 @@ const AudioMotion = ({audio, analyzer}) => {
           source: audio,
           height: 70,
           width: 400,
-          // overlay: true
           mode: 10,
           lineWidth: 2,
           radial: false,
