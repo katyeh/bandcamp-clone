@@ -2,7 +2,7 @@
 
 Busker is an online platform where artists can upload and share their originally-created sounds, inspired by Bandcamp. Anyone can listen for free, as well as support their favorite artists by sending a tip.
 
-Check out the app: 💫 <a href="https://busker-app.herokuapp.com/" target="_blank">Live Demo</a> 💫
+Check out the app: 🌟 <a href="https://busker-app.herokuapp.com/" target="_blank">Live Demo</a> 🌟
 
 ![Busker main image](https://raw.githubusercontent.com/katyeh/busker/main/react-app/public/busker.gif)
 
