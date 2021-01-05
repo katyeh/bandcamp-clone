@@ -4,7 +4,7 @@ Busker is an online platform where artists can upload and share their originally
 
 Check out the app: <a href="https://busker-app.herokuapp.com/" target="_blank">Live Demo</a>
 
-![Busker main image](https://raw.githubusercontent.com/katyeh/busker/main/react-app/public/busker.gif>)
+![Busker main image](https://raw.githubusercontent.com/katyeh/busker/main/react-app/public/busker.gif)
 
 ### Technologies Used
 
