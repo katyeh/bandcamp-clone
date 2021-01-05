@@ -75,7 +75,6 @@ const UploadAlbum = ({ user, albums }) => {
             album.append('artist_id', user.id)
 
             await dispatch(uploadNewAlbum(album));
-            
             setIsOpen(false);
             
             // history.push("/home")
@@ -96,6 +95,8 @@ const UploadAlbum = ({ user, albums }) => {
             await dispatch(uploadNewTrack(track));
             setLoading(false)
             setIsOpen2(false)
+            history.push("/")
+            alert('Album upload successfully')
         }
     }
     const classes = useStyles();
