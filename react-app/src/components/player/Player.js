@@ -6,8 +6,6 @@ import ArtThumbnail from './ArtThumbnail';
 import { setCurrentTrack } from '../../store/actions/playerActions'
 import AudioMotion from './AudioMotion'
 
-
-
 function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
   const [clickedTime, setClickedTime] = useState();
   const dispatch = useDispatch()
