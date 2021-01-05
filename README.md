@@ -26,6 +26,7 @@ Check out the app: 🌟 <a href="https://busker-app.herokuapp.com/" target="_bla
 4. Open a new terminal, and navigate to react-app directory from the root directory with `cd react-app`.
 5. Run `npm install` to install all frontend dependencies.
 6. Run `npm start` to start up the app.
+7. Access http://localhost:3000/.
 
 ### 🥁  Documentation
 
