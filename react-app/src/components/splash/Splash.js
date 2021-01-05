@@ -49,7 +49,7 @@ const Splash = ({ tracks, authenticated, setAuthenticated }) => {
       <FeaturedArtists />
       <div className="filler__div"></div>
 
-      <div class="splash__footer">
+      <div className="splash__footer">
         <div className="about-site__container">
           <a className="splash__footer-link" href="https://github.com/katyeh/busker">Github</a>
         </div>

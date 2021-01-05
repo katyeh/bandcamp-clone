@@ -123,7 +123,7 @@ const SearchContainer = () => {
   return (
     <div className="search__div">
       <p>Come listen to awesome music, discover new artists, and donate so they can continue making new music.</p>
-      <div class="search__container">
+      <div className="search__container">
         <SearchBar />
       </div>
     </div>
