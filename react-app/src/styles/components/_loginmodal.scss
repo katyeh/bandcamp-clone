@@ -33,11 +33,16 @@
     border-radius: 8px;
     color: #fff;
     background-color: $color-accent;
-    width: 30rem;
+    width: 25rem;
     cursor: pointer;
     // border: none;
     font-size: 1.6rem;
     font-weight: 600;
+    margin: 2rem 1rem;
+
+    &__div {
+        display: flex;
+    }
 }
 
 .login-content {
