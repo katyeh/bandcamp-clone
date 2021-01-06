@@ -5,8 +5,22 @@ from sqlalchemy.orm import relationship, sessionmaker, joinedload
 from app.models import db, Artist, Track, Album, Follower, Like
 from sqlalchemy import func, select
 import json
+from app.forms import UploadProfileForm, UploadCoverForm
+
+import binascii
+import os
+import boto3
+from botocore.exceptions import ClientError
+import uuid
 
 artist_routes = Blueprint('artists', __name__)
+
+s3 = boto3.resource('s3')
+client = boto3.client('s3',
+                      aws_access_key_id=os.environ.get('AWS_ACCESS_KEY'),
+                      aws_secret_access_key=os.environ.get(
+                          'AWS_SECRET_ACCESS_KEY')
+                      )
 
 
 @artist_routes.route('', methods=['GET'])
@@ -182,3 +196,59 @@ def home_artists_logged_in(id):
       })
     except:
       return {'errors':'There are no artists avaliable'}, 400
+
+
+@artist_routes.route('/<int:id>/profile_image', methods=["PUT"])
+def profile_pic(id):
+    """
+    Edits profile picture
+    """
+    try:
+        form = UploadProfileForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+
+        if form.validate_on_submit():
+            key_list = request.files.keys()
+
+            if request.files:
+                if "album_art_url" in key_list:
+                    new_image_data = request.files["album_art_url"]
+                    new_image_key = f"albumeimage/{new_image_data.filename}_{uuid.uuid4()}"
+                    client.put_object(Body=new_image_data, Bucket="busker2", Key=new_image_key,
+                                    ContentType=new_image_data.mimetype, ACL="public-read")
+
+            artist = Artist.query.get(id)
+            artist.profile_image_url = f"https://kafei.s3-us-west-1.amazonaws.com/{new_image_key}"
+
+            db.session.commit()
+            return jsonify(artist.to_dict_full())
+    except Exception as error:
+        return jsonify(error=repr(error))
+
+
+@artist_routes.route('/<int:id>/cover_image', methods=["PUT"])
+def cover_image(id):
+    """
+    Edits cover image
+    """
+    try:
+        form = UploadCoverForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+
+        if form.validate_on_submit():
+            key_list = request.files.keys()
+
+            if request.files:
+                if "album_art_url" in key_list:
+                    new_image_data = request.files["album_art_url"]
+                    new_image_key = f"albumeimage/{new_image_data.filename}_{uuid.uuid4()}"
+                    client.put_object(Body=new_image_data, Bucket="busker2", Key=new_image_key,
+                                      ContentType=new_image_data.mimetype, ACL="public-read")
+
+            artist = Artist.query.get(id)
+            artist.cover_image_url = f"https://kafei.s3-us-west-1.amazonaws.com/{new_image_key}"
+
+            db.session.commit()
+            return jsonify(artist.to_dict_full())
+    except Exception as error:
+        return jsonify(error=repr(error))
