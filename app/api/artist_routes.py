@@ -22,7 +22,7 @@ client = boto3.client('s3',
                       )
 
 
-@artist_routes.route('/', methods=['GET'])
+@artist_routes.route('', methods=['GET'])
 def all_artist():
     artists = Artist.query.all()
     return jsonify(artists=[artist.to_dict() for artist in artists])

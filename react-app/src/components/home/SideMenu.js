@@ -6,14 +6,14 @@ const SideMenu = ({artists}) => {
   const user = useSelector(state => state.user);
 
   if (user.id) {
-    return ( 
+    return (
       <div className="sidemenu">
         <div className="sidemenu__based-on-likes">
           <h5 className="sidemenu__title">Artists whom you liked their tracks</h5>
           {artists.based_on_likes && artists.based_on_likes.map(artist => (
             <NavLink to={`artists/${artist.id}`} key={artist.id} >
               <div className="sidemenu__container">
-                <img src={`${artist.profile_image_url}`} />
+                <img alt="" src={`${artist.profile_image_url}`} />
                 <div className="sidemenu__artist-info">
                   <div className="sidemenu__artist-name">{artist.name}</div>
                   <div className="sidemenu__artist-username">{artist.username}</div>
@@ -27,7 +27,7 @@ const SideMenu = ({artists}) => {
           {artists.random_artists && artists.random_artists.map(artist => (
               <NavLink to={`artists/${artist.id}`} key={artist.id}>
                 <div className="sidemenu__container">
-                  <img src={`${artist.profile_image_url}`} />
+                  <img alt="" src={`${artist.profile_image_url}`} />
                   <div className="sidemenu__artist-info">
                     <div className="sidemenu__artist-name">{artist.name}</div>
                     <div className="sidemenu__artist-username">{artist.username}</div>
@@ -41,7 +41,7 @@ const SideMenu = ({artists}) => {
   } else {
     return ''
   }
-  
+
 }
- 
+
 export default SideMenu;

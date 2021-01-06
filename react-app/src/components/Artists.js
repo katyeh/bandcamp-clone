@@ -19,7 +19,7 @@ const ShowAllArtists = ({ getAllArtists, artists }) => {
             <div className='artist__section'>
                 {artists.map((artist) => {
                     return (
-                    <div className="artists__body">
+                    <div key={artist.id} className="artists__body">
                       <div className="artist__profileimage">
                         <img onClick={() => history.push(`/artists/${artist.id}`)} src={artist.profile_image_url}></img>
                       </div>

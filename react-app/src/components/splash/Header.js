@@ -12,8 +12,8 @@ const Header = ( {authenticated, setAuthenticated} ) => {
       <div className="header__container">
         <NavLink to='/splash'>
         <div className="header__logo">
-          <img className="header__img1" src={logo1}></img>
-          <img className="header__img2" src={logo2}></img>
+          <img alt="" className="header__img1" src={logo1}></img>
+          <img alt="" className="header__img2" src={logo2}></img>
         </div>
         </NavLink>
         <div className="header-btn__container">

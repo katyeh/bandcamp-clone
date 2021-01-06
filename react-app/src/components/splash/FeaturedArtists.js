@@ -35,7 +35,6 @@ const FeaturedArtists = () => {
   const artistValues = artistsValues.slice(0, 4)
   const history = useHistory();
 
-  console.log('ARTISTS:', artistValues)
   useEffect(() => {
     dispatch(getAllArtists())
   }, [])

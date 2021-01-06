@@ -7,8 +7,6 @@ const Controls = ({isPlaying, currentTrackIndex, setCurrentTrack, tracks, setIsP
 
   const skipTrack = (forwards = true) => {
     if (forwards && currentTrackIndex < tracks.length - 1) {
-      console.log(currentTrackIndex)
-      console.log(parseInt(currentTrackIndex + 1))
       dispatch(setCurrentTrack(parseInt(currentTrackIndex + 1)))
     } else if (!forwards && currentTrackIndex > 0) {
       dispatch(setCurrentTrack(parseInt(currentTrackIndex - 1)))

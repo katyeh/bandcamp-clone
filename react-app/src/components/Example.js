@@ -40,8 +40,6 @@ const ExampleContainer = () => {
 
   if (!albums) return null
 
-  console.log(albums)
-
   return (
     <>
       <Example

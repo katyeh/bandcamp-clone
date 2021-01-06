@@ -27,6 +27,19 @@ const Login = ({ setAuthenticated }) => {
   //   return <Redirect to="/home" />
   // }
 
+
+  const onDemo = async (e) => {
+    e.preventDefault();
+    const user = await login('ladygaga@queen.com', 'password');
+    if (!user.errors) {
+      setAuthenticated(true);
+      setIsOpen(false);
+      history.push("/")
+    } else {
+      setErrors(user.errors);
+    }
+  };
+
   const onLogin = async (e) => {
     e.preventDefault();
     const user = await login(email, password);
@@ -82,6 +95,8 @@ const Login = ({ setAuthenticated }) => {
             />
           <div className="login-content">
             <button className="login-btn" type="submit">Login</button>
+            <button className="login-btn" onClick={onDemo} >Demo User</button>
+
           </div>
           </div>
         </form>

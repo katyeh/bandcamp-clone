@@ -8,6 +8,7 @@ import RoutesContainer from './RoutesContainer';
 import ArtistProfile from './components/ArtistProfile'
 import Artist from './components/Artists'
 import { loadUser } from './store/actions/signupActions';
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -47,10 +48,17 @@ function App() {
         </Route>
 
         <Route path='/'>
-          <RoutesContainer
+          {/* <RoutesContainer
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
-            />
+            /> */}
+            <ProtectedRoute
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+              render={(props) => <RoutesContainer {...props} setAuthenticated={setAuthenticated} />}
+              /* component={RoutesContainer} */
+            >
+            </ProtectedRoute>
         </Route>
       </Switch>
 
