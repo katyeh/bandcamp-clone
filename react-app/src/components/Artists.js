@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, } from 'react'
 import { getAllArtists } from '../store/actions/artists'
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -9,7 +9,6 @@ const ShowAllArtists = ({ getAllArtists, artists }) => {
     useEffect(() => {
         getAllArtists();
     }, [])
-
 
     if (!artists) return null
     return (

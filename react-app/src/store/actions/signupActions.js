@@ -1,16 +1,16 @@
 import { LOAD_USER } from '../reducers/signupReducer';
 
-export const updateProfilePic = (id, data) => async (dispatch) => {
-  try {
-    const res = await fetch(`/profile_pic/${id}`, {
-      method: 'PUT',
-      body: data
-    }).then(res => res.json())
-  }
-  catch(e) {
-    console.log(e)
-  }
-}
+// export const updateProfilePic = (id, data) => async (dispatch) => {
+//   try {
+//     const res = await fetch(`/profile_pic/${id}`, {
+//       method: 'PUT',
+//       body: data
+//     }).then(res => res.json())
+//   }
+//   catch(e) {
+//     console.log(e)
+//   }
+// }
 
 export const signupUser = (user) => {
   return async dispatch => {
