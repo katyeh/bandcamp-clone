@@ -74,8 +74,8 @@ function ArtistProfile({ getOneArtist, artist, user, albums, getAlbums}) {
         <div className="profile__body">
           <div className="albums-tracks__container">
             <div className="album-track__btns">
-              <button className={`profile-btn album-btn ${albumClass == true ? "white-btn" : ""}`} onClick={() => showAlbums()}>Albums</button>
-              <button className={`profile-btn track-btn ${trackClass == true ? "white-btn" : ""}`} onClick={() => showTracks()}>Tracks</button>
+              <button className={`profile-btn album-btn ${albumClass === true ? "white-btn" : ""}`} onClick={() => showAlbums()}>Albums</button>
+              <button className={`profile-btn track-btn ${trackClass === true ? "white-btn" : ""}`} onClick={() => showTracks()}>Tracks</button>
             </div>
             {trackDisplay ?
               <div className="tracks__container">

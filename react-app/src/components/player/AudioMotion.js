@@ -1,11 +1,10 @@
 import React, { useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import AudioMotionAnalyzer from 'audiomotion-analyzer';
 
 const AudioMotion = ({audio, analyzer}) => {
   const container = useRef();
   const audioMotionRef = useRef();
-  
+
   useEffect(() => {
     if (!audioMotionRef.current && audio) {
       audioMotionRef.current = new AudioMotionAnalyzer(
@@ -26,15 +25,15 @@ const AudioMotion = ({audio, analyzer}) => {
           overlay: true,
           bgAlpha: 0
         });
-    } 
+    }
   }, [audio]);
 
-  return ( 
+  return (
     <div className="audio-motion">
       <div ref={container} className="audio-motion__container--hidden">
       </div>
     </div>
   );
 }
- 
+
 export default AudioMotion;

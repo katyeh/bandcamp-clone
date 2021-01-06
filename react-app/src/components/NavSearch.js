@@ -4,7 +4,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 const NavSearch = () => {
   const [display, setDisplay] = useState(false);
-  const [trackresults, setResults] = useState("");
+  // const [trackresults, setResults] = useState("");
   const [search, setSearch] = useState("");
   const [trackOptions, setTrackOptions] = useState([]);
   const [albumOptions, setAlbumOptions] = useState([]);
@@ -25,7 +25,7 @@ const NavSearch = () => {
       setTrackOptions(trackres);
       setAlbumOptions(albumres);
       setArtistOptions(artistres);
-      setResults(searchresults)
+      // setResults(searchresults)
     }
     if (search !== "") {
       mainsearch()
@@ -46,12 +46,6 @@ const NavSearch = () => {
     }
   };
 
-  const updateResults = result => {
-    setSearch(result);
-    setDisplay(false);
-  };
-
-
   return (
     <div ref={wrapperRef} className="navbar__search">
       <input
@@ -59,7 +53,6 @@ const NavSearch = () => {
         type="text"
         placeholder="Search"
         value={search}
-        type="text"
         onClick={() => setDisplay(!display)}
         onChange={e => setSearch(e.target.value)}
       />

@@ -1,12 +1,12 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState  } from "react";
 import { useHistory} from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Modal from "react-modal";
 import { uploadNewAlbum } from '../../store/actions/uploadAlbumAction'
 import { uploadNewTrack } from '../../store/actions/uploadTrackAction'
 
 
-//loading icon 
+//loading icon
 
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -31,7 +31,7 @@ const UploadAlbum = ({ user, albums }) => {
     if(albums && albums.albums) {
         newAlbumId = albums.albums.length + 1
     }
-    
+
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const UploadAlbum = ({ user, albums }) => {
     const [lyrics, setLyrics] = useState("");
     const [mp3_url, setNewTrackUrl] = useState("");
     const [modalIsOpen2, setIsOpen2] = useState("");
-  
+
 
     const updateTitle = (e) => {
         setTitle(e.target.value);
@@ -76,7 +76,7 @@ const UploadAlbum = ({ user, albums }) => {
 
             await dispatch(uploadNewAlbum(album));
             setIsOpen(false);
-            
+
             // history.push("/home")
 
         }
@@ -190,7 +190,7 @@ const UploadAlbum = ({ user, albums }) => {
                         <CircularProgress color="secondary" />
                     </div>
                 ) : (
-                    
+
                     <button className="login-btn" type="submit">Upload</button>
                 )}
                 </div>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import Modal from "react-modal";
 import './TipModal.css'
 
@@ -10,9 +9,6 @@ const TipModal = ({user, artist}) => {
     // const [errors, setErrors] = useState([]);
     const [amount, setAmount] = useState("0");
     const [modalIsOpen, setIsOpen] = useState(false);
-
-    let userId = user.id
-    let artistId = artist.id
 
     const updateAmount = (e) => {
         setAmount(e.target.value);
@@ -46,8 +42,8 @@ const TipModal = ({user, artist}) => {
                         <input
                             className="slider"
                             type="range"
-                            name="points" 
-                            min="5" 
+                            name="points"
+                            min="5"
                             step="5"
                             max="30"
                             onChange={updateAmount}
