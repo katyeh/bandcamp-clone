@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
-import SearchIcon from '@material-ui/icons/Search';
 import LoginModal from "./home/Home_LoginModal";
+import NavSearch from './NavSearch';
 
 const NavBar = ({ setAuthenticated, user }) => {
   return (
@@ -41,12 +41,7 @@ const NavBar = ({ setAuthenticated, user }) => {
           </li>
         </ul>
         <form method="post">
-          <div className="navbar__search">
-            <input type="text" placeholder="   Search" />
-            <button type="submit">
-              <div className="navbar__search-button"><SearchIcon /></div>
-            </button>
-          </div>
+          <NavSearch />
         </form>
         {user.id && (
           <NavLink className="navbar__menu" to={`/artists/${user.id}`}>
