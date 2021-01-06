@@ -55,7 +55,7 @@ const NavSearch = () => {
   return (
     <div ref={wrapperRef} className="navbar__search">
       <input
-        className="search__input"
+        className="navsearch__input"
         type="text"
         placeholder="Search"
         value={search}
@@ -67,7 +67,7 @@ const NavSearch = () => {
         <div className="navbar__search-button"><SearchIcon /></div>
       </button>
       {display && (
-        <div className="search__container">
+        <div className="navsearch__container">
           <div>Tracks</div>
           {/* {trackOptions > 0 ? <div>Tracks</div> : null} */}
           {trackOptions
@@ -79,7 +79,7 @@ const NavSearch = () => {
                     setDisplay(!display)
                   }}
                   // onClick={() => updateResults(value.title)}
-                  className="search__option"
+                  className="navsearch__option"
                   key={i}
                   tabIndex="0"
                 >

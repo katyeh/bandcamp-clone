@@ -93,6 +93,7 @@
     justify-content: space-between;
     width: 500px;
     padding: 5px;
+    outline: none;
   }
 
   .option,
@@ -109,12 +110,8 @@
     flex-direction: column;
   }
 
-  .option {
-    cursor: pointer;
-  }
-
 // Home search styles
-.search {
+.navsearch {
   &__input {
     outline: none;
   }
