@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 
 const SearchBar = () => {
   const [display, setDisplay] = useState(false);
-  const [trackresults, setResults] = useState("");
   const [search, setSearch] = useState("");
   const [trackOptions, setTrackOptions] = useState([]);
   const [albumOptions, setAlbumOptions] = useState([]);
@@ -24,7 +23,6 @@ const SearchBar = () => {
       setTrackOptions(trackres);
       setAlbumOptions(albumres);
       setArtistOptions(artistres);
-      setResults(searchresults)
     }
     if (search !== "") {
       mainsearch()
@@ -43,11 +41,6 @@ const SearchBar = () => {
     if (wrap && !wrap.contains(event.target)) {
       setDisplay(false);
     }
-  };
-
-  const updateResults = result => {
-    setSearch(result);
-    setDisplay(false);
   };
 
   return (

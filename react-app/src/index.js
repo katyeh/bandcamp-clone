@@ -7,7 +7,6 @@ import configureStore from './store/configureStore';
 import initialStore from './initialStore';
 
 
-const userInfo = localStorage.getItem('user-info');
 const userId = localStorage.getItem('user_id');
 let store;
 if (userId) store = configureStore(initialStore);

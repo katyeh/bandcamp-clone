@@ -42,7 +42,7 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
     <div className='album__container'>
       <div className='left-container'>
         <div className='album__image'>
-          <img className='track' id={`album_${albumId}_0`} src={albumCover} className='album-cover'></img>
+          <img alt="" id={`album_${albumId}_0`} src={albumCover} className='track album-cover'></img>
         </div>
       </div>
       <div className='right-container'>
@@ -67,7 +67,7 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
                   tracks.map((track, i) => {
                     return (
                       <tr key={track.id} className='table__row'>
-                        <td onClick={clickHandler} id={`track_${albumId}_${i}`}><img src={albumCover}/>{"      "+`  ${i + 1}      ${track.title}`}</td>
+                        <td onClick={clickHandler} id={`track_${albumId}_${i}`}><img alt="" src={albumCover}/>{"      "+`  ${i + 1}      ${track.title}`}</td>
                       </tr>
                     )
                   })}

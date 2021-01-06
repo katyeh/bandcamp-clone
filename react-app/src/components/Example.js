@@ -1,53 +1,53 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { getAlbums } from '../store/actions/albumActions';
-import { getTracks } from '../store/actions/trackActions'
-import { getTrackPlayer, play, getAlbumPlayer } from '../store/actions/playerActions'
-import AlbumCard from "./albumcard/AlbumCard";
+// import React, { useEffect } from 'react';
+// import { useSelector, useDispatch } from "react-redux";
+// import { getAlbums } from '../store/actions/albumActions';
+// // import { getTracks } from '../store/actions/trackActions'
+// // import { getTrackPlayer, play, getAlbumPlayer } from '../store/actions/playerActions'
+// import AlbumCard from "./albumcard/AlbumCard";
 
-const Example = ({ albums, dispatch }) => {
-  useEffect(() => {
-  })
-
-
-  return (
-    <>
-      {albums.map((album) => {
-        return(
-          <AlbumCard
-            key={album.id}
-            albumCover={album.album_art_url}
-            albumId={album.id}
-            title={album.title}
-            artistName={album.artist.name}
-            tracks={album.tracks}
-            artistId={album.artistd}
-          />
-        )
-      })}
-    </>
-  )
-}
+// const Example = ({ albums, dispatch }) => {
+//   useEffect(() => {
+//   })
 
 
-const ExampleContainer = () => {
-  const albums = useSelector(state => state.album.albums);
-  const dispatch = useDispatch();
+//   return (
+//     <>
+//       {albums.map((album) => {
+//         return(
+//           <AlbumCard
+//             key={album.id}
+//             albumCover={album.album_art_url}
+//             albumId={album.id}
+//             title={album.title}
+//             artistName={album.artist.name}
+//             tracks={album.tracks}
+//             artistId={album.artistd}
+//           />
+//         )
+//       })}
+//     </>
+//   )
+// }
 
-  useEffect(() => {
-    dispatch(getAlbums());
-  }, []);
 
-  if (!albums) return null
+// const ExampleContainer = () => {
+//   const albums = useSelector(state => state.album.albums);
+//   const dispatch = useDispatch();
 
-  return (
-    <>
-      <Example
-      albums={albums}
-      dispatch={dispatch}
-      />
-    </>
-  )
-}
+//   useEffect(() => {
+//     dispatch(getAlbums());
+//   }, []);
 
-export default ExampleContainer;
+//   if (!albums) return null
+
+//   return (
+//     <>
+//       <Example
+//       albums={albums}
+//       dispatch={dispatch}
+//       />
+//     </>
+//   )
+// }
+
+// export default ExampleContainer;

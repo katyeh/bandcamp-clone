@@ -37,7 +37,7 @@ const FeaturedArtists = () => {
 
   useEffect(() => {
     dispatch(getAllArtists())
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="featured-artists__container">
@@ -48,9 +48,9 @@ const FeaturedArtists = () => {
 
         {artistValues.map((artist) => {
           return (
-          <div className="featured-artists__grid-item">
+          <div key={artist.id} className="featured-artists__grid-item">
             <div>
-              <img onClick={() => history.push(`/artists/${artist.id}`)} className="featured-artist__pic" src={artist.profile_image_url}></img>
+              <img alt="" onClick={() => history.push(`/artists/${artist.id}`)} className="featured-artist__pic" src={artist.profile_image_url}></img>
             </div>
             <div className="featured-artist__info">
               <h3>{artist.name}</h3>
