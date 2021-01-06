@@ -93,6 +93,7 @@
     justify-content: space-between;
     width: 500px;
     padding: 5px;
+    outline: none;
   }
 
   .option,
@@ -109,6 +110,38 @@
     flex-direction: column;
   }
 
-  .option {
-    cursor: pointer;
+// Home search styles
+.navsearch {
+  &__input {
+    outline: none;
   }
+  &__container {
+    position: absolute;
+    border-width: 0px 1px 1px 1px;
+    // border-style: solid;
+    background-color: #fff;
+    top: 4rem;
+    width: 28rem;
+    max-height: 50rem;
+    overflow-y: scroll;
+    z-index: 1;
+    box-shadow: 10px 10px 5px gray;
+    z-index: 1000;
+  }
+  &__option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      // width: 500px;
+      padding: 5px;
+      cursor: pointer;
+      outline: none;
+    span {
+      font-size: 18px;
+      text-transform: capitalize;
+    }
+  }
+  &__option:focus {
+    background-color: lightgray;
+  }
+}
