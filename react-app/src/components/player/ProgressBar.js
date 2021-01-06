@@ -40,7 +40,9 @@ export default function ProgressBar({ duration, currentTime, onTimeUpdate }) {
       <span className="bar__time">{formatDuration(currentTime)}</span>
       <div
       className="bar__progress"
-      style={{background: `linear-gradient(to right, orange ${currentPercentage}%)`}}
+      style={{
+        background: `linear-gradient(to right, #BF00FF ${currentPercentage}%, #ebb9fc 0)`
+      }}
       onMouseDown={e => timeDragHandler(e)}
       >
         <span className="bar__progress__knob" style={{ left: `${currentPercentage - 2}%` }}
