@@ -48,15 +48,10 @@ function App() {
         </Route>
 
         <Route path='/'>
-          {/* <RoutesContainer
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-            /> */}
             <ProtectedRoute
               authenticated={authenticated}
               setAuthenticated={setAuthenticated}
               render={(props) => <RoutesContainer {...props} setAuthenticated={setAuthenticated} />}
-              /* component={RoutesContainer} */
             >
             </ProtectedRoute>
         </Route>
