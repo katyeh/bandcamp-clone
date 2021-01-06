@@ -32,10 +32,11 @@ return (
             artistName={album.artist.name}
             tracks={album.tracks}
             artistId={album.artistd}
+            mode={'album'}
         />
         )
     })}
-    
+
     </div>
 );
 }

@@ -6,7 +6,7 @@ import ArtThumbnail from './ArtThumbnail';
 import { setCurrentTrack } from '../../store/actions/playerActions'
 import AudioMotion from './AudioMotion'
 
-function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
+function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
   const [clickedTime, setClickedTime] = useState();
   const dispatch = useDispatch()
   const [currentTime, setCurrentTime] = useState(0);
@@ -50,6 +50,7 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
   return (
     <div className="player">
       <div className='controls'>
+        <ArtThumbnail info={tracks[currentTrackIndex]}/>
         <Controls className='buttons'
           isPlaying={isPlaying}
           // setIsPlaying={setIsPlaying}
@@ -70,7 +71,7 @@ const PlayerContainer = () => {
   const isPlaying = useSelector(state => state.player.isPlaying)
   // const [tracks, setTracks] = useState()
   const trackIndex = useSelector(state => Number(state.player.currentTrackIndex))
-  debugger;
+  // debugger;
   // const trackUrl = useSelector(state => {
   //   if (!state.player.tracksData) return '';
   //   return state.player.tracksData[trackIndex].mp3_url;

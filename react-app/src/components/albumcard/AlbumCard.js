@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { play, pause, getAlbumPlayer, setCurrentTrack } from '../../store/actions/playerActions';
 
-const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, currentTrackIndex, isPlaying, currentAlbum, tracksIds }) => {
+const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, currentTrackIndex, isPlaying, currentAlbum, tracksIds, mode }) => {
   const dispatch = useDispatch();
 
   const parseAlbumId = (st) => {
@@ -47,10 +47,16 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
       </div>
       <div className='right-container'>
         <div className='button-album-info'>
-            <span className="fa-stack fa-lg">
-              <i className="fa fa-circle fa-stack-2x icon-background"></i>
-              <i id={`album_${albumId}_0`} onClick={clickHandler} className={isPlaying && parseInt(albumId) === parseInt(currentAlbum) ? "fas fa-pause fa-stack-1x pause" : "fa fa-play fa-stack-1x play" } />
-            </span>
+          <span className="fa-stack fa-lg">
+            <i className="fa fa-circle fa-stack-2x icon-background"></i>
+            <i id={`album_${albumId}_0`} onClick={clickHandler}
+              className={
+                mode==='album'
+                ? isPlaying && parseInt(albumId) === parseInt(currentAlbum) ? "fas fa-pause fa-stack-1x pause" : "fa fa-play fa-stack-1x play"
+                : isPlaying && parseInt(albumId) === parseInt(currentAlbum) ? "fas fa-pause fa-stack-1x pause" : "fa fa-play fa-stack-1x play"
+              }
+            />
+          </span>
 
           <div>
             <p className="artist" id={artistId} onClick={artistNameHandler}>{artistName}</p>
@@ -67,7 +73,7 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
                   tracks.map((track, i) => {
                     return (
                       <tr key={track.id} className='table__row'>
-                        <td onClick={clickHandler} id={`track_${albumId}_${i}`}><img src={albumCover}/>{"      "+`  ${i + 1}      ${track.title}`}</td>
+                        <td onClick={clickHandler} id={`track_${albumId}_${i}`}><img src={albumCover} />{"      " + `  ${i + 1}      ${track.title}`}</td>
                       </tr>
                     )
                   })}
@@ -75,9 +81,9 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
             </table>
           </div>
 
-          :  null
+          : null
 
-       }
+        }
       </div>
     </div>
   )

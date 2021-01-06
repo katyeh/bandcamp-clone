@@ -28,6 +28,7 @@ const CurrentTracks = ({ getTracks, tracks }) => {
                             artistName={track.artist_name}
                             tracks={[]}
                             artistId={track.artistd}
+                            mode={'track'}
                         />
 
                     )
