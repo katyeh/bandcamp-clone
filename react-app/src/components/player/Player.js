@@ -57,7 +57,7 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
           setCurrentTrack={setCurrentTrack}
           tracks={tracks}
         />
-        <ProgressBar currentTime={currentTime} duration={duration} onTimeUpdate={(time) =>setClickedTime(time)}/>
+        <ProgressBar currentTime={currentTime} duration={duration} onTimeUpdate={(time) => setClickedTime(time)} />
       </div>
       <AudioMotion audio={audio} />
     </div>
@@ -68,37 +68,41 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
 const PlayerContainer = () => {
   const trackList = useSelector(state => state.player.tracksData)
   const isPlaying = useSelector(state => state.player.isPlaying)
-  const [tracks, setTracks] = useState()
-  const trackIndex = useSelector(state => Number(state.player.currentTrackIndex));
-
-  const trackUrl = useSelector(state => {
-    if (!state.player.tracksData) return '';
-    return state.player.tracksData[trackIndex].mp3_url;
-  });
+  // const [tracks, setTracks] = useState()
+  const trackIndex = useSelector(state => Number(state.player.currentTrackIndex))
+  debugger;
+  // const trackUrl = useSelector(state => {
+  //   if (!state.player.tracksData) return '';
+  //   return state.player.tracksData[trackIndex].mp3_url;
+  // });
 
   const audioRef = useRef();
 
   useEffect(() => {
-    setTracks(trackList)
+    // (async () => await setTracks(trackList))()
 
     if (!audioRef.current) {
       audioRef.current = new Audio();
       audioRef.current.crossOrigin = 'anonymous';
       // audioRef.current.duration = duration;
-      } else {
-        audioRef.current.src = trackUrl;
+    } else {
+      if (trackList) {
+        audioRef.current.src = trackList[trackIndex].mp3_url;
       }
-    }, [trackUrl])
+    }
+  }, [trackList])
+
+  if (!trackList) return null
 
 
   return (
     <>
       <Player
-      // track={track}
-      tracks={tracks}
-      currentTrackIndex={trackIndex}
-      isPlaying={isPlaying}
-      audio={audioRef.current}
+        // track={track}
+        tracks={trackList}
+        currentTrackIndex={trackIndex}
+        isPlaying={isPlaying}
+        audio={audioRef.current}
 
       />
       {/* <AudioMotion audio={audioRef.current} /> */}

@@ -41,7 +41,7 @@ export default function ProgressBar({ duration, currentTime, onTimeUpdate }) {
       <div
       className="bar__progress"
       style={{
-        background: `linear-gradient(to right, #BF00FF ${currentPercentage}%, #ebb9fc 0)`
+        background: `linear-gradient(to right, #ebb9fc ${currentPercentage}%, white 0)`
       }}
       onMouseDown={e => timeDragHandler(e)}
       >
