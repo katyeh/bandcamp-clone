@@ -5,6 +5,7 @@ from sqlalchemy.orm import relationship, sessionmaker, joinedload
 from app.models import db, Artist, Track, Album, Follower, Like
 from sqlalchemy import func, select
 import json
+from app.forms import UploadProfileForm, UploadCoverForm
 
 import binascii
 import os
