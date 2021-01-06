@@ -48,7 +48,7 @@ const FeaturedArtists = () => {
 
         {artistValues.map((artist) => {
           return (
-          <div className="featured-artists__grid-item">
+          <div key={artist.id} className="featured-artists__grid-item">
             <div>
               <img alt="" onClick={() => history.push(`/artists/${artist.id}`)} className="featured-artist__pic" src={artist.profile_image_url}></img>
             </div>
