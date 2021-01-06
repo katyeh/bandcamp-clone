@@ -97,7 +97,6 @@ const Login = ({ authenticated, setAuthenticated }) => {
               value={password}
               onChange={updatePassword}
             />
-          </div>
           <div className="login-btn__div">
             <button className="login-btn" type="submit">Login</button>
             <button className="login-btn" onClick={onDemo} >Demo User</button>
