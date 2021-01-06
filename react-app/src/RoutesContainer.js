@@ -9,8 +9,7 @@ import Artist from './components/Artists'
 import Example from './components/Example'
 
 
-function RoutesContainer({authenticated, setAuthenticated}) {
-
+function RoutesContainer({ authenticated, setAuthenticated }) {
   return (
     <>
       <NavBarContainer setAuthenticated={setAuthenticated}/>

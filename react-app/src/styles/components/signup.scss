@@ -3,11 +3,12 @@
     padding: .2rem 1.5rem;
     height: 3.5rem;
     width: 15rem;
-    border-color: white;
+    // border-color: white;
     color: white;
     background-color: $color-accent;
-    border-radius: .4rem;
+    border-radius: .8rem;
     cursor: pointer;
+    outline: none;
 
     &:focus {
       outline: none;

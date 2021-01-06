@@ -53,6 +53,7 @@ const SearchBar = () => {
   return (
     <div ref={wrapperRef} className="flex-container flex-column pos-rel">
       <input
+        className="search__input"
         type="text"
         onClick={() => setDisplay(!display)}
         placeholder="Search for artists, tracks, albums"
@@ -122,7 +123,7 @@ const SearchContainer = () => {
   return (
     <div className="search__div">
       <p>Come listen to awesome music, discover new artists, and donate so they can continue making new music.</p>
-      <div class="search__container">
+      <div className="search__container">
         <SearchBar />
       </div>
     </div>

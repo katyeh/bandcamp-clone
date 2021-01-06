@@ -25,7 +25,7 @@ client = boto3.client('s3',
                           'AWS_SECRET_ACCESS_KEY')
                       )
 
-@track_routes.route('/')
+@track_routes.route('')
 def all_tracks():
   # tracks = Track.query.all()
   tracks = Track.query.options(joinedload(Track.album), joinedload(Track.artist)).all()

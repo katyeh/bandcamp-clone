@@ -10,13 +10,21 @@
         justify-content: center;
         font-weight: 800;
         color: $color-dark;
+        font-size: 2rem;
     }
-    .search__container {
+    .search {
+      &__container {
         display: flex;
         justify-content: center;
+      }
+      &__input {
+        border-radius: 1.4rem;
+        outline: none;
+        padding: 2rem;
+      }
     }
     input {
-        height: 4rem;
+        height: 5rem;
         width: 60rem;
         background-color: lightgray;
         margin-top: 3rem;
@@ -89,7 +97,7 @@
 
   .option,
   span {
-    font-size: 28px;
+    font-size: 26px;
     text-transform: capitalize;
   }
 

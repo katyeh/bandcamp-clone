@@ -97,30 +97,23 @@ def sign_up():
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
-      key_list = request.files.keys()
+    #   key_list = request.files.keys()
 
-      if request.files:
-        if "profileImage" in key_list:
-          profile_image_data = request.files["profileImage"]
-          profile_image_key = f"images/{profile_image_data.filename}_{uuid.uuid4()}"
-          client.put_object(Body=profile_image_data, Bucket="busker2", Key=profile_image_key, ContentType=profile_image_data.mimetype, ACL="public-read")
+    #   if request.files:
+    #     if "profileImage" in key_list:
+    #       profile_image_data = request.files["profileImage"]
+    #       profile_image_key = f"images/{profile_image_data.filename}_{uuid.uuid4()}"
+    #       client.put_object(Body=profile_image_data, Bucket="busker2", Key=profile_image_key, ContentType=profile_image_data.mimetype, ACL="public-read")
 
-        if "coverImage" in key_list:
-          cover_image_data = request.files["coverImage"]
-          cover_image_key = f"coverimage/{cover_image_data.filename}_{uuid.uuid4()}"
-          client.put_object(Body=cover_image_data, Bucket="busker2", Key=cover_image_key, ContentType=cover_image_data.mimetype, ACL="public-read")
+    #     if "coverImage" in key_list:
+    #       cover_image_data = request.files["coverImage"]
+    #       cover_image_key = f"coverimage/{cover_image_data.filename}_{uuid.uuid4()}"
+    #       client.put_object(Body=cover_image_data, Bucket="busker2", Key=cover_image_key, ContentType=cover_image_data.mimetype, ACL="public-read")
 
       user = Artist(
           name=form.data['name'],
           username=form.data['username'],
           email=form.data['email'],
-          bio=form.data['bio'],
-          country=form.data['country'],
-          city=form.data['city'],
-          profile_image_url=f"https://busker2.s3.amazonaws.com/{profile_image_key}" \
-                              if "profileImage" in key_list else "https://busker2.s3.amazonaws.com/defaultimage2.jpeg",
-          cover_image_url=f"https://busker2.s3.amazonaws.com/{cover_image_key}" \
-                            if "coverImage" in key_list else "https://busker2.s3.amazonaws.com/busker_logo.png",
           tip_stash=0,
           password=form.data['password'])
       db.session.add(user)

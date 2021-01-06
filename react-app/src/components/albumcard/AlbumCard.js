@@ -35,7 +35,7 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
     }
   }
   const artistNameHandler = (e) => {
-    console.log(e.target.id)
+    // console.log(e.target.id)
   }
 
   return (

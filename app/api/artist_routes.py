@@ -9,7 +9,7 @@ import json
 artist_routes = Blueprint('artists', __name__)
 
 
-@artist_routes.route('/', methods=['GET'])
+@artist_routes.route('', methods=['GET'])
 def all_artist():
     artists = Artist.query.all()
     return jsonify(artists=[artist.to_dict() for artist in artists])
