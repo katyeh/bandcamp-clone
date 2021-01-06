@@ -14,7 +14,6 @@ const AudioMotion = ({audio, analyzer}) => {
           source: audio,
           height: 70,
           width: 400,
-          // overlay: true
           mode: 10,
           lineWidth: 2,
           radial: false,
@@ -23,6 +22,9 @@ const AudioMotion = ({audio, analyzer}) => {
           reflexAlpha: 1,
           reflexBright: 1,
           reflexRatio: .5,
+          showBgColor: true,
+          overlay: true,
+          bgAlpha: 0
         });
     } 
   }, [audio]);
