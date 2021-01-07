@@ -60,6 +60,9 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
         <ProgressBar currentTime={currentTime} duration={duration} onTimeUpdate={(time) => setClickedTime(time)} />
       </div>
       <AudioMotion audio={audio} />
+      <div className="placeholder">
+        Album info would come here!
+      </div>
     </div>
   )
 }
