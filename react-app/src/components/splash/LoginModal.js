@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import {loadUser} from '../../store/actions/signupActions'
 import { useDispatch} from 'react-redux';
 import CloseIcon from '@material-ui/icons/Close';
-
+import { LOAD_USER } from '../../store/reducers/signupReducer';
 
 Modal.setAppElement('#root');
 
@@ -26,10 +26,6 @@ const Login = ({ authenticated, setAuthenticated }) => {
     setPassword(e.target.value);
   };
 
-  // if (authenticated) {
-  //   return <Redirect to="/home" />
-  // }
-
   const onLogin = async (e) => {
     e.preventDefault();
     const user = await login(email, password);
@@ -48,6 +44,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
     const user = await login('ladygaga@queen.com', 'password');
     if (!user.errors) {
       setAuthenticated(true);
+      dispatch(loadUser(user.id));
       setIsOpen(false);
       history.push("/")
     } else {
@@ -62,25 +59,25 @@ const Login = ({ authenticated, setAuthenticated }) => {
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}
         contentLabel="Login Modal"
-        className="login-modal"
-        overlayClassName="overlay"
+        className="modal modal--login"
+        overlayclassName="modal__overlay"
         shouldCloseOnOverlayClick={true}
         closeTimeoutMS={500}
       >
-        <div className="login-header">
+        <div className="modal__header">
           <h2>Login</h2>
-          <div className="close-btn" onClick={() => setIsOpen(false)}>
+          <div className="modal__close-btn" onClick={() => setIsOpen(false)}>
             <CloseIcon style={{fontSize: 30}} />
           </div>
         </div>
 
-        <form className="login-form" onSubmit={onLogin}>
-          <div>
+        <form className="modal__form" onSubmit={onLogin}>
+          <div className="modal__error-container">
             {errors.map((error) => (
-              <div key={error.id}>{error}</div>
+              <div className="modal__error" key={error.id}>{error}</div>
             ))}
           </div>
-          <div className="login-content">
+          <div className="modal__content">
             <input
               name="email"
               type="text"
@@ -89,7 +86,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
               onChange={updateEmail}
             />
           </div>
-          <div className="login-content">
+          <div className="modal__content">
             <input
               name="password"
               type="password"
@@ -98,9 +95,9 @@ const Login = ({ authenticated, setAuthenticated }) => {
               onChange={updatePassword}
             />
           </div>
-          <div className="login-btn__div">
-            <button className="login-btn" type="submit">Login</button>
-            <button className="login-btn" onClick={onDemo} >Demo User</button>
+          <div className="modal__btn__div">
+            <button className="modal__btn" type="submit">Login</button>
+            <button className="modal__btn" onClick={onDemo} >Demo User</button>
           </div>
         </form>
 

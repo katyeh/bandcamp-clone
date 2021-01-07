@@ -33,6 +33,7 @@ export const logout = async () => {
     }
   });
   localStorage.removeItem("user_id");
+  localStorage.removeItem("token");
   return await response.json();
 };
 

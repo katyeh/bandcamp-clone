@@ -10,7 +10,7 @@ function ArtistProfile({getOneArtist,artist}) {
   const artistId = Number.parseInt(id);
   useEffect(() => {
     getOneArtist(artistId)
-  }, [artistId])
+  }, [artistId, getOneArtist])
 
   if (!artist) {
     return null;

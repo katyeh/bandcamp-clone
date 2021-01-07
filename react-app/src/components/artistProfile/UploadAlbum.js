@@ -1,12 +1,12 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState  } from "react";
 import { useHistory} from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Modal from "react-modal";
 import { uploadNewAlbum } from '../../store/actions/uploadAlbumAction'
 import { uploadNewTrack } from '../../store/actions/uploadTrackAction'
 
 
-//loading icon 
+//loading icon
 
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -31,7 +31,7 @@ const UploadAlbum = ({ user, albums }) => {
     if(albums && albums.albums) {
         newAlbumId = albums.albums.length + 1
     }
-    
+
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const UploadAlbum = ({ user, albums }) => {
     const [lyrics, setLyrics] = useState("");
     const [mp3_url, setNewTrackUrl] = useState("");
     const [modalIsOpen2, setIsOpen2] = useState("");
-  
+
 
     const updateTitle = (e) => {
         setTitle(e.target.value);
@@ -76,7 +76,7 @@ const UploadAlbum = ({ user, albums }) => {
 
             await dispatch(uploadNewAlbum(album));
             setIsOpen(false);
-            
+
             // history.push("/home")
 
         }
@@ -109,17 +109,17 @@ const UploadAlbum = ({ user, albums }) => {
             onRequestClose={() => setIsOpen(false)}
             contentLabel="Signup Modal"
             className="signup-modal"
-            overlayClassName="overlay"
+            overlayclassName="modal__overlay"
             shouldCloseOnOverlayClick={true}
         >
-            <div className="login-header">
+            <div className="modal__header">
                 <h2>Upload Album</h2>
-                <button className="close-btn" onClick={() => setIsOpen(false)}>X</button>
+                <button className="modal__close-btn" onClick={() => setIsOpen(false)}>X</button>
             </div>
 
             <form onSubmit={onUpload}>
 
-                <div className="login-content">
+                <div className="modal__content">
                     <label>Title</label>
                     <input
                         type="text"
@@ -128,7 +128,7 @@ const UploadAlbum = ({ user, albums }) => {
                         value={title}
                     ></input>
                 </div>
-                <div className="login-content">
+                <div className="modal__content">
                     <label>Album Cover</label>
                     <input
                         type="file"
@@ -137,8 +137,8 @@ const UploadAlbum = ({ user, albums }) => {
                         className="file-upload"
                     ></input>
                 </div>
-                <div className="login-content">
-                        <button className="login-btn" type="submit" onClick={() => setIsOpen2(true)}>Next</button>
+                <div className="modal__content">
+                        <button className="modal__btn" type="submit" onClick={() => setIsOpen2(true)}>Next</button>
                 </div>
             </form>
         </Modal>
@@ -147,17 +147,17 @@ const UploadAlbum = ({ user, albums }) => {
             onRequestClose={() => setIsOpen2(false)}
             contentLabel="Signup Modal"
             className="signup-modal"
-            overlayClassName="overlay"
+            overlayclassName="modal__overlay"
             shouldCloseOnOverlayClick={true}
         >
-            <div className="login-header">
+            <div className="modal__header">
                 <h2>Upload Song</h2>
-                <button className="close-btn" onClick={() => setIsOpen2(false)}>X</button>
+                <button className="modal__close-btn" onClick={() => setIsOpen2(false)}>X</button>
             </div>
 
             <form onSubmit={onUpload2}>
 
-                <div className="login-content">
+                <div className="modal__content">
                     <label>Title</label>
                     <input
                         type="text"
@@ -166,7 +166,7 @@ const UploadAlbum = ({ user, albums }) => {
                         value={track_title}
                     ></input>
                 </div>
-                <div className="login-content">
+                <div className="modal__content">
                     <label>Lyrics</label>
                     <input
                         type="text"
@@ -175,7 +175,7 @@ const UploadAlbum = ({ user, albums }) => {
                         value={lyrics}
                     ></input>
                 </div>
-                <div className="login-content">
+                <div className="modal__content">
                     <label>Choose Song</label>
                     <input
                         type="file"
@@ -184,14 +184,14 @@ const UploadAlbum = ({ user, albums }) => {
                         className="file-upload"
                     ></input>
                 </div>
-                <div className="login-content">
+                <div className="modal__content">
                 {loading ? (
                     <div className={classes.root}>
                         <CircularProgress color="secondary" />
                     </div>
                 ) : (
-                    
-                    <button className="login-btn" type="submit">Upload</button>
+
+                    <button className="modal__btn" type="submit">Upload</button>
                 )}
                 </div>
             </form>

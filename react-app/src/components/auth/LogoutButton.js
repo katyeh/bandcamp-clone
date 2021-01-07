@@ -1,12 +1,17 @@
 import React from "react";
-import { logout } from "../../services/auth";
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { logout } from "../../services/auth";
+import { destroySessionAction } from '../../store/reducers/rootReducer';
 
 const LogoutButton = ({ setAuthenticated }) => {
-  let history = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const onLogout = async (e) => {
     await logout();
     setAuthenticated(false);
+    dispatch(destroySessionAction());
     history.push("/splash")
   };
 

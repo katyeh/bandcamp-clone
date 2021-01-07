@@ -211,14 +211,14 @@ def profile_pic(id):
             key_list = request.files.keys()
 
             if request.files:
-                if "album_art_url" in key_list:
-                    new_image_data = request.files["album_art_url"]
-                    new_image_key = f"albumeimage/{new_image_data.filename}_{uuid.uuid4()}"
+                if "profile_image_url" in key_list:
+                    new_image_data = request.files["profile_image_url"]
+                    new_image_key = f"images/{new_image_data.filename}_{uuid.uuid4()}"
                     client.put_object(Body=new_image_data, Bucket="busker2", Key=new_image_key,
                                     ContentType=new_image_data.mimetype, ACL="public-read")
 
             artist = Artist.query.get(id)
-            artist.profile_image_url = f"https://kafei.s3-us-west-1.amazonaws.com/{new_image_key}"
+            artist.profile_image_url = f"https://busker2.s3.amazonaws.com/{new_image_key}"
 
             db.session.commit()
             return jsonify(artist.to_dict_full())
@@ -239,14 +239,14 @@ def cover_image(id):
             key_list = request.files.keys()
 
             if request.files:
-                if "album_art_url" in key_list:
-                    new_image_data = request.files["album_art_url"]
-                    new_image_key = f"albumeimage/{new_image_data.filename}_{uuid.uuid4()}"
+                if "cover_image_url" in key_list:
+                    new_image_data = request.files["cover_image_url"]
+                    new_image_key = f"coverimage/{new_image_data.filename}_{uuid.uuid4()}"
                     client.put_object(Body=new_image_data, Bucket="busker2", Key=new_image_key,
                                       ContentType=new_image_data.mimetype, ACL="public-read")
 
             artist = Artist.query.get(id)
-            artist.cover_image_url = f"https://kafei.s3-us-west-1.amazonaws.com/{new_image_key}"
+            artist.cover_image_url = f"https://busker2.s3.amazonaws.com/{new_image_key}"
 
             db.session.commit()
             return jsonify(artist.to_dict_full())

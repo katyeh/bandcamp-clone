@@ -6,7 +6,7 @@ import HomeContainer from './components/home/HomeContainer';
 import Player from './components/player/Player';
 import ArtistProfile from './components/artistProfile/ArtistProfile'
 import Artist from './components/Artists'
-import Example from './components/Example'
+// import Example from './components/Example'
 
 
 function RoutesContainer({ authenticated, setAuthenticated }) {
@@ -20,7 +20,7 @@ function RoutesContainer({ authenticated, setAuthenticated }) {
           exact={true}
           authenticated={authenticated}
         >
-          <Example/>
+          {/* <Example/> */}
         </Route>
         <Route
           path="/"

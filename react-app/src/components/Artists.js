@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, } from 'react'
 import { getAllArtists } from '../store/actions/artists'
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -10,7 +10,6 @@ const ShowAllArtists = ({ getAllArtists, artists }) => {
         getAllArtists();
     }, [])
 
-
     if (!artists) return null
     return (
       <div className="artists__container">
@@ -21,7 +20,7 @@ const ShowAllArtists = ({ getAllArtists, artists }) => {
                     return (
                     <div key={artist.id} className="artists__body">
                       <div className="artist__profileimage">
-                        <img onClick={() => history.push(`/artists/${artist.id}`)} src={artist.profile_image_url}></img>
+                        <img alt="" onClick={() => history.push(`/artists/${artist.id}`)} src={artist.profile_image_url}></img>
                       </div>
                       <div className="artists-container__right">
                         <div className="artist-right__item">

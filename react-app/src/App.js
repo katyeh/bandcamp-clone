@@ -1,12 +1,10 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Splash from "./components/splash/Splash";
 import Header from "./components/splash/Header";
 import { authenticate } from "./services/auth";
 import RoutesContainer from './RoutesContainer';
-import ArtistProfile from './components/ArtistProfile'
-import Artist from './components/Artists'
 import { loadUser } from './store/actions/signupActions';
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 
@@ -16,7 +14,6 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // debugger
     (async() => {
       const userId = localStorage.getItem("user_id");
       if (userId) {
@@ -25,7 +22,6 @@ function App() {
           setAuthenticated(true);
         }
         (async () => {
-          // debugger
           await dispatch(loadUser(userId));
           setLoaded(true);
         })()

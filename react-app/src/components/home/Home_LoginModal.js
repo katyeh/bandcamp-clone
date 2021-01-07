@@ -60,12 +60,12 @@ const Login = ({ setAuthenticated }) => {
         onRequestClose={() => setIsOpen(false)}
         contentLabel="Login Modal"
         className="login-modal"
-        overlayClassName="overlay"
+        overlayclassName="modal__overlay"
         shouldCloseOnOverlayClick={true}
       >
-        <div className="login-header">
+        <div className="modal__header">
           <h2>Login</h2>
-          <button className="close-btn" onClick={() => setIsOpen(false)}>X</button>
+          <button className="modal__close-btn" onClick={() => setIsOpen(false)}>X</button>
         </div>
 
         <form onSubmit={onLogin}>
@@ -74,7 +74,7 @@ const Login = ({ setAuthenticated }) => {
               <div>{error}</div>
             ))}
           </div>
-          <div className="login-content">
+          <div className="modal__content">
             <label htmlFor="email">Email</label>
             <input
               name="email"
@@ -84,7 +84,7 @@ const Login = ({ setAuthenticated }) => {
               onChange={updateEmail}
             />
           </div>
-          <div className="login-content">
+          <div className="modal__content">
             <label htmlFor="password">Password</label>
             <input
               name="password"
@@ -93,9 +93,9 @@ const Login = ({ setAuthenticated }) => {
               value={password}
               onChange={updatePassword}
             />
-          <div className="login-content">
-            <button className="login-btn" type="submit">Login</button>
-            <button className="login-btn" onClick={onDemo} >Demo User</button>
+          <div className="modal__content">
+            <button className="modal__btn" type="submit">Login</button>
+            <button className="modal__btn" onClick={onDemo} >Demo User</button>
 
           </div>
           </div>
