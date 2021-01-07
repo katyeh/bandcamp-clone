@@ -71,12 +71,20 @@ function ArtistProfile({ getOneArtist, artist, user, albums, getAlbums}) {
         >
           {/* <img src={artist.cover_image_url} alt={artist.cover_image_url} className="cover_image" />  */}
           <img src={artist.profile_image_url} alt={artist.profile_image_url} className="profile_image" />
-          <UploadProfilePic user={user} />
+          {userProfile ? (
+            <UploadProfilePic user={user} />
+          ):(
+            null
+          )}
           <div className="artist-name">
             <h1>{artist.username}</h1>
           </div>
         </div>
-        <UploadCoverPic user={user}/>
+          {userProfile ? (
+            <UploadCoverPic user={user}/>
+          ) : (
+              null
+            )}
         <div className="profile__body">
           <div className="albums-tracks__container">
             <div className="album-track__btns">
