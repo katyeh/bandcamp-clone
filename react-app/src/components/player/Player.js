@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Controls from './Controls';
 import ProgressBar from './ProgressBar';
-// import ArtThumbnail from './ArtThumbnail';
+import ArtThumbnail from './ArtThumbnail';
 import { setCurrentTrack } from '../../store/actions/playerActions'
 import AudioMotion from './AudioMotion'
 import Details from './Details'
@@ -51,10 +51,12 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
   return (
     <div className="player">
       <div className='controls'>
-        <ArtThumbnail info={tracks[currentTrackIndex]} />
-        <Details
-          info={tracks[currentTrackIndex]}
-        />
+        <div className="player__info">
+          <ArtThumbnail info={tracks[currentTrackIndex]} />
+          <Details
+            info={tracks[currentTrackIndex]}
+          />
+        </div>
         <Controls className='buttons'
           isPlaying={isPlaying}
           // setIsPlaying={setIsPlaying}

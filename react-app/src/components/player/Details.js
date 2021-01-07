@@ -5,8 +5,10 @@ const Details = ({ info }) => {
   const { album_art_url, album_title, trackId, albumId, artist_name, title } = info
   return (
 
-    <div className='player__details'>
+    <div className='details'>
         {title}
+        <br/>
+        {artist_name}
     </div>
   )
 }
