@@ -18,7 +18,6 @@ const CurrentTracks = ({ getTracks, tracks }) => {
             <div className='tracks__section'>
                 {tracks.map((track) => {
                     return (
-                            // <li key={track.title}>{track.title}</li>
                             <AlbumCard
                             key={track.id}
                             albumCover={track.album_art_url}
