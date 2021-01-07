@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from "react-modal";
 import './TipModal.css'
-
+import CloseIcon from '@material-ui/icons/Close';
 
 Modal.setAppElement('#root');
 
@@ -27,13 +27,15 @@ const TipModal = ({user, artist}) => {
                 isOpen={modalIsOpen}
                 onRequestClose={() => setIsOpen(false)}
                 contentLabel="Tip Modal"
-                className="login-modal"
+                className="modal modal--tip"
                 overlayclassName="modal__overlay"
                 shouldCloseOnOverlayClick={true}
             >
                 <div className="modal__header">
                     <h2>Tip</h2>
-                    <button className="modal__close-btn" onClick={() => setIsOpen(false)}>X</button>
+                    <div className="modal__close-btn" onClick={() => setIsOpen(false)}>
+                      <CloseIcon style={{fontSize: 30}} />
+                    </div>
                 </div>
 
                 <form onSubmit={onTip} >
