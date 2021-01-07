@@ -13,13 +13,11 @@ const CurrentTracks = ({ getTracks, tracks }) => {
     }, [artistId])
 
     if (!tracks) return null
-    console.log('---------------------', tracks)
     return (
         <div>
             <div className='tracks__section'>
                 {tracks.map((track) => {
                     return (
-                            // <li key={track.title}>{track.title}</li>
                             <AlbumCard
                             key={track.id}
                             albumCover={track.album_art_url}
