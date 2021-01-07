@@ -26,6 +26,14 @@
   height: 100%;
   display: flex;
   align-items: center;
+
+  @include respond-medium {
+    display: none;
+  }
+
+  @include respond-small {
+    font-size: 1.3rem;
+  }
 }
 
 .controls {
@@ -34,11 +42,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include respond-medium {
+      width: 70%;
+    }
+
     i {
       padding-left: 10px;
       padding-right: 10px;
     }
   }
+  
   i:hover{
     color: $color-accent-light;
   }
@@ -52,6 +66,11 @@
     .bar__time {
       color: white;
       font-size: 16px;
+
+      @include respond-small {
+        color: white;
+        font-size: 1.2rem;
+      }
     }
 
     .bar__progress {
@@ -69,40 +88,12 @@
         width: 16px;
         border-radius: 50%;
         background-color: $color-accent-dark;
+
+        @include respond-small {
+          width: 1.2rem;
+          height: 1.2rem;
+        }
       }
-    }
-  }
-
-  @media only screen and (max-width: 1700px) {
-    .audio-motion {
-      position: relative;
-      right: 0;
-    }
-  }
-
-  @media only screen and (max-width: 1200px) {
-    .audio-motion {
-      display: none;
-    }
-
-    .controls {
-      width: 70%;
-    }
-  }
-
-  @media only screen and (max-width: 600px) {
-    .player {
-      font-size: 1.3rem;
-    }
-
-    .bar .bar__progress .bar__progress__knob {
-      width: 1.2rem;
-      height: 1.2rem;
-    }
-
-    .bar .bar__time {
-      color: white;
-      font-size: 1.2rem;
     }
   }
 
