@@ -8,9 +8,7 @@ import ArtistFollowers from './ArtistFollowers'
 import TipModal from './TipModal'
 import UploadAlbum from './UploadAlbum'
 import { getAlbums } from '../../store/actions/albumActions'
-
-import { updateCoverImage } from '../../store/actions/updatePhotoActions';
-import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
+import UploadCoverPic from './UploadCoverPic'
 
 
 function ArtistProfile({ getOneArtist, artist, user, albums, getAlbums}) {
@@ -19,7 +17,7 @@ function ArtistProfile({ getOneArtist, artist, user, albums, getAlbums}) {
   const [albumDisplay, setAlbumDisplay] = useState(true);
   const [albumClass, setAlbumClass] = useState(true);
   const [trackClass, setTrackClass] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
+
 
 
 
@@ -27,25 +25,6 @@ function ArtistProfile({ getOneArtist, artist, user, albums, getAlbums}) {
     getAlbums()
   }, [])
 
-
-  //upload cover photo
-
-  const updateImageUrl = (e) => {
-    setImageUrl(e.target.files[0]);
-  }
-
-  const onUpload = async (e) => {
-    e.preventDefault();
-    if (user) {
-      let formData = new FormData();
-      formData.append('cover_image_url', imageUrl)
-      formData.append('user_id', user.id)
-
-      await dispatch(updateCoverImage(formData, user.id))
-    }
-  }
-
-  //upload cover photo
 
 
   let userProfile = false;
@@ -96,25 +75,6 @@ function ArtistProfile({ getOneArtist, artist, user, albums, getAlbums}) {
             <h1>{artist.username}</h1>
           </div>
         </div>
-          <form onSubmit={onUpload}>
-          <div className="file_input_wrap">
-            <input
-              type="file"
-              name="cover_image_url"
-              id="cover_input"
-              onChange={updateImageUrl}
-              className="hide"
-            />
-            <label htmlFor="cover_input" className="coverimage__update-btn">
-              <div className="coverimage__div">
-                <PhotoCameraIcon
-                  style={{ fontSize: 30 }}
-                />
-                <p>Edit Cover Photo</p>
-              </div>
-            </label>
-          </div>
-          </form>
         <div className="profile__body">
           <div className="albums-tracks__container">
             <div className="album-track__btns">
