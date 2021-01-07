@@ -53,17 +53,17 @@ const UploadTrack = ({modalIsOpen, user}) => {
       onRequestClose={() => setIsOpen2(false)}
       contentLabel="Signup Modal"
       className="signup-modal"
-      overlayClassName="overlay"
+      overlayclassName="modal__overlay"
       shouldCloseOnOverlayClick={true}
     >
-      <div className="login-header">
+      <div className="modal__header">
         <h2>Sign Up</h2>
-        <button className="close-btn" onClick={() => setIsOpen2(false)}>X</button>
+        <button className="modal__close-btn" onClick={() => setIsOpen2(false)}>X</button>
       </div>
 
       <form onSubmit={onUpload}>
 
-        <div className="login-content">
+        <div className="modal__content">
           <label>Title</label>
           <input
             type="text"
@@ -72,7 +72,7 @@ const UploadTrack = ({modalIsOpen, user}) => {
             value={title}
           ></input>
         </div>
-        <div className="login-content">
+        <div className="modal__content">
           <label>Lyrics</label>
           <input
             type="text"
@@ -81,7 +81,7 @@ const UploadTrack = ({modalIsOpen, user}) => {
             value={lyrics}
           ></input>
         </div>
-          <div className="login-content">
+          <div className="modal__content">
             <label>Choose Song</label>
             <input
               type="file"
@@ -89,8 +89,8 @@ const UploadTrack = ({modalIsOpen, user}) => {
               onChange={updateNewTrackUrl}
             ></input>
           </div>
-        <div className="login-content">
-          <button className="login-btn" type="submit">Upload</button>
+        <div className="modal__content">
+          <button className="modal__btn" type="submit">Upload</button>
         </div>
       </form>
     </Modal>
