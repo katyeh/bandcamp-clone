@@ -92,7 +92,7 @@ const NavSearch = () => {
                     setDisplay(!display)
                   }}
                   // onClick={() => updateResults(value.title)}
-                  className="search__option"
+                  className="navsearch__option"
                   key={i}
                   tabIndex="0"
                 >
@@ -111,7 +111,7 @@ const NavSearch = () => {
                     history.push(`/artists/${value.id}`)
                     setDisplay(!display)
                   }}
-                  className="search__option"
+                  className="navsearch__option"
                   key={i}
                   tabIndex="0"
                 >
