@@ -13,7 +13,6 @@ const CurrentTracks = ({ getTracks, tracks }) => {
     }, [artistId])
 
     if (!tracks) return null
-    console.log('---------------------', tracks)
     return (
         <div>
             <div className='tracks__section'>
