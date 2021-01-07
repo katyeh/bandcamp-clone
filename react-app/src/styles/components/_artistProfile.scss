@@ -1,5 +1,5 @@
 .profile-main__container {
-   background-color: #eeeeee;
+   background-color: lightgray;
    display: grid;
    grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
 }
@@ -73,7 +73,9 @@ background-size: 100% 100%;
 .albums-tracks__container {
    width: 100%;
    position: absolute;
+  height: 5rem;
    left: 0;
+
 }
 
 .artist-info__container {
@@ -82,7 +84,7 @@ background-size: 100% 100%;
    top: 5rem;
    background-color: $color-dark;
    width: 40rem;
-   height: 110rem;
+   height: 100%;
    li {
       color: #fff;
    }
