@@ -1,20 +1,6 @@
 .signup-modal {
-  display: grid;
-  grid-template-rows: 10rem 10rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 3rem;
-  outline: none;
+  @include modal();
   height: 65rem;
-  width: 70rem;
-  border-radius: 1rem;
-  margin: 0 auto;
-  overflow-y: scroll;
-  box-shadow: $box-shadow1;
-  overflow: hidden;
 }
 
 

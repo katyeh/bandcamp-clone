@@ -44,3 +44,20 @@
     transition: opacity .2s ease-in;
   }
 }
+
+@mixin modal() {
+  display: grid;
+  grid-template-rows: 10rem 10rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 3rem;
+  outline: none;
+  border-radius: 1rem;
+  margin: 0 auto;
+  box-shadow: $box-shadow1;
+  height: max-content;
+  width: 65rem;
+}
