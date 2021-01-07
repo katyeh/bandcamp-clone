@@ -5,7 +5,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 8rem;
+  height: 10rem;
   background: $color-dark;
   z-index: 99;
   display: flex;
@@ -14,10 +14,18 @@
   padding: 0 1rem;
 }
 
+.placeholder {
+  background: pink;
+  height: 100%;
+  width: 30rem;
+}
+
 .audio-motion {
-  position: absolute;
+  // position: absolute;
   right: 5rem;
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .controls {
