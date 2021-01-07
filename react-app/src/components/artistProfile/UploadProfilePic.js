@@ -59,11 +59,11 @@ const UploadProfilePic = ({ user }) => {
             </div>
 
             {isOpen ?
-                <div className="modal">
-                    <section className="modal__main">
-                        <div className="modal__header">
+                <div className="profilemodal">
+                    <section className="profilemodal__main">
+                        <div className="profilemodal__header">
                             <div className="profilemodal__label">Update Profile Picture</div>
-                            <div className="modal__close">
+                            <div className="profilemodal__close">
                                 <CloseIcon
                                     style={{ fontSize: 30 }}
                                     onClick={() => setIsOpen(false)}
@@ -71,18 +71,18 @@ const UploadProfilePic = ({ user }) => {
                             </div>
                         </div>
 
-                        <div className="modal__preview-wrap">
-                            <div className="modal__img-div">
+                        <div className="profilemodal__preview-wrap">
+                            <div className="profilemodal__img-div">
                                 <img
-                                    className="modal__preview-img"
+                                    className="profilemodal__preview-img"
                                     src={imagePreview}
                                     id="imagePreview"
                                     alt="Preview"
                                 />
                             </div>
                         </div>
-                        <div className="modal__btn-div">
-                            <button className="modal__btn" type="submit">
+                        <div className="profilemodal__btn-div">
+                            <button className="profilemodal__btn" type="submit">
                             <AddIcon style={{ fontSize: 30 }} />
                             Upload Profile Photo</button>
                         </div>
