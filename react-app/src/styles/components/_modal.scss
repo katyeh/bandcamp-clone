@@ -78,6 +78,10 @@
     font-size: 1.6rem;
     font-weight: 600;
     margin: 2rem 1rem;
+
+    &-div {
+      display: flex;
+    }
   }
 
   &__close-btn {
