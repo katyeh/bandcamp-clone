@@ -93,9 +93,9 @@ const [imagePreview, setImagePreview] = useState("");
                           </div>
                       </div>
                       <div className="modal__btn-div">
-                          <button className="profilemodal__btn" type="submit">
+                          <button className="modal__btn" type="submit">
                               <AddIcon style={{ fontSize: 30 }} />
-              Upload Photo</button>
+              Upload Cover Photo</button>
                       </div>
                   </section>
               </div>
