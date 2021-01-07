@@ -59,25 +59,25 @@ const Login = ({ authenticated, setAuthenticated }) => {
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}
         contentLabel="Login Modal"
-        className="login-modal"
-        overlayClassName="overlay"
+        className="modal modal--login"
+        overlayclassName="modal__overlay"
         shouldCloseOnOverlayClick={true}
         closeTimeoutMS={500}
       >
-        <div className="login-header">
+        <div className="modal__header">
           <h2>Login</h2>
-          <div className="close-btn" onClick={() => setIsOpen(false)}>
+          <div className="modal__close-btn" onClick={() => setIsOpen(false)}>
             <CloseIcon style={{fontSize: 30}} />
           </div>
         </div>
 
-        <form className="login-form" onSubmit={onLogin}>
+        <form className="modal__form" onSubmit={onLogin}>
           <div className="modal__error-container">
             {errors.map((error) => (
               <div className="modal__error" key={error.id}>{error}</div>
             ))}
           </div>
-          <div className="login-content">
+          <div className="modal__content">
             <input
               name="email"
               type="text"
@@ -86,7 +86,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
               onChange={updateEmail}
             />
           </div>
-          <div className="login-content">
+          <div className="modal__content">
             <input
               name="password"
               type="password"
@@ -95,9 +95,9 @@ const Login = ({ authenticated, setAuthenticated }) => {
               onChange={updatePassword}
             />
           </div>
-          <div className="login-btn__div">
-            <button className="login-btn" type="submit">Login</button>
-            <button className="login-btn" onClick={onDemo} >Demo User</button>
+          <div className="modal__btn__div">
+            <button className="modal__btn" type="submit">Login</button>
+            <button className="modal__btn" onClick={onDemo} >Demo User</button>
           </div>
         </form>
 
