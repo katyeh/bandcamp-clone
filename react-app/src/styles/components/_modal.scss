@@ -1,0 +1,116 @@
+.modal {
+  display: grid;
+  grid-template-rows: 10rem 10rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 3rem;
+  outline: none;
+  border-radius: 1rem;
+  margin: 0 auto;
+  box-shadow: $box-shadow1;
+  width: 65rem;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 2rem;
+  }
+
+  &__error-container {
+    max-height: 5rem;
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
+
+  &__error {
+    width: 60rem;
+    text-align: center;
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 2;
+  }
+
+  &__content {
+    padding-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: -6rem;
+    height: 10rem;
+  
+    input {
+        padding: 2rem;
+        border-radius: .8rem;
+        border: none;
+        outline: none;
+    }
+    input:focus {
+        background-color: #f8e4ff;
+    }
+  }
+
+  &__btn {
+    padding: 1rem;
+    margin-top: 2rem;
+    border-radius: 8px;
+    color: #fff;
+    background-color: $color-accent;
+    width: 25rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 2rem 1rem;
+  }
+
+  &__close-btn {
+    padding: .3rem;
+    background-color: white;
+    cursor: pointer;
+  }
+
+  &--login {
+    height: 40rem;
+  }
+
+  &--signup {
+    height: 65rem;
+  }
+
+  &--tip {
+    height: 40rem;
+  }
+}
+
+// React modal transitions
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+
+}
+
+.ReactModal__Overlay--after-open{
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+  opacity: 0;
+}

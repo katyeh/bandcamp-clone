@@ -10,7 +10,12 @@ import currentTracks from './currentTracksReducer'
 import currentAlbums from './currentAlbumsReducer'
 import followers from './followersReducer'
 
-const rootReducer = combineReducers({
+const DESTROY_SESSION = "DESTROY_SESSION"
+export const destroySessionAction = () => ({
+  type: DESTROY_SESSION
+})
+
+const appReducer = combineReducers({
   album,
   user,
   player,
@@ -22,5 +27,12 @@ const rootReducer = combineReducers({
   currentAlbums,
   followers
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === DESTROY_SESSION) {
+    state = undefined;
+  }
+  return appReducer(state, action);
+}
 
 export default rootReducer;

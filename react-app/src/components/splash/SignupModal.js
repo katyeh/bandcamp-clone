@@ -28,7 +28,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
 
       if (user && !user.errors) {
         setAuthenticated(true);
-        history.push("/")
+        history.push("/");
       }
     }
   };
@@ -60,21 +60,21 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}
         contentLabel="Signup Modal"
-        className="signup-modal"
-        overlayClassName="overlay"
+        className="modal modal--signup"
+        overlayclassName="modal__overlay"
         shouldCloseOnOverlayClick={true}
         closeTimeoutMS={500}
       >
-        <div className="login-header">
+        <div className="modal__header">
           <h2>Sign Up</h2>
-          <div className="close-btn" onClick={() => setIsOpen(false)}>
+          <div className="modal__close-btn" onClick={() => setIsOpen(false)}>
             <CloseIcon style={{fontSize: 30}} />
           </div>
         </div>
 
-        <form className="signup-form" onSubmit={onSignUp}>
+        <form className="modal__form" onSubmit={onSignUp}>
 
-          <div className="login-content">
+          <div className="modal__content">
             <input
               type="text"
               name="name"
@@ -83,7 +83,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               placeholder="name"
             ></input>
           </div>
-          <div className="login-content">
+          <div className="modal__content">
             <input
               type="text"
               name="username"
@@ -92,7 +92,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               placeholder="username"
             ></input>
           </div>
-          <div className="login-content">
+          <div className="modal__content">
             <input
               type="text"
               name="email"
@@ -101,7 +101,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               placeholder="Email"
             ></input>
           </div>
-          <div className="login-content">
+          <div className="modal__content">
             <input
               type="password"
               name="password"
@@ -110,7 +110,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               placeholder="Password"
             ></input>
           </div>
-          <div className="login-content">
+          <div className="modal__content">
             <input
               type="password"
               name="repeat_password"
@@ -120,8 +120,8 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               placeholder="Confirm Password"
             ></input>
           </div>
-          <div className="login-btn__div">
-            <button className="login-btn" type="submit">Sign Up</button>
+          <div className="modal__btn__div">
+            <button className="modal__btn" type="submit">Sign Up</button>
           </div>
         </form>
       </Modal>
