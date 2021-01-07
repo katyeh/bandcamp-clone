@@ -5,7 +5,6 @@ import Modal from "react-modal";
 import {loadUser} from '../../store/actions/signupActions'
 import { useDispatch} from 'react-redux';
 import CloseIcon from '@material-ui/icons/Close';
-import { LOAD_USER } from '../../store/reducers/signupReducer';
 
 Modal.setAppElement('#root');
 

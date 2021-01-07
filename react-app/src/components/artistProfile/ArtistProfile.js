@@ -125,9 +125,11 @@ function ArtistProfile({ getOneArtist, artist, user, albums, getAlbums}) {
               <strong>City</strong> {artist.city}
             </li>
             <div className="tip__div">
-              <h4>Enjoy my music? Leave a tip!</h4>
               {!userProfile ? (
+                <>
+                <h4>Enjoy my music? Leave a tip!</h4>
                 <TipModal user={user} artist={artist}/>
+                </>
                 ) : (
                 <div><UploadAlbum user={user} albums={albums} />
                 <div className="stash">
