@@ -17,7 +17,7 @@ const HomeContainer = () => {
         await dispatch(getArtists(user.id));
       }
     })()
-  }, []);
+  }, [dispatch, user.id]);
 
   return (
     <Home tracks={tracks} artists={artists}/>

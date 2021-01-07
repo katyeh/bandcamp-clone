@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Controls from './Controls';
 import ProgressBar from './ProgressBar';
-import ArtThumbnail from './ArtThumbnail';
+// import ArtThumbnail from './ArtThumbnail';
 import { setCurrentTrack } from '../../store/actions/playerActions'
 import AudioMotion from './AudioMotion'
 
@@ -42,7 +42,7 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
       audio.currentTime = clickedTime;
       setClickedTime(null);
     }
-  });
+  }, [audio, clickedTime, currentTime, isPlaying]);
 
 
   if (!audio) return null;
@@ -70,7 +70,6 @@ const PlayerContainer = () => {
   const isPlaying = useSelector(state => state.player.isPlaying)
   // const [tracks, setTracks] = useState()
   const trackIndex = useSelector(state => Number(state.player.currentTrackIndex))
-  debugger;
   // const trackUrl = useSelector(state => {
   //   if (!state.player.tracksData) return '';
   //   return state.player.tracksData[trackIndex].mp3_url;
@@ -90,7 +89,7 @@ const PlayerContainer = () => {
         audioRef.current.src = trackList[trackIndex].mp3_url;
       }
     }
-  }, [trackList])
+  }, [trackList, trackIndex])
 
   if (!trackList) return null
 

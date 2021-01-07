@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import SearchContainer from './SearchBar';
 import { useDispatch, useSelector } from 'react-redux';
-import FeaturedTracks from './FeaturedTracks';
+// import FeaturedTracks from './FeaturedTracks';
 import Section from '../home/Section';
 import { getTracks } from '../../store/actions/trackActions';
 import Signup from "./SignupModal";
@@ -9,13 +9,7 @@ import FeaturedArtists from './FeaturedArtists';
 // import "./category.js"
 
 const Splash = ({ tracks, authenticated, setAuthenticated }) => {
-  const [activeClass, setActiveClass] = useState({black: false});
 
-  const changeColor = () => {
-    setActiveClass({black: true})
-  }
-
- let btn_class = activeClass.black ? "blackButton" : "blueButton"
  return (
    <div>
       <SearchContainer />
@@ -27,7 +21,7 @@ const Splash = ({ tracks, authenticated, setAuthenticated }) => {
         </div>
       </div>
       <div className="categories__container">
-        <span className="category" onClick={changeColor}>electronic</span>
+        <span className="category">electronic</span>
         <span className="category">rock</span>
         <span className="category">metal</span>
         <span className="category">hip-hop</span>
@@ -54,10 +48,10 @@ const Splash = ({ tracks, authenticated, setAuthenticated }) => {
           <a className="splash__footer-link" href="https://github.com/katyeh/busker">Github</a>
         </div>
         <div className="contributors__container">
-          <a className="splash__footer-link" target="_blank" href="https://github.com/Alejandro-Larumbe">Alejandro Larumbe</a>
-          <a className="splash__footer-link" target="_blank" href="https://github.com/gane11">Aleksandar Dordevic</a>
-          <a className="splash__footer-link" target="_blank" href="https://github.com/smilelk4">Yuka Moribe</a>
-          <a className="splash__footer-link" target="_blank" href="https://github.com/katyeh/">Kathleen Yeh</a>
+          <a className="splash__footer-link" href="https://github.com/Alejandro-Larumbe">Alejandro Larumbe</a>
+          <a className="splash__footer-link" href="https://github.com/gane11">Aleksandar Dordevic</a>
+          <a className="splash__footer-link" href="https://github.com/smilelk4">Yuka Moribe</a>
+          <a className="splash__footer-link" href="https://github.com/katyeh/">Kathleen Yeh</a>
         </div>
       </div>
 
@@ -71,7 +65,7 @@ const SplashContainer = () => {
 
   useEffect(() => {
     dispatch(getTracks());
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       <Splash tracks={tracks} />
