@@ -108,7 +108,7 @@ const UploadAlbum = ({ user, albums }) => {
             isOpen={modalIsOpen}
             onRequestClose={() => setIsOpen(false)}
             contentLabel="Signup Modal"
-            className="signup-modal"
+            className="modal modal--signup modal__upload"
             overlayclassName="modal__overlay"
             shouldCloseOnOverlayClick={true}
         >
@@ -134,7 +134,7 @@ const UploadAlbum = ({ user, albums }) => {
                         type="file"
                         name="album_cover"
                         onChange={updateNewAlbumCover}
-                        className="file-upload"
+                        className="hide file-upload"
                     ></input>
                 </div>
                 <div className="modal__content">
