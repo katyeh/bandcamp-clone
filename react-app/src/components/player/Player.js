@@ -5,6 +5,7 @@ import ProgressBar from './ProgressBar';
 import ArtThumbnail from './ArtThumbnail';
 import { setCurrentTrack } from '../../store/actions/playerActions'
 import AudioMotion from './AudioMotion'
+import Details from './Details'
 
 function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
   const [clickedTime, setClickedTime] = useState();
@@ -50,7 +51,10 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
   return (
     <div className="player">
       <div className='controls'>
-        <ArtThumbnail info={tracks[currentTrackIndex]}/>
+        <ArtThumbnail info={tracks[currentTrackIndex]} />
+        <Details
+          info={tracks[currentTrackIndex]}
+        />
         <Controls className='buttons'
           isPlaying={isPlaying}
           // setIsPlaying={setIsPlaying}
