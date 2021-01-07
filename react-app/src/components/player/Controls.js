@@ -13,7 +13,7 @@ const Controls = ({isPlaying, currentTrackIndex, setCurrentTrack, tracks, setIsP
     }
   }
   return (
-    <div style={style}>
+    <div>
         <i className="fa fa-fast-backward" onClick={() => skipTrack(false)}></i>
         <i
           className={!isPlaying?"fa fa-play":"fas fa-pause"}
@@ -25,12 +25,5 @@ const Controls = ({isPlaying, currentTrackIndex, setCurrentTrack, tracks, setIsP
     </div>
   )
 }
-
-let style = {
-  padding:'20px',
-  color:'white',
-  display: "flex",
-}
-
 
 export default Controls
