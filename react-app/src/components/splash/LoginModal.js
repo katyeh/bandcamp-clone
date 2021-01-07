@@ -44,7 +44,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
     const user = await login('ladygaga@queen.com', 'password');
     if (!user.errors) {
       setAuthenticated(true);
-      dispatch(loadUser(6));
+      dispatch(loadUser(user.id));
       setIsOpen(false);
       history.push("/")
     } else {
