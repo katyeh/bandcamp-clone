@@ -54,5 +54,10 @@
 }
 
 .artist-right__item {
+    display: flex;
     padding: 2rem;
+}
+
+.artist__location {
+    padding-left: .5rem;
 }

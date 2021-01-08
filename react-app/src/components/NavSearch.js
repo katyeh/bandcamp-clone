@@ -70,6 +70,7 @@ const NavSearch = () => {
                   onClick={() => {
                     history.push(`/artists/${value.artist_id}`)
                     setDisplay(!display)
+                    setSearch("")
                   }}
                   // onClick={() => updateResults(value.title)}
                   className="navsearch__option"
@@ -90,6 +91,7 @@ const NavSearch = () => {
                   onClick={() => {
                     history.push(`/artists/${value.artist_id}`)
                     setDisplay(!display)
+                    setSearch("")
                   }}
                   // onClick={() => updateResults(value.title)}
                   className="navsearch__option"
@@ -110,6 +112,7 @@ const NavSearch = () => {
                   onClick={() => {
                     history.push(`/artists/${value.id}`)
                     setDisplay(!display)
+                    setSearch("")
                   }}
                   className="navsearch__option"
                   key={i}
