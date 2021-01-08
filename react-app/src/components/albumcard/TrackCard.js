@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { play, pause, getAlbumPlayer, setCurrentTrack } from '../../store/actions/playerActions';
 
-const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, currentTrackIndex, isPlaying, currentAlbum, tracksIds }) => {
+const TrackCard = ({ albumCover, albumId, title, artistName, tracks, artistId, currentTrackIndex, isPlaying, currentAlbum, tracksIds }) => {
   const dispatch = useDispatch();
 
   const parseAlbumId = (st) => {
@@ -83,14 +83,14 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
   )
 }
 
-const AlbumCardContainer = ({ albumCover, albumId, title, artistName, tracks, artistId }) => {
+const TrackCardContainer = ({ albumCover, albumId, title, artistName, tracks, artistId }) => {
   const currentTrackIndex = useSelector(state => state.player.currentTrackIndex)
   const isPlaying = useSelector(state => state.player.isPlaying)
   const currentAlbum = useSelector(state => state.player.albumId)
   const tracksIds = useSelector(state => state.player.tracksIds)
 
   return (
-    <AlbumCard
+    <TrackCard
       albumCover={albumCover}
       albumId={albumId}
       title={title}
@@ -102,9 +102,9 @@ const AlbumCardContainer = ({ albumCover, albumId, title, artistName, tracks, ar
       currentAlbum={currentAlbum}
       tracksIds={tracksIds}
     >
-    </AlbumCard>
+    </TrackCard>
   )
 }
 
 
-export default AlbumCardContainer;
+export default TrackCardContainer;

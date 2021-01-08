@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getTracks } from "../../store/actions/currentTracksAction"
-import AlbumCard from '../albumcard/AlbumCard'
+import TrackCard from '../albumcard/TrackCard'
 
 
 const CurrentTracks = ({ getTracks, tracks }) => {
@@ -18,7 +18,7 @@ const CurrentTracks = ({ getTracks, tracks }) => {
             <div className='tracks__section'>
                 {tracks.map((track) => {
                     return (
-                            <AlbumCard
+                            <TrackCard
                             key={track.id}
                             albumCover={track.album_art_url}
                             albumId={track.album_id}
