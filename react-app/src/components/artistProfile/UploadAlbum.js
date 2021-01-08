@@ -103,7 +103,7 @@ const UploadAlbum = ({ user, albums }) => {
 
     return (
     <>
-        <button className="signup__btn" onClick={() => setIsOpen(true)}>Upload Album</button>
+        <button className="signup__btn upload-album" onClick={() => setIsOpen(true)}>Upload Album</button>
         <Modal
             isOpen={modalIsOpen}
             onRequestClose={() => setIsOpen(false)}

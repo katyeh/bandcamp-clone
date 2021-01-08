@@ -88,8 +88,13 @@ function ArtistProfile({ getOneArtist, artist, user, albums, getAlbums}) {
         <div className="profile__body">
           <div className="albums-tracks__container">
             <div className="album-track__btns">
-              <button className={`profile-btn album-btn ${albumClass === true ? "white-btn" : ""}`} onClick={() => showAlbums()}>Albums</button>
-              <button className={`profile-btn track-btn ${trackClass === true ? "white-btn" : ""}`} onClick={() => showTracks()}>Tracks</button>
+              <div>
+                <button className={`profile-btn album-btn ${albumClass === true ? "white-btn" : ""}`} onClick={() => showAlbums()}>Albums</button>
+                <button className={`profile-btn track-btn ${trackClass === true ? "white-btn" : ""}`} onClick={() => showTracks()}>Tracks</button>
+              </div>
+              <div>
+                <UploadAlbum user={user} albums={albums} />
+              </div>
             </div>
             {trackDisplay ?
               <div className="tracks__container">
@@ -131,10 +136,10 @@ function ArtistProfile({ getOneArtist, artist, user, albums, getAlbums}) {
                 <TipModal user={user} artist={artist}/>
                 </>
                 ) : (
-                <div><UploadAlbum user={user} albums={albums} />
+ /*                <div><UploadAlbum user={user} albums={albums} />
+                </div> */
                 <div className="stash">
                   <p>Dough: {artist.tip_stash}</p>
-                </div>
                 </div>
               )}
             </div>

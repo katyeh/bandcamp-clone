@@ -112,6 +112,8 @@ background-size: 100% 100%;
    background-color: $color-dark;
    outline: none;
    width: 100%;
+   display:flex;
+   justify-content: space-between;
 
    .profile-btn {
       background-color: $color-dark;
@@ -210,15 +212,19 @@ background-size: 100% 100%;
       }
    }
 
-   // .black-btn {
-   //    background-color: $color-dark;
-   //    color: #fff;
-   // }
-
    .white-btn {
       background-color: #fff;
       color: #000;
       border-top: 1px solid $color-dark;
       border-bottom: 1px solid #fff;
    }
+}
+
+.upload-album {
+   position: relative;
+   top: 1.2rem;
+   right: 1rem;
+}
+.file_input_wrap {
+   display: none;
 }
