@@ -1,17 +1,9 @@
 .login__btn {
-    display: block;
-    padding: .2rem 1.5rem;
-    height: 3.5rem;
-    // border-color: #ccc;
-    color: #fff;
-    background-color: transparent;
-    border-radius: .8rem;
-    cursor: pointer;
-    outline: none;
+  @include button(transparent, rgba(0, 0, 0, .05));
 }
 
 .homelogin__btn {
-  background-color: rgba(255, 255, 255, .2);
+  background-color: rgba(0, 255, 255, .2);
   border: none;
   border-radius: 3px;
   font-size: 1rem;
