@@ -40,7 +40,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
   const onDemo = async (e) => {
     e.preventDefault();
-    const user = await login('ladygaga@queen.com', 'password');
+    const user = await login('demo@user.com', 'password');
     if (!user.errors) {
       setAuthenticated(true);
       dispatch(loadUser(user.id));
