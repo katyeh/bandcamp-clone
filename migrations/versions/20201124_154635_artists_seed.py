@@ -131,7 +131,20 @@ def upgrade():
             'tip_stash': 82,
             'dough': 1000,
             'hashed_password': 'pbkdf2:sha256:150000$0Y70Jx11$5170eba1cde3b4481c1a289401d7273375faa4691e3ff10e8bd1ac4e9784a5c6'
-        }
+        },
+        {
+            'name': 'Demo User',
+            'username': 'demouser',
+            'email': 'demo@user.com',
+            'bio': 'Hey there, If you want to upload music just press on the button above.',
+            'country': 'Earth',
+            'city': 'Paradise City',
+            'profile_image_url': 'https://busker2.s3.amazonaws.com/defaultimage2.jpeg',
+            'cover_image_url': 'https://busker2.s3.amazonaws.com/busker_logo.png',
+            'tip_stash': 120,
+            'dough': 20000,
+            'hashed_password': 'pbkdf2:sha256:150000$0Y70Jx11$5170eba1cde3b4481c1a289401d7273375faa4691e3ff10e8bd1ac4e9784a5c6'
+        },
     ])
 
 

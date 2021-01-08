@@ -379,7 +379,49 @@ def upgrade():
                 'lyrics': '<<URL HERE>>',
                 'album_id': 9,
                 'artist_id': 6
-            }
+            },
+            {
+                'title': 'Sandstorm',
+                'mp3_url': 'https://busker2.s3.amazonaws.com/songs/demo/Darude+Sandstorm+-lyrics+and+sing+along!!.mp3',
+                'lyrics': '<<URL HERE>>',
+                'album_id': 10,
+                'artist_id': 7
+            },
+            {
+                'title': 'Old Town Road',
+                'mp3_url': 'https://busker2.s3.amazonaws.com/songs/demo/Lil+Nas+X+-+Old+Town+Road+(Official+Video)+ft.+Billy+Ray+Cyrus.mp3',
+                'lyrics': '<<URL HERE>>',
+                'album_id': 10,
+                'artist_id': 7
+            },
+             {
+                'title': 'Sweet Caroline',
+                'mp3_url': 'https://busker2.s3.amazonaws.com/songs/demo/Neil+Diamond+-+Sweet+Caroline+Lyrics.mp3',
+                'lyrics': '<<URL HERE>>',
+                'album_id': 11,
+                'artist_id': 7
+            },
+            {
+                'title': 'Seven Nation Army',
+                'mp3_url': 'https://busker2.s3.amazonaws.com/songs/demo/Seven+Nation+Army.mp3',
+                'lyrics': '<<URL HERE>>',
+                'album_id': 11,
+                'artist_id': 7
+            },
+             {
+                'title': 'Dont stop believin',
+                'mp3_url': "https://busker2.s3.amazonaws.com/songs/demo/Journey+-+Don't+Stop+Believin'+(LYRICS).mp3",
+                'lyrics': '<<URL HERE>>',
+                'album_id': 12,
+                'artist_id': 7
+            },
+            {
+                'title': 'The Longest Road',
+                'mp3_url': 'https://busker2.s3.amazonaws.com/songs/demo/Morgan+Page+(ft.+Lissie)+-+The+Longest+Road+(Deadmau5+Remix)+%5BOfficial+Music+Video%5D.mp3',
+                'lyrics': '<<URL HERE>>',
+                'album_id': 12,
+                'artist_id': 7
+            },
         ])
 
 def downgrade():
