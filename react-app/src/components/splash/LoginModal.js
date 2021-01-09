@@ -5,7 +5,6 @@ import Modal from "react-modal";
 import {loadUser} from '../../store/actions/signupActions'
 import { useDispatch} from 'react-redux';
 import CloseIcon from '@material-ui/icons/Close';
-import { LOAD_USER } from '../../store/reducers/signupReducer';
 
 Modal.setAppElement('#root');
 
@@ -41,7 +40,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
   const onDemo = async (e) => {
     e.preventDefault();
-    const user = await login('ladygaga@queen.com', 'password');
+    const user = await login('demo@user.com', 'password');
     if (!user.errors) {
       setAuthenticated(true);
       dispatch(loadUser(user.id));

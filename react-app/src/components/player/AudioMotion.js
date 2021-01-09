@@ -11,7 +11,7 @@ const AudioMotion = ({audio, analyzer}) => {
         container.current,
         {
           source: audio,
-          height: 70,
+          height: 40,
           width: 400,
           mode: 10,
           lineWidth: 2,

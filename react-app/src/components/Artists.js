@@ -24,11 +24,11 @@ const ShowAllArtists = ({ getAllArtists, artists }) => {
                       </div>
                       <div className="artists-container__right">
                         <div className="artist-right__item">
-                          <h4>Name</h4>
-                          <div className="artist__name" key={artist.name}>{artist.name}</div>
+                          {/* <h4>Name</h4> */}
+                          <h3 className="artist__name" key={artist.name}>{artist.name}</h3>
                         </div>
                         <div className="artist-right__item">
-                          <h4>Location</h4>
+                          <p>Lives in</p>
                           <div className="artist__location">{artist.city},{artist.country}</div>
                         </div>
                       </div>

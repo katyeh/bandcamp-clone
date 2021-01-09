@@ -71,17 +71,34 @@ function ArtistProfile({ getOneArtist, artist, user, albums, getAlbums}) {
         >
           {/* <img src={artist.cover_image_url} alt={artist.cover_image_url} className="cover_image" />  */}
           <img src={artist.profile_image_url} alt={artist.profile_image_url} className="profile_image" />
-          <UploadProfilePic user={user} />
+          {userProfile ? (
+            <UploadProfilePic user={user} />
+          ):(
+            null
+          )}
           <div className="artist-name">
             <h1>{artist.username}</h1>
           </div>
         </div>
-        <UploadCoverPic user={user}/>
+          {userProfile ? (
+            <UploadCoverPic user={user}/>
+          ) : (
+              null
+            )}
         <div className="profile__body">
           <div className="albums-tracks__container">
             <div className="album-track__btns">
-              <button className={`profile-btn album-btn ${albumClass === true ? "white-btn" : ""}`} onClick={() => showAlbums()}>Albums</button>
-              <button className={`profile-btn track-btn ${trackClass === true ? "white-btn" : ""}`} onClick={() => showTracks()}>Tracks</button>
+              <div>
+                <button className={`profile-btn album-btn ${albumClass === true ? "white-btn" : ""}`} onClick={() => showAlbums()}>Albums</button>
+                <button className={`profile-btn track-btn ${trackClass === true ? "white-btn" : ""}`} onClick={() => showTracks()}>Tracks</button>
+              </div>
+              {userProfile ? (
+              <div>
+                <UploadAlbum user={user} albums={albums} />
+              </div>
+              ) : (
+                null
+              )}
             </div>
             {trackDisplay ?
               <div className="tracks__container">
@@ -117,14 +134,16 @@ function ArtistProfile({ getOneArtist, artist, user, albums, getAlbums}) {
               <strong>City</strong> {artist.city}
             </li>
             <div className="tip__div">
-              <h4>Enjoy my music? Leave a tip!</h4>
               {!userProfile ? (
+                <>
+                <h4>Enjoy my music? Leave a tip!</h4>
                 <TipModal user={user} artist={artist}/>
+                </>
                 ) : (
-                <div><UploadAlbum user={user} albums={albums} />
+ /*                <div><UploadAlbum user={user} albums={albums} />
+                </div> */
                 <div className="stash">
                   <p>Dough: {artist.tip_stash}</p>
-                </div>
                 </div>
               )}
             </div>

@@ -40,9 +40,9 @@ const NavBar = ({ setAuthenticated, user }) => {
             )}
           </li>
         </ul>
-        <form method="post">
+        <div>
           <NavSearch />
-        </form>
+        </div>
         {user.id && (
           <NavLink className="navbar__menu" to={`/artists/${user.id}`}>
             <img alt="" src={user.profileImageUrl} />

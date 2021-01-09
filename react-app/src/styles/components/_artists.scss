@@ -1,5 +1,5 @@
 .artists__container {
-    background-color: lightgray;
+    background-color: #eeeeee;
     display: grid;
     grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
 }
@@ -54,5 +54,10 @@
 }
 
 .artist-right__item {
+    display: flex;
     padding: 2rem;
+}
+
+.artist__location {
+    padding-left: .5rem;
 }
