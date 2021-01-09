@@ -51,12 +51,12 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
   return (
     <div className="player">
       <div className='controls'>
-        <div className="player__info">
+        {/* <div className="player__info">
           <ArtThumbnail info={tracks[currentTrackIndex]} />
           <Details
             info={tracks[currentTrackIndex]}
           />
-        </div>
+        </div> */}
         <Controls className='buttons'
           isPlaying={isPlaying}
           // setIsPlaying={setIsPlaying}
