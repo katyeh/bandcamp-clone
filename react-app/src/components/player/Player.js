@@ -52,10 +52,6 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
     <div className="player">
       <div className='controls'>
         {/* <div className="player__info">
-          <ArtThumbnail info={tracks[currentTrackIndex]} />
-          <Details
-            info={tracks[currentTrackIndex]}
-          />
         </div> */}
         <Controls className='buttons'
           isPlaying={isPlaying}
@@ -68,7 +64,10 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
       </div>
       <AudioMotion audio={audio} />
       <div className="placeholder">
-        Album info would come here!
+        {/* <ArtThumbnail info={tracks[currentTrackIndex]} /> */}
+        {/* <Details
+          info={tracks[currentTrackIndex]}
+        /> */}
       </div>
     </div>
   )

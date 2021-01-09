@@ -2,8 +2,9 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { play, pause, getAlbumPlayer, setCurrentTrack } from '../../store/actions/playerActions';
 
-const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, currentTrackIndex, isPlaying, currentAlbum, tracksIds, mode }) => {
+const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, currentTrackIndex, isPlaying, currentAlbum, currentTrackId, mode }) => {
   const dispatch = useDispatch();
+
 
   const parseAlbumId = (st) => {
     const chunks = st.split('_')
@@ -15,11 +16,8 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
     return chunks[chunks.length - 1]
   }
 
-  const clickHandler = (e) => {
-    const id = parseAlbumId(e.target.id)
-    const index = parseIndex(e.target.id)
-
-    if (currentAlbum === id && currentTrackIndex === index) {
+  const buttonClickHandler = () => {
+    if (currentAlbum === albumId) {
       if (isPlaying) {
         dispatch(pause())
       } else {
@@ -27,9 +25,32 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
       }
     } else {
       (async () => {
-        await dispatch(setCurrentTrack(index))
-        await dispatch(getAlbumPlayer(id))
-        // await dispatch(pause())
+        await dispatch(setCurrentTrack(0, tracks[0].id))
+        await dispatch(getAlbumPlayer(albumId))
+        await dispatch(pause())
+        await dispatch(play())
+      })()
+    }
+  }
+
+  const clickHandler = (i, trackId) => (e) => {
+    console.log(i, trackId, albumId)
+    // const id = parseAlbumId(e.target.id)
+    // const index = parseIndex(e.target.id)
+    console.log('currentAlbum: ', currentAlbum, ', albumId: ', albumId, ', currentTrackIndex: ', currentAlbum, ', i: ', i )
+
+    // if (currentAlbum === albumId && currentTrackIndex === i) {
+    if (currentTrackId === trackId) {
+      if (isPlaying) {
+        dispatch(pause())
+      } else {
+        dispatch(play())
+      }
+    } else {
+      (async () => {
+        await dispatch(setCurrentTrack(i, trackId))
+        await dispatch(getAlbumPlayer(albumId))
+        await dispatch(pause())
         await dispatch(play())
       })()
     }
@@ -49,7 +70,7 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
         <div className='button-album-info'>
           <span className="fa-stack fa-lg">
             <i className="fa fa-circle fa-stack-2x icon-background"></i>
-            <i id={`album_${albumId}_0`} onClick={clickHandler}
+            <i id={`album_${albumId}_0`} onClick={buttonClickHandler}
               className={
                 mode==='album'
                 ? isPlaying && parseInt(albumId) === parseInt(currentAlbum) ? "fas fa-pause fa-stack-1x pause" : "fa fa-play fa-stack-1x play"
@@ -73,7 +94,7 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
                   tracks.map((track, i) => {
                     return (
                       <tr key={track.id} className='table__row'>
-                        <td onClick={clickHandler} id={`track_${albumId}_${i}`}><img alt="" src={albumCover}/>{"      "+`  ${i + 1}      ${track.title}`}</td>
+                        <td onClick={clickHandler(i, track.id)} id={`track_${albumId}_${i}`}><img alt="" src={albumCover}/>{"      "+`  ${i + 1}      ${track.title}`}</td>
                       </tr>
                     )
                   })}
@@ -90,8 +111,9 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
 }
 
 const AlbumCardContainer = ({ albumCover, albumId, title, artistName, tracks, artistId }) => {
-  const currentTrackIndex = useSelector(state => state.player.currentTrackIndex)
   const isPlaying = useSelector(state => state.player.isPlaying)
+  const currentTrackIndex = useSelector(state => state.player.currentTrackIndex)
+  const currentTrackId = useSelector(state => state.player.currentTrackId)
   const currentAlbum = useSelector(state => state.player.albumId)
   const tracksIds = useSelector(state => state.player.tracksIds)
 
@@ -107,6 +129,7 @@ const AlbumCardContainer = ({ albumCover, albumId, title, artistName, tracks, ar
       isPlaying={isPlaying}
       currentAlbum={currentAlbum}
       tracksIds={tracksIds}
+      currentTrackId={currentTrackId}
     >
     </AlbumCard>
   )
