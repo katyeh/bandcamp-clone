@@ -120,7 +120,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               placeholder="Confirm Password"
             ></input>
           </div>
-          <div className="modal__btn__div">
+          <div className="modal__btn-container">
             <button className="modal__btn" type="submit">Sign Up</button>
           </div>
         </form>

@@ -63,13 +63,14 @@
 @mixin button-generic($bg-color, $hovered-color) {
   @include button;
   background: $bg-color;
+  transition: background .2s ease-in;
   
   &:hover {
     background: $hovered-color;
   }
 
   &:active {
-    background: $color-dark;
+    background: $color-accent-shade;
   }
 }
 
@@ -101,7 +102,7 @@
   }
 
   &:active::before {
-    background: $color-dark;
+    background: $color-accent-shade;
   }
 }
 
