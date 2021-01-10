@@ -97,6 +97,27 @@ def upgrade():
                 'single': True,
                 'artist_id': 6
             },
+            {
+                'title': 'Hype',
+                'album_art_url': 'https://busker2.s3.amazonaws.com/albumeimage/oldTownRoad.jpg',
+                'release_date': datetime(2040, 1, 1),
+                'single': False,
+                'artist_id': 7
+            },
+            {
+                'title': 'Game Nights',
+                'album_art_url': 'https://busker2.s3.amazonaws.com/albumeimage/sweetCaroline.jpeg',
+                'release_date': datetime(2040, 1, 1),
+                'single': False,
+                'artist_id': 7
+            },
+            {
+                'title': 'Party',
+                'album_art_url': 'https://busker2.s3.amazonaws.com/albumeimage/sevenNationArmy.jpeg',
+                'release_date': datetime(2040, 1, 1),
+                'single': False,
+                'artist_id': 7
+            },
         ])
 
 def downgrade():

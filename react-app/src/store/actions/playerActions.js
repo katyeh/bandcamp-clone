@@ -6,7 +6,7 @@ import { PLAY, PAUSE, LOAD_ALBUM, SET_TRACK } from '../reducers/playerReducer'
 export const loadAlbum = (album, id) => ({ type: LOAD_ALBUM, album, id })
 export const setPlay = () => ({ type: PLAY })
 export const setPause = () => ({ type: PAUSE })
-export const setCurrentTrack = (idx) => ({ type: SET_TRACK, idx })
+export const setCurrentTrack = (idx, trackId) => ({ type: SET_TRACK, idx, trackId })
 
 
 export const play = () => async(dispatch) => {

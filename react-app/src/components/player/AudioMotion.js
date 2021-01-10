@@ -23,7 +23,9 @@ const AudioMotion = ({audio, analyzer}) => {
           reflexRatio: .5,
           showBgColor: true,
           overlay: true,
-          bgAlpha: 0
+          bgAlpha: 0,
+          showScaleX: false,
+          showScaleY: false
         });
     }
   }, [audio]);

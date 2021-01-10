@@ -16,7 +16,7 @@ const CurrentTracks = ({ getTracks, tracks }) => {
     return (
         <div>
             <div className='tracks__section'>
-                {tracks.map((track) => {
+                {tracks.map((track, i) => {
                     return (
                             <TrackCard
                             key={track.id}
@@ -24,8 +24,9 @@ const CurrentTracks = ({ getTracks, tracks }) => {
                             albumId={track.album_id}
                             title={track.title}
                             artistName={track.artist_name}
-                            tracks={[]}
+                            trackId={track.id}
                             artistId={track.artistd}
+                            trackIndex={i}
                         />
 
                     )

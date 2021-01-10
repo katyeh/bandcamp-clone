@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { play, pause, getAlbumPlayer, setCurrentTrack } from '../../store/actions/playerActions';
 
-const TrackCard = ({ albumCover, albumId, title, artistName, tracks, artistId, currentTrackIndex, isPlaying, currentAlbum, tracksIds }) => {
+const TrackCard = ({ albumCover, albumId, title, artistName, artistId, currentTrackIndex, isPlaying, currentAlbum, currentTrackId, trackId, trackIndex }) => {
   const dispatch = useDispatch();
 
   const parseAlbumId = (st) => {
@@ -15,11 +15,13 @@ const TrackCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
     return chunks[chunks.length - 1]
   }
 
-  const clickHandler = (e) => {
+  const clickHandler = (trackId) => (e) => {
     const id = parseAlbumId(e.target.id)
     const index = parseIndex(e.target.id)
 
-    if (currentAlbum === id && currentTrackIndex === index) {
+    console.log(currentTrackIndex, trackId)
+
+    if (currentTrackId === trackId) {
       if (isPlaying) {
         dispatch(pause())
       } else {
@@ -27,9 +29,9 @@ const TrackCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
       }
     } else {
       (async () => {
-        await dispatch(setCurrentTrack(index))
+        await dispatch(setCurrentTrack(trackIndex, trackId))
         await dispatch(getAlbumPlayer(id))
-        // await dispatch(pause())
+        await dispatch(pause())
         await dispatch(play())
       })()
     }
@@ -49,58 +51,39 @@ const TrackCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
         <div className='button-album-info'>
             <span className="fa-stack fa-lg">
               <i className="fa fa-circle fa-stack-2x icon-background"></i>
-              <i id={`album_${albumId}_0`} onClick={clickHandler} className={isPlaying && parseInt(albumId) === parseInt(currentAlbum) ? "fas fa-pause fa-stack-1x pause" : "fa fa-play fa-stack-1x play" } />
+              <i id={`album_${albumId}_0`} onClick={clickHandler(trackId)} className={isPlaying && parseInt(trackId) === parseInt(currentTrackId) ? "fas fa-pause fa-stack-1x pause" : "fa fa-play fa-stack-1x play" } />
             </span>
 
           <div>
             <p className="artist" id={artistId} onClick={artistNameHandler}>{artistName}</p>
-            <p className="title">{tracks.length === 1 ? tracks[0].title : title}</p>
+            <p className="title">{title}</p>
           </div>
         </div>
-        <div className='graphic'></div>
-        {tracks.length > 1 ?
-
-          <div className='table__container'>
-            <table className='table'>
-              <tbody>
-                {
-                  tracks.map((track, i) => {
-                    return (
-                      <tr key={track.id} className='table__row'>
-                        <td onClick={clickHandler} id={`track_${albumId}_${i}`}><img alt="" src={albumCover}/>{"      "+`  ${i + 1}      ${track.title}`}</td>
-                      </tr>
-                    )
-                  })}
-              </tbody>
-            </table>
-          </div>
-
-          :  null
-
-       }
+        {/* <div className='graphic'></div> */}
       </div>
     </div>
   )
 }
 
-const TrackCardContainer = ({ albumCover, albumId, title, artistName, tracks, artistId }) => {
-  const currentTrackIndex = useSelector(state => state.player.currentTrackIndex)
+const TrackCardContainer = ({ albumCover, albumId, title, artistName, artistId, trackId, trackIndex }) => {
   const isPlaying = useSelector(state => state.player.isPlaying)
+  const currentTrackIndex = useSelector(state => state.player.currentTrackIndex)
+  const currentTrackId = useSelector(state => state.player.currentTrackId)
   const currentAlbum = useSelector(state => state.player.albumId)
-  const tracksIds = useSelector(state => state.player.tracksIds)
 
   return (
     <TrackCard
-      albumCover={albumCover}
-      albumId={albumId}
-      title={title}
-      artistName={artistName}
-      tracks={tracks}
-      artistId={artistId}
-      currentTrackIndex={currentTrackIndex}
-      isPlaying={isPlaying}
-      currentAlbum={currentAlbum}
-      tracksIds={tracksIds}
+    albumCover={albumCover}
+    albumId={albumId}
+    title={title}
+    trackId={trackId}
+    artistName={artistName}
+    artistId={artistId}
+    currentTrackIndex={currentTrackIndex}
+    isPlaying={isPlaying}
+    currentAlbum={currentAlbum}
+    currentTrackId={currentTrackId}
+    trackIndex={trackIndex}
     >
     </TrackCard>
   )

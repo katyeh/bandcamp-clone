@@ -2,11 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Controls from './Controls';
 import ProgressBar from './ProgressBar';
-// import ArtThumbnail from './ArtThumbnail';
+import ArtThumbnail from './ArtThumbnail';
 import { setCurrentTrack } from '../../store/actions/playerActions'
 import AudioMotion from './AudioMotion'
+import Details from './Details'
 
-function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
+function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
   const [clickedTime, setClickedTime] = useState();
   const dispatch = useDispatch()
   const [currentTime, setCurrentTime] = useState(0);
@@ -50,6 +51,8 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
   return (
     <div className="player">
       <div className='controls'>
+        {/* <div className="player__info">
+        </div> */}
         <Controls className='buttons'
           isPlaying={isPlaying}
           // setIsPlaying={setIsPlaying}
@@ -61,7 +64,10 @@ function Player({ tracks, track, currentTrackIndex, isPlaying, audio }) {
       </div>
       <AudioMotion audio={audio} />
       <div className="placeholder">
-        Album info would come here!
+        {/* <ArtThumbnail info={tracks[currentTrackIndex]} /> */}
+        {/* <Details
+          info={tracks[currentTrackIndex]}
+        /> */}
       </div>
     </div>
   )
@@ -73,6 +79,7 @@ const PlayerContainer = () => {
   const isPlaying = useSelector(state => state.player.isPlaying)
   // const [tracks, setTracks] = useState()
   const trackIndex = useSelector(state => Number(state.player.currentTrackIndex))
+  // debugger;
   // const trackUrl = useSelector(state => {
   //   if (!state.player.tracksData) return '';
   //   return state.player.tracksData[trackIndex].mp3_url;
