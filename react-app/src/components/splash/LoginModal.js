@@ -53,7 +53,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
   return (
     <div>
-      <button className="login__btn" onClick={() => setIsOpen(true)}>Sign in</button>
+      <button className="button--login" onClick={() => setIsOpen(true)}>Sign in</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}
@@ -94,7 +94,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
               onChange={updatePassword}
             />
           </div>
-          <div className="modal__btn__div">
+          <div className="modal__btn-container">
             <button className="modal__btn" type="submit">Login</button>
             <button className="modal__btn" onClick={onDemo} >Demo User</button>
           </div>

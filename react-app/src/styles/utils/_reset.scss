@@ -28,3 +28,14 @@ a {
     }
   }
 }
+
+.button {
+  &--login {
+    @include button-generic(transparent, rgba(0, 0, 0, .05));
+  }
+
+  &--signup {
+    width: 15rem;
+    @include button-gradient;
+  }
+}

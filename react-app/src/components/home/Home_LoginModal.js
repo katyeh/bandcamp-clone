@@ -54,7 +54,7 @@ const Login = ({ setAuthenticated }) => {
 
   return (
     <div>
-      <button className="homelogin__btn" onClick={() => setIsOpen(true)}>Log in</button>
+      <button className="homebutton--login" onClick={() => setIsOpen(true)}>Log in</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}

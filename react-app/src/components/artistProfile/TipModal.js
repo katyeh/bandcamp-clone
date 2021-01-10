@@ -22,7 +22,7 @@ const TipModal = ({user, artist}) => {
 
     return (
         <div>
-            <button className="signup__btn" onClick={() => setIsOpen(true)}>Tip</button>
+            <button className="button--signup" onClick={() => setIsOpen(true)}>Tip</button>
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={() => setIsOpen(false)}

@@ -55,7 +55,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
 
   return (
     <div>
-      <button className="signup__btn" onClick={() => setIsOpen(true)}>Create account</button>
+      <button className="button--signup" onClick={() => setIsOpen(true)}>Create account</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}
@@ -120,7 +120,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               placeholder="Confirm Password"
             ></input>
           </div>
-          <div className="modal__btn__div">
+          <div className="modal__btn-container">
             <button className="modal__btn" type="submit">Sign Up</button>
           </div>
         </form>

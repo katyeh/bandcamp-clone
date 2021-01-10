@@ -3,7 +3,7 @@
   grid-row: 1 / span 1;
   background-color: $color-dark;
   font-size: 1.4rem;
-  height: 5rem;
+  height: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 120rem minmax(0, 1fr);
 
@@ -57,7 +57,6 @@
     align-items: center;
     flex-grow: 1;
     justify-content: space-evenly;
-
     @include opacity-transition;
 
     & .active {
@@ -66,24 +65,11 @@
     
   }
 
-
   &__logout {
-    background-color: rgba(255, 255, 255, .2);
-    border: none;
-    border-radius: 3px;
-    font-size: 1rem;
-    color: $color-grey2;
-    font-size: 1.5rem;
+    @include button-generic(rgba(255, 255, 255, .2), $color-accent);
+    font-size: 1.5rem;;
     max-width: 8rem;
-    padding: 1rem;
-    text-align: center;
-    cursor: pointer;
-    height: 2.8rem;
-    transition: background-color .2s ease-in;
-
-    &:hover {
-      background-color: $color-accent;
-    }
+    font-weight: 400;
   }
 
   &__search {
@@ -114,7 +100,6 @@
     input {
       border-radius: 3px 0 0 3px;
       border: 0;
-      // height: 2.8rem;
       width: 25rem;
       position: relative;
       margin: 0;
