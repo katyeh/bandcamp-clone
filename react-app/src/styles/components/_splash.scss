@@ -31,21 +31,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 8rem;
-    height: 40vh;
+    justify-content: center;
+    height: 40rem;
     background-color: rgb(68, 68, 68);
     color: #fff;
+
+    h1 {
+      font-size: 3rem;
+    }
 
     p {
         padding: 2rem 0;
         font-weight: 400;
         color: #fff;
+        font-size: 1.8rem;
+    }
+
+    div {
+      margin-top: 2rem;
     }
 }
 
 .filler__div {
     background-color: $color-grey2;
-    height: 23vh;
+    height: 22rem;
 }
 
 .splash {
