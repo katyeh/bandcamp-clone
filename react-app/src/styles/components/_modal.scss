@@ -12,7 +12,6 @@
   margin: 0 auto;
   box-shadow: $box-shadow1;
   width: 65rem;
-  z-index: 1000000;
 
   &__header {
     display: flex;
@@ -40,7 +39,6 @@
     bottom: 0;
     outline: none;
     background-color: rgba(255, 255, 255, 0.8);
-    z-index: 3;
   }
 
   &__content {
@@ -103,7 +101,7 @@
 .ReactModal__Overlay {
   opacity: 0;
   transition: opacity 500ms ease-in-out;
-
+  z-index: 5;
 }
 
 .ReactModal__Overlay--after-open{

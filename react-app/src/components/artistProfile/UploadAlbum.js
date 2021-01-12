@@ -109,7 +109,7 @@ const UploadAlbum = ({ user, albums }) => {
             onRequestClose={() => setIsOpen(false)}
             contentLabel="Signup Modal"
             className="modal modal--signup modal__upload"
-            overlayclassName="modal__overlay"
+            overlayClassName="modal__overlay"
             shouldCloseOnOverlayClick={true}
         >
             <div className="modal__header">
@@ -147,7 +147,7 @@ const UploadAlbum = ({ user, albums }) => {
             onRequestClose={() => setIsOpen2(false)}
             contentLabel="Signup Modal"
             className="signup-modal"
-            overlayclassName="modal__overlay"
+            overlayClassName="modal__overlay"
             shouldCloseOnOverlayClick={true}
         >
             <div className="modal__header">

@@ -12,6 +12,12 @@
     width: 100%;
     position: absolute;
     z-index: 3;
+
+  & + .awssld {
+    .awssld--active {
+      z-index: -1;
+    }
+  }
 }
 
 #header {

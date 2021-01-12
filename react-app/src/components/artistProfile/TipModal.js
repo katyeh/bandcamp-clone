@@ -6,7 +6,6 @@ import CloseIcon from '@material-ui/icons/Close';
 Modal.setAppElement('#root');
 
 const TipModal = ({user, artist}) => {
-    // const [errors, setErrors] = useState([]);
     const [amount, setAmount] = useState("0");
     const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -28,7 +27,7 @@ const TipModal = ({user, artist}) => {
                 onRequestClose={() => setIsOpen(false)}
                 contentLabel="Tip Modal"
                 className="modal modal--tip"
-                overlayclassName="modal__overlay"
+                overlayClassName="modal__overlay"
                 shouldCloseOnOverlayClick={true}
             >
                 <div className="modal__header">
