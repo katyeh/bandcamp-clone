@@ -4,11 +4,40 @@ import Login from "./LoginModal";
 import Signup from "./SignupModal";
 import logo1 from "../../assets/busker_logo.png";
 import logo2 from "../../assets/busker_logo2.png";
-
+import headerImage1 from "../../assets/busker_header.jpeg";
+import AwesomeSlider from 'react-awesome-slider';
+import AwsSliderStyles from 'react-awesome-slider/src/styles.js';
 
 const Header = ( {authenticated, setAuthenticated} ) => {
-  return (
+
+  const startupScreen = (
     <div>
+      <img src={headerImage1} alt="header image 1"/>
+    </div>
+  );
+  
+  const slider = (
+    <AwesomeSlider
+      startupScreen={startupScreen}
+      // cssModule={styles}
+    >
+    </AwesomeSlider>
+  );
+
+  // const slider = (
+  //   <AwesomeSlider animation="cubeAnimation">
+  //     <div>
+  //   <img src="./busker.png"/>
+  // </div>
+  //     {/* <div data-src="../../assets/busker_logo2.png" /> */}
+  //   </AwesomeSlider>
+  // );
+
+  return (
+    <AwesomeSlider
+      startupScreen={startupScreen}
+      // cssModule={styles}
+    >
       <div className="header__container">
         <NavLink to='/splash'>
         <div className="header__logo">
@@ -31,7 +60,7 @@ const Header = ( {authenticated, setAuthenticated} ) => {
           </div>
         </div>
       </div>
-    </div>
+     </AwesomeSlider>
   )
 }
 
