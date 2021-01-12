@@ -37,18 +37,10 @@ const Header = ( {authenticated, setAuthenticated} ) => {
   // );
 
   return (
-    <AwesomeSlider
-      // startupScreen={startupScreen}
-      // cssModule={styles}
-    >
-      {/* <div className="header__test"></div> */}
-      {/* <div className="header__test"></div> */}
-      <div id="img" data-src={headerImage1}>
-        {/* <img data-src={headerImage1} style={{objectPosition: 'top'}}/> */}
-      </div>
-      {/* 
-      <div data-src={headerImage2} />
-      <div data-src={headerImage3} /> */}
+    <AwesomeSlider>
+      <div id="header__image1" data-src={headerImage1} alt="header image" />
+      <div id="header__image2" data-src={headerImage2} alt="header image" />
+      <div id="header__image3" data-src={headerImage3} alt="header image" />
       <div className="header__container">
         <NavLink to='/splash'>
         <div className="header__logo">
