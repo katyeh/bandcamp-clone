@@ -60,7 +60,7 @@ const Login = ({ setAuthenticated }) => {
         onRequestClose={() => setIsOpen(false)}
         contentLabel="Login Modal"
         className="login-modal"
-        overlayclassName="modal__overlay"
+        overlayClassName="modal__overlay"
         shouldCloseOnOverlayClick={true}
       >
         <div className="modal__header">

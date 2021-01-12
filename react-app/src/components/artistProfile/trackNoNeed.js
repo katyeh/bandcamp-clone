@@ -53,7 +53,7 @@ const UploadTrack = ({modalIsOpen, user}) => {
       onRequestClose={() => setIsOpen2(false)}
       contentLabel="Signup Modal"
       className="signup-modal"
-      overlayclassName="modal__overlay"
+      overlayClassName="modal__overlay"
       shouldCloseOnOverlayClick={true}
     >
       <div className="modal__header">

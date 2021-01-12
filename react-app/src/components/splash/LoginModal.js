@@ -59,7 +59,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
         onRequestClose={() => setIsOpen(false)}
         contentLabel="Login Modal"
         className="modal modal--login"
-        overlayclassName="modal__overlay"
+        overlayClassName="modal__overlay"
         shouldCloseOnOverlayClick={true}
         closeTimeoutMS={500}
       >

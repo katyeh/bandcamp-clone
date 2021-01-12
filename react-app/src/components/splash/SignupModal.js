@@ -61,7 +61,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
         onRequestClose={() => setIsOpen(false)}
         contentLabel="Signup Modal"
         className="modal modal--signup"
-        overlayclassName="modal__overlay"
+        overlayClassName="modal__overlay"
         shouldCloseOnOverlayClick={true}
         closeTimeoutMS={500}
       >

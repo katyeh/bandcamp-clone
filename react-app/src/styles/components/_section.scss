@@ -19,7 +19,7 @@
 
   &__contents {
     position: relative;
-    margin-bottom: 5rem;
+    margin-bottom: 1rem;
 
     &--left-scroll {
       @include carousel_button();
