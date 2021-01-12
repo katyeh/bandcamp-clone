@@ -8,9 +8,12 @@ import headerImage1 from "../../assets/busker_header.jpeg";
 import headerImage2 from "../../assets/busker_header2.jpeg";
 import headerImage3 from "../../assets/busker_header3.jpeg";
 import AwesomeSlider from 'react-awesome-slider';
-import _AwsSliderStyles from 'react-awesome-slider/src/styles.js';
+import withAutoplay from 'react-awesome-slider/dist/autoplay';
+import 'react-awesome-slider/src/styles.js';
 
 const Header = ( {authenticated, setAuthenticated} ) => {
+  const AutoplaySlider = withAutoplay(AwesomeSlider);
+
   return (
     <>
       <div className="header__container">
@@ -36,11 +39,11 @@ const Header = ( {authenticated, setAuthenticated} ) => {
         </div>
       </div>
 
-      <AwesomeSlider>
+      <AutoplaySlider play={true} interval={3000}>
         <div id="header__image1" data-src={headerImage1} alt="header image" />
         <div id="header__image2" data-src={headerImage2} alt="header image" />
         <div id="header__image3" data-src={headerImage3} alt="header image" />
-      </AwesomeSlider>
+      </AutoplaySlider>
     </>
   )
 }
