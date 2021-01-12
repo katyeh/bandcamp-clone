@@ -43,7 +43,7 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
       audio.currentTime = clickedTime;
       setClickedTime(null);
     }
-  }, [audio, clickedTime, currentTime, isPlaying]);
+  }, [audio, clickedTime, currentTime, isPlaying, currentTrackIndex]);
 
 
   if (!audio) return null;
@@ -64,11 +64,13 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
       </div>
       <AudioMotion audio={audio} />
       <div className="placeholder">
-        <div className="thumbnail"/>
+        <div style={{ backgroundImage: `url(${tracks[currentTrackIndex].album_art_url})` }} className="thumbnail" />
         {/* <ArtThumbnail info={tracks[currentTrackIndex]} /> */}
-        {/* <Details
-          info={tracks[currentTrackIndex]}
-        /> */}
+        <div className='details'>
+          {tracks[currentTrackIndex].title}
+          <br />
+          {tracks[currentTrackIndex].artist_name}
+        </div>
       </div>
     </div>
   )
@@ -81,7 +83,7 @@ const PlayerContainer = () => {
   const trackIndex = useSelector(state => Number(state.player.currentTrackIndex))
 
   const audioRef = useRef();
-  debugger
+  // debugger
   useEffect(() => {
     // (async () => await setTracks(trackList))()
 
@@ -90,7 +92,7 @@ const PlayerContainer = () => {
       audioRef.current.crossOrigin = 'anonymous';
       // audioRef.current.duration = duration;
     } else {
-      debugger
+      // debugger
       if (trackList) {
         audioRef.current.src = trackList[trackIndex].mp3_url;
       }
