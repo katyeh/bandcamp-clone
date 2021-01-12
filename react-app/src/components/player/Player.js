@@ -43,7 +43,7 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
       audio.currentTime = clickedTime;
       setClickedTime(null);
     }
-  }, [audio, clickedTime, currentTime, isPlaying]);
+  }, [audio, clickedTime, currentTime, isPlaying, currentTrackIndex]);
 
 
   if (!audio) return null;
@@ -64,10 +64,13 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
       </div>
       <AudioMotion audio={audio} />
       <div className="placeholder">
+        <div style={{ backgroundImage: `url(${tracks[currentTrackIndex].album_art_url})` }} className="thumbnail" />
         {/* <ArtThumbnail info={tracks[currentTrackIndex]} /> */}
-        {/* <Details
-          info={tracks[currentTrackIndex]}
-        /> */}
+        <div className='details'>
+          {tracks[currentTrackIndex].title}
+          <br />
+          {tracks[currentTrackIndex].artist_name}
+        </div>
       </div>
     </div>
   )
@@ -77,16 +80,10 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
 const PlayerContainer = () => {
   const trackList = useSelector(state => state.player.tracksData)
   const isPlaying = useSelector(state => state.player.isPlaying)
-  // const [tracks, setTracks] = useState()
   const trackIndex = useSelector(state => Number(state.player.currentTrackIndex))
-  // debugger;
-  // const trackUrl = useSelector(state => {
-  //   if (!state.player.tracksData) return '';
-  //   return state.player.tracksData[trackIndex].mp3_url;
-  // });
 
   const audioRef = useRef();
-
+  // debugger
   useEffect(() => {
     // (async () => await setTracks(trackList))()
 
@@ -95,6 +92,7 @@ const PlayerContainer = () => {
       audioRef.current.crossOrigin = 'anonymous';
       // audioRef.current.duration = duration;
     } else {
+      // debugger
       if (trackList) {
         audioRef.current.src = trackList[trackIndex].mp3_url;
       }
@@ -107,7 +105,7 @@ const PlayerContainer = () => {
   return (
     <>
       <Player
-        // track={track}
+        track={trackList[trackIndex]}
         tracks={trackList}
         currentTrackIndex={trackIndex}
         isPlaying={isPlaying}
