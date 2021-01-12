@@ -18,10 +18,22 @@
   }
 }
 
+.thumbnail {
+  height: 60px;
+  width: 60px;
+  // border: solid red 1px;
+  background-size: cover;
+}
+
+.details {
+  width: 200px;
+  padding-left: 10px;
+}
+
 .placeholder {
   // take this part out once done
   color: white;
-  border: 1px solid white;
+  // border: 1px solid white;
   //
 
   height: 100%;
@@ -29,6 +41,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  // width: 300px;
+  display: flex;
 }
 
 .audio-motion {
@@ -47,29 +61,29 @@
   }
 }
 
-.player__info{
-  height: 65px;
-  width: 200px;
-  font-size: 8px;
-  border: 1px solid red;
-  display: flex;
-  color: white;
+// .player__info{
+//   height: 65px;
+//   width: 200px;
+//   font-size: 8px;
+//   border: 1px solid red;
+//   display: flex;
+//   color: white;
 
-  .thumbnail{
-    border: 1px solid red;
-    // margin: auto;
-    width: 65px;
-    height: 65px;
-    img {
-      object-fit: cover;
-      width: 65px;
-      height: 65px;
-    }
-  }
-  .details {
-    width: 200px;
-  }
-}
+//   .thumbnail{
+//     border: 1px solid red;
+//     // margin: auto;
+//     width: 65px;
+//     height: 65px;
+//     img {
+//       object-fit: cover;
+//       width: 65px;
+//       height: 65px;
+//     }
+//   }
+//   .details {
+//     width: 200px;
+//   }
+// }
 
 
 .controls {
@@ -92,7 +106,7 @@
       padding-right: 10px;
     }
   }
-  
+
   i:hover{
     color: $color-accent-light;
   }

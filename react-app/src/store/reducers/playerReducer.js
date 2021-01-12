@@ -2,7 +2,8 @@ export const LOAD_ALBUM = 'LOAD_ALBUM'
 export const LOAD_PLAYING_LIST = 'LOAD_PLAYING_LIST'
 export const PLAY = 'PLAY'
 export const PAUSE = 'PAUSE'
-export const SET_TRACK = 'SET_TRACK' ;
+export const SET_TRACK = 'SET_TRACK';
+export const LOAD_PLAYER_TRACKS = 'LOAD_PLAYER_TRACKS';
 
 // const initialSong = {
 //   tracksData: {
@@ -22,15 +23,23 @@ export const SET_TRACK = 'SET_TRACK' ;
 export default function reducer(state = {}, action) {
   Object.freeze(state);
 
-  switch(action.type) {
+  switch (action.type) {
     case LOAD_ALBUM: {
       return {
         ...state,
         tracksData: action.album.tracks,
         tracksIds: action.album.tracks.map(track => Object.keys(track)[0]),
         albumId: action.id
+      }
+
     }
-  }
+    case LOAD_PLAYER_TRACKS: {
+      return {
+        ...state,
+        tracksData: action.tracks,
+        currentArtistId: action.id
+      }
+    }
 
     case SET_TRACK: {
       return {

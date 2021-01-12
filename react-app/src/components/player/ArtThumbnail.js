@@ -7,8 +7,8 @@ const ArtThumbnail = ({ info }) => {
 
     // <div className='player__info'>
       <div className='thumbnail'>
-        <img className='track' id={`album_${albumId}_0`} src={album_art_url} className='album-cover'></img>
-      </div>
+        {/* <img className='track' id={`album_${albumId}_0`} src={album_art_url} className='album-cover'></img> */}
+      {/* </div> */}
 
     // </div>
   )

@@ -25,7 +25,7 @@ const CurrentTracks = ({ getTracks, tracks }) => {
                             title={track.title}
                             artistName={track.artist_name}
                             trackId={track.id}
-                            artistId={track.artistd}
+                            artistId={track.artist_id}
                             trackIndex={i}
                         />
 
