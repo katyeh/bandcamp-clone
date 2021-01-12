@@ -5,6 +5,8 @@ import Signup from "./SignupModal";
 import logo1 from "../../assets/busker_logo.png";
 import logo2 from "../../assets/busker_logo2.png";
 import headerImage1 from "../../assets/busker_header.jpeg";
+import headerImage2 from "../../assets/busker_header2.jpeg";
+import headerImage3 from "../../assets/busker_header3.jpeg";
 import AwesomeSlider from 'react-awesome-slider';
 import AwsSliderStyles from 'react-awesome-slider/src/styles.js';
 
@@ -21,6 +23,7 @@ const Header = ( {authenticated, setAuthenticated} ) => {
       startupScreen={startupScreen}
       // cssModule={styles}
     >
+    
     </AwesomeSlider>
   );
 
@@ -35,9 +38,17 @@ const Header = ( {authenticated, setAuthenticated} ) => {
 
   return (
     <AwesomeSlider
-      startupScreen={startupScreen}
+      // startupScreen={startupScreen}
       // cssModule={styles}
     >
+      {/* <div className="header__test"></div> */}
+      {/* <div className="header__test"></div> */}
+      <div id="img" data-src={headerImage1}>
+        {/* <img data-src={headerImage1} style={{objectPosition: 'top'}}/> */}
+      </div>
+      {/* 
+      <div data-src={headerImage2} />
+      <div data-src={headerImage3} /> */}
       <div className="header__container">
         <NavLink to='/splash'>
         <div className="header__logo">
