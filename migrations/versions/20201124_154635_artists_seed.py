@@ -54,8 +54,8 @@ def upgrade():
             'bio': 'This is Drake, just trying to make it big out here in Toronto. Only love my bed and my momma.',
             'country': 'USA',
             'city': 'Toronto',
-            'profile_image_url': 'https://busker2.s3.amazonaws.com/images/drakeprofilepicture.png',
-            'cover_image_url': 'https://busker2.s3.amazonaws.com/coverimage/drakecover.jpeg',
+            'profile_image_url': 'https://busker2.s3.amazonaws.com/images/drakeprofile.jpg_485833bc-b5cc-4b3e-b9be-f655857b7487',
+            'cover_image_url': 'https://busker2.s3.amazonaws.com/coverimage/drakecover.jpg_6b9e4593-10ef-4084-a799-8e35329ec703',
             'tip_stash': 75,
             'dough': 100,
             'hashed_password': 'pbkdf2:sha256:150000$0Y70Jx11$5170eba1cde3b4481c1a289401d7273375faa4691e3ff10e8bd1ac4e9784a5c6'
@@ -89,7 +89,7 @@ def upgrade():
             'country': 'USA',
             'city': 'New Jersey',
             'profile_image_url': 'https://busker2.s3.amazonaws.com/images/bonjovi_prof.jpg',
-            'cover_image_url': 'https://busker2.s3.amazonaws.com/busker_logo.png',
+            'cover_image_url': 'https://busker2.s3.amazonaws.com/coverimage/bonjovicover.jpg_09bcceee-6ce2-42fd-a551-56bc37a52dba',
             'tip_stash': 275,
             'dough': 78,
             'hashed_password': 'pbkdf2:sha256:150000$0Y70Jx11$5170eba1cde3b4481c1a289401d7273375faa4691e3ff10e8bd1ac4e9784a5c6'
@@ -126,7 +126,7 @@ def upgrade():
             Appreciate your support and see you at the Grammys one day! xoxo''',
             'country': 'USA',
             'city': 'NY',
-            'profile_image_url': 'https://busker2.s3.amazonaws.com/images/ladygaga.jpeg',
+            'profile_image_url': 'https://busker2.s3.amazonaws.com/images/gagaprofile (2).jpg_a6e48bd5-9bd7-4871-801d-5fc90144cd03',
             'cover_image_url': 'https://busker2.s3.amazonaws.com/coverimage/ladygagacover.jpeg',
             'tip_stash': 82,
             'dough': 1000,
@@ -140,7 +140,7 @@ def upgrade():
             'country': 'Earth',
             'city': 'Paradise City',
             'profile_image_url': 'https://busker2.s3.amazonaws.com/defaultimage2.jpeg',
-            'cover_image_url': 'https://busker2.s3.amazonaws.com/busker_logo.png',
+            'cover_image_url': 'https://busker2.s3.amazonaws.com/coverimage/democover.png_a9395c90-0160-4e64-a384-7edb5308896d',
             'tip_stash': 120,
             'dough': 20000,
             'hashed_password': 'pbkdf2:sha256:150000$0Y70Jx11$5170eba1cde3b4481c1a289401d7273375faa4691e3ff10e8bd1ac4e9784a5c6'
@@ -160,4 +160,3 @@ def downgrade():
     op.drop_table('genres')
     op.drop_table('artists')
     # ### end Alembic commands ###
-
