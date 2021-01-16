@@ -2,16 +2,18 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Controls from './Controls';
 import ProgressBar from './ProgressBar';
-import ArtThumbnail from './ArtThumbnail';
 import { setCurrentTrack } from '../../store/actions/playerActions'
 import AudioMotion from './AudioMotion'
 import Details from './Details'
 
-function Player({ tracks, currentTrackIndex, isPlaying, audio, track }) {
+function Player({ tracks, currentTrackIndex, isPlaying, track }) {
   const [clickedTime, setClickedTime] = useState();
   const dispatch = useDispatch()
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [ audio, setAudio ] = useState()
+
+  const audioRef = useRef();
 
 
   const handleEnd = () => {
@@ -22,6 +24,23 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio, track }) {
       dispatch(setCurrentTrack(nextIndex))
     }
   };
+
+  useEffect(() => {
+    // (async () => await setTracks(trackList))()
+
+    if (!audioRef.current) {
+      audioRef.current = new Audio();
+      audioRef.current.crossOrigin = 'anonymous';
+      // audioRef.current.duration = duration;
+    }
+    // debugger
+    if (track) {
+      audioRef.current.src = track.mp3_url;
+      setAudio(audioRef.current)
+    }
+    // }
+  }, [track])
+
 
   useEffect(() => {
     if (isPlaying && audio) {
@@ -46,7 +65,7 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio, track }) {
   }, [audio, clickedTime, currentTime, isPlaying, currentTrackIndex]);
 
 
-  if (!audio || track) return null;
+  // if (!track) return null;
 
   return (
     <div className="player">
@@ -63,7 +82,8 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio, track }) {
         <ProgressBar currentTime={currentTime} duration={duration} onTimeUpdate={(time) => setClickedTime(time)} />
       </div>
       <AudioMotion audio={audio} />
-      <Details track={track}/>
+      <Details track={track} />
+
     </div>
   )
 }
@@ -74,25 +94,6 @@ const PlayerContainer = () => {
   const isPlaying = useSelector(state => state.player.isPlaying)
   const trackIndex = useSelector(state => Number(state.player.currentTrackIndex))
 
-  const audioRef = useRef();
-  // debugger
-  useEffect(() => {
-    // (async () => await setTracks(trackList))()
-
-    if (!audioRef.current) {
-      audioRef.current = new Audio();
-      audioRef.current.crossOrigin = 'anonymous';
-      // audioRef.current.duration = duration;
-    }
-      // debugger
-      if (trackList) {
-        audioRef.current.src = trackList[trackIndex].mp3_url;
-      }
-    // }
-  }, [trackList, trackIndex])
-
-  if (!trackList) return null
-
 
   return (
     <>
@@ -101,10 +102,8 @@ const PlayerContainer = () => {
         tracks={trackList}
         currentTrackIndex={trackIndex}
         isPlaying={isPlaying}
-        audio={audioRef.current}
 
       />
-      {/* <AudioMotion audio={audioRef.current} /> */}
     </>
   )
 }
