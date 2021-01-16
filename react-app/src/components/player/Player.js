@@ -7,7 +7,7 @@ import { setCurrentTrack } from '../../store/actions/playerActions'
 import AudioMotion from './AudioMotion'
 import Details from './Details'
 
-function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
+function Player({ tracks, currentTrackIndex, isPlaying, audio, track }) {
   const [clickedTime, setClickedTime] = useState();
   const dispatch = useDispatch()
   const [currentTime, setCurrentTime] = useState(0);
@@ -46,7 +46,7 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
   }, [audio, clickedTime, currentTime, isPlaying, currentTrackIndex]);
 
 
-  if (!audio) return null;
+  if (!audio || track) return null;
 
   return (
     <div className="player">
@@ -63,15 +63,7 @@ function Player({ tracks, currentTrackIndex, isPlaying, audio }) {
         <ProgressBar currentTime={currentTime} duration={duration} onTimeUpdate={(time) => setClickedTime(time)} />
       </div>
       <AudioMotion audio={audio} />
-      <div className="placeholder">
-        <div style={{ backgroundImage: `url(${tracks[currentTrackIndex].album_art_url})` }} className="thumbnail" />
-        {/* <ArtThumbnail info={tracks[currentTrackIndex]} /> */}
-        <div className='details'>
-          {tracks[currentTrackIndex].title}
-          <br />
-          {tracks[currentTrackIndex].artist_name}
-        </div>
-      </div>
+      <Details track={track}/>
     </div>
   )
 }
@@ -91,12 +83,12 @@ const PlayerContainer = () => {
       audioRef.current = new Audio();
       audioRef.current.crossOrigin = 'anonymous';
       // audioRef.current.duration = duration;
-    } else {
+    }
       // debugger
       if (trackList) {
         audioRef.current.src = trackList[trackIndex].mp3_url;
       }
-    }
+    // }
   }, [trackList, trackIndex])
 
   if (!trackList) return null

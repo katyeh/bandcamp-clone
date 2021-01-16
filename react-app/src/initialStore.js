@@ -1,6 +1,6 @@
 const initialStore = {
   player: {
-    currentTrackIndex: 0,
+    currentTrackIndex: '',
     // tracksData: [],
     // tracksIds: [],
     // albumId: null,
