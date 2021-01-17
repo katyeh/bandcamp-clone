@@ -6,7 +6,6 @@ from app.models import Artist
 def user_exists(form, field):
     print("Checking if user exists", field.data)
     email = field.data
-    print(field, '!!!')
     user = Artist.query.filter(Artist.email == email).first()
     if not user:
         raise ValidationError("User with the given email not found")
@@ -23,6 +22,7 @@ def password_matches(form, field):
 
 class LoginForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), 
-            Email('Please enter a valid email'), user_exists])
+            Email('Please enter a valid email'), 
+            user_exists])
     password = StringField('password', validators=[
-                           DataRequired(), password_matches])
+               DataRequired(), password_matches])
