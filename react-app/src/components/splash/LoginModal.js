@@ -32,7 +32,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
       setAuthenticated(true);
       dispatch(loadUser(user.id))
       setIsOpen(false);
-      history.push("/")
+      history.push("/");
     } else {
       setErrors(user.errors);
     }
