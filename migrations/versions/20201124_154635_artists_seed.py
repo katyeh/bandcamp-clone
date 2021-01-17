@@ -114,7 +114,7 @@ def upgrade():
         },
         {
             'name': 'Stefani Joanne Angelina Germanotta',
-            'username': 'Lady Gaga',
+            'username': 'LadyGaga',
             'email': 'ladygaga@queen.com',
             'bio': '''Hey, My name is Stefani. While I would love to be humble, I got to let
             you know that I’m going to be the next superstar! Don’t get fooled by my poker

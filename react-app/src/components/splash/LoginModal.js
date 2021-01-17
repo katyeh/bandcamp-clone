@@ -32,7 +32,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
       setAuthenticated(true);
       dispatch(loadUser(user.id))
       setIsOpen(false);
-      history.push("/")
+      history.push("/");
     } else {
       setErrors(user.errors);
     }
@@ -52,7 +52,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
   };
 
   return (
-    <div>
+    <>
       <button className="button--login" onClick={() => setIsOpen(true)}>Sign in</button>
       <Modal
         isOpen={modalIsOpen}
@@ -70,18 +70,20 @@ const Login = ({ authenticated, setAuthenticated }) => {
           </div>
         </div>
 
-        <form className="modal__form" onSubmit={onLogin}>
-          <div className="modal__error-container">
+        <div className="modal__error-container">
             {errors.map((error) => (
               <div className="modal__error" key={error.id}>{error}</div>
             ))}
-          </div>
+        </div>
+
+        <form className="modal__form" onSubmit={onLogin}>
           <div className="modal__content">
             <input
               name="email"
               type="text"
               placeholder="Email"
               value={email}
+              required={true}
               onChange={updateEmail}
             />
           </div>
@@ -91,6 +93,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
               type="password"
               placeholder="Password"
               value={password}
+              required={true}
               onChange={updatePassword}
             />
           </div>
@@ -99,24 +102,8 @@ const Login = ({ authenticated, setAuthenticated }) => {
             <button className="modal__btn" onClick={onDemo} >Demo User</button>
           </div>
         </form>
-
       </Modal>
-    </div>
-
-    // <nav>
-    //   <ul>
-    //     <li>
-    //       <NavLink to="/login" exact={true} activeClassName="active">
-    //         Sign In
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to="/sign-up" exact={true} activeClassName="active">
-    //         Create account
-    //       </NavLink>
-    //     </li>
-    //   </ul>
-    // </nav>
+    </>
   )
 }
 

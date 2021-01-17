@@ -71,6 +71,26 @@ def upgrade():
       {
         'track_id': 24,
         'artist_id': 5
+      },
+      {
+        'track_id': 1,
+        'artist_id': 7
+      },
+      {
+        'track_id': 2,
+        'artist_id': 7
+      },
+      {
+        'track_id': 15,
+        'artist_id': 7
+      },
+      {
+        'track_id': 16,
+        'artist_id': 7
+      },
+      {
+        'track_id': 20,
+        'artist_id': 7
       }
     ])
 

@@ -9,6 +9,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [errors, setErrors] = useState([]);
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -18,18 +19,19 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      let user = new FormData();
-      user.append('name', name);
-      user.append('username', username);
-      user.append('email', email);
-      user.append('password', password);
-      user = await dispatch(signupUser(user));
+    let user = new FormData();
+    user.append('name', name);
+    user.append('username', username);
+    user.append('email', email);
+    user.append('password', password);
+    user.append('repeat_password', repeatPassword);
+    user = await dispatch(signupUser(user));
 
-      if (user && !user.errors) {
-        setAuthenticated(true);
-        history.push("/");
-      }
+    if (user && !user.errors) {
+      setAuthenticated(true);
+      history.push("/");
+    } else {
+      setErrors(user.errors);
     }
   };
 
@@ -54,8 +56,10 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
   };
 
   return (
-    <div>
-      <button className="button--signup" onClick={() => setIsOpen(true)}>Create account</button>
+    <>
+      <button className="button--signup" onClick={() => setIsOpen(true)}>
+        Create account
+      </button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setIsOpen(false)}
@@ -72,15 +76,22 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
           </div>
         </div>
 
-        <form className="modal__form" onSubmit={onSignUp}>
+        <div className="modal__error-container">
+            {errors.map((error) => (
+              <div className="modal__error" key={error.id}>{error}</div>
+            ))}
+        </div>
 
+        <form className="modal__form" onSubmit={onSignUp}>
           <div className="modal__content">
             <input
               type="text"
               name="name"
               onChange={updateName}
               value={name}
-              placeholder="name"
+              required={true}
+              autoCapitalize="words"
+              placeholder="Name"
             ></input>
           </div>
           <div className="modal__content">
@@ -89,15 +100,17 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               name="username"
               onChange={updateUsername}
               value={username}
-              placeholder="username"
+              required={true}
+              placeholder="Username"
             ></input>
           </div>
           <div className="modal__content">
             <input
-              type="text"
+              type="email"
               name="email"
               onChange={updateEmail}
               value={email}
+              required={true}
               placeholder="Email"
             ></input>
           </div>
@@ -107,6 +120,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               name="password"
               onChange={updatePassword}
               value={password}
+              required={true}
               placeholder="Password"
             ></input>
           </div>
@@ -125,7 +139,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
           </div>
         </form>
       </Modal>
-    </div>
+    </>
   )
 }
 
