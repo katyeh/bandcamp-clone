@@ -1,3 +1,10 @@
+
+@mixin calc($key, $value) {
+  #{$key}: -webkit-calc(#{$value});
+  #{$key}: -moz-calc(#{$value});
+  #{$key}: calc(#{$value});
+}
+
 @mixin opacity-transition() {
   & a {
     opacity: .75;

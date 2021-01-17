@@ -70,12 +70,13 @@ const Login = ({ authenticated, setAuthenticated }) => {
           </div>
         </div>
 
-        <form className="modal__form" onSubmit={onLogin}>
-          <div className="modal__error-container">
+        <div className="modal__error-container">
             {errors.map((error) => (
               <div className="modal__error" key={error.id}>{error}</div>
             ))}
-          </div>
+        </div>
+
+        <form className="modal__form" onSubmit={onLogin}>
           <div className="modal__content">
             <input
               name="email"
@@ -101,7 +102,6 @@ const Login = ({ authenticated, setAuthenticated }) => {
             <button className="modal__btn" onClick={onDemo} >Demo User</button>
           </div>
         </form>
-
       </Modal>
     </div>
   )

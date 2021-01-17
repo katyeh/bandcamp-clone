@@ -76,12 +76,13 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
           </div>
         </div>
 
-        <form className="modal__form" onSubmit={onSignUp}>
-          <div className="modal__error-container">
+        <div className="modal__error-container">
             {errors.map((error) => (
               <div className="modal__error" key={error.id}>{error}</div>
             ))}
-          </div>
+        </div>
+
+        <form className="modal__form" onSubmit={onSignUp}>
           <div className="modal__content">
             <input
               type="text"
