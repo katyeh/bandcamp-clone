@@ -91,21 +91,23 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               onChange={updateName}
               value={name}
               required={true}
+              autoCapitalize="words"
               placeholder="Name"
             ></input>
           </div>
           <div className="modal__content">
             <input
               type="text"
-              name="Username"
+              name="username"
               onChange={updateUsername}
               value={username}
-              placeholder="username"
+              required={true}
+              placeholder="Username"
             ></input>
           </div>
           <div className="modal__content">
             <input
-              type="text"
+              type="email"
               name="email"
               onChange={updateEmail}
               value={email}

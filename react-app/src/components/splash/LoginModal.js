@@ -82,6 +82,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
               type="text"
               placeholder="Email"
               value={email}
+              required={true}
               onChange={updateEmail}
             />
           </div>
@@ -91,6 +92,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
               type="password"
               placeholder="Password"
               value={password}
+              required={true}
               onChange={updatePassword}
             />
           </div>
@@ -102,21 +104,6 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
       </Modal>
     </div>
-
-    // <nav>
-    //   <ul>
-    //     <li>
-    //       <NavLink to="/login" exact={true} activeClassName="active">
-    //         Sign In
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to="/sign-up" exact={true} activeClassName="active">
-    //         Create account
-    //       </NavLink>
-    //     </li>
-    //   </ul>
-    // </nav>
   )
 }
 
