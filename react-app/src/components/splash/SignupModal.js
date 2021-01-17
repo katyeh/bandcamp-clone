@@ -80,13 +80,13 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
               name="name"
               onChange={updateName}
               value={name}
-              placeholder="name"
+              placeholder="Name"
             ></input>
           </div>
           <div className="modal__content">
             <input
               type="text"
-              name="username"
+              name="Username"
               onChange={updateUsername}
               value={username}
               placeholder="username"
