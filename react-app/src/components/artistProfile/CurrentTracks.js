@@ -27,6 +27,7 @@ const CurrentTracks = ({ getTracks, tracks }) => {
                             trackId={track.id}
                             artistId={track.artist_id}
                             trackIndex={i}
+                            trackLikes={track.likes}
                         />
 
                     )

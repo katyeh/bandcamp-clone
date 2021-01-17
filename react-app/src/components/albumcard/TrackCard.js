@@ -1,8 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { play, pause, getAlbumPlayer, getTracksPlayer, setCurrentTrack } from '../../store/actions/playerActions';
+import Like from './Like';
 
-const TrackCard = ({ albumCover, albumId, title, artistName, artistId, currentArtistId, currentTrackIndex, isPlaying, currentAlbum, currentTrackId, trackId, trackIndex }) => {
+
+const TrackCard = ({ albumCover, albumId, title, artistName, artistId, currentArtistId, currentTrackIndex, isPlaying, currentAlbum, currentTrackId, trackId, trackIndex, trackLikes }) => {
   const dispatch = useDispatch();
 
   const parseAlbumId = (st) => {
@@ -56,7 +58,7 @@ const TrackCard = ({ albumCover, albumId, title, artistName, artistId, currentAr
           <img alt="" id={`album_${albumId}_0`} src={albumCover} className='track album-cover'></img>
         </div>
       </div>
-      <div className='right-container'>
+      <div className='trackalbum__container__right-container'>
         <div className='button-album-info'>
           <span className="fa-stack fa-lg">
             <i className="fa fa-circle fa-stack-2x icon-background"></i>
@@ -68,13 +70,14 @@ const TrackCard = ({ albumCover, albumId, title, artistName, artistId, currentAr
             <p className="title">{title}</p>
           </div>
         </div>
+        <Like trackId={trackId} trackLikes={trackLikes} />
         {/* <div className='graphic'></div> */}
       </div>
     </div>
   )
 }
 
-const TrackCardContainer = ({ albumCover, albumId, title, artistName, artistId, trackId, trackIndex }) => {
+const TrackCardContainer = ({ albumCover, albumId, title, artistName, artistId, trackId, trackIndex, trackLikes }) => {
   const isPlaying = useSelector(state => state.player.isPlaying)
   const currentTrackIndex = useSelector(state => state.player.currentTrackIndex)
   const currentTrackId = useSelector(state => state.player.currentTrackId)
@@ -95,6 +98,7 @@ const TrackCardContainer = ({ albumCover, albumId, title, artistName, artistId, 
       currentTrackId={currentTrackId}
       trackIndex={trackIndex}
       currentArtistId={currentArtistId}
+      trackLikes={trackLikes}
     >
     </TrackCard>
   )

@@ -128,3 +128,38 @@ def upload_track():
             return track.to_dict()
   except Exception as error:
     return jsonify(error=repr(error))
+
+
+@track_routes.route('/<int:track_id>/likes')
+def likes(track_id):
+    likes = Like.query.filter(Like.track_id == track_id).all()
+    return jsonify(likes = [like.to_dict() for like in likes])
+
+
+@track_routes.route('/<int:track_id>/likes', methods=["POST"])
+def new_like(track_id):
+  try:
+    data = json.loads(request.data)
+    track_id = track_id
+    artist_id = data['artist_id']
+
+    new_like = Like(track_id=track_id, artist_id=artist_id)
+
+    db.session.add(new_like)
+    db.session.commit()
+
+    like = Like.query.get(new_like.id)
+    return jsonify(like.to_dict())
+  except Exception as error:
+    return jsonify(error=repr(error))
+
+
+@track_routes.route('/<int:track_id>/artist/<int:artist_id>', methods=["DELETE"])
+def delete_like(artist_id, track_id):
+  try:
+    like = Like.query.filter(Like.artist_id == artist_id).filter(Like.track_id == track_id).first()
+    db.session.delete(like)
+    db.session.commit()
+    return like.to_dict()
+  except Exception as error:
+    return jsonify(repr(error))
