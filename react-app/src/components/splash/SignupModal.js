@@ -27,8 +27,6 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
     user.append('repeat_password', repeatPassword);
     user = await dispatch(signupUser(user));
 
-    debugger
-
     if (user && !user.errors) {
       setAuthenticated(true);
       history.push("/");
