@@ -56,7 +56,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
   };
 
   return (
-    <div>
+    <>
       <button className="button--signup" onClick={() => setIsOpen(true)}>
         Create account
       </button>
@@ -139,7 +139,7 @@ const SignupModal = ({authenticated, setAuthenticated}) => {
           </div>
         </form>
       </Modal>
-    </div>
+    </>
   )
 }
 

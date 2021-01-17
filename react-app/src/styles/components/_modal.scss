@@ -25,7 +25,9 @@
   &__error-container {
     position: absolute;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     @include calc("width", "100% - 6rem");
     height: 6rem;
     font-size: 1.2rem;
@@ -38,7 +40,6 @@
 
   &__error {
     height: 2.5rem;
-    // width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;

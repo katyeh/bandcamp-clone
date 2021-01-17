@@ -52,7 +52,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
   };
 
   return (
-    <div>
+    <>
       <button className="button--login" onClick={() => setIsOpen(true)}>Sign in</button>
       <Modal
         isOpen={modalIsOpen}
@@ -103,7 +103,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
           </div>
         </form>
       </Modal>
-    </div>
+    </>
   )
 }
 
