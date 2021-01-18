@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Modal from "react-modal";
-import './TipModal.css'
 import CloseIcon from '@material-ui/icons/Close';
 
 Modal.setAppElement('#root');
@@ -39,7 +38,7 @@ const TipModal = ({user, artist}) => {
 
                 <form onSubmit={onTip} >
                     <div className="modal__content">
-                        <label for="points">Choose Amount</label>
+                        <label htmlFor="points">Choose Amount</label>
                         <input
                             className="slider"
                             type="range"
@@ -54,12 +53,9 @@ const TipModal = ({user, artist}) => {
                     <div className="modal__content">
                         Amount: {amount} dough
                     </div>
-                    <div>
-                        <image src="./dough2.png"></image>
+                    <div className="modal__content">
+                        <button className="modal__btn" type="submit">TIP</button>
                     </div>
-                        <div className="modal__content">
-                            <button className="modal__btn" type="submit">TIP</button>
-                        </div>
                 </form>
             </Modal>
         </div>
