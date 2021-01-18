@@ -33,5 +33,6 @@ class Track(db.Model):
         "album_art_url": self.album.album_art_url,
         "release_date": self.album.release_date,
         "single": self.album.single,
-      }
+      },
+      "likes": [like.to_dict() for like in self.likes]
     }

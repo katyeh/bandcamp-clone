@@ -8,8 +8,8 @@ def get_likes(track_id):
     likes = Like.query.filter(Like.track_id == track_id).all()
     return jsonify(likes = [like.to_dict() for like in likes])
 
-@like_routes.route("/tracks/<int:track_id>/likes", methods=["POST"])
-def add_like(track_id):
+@like_routes.route("/tracks/likes", methods=["POST"])
+def add_like():
     try:
         track_id = request.json['track_id']
         artist_id = request.json['artist_id']

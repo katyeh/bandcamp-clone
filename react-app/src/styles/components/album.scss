@@ -2,11 +2,24 @@
   * {
     // outline: gray dotted 1px;
   }
-  padding: 30px;
-  display: flex;
-  // border: 1px solid black;
-  width: 100rem;
-  margin: auto;
+   display: flex;
+   justify-content: space-between;
+   padding: 3rem 0;
+   height: 100%;
+   width: 40vw;
+   min-width: 500px;
+
+   .left-container {
+      padding-left: 1rem;
+   }
+
+   .right-container {
+      width: 70rem;
+      right: 12rem;
+      // padding-right: 1rem;
+      padding: 5px 15px;
+
+   }
 
   .album__image{
     border: 1px solid $color-grey2;
@@ -19,11 +32,6 @@
       height: 100%;
     }
   }
-}
-
-.right-container {
-  padding: 5px 15px;
-
 }
 
   .button-album-info{

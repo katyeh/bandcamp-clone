@@ -1,10 +1,13 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { play, pause, getAlbumPlayer, setCurrentTrack } from '../../store/actions/playerActions';
+import { like, unLike } from '../../store/actions/trackActions'
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, currentTrackIndex, isPlaying, currentAlbum, currentTrackId, mode }) => {
   const dispatch = useDispatch();
-
+  const userId = localStorage.getItem('user_id')
 
   const parseAlbumId = (st) => {
     const chunks = st.split('_')
@@ -14,6 +17,25 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
   const parseIndex = (st) => {
     const chunks = st.split('_')
     return chunks[chunks.length - 1]
+  }
+
+  const checkIfLiked = (id, likes) => {
+    for (let i = 0; i < likes.length; i++) {
+      console.log(id, likes[i].artist_id)
+      if (parseInt(likes[i].artist_id) === parseInt(id)) {
+        return likes[i].id
+      }
+    }
+    return false
+  }
+
+  const onLike = (trackId) => {
+    console.log(trackId)
+    // dispatch(like(userId, trackId))
+  }
+
+  const onUnlike = (likeId) => {
+    // dispatch(unLike(likeId))
   }
 
   const buttonClickHandler = () => {
@@ -92,9 +114,10 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
               <tbody>
                 {
                   tracks.map((track, i) => {
+                    const likedId = checkIfLiked(userId, track.likes)
                     return (
                       <tr key={track.id} className='table__row'>
-                        <td onClick={clickHandler(i, track.id)} id={`track_${albumId}_${i}`}><img alt="" src={albumCover}/>{"      "+`  ${i + 1}      ${track.title}`}</td>
+                        <td onClick={clickHandler(i, track.id)} id={`track_${albumId}_${i}`}><img alt="" src={albumCover}/>{"      "+`  ${i + 1}      ${track.title}`}<span>{track.likes.length}</span></td>{likedId ? <i className="fas fa-heart" onClick={onUnlike(likedId)}/>:  <i className="far fa-heart" onClick={onLike(track.id)}/>}
                       </tr>
                     )
                   })}

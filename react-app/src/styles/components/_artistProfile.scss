@@ -91,23 +91,23 @@ background-size: cover;
    }
 }
 
-.album__container {
-   display: flex;
-   justify-content: space-between;
-   padding: 3rem 0;
-   height: 100%;
+// .album__container {
+//    display: flex;
+//    justify-content: space-between;
+//    padding: 3rem 0;
+//    height: 100%;
 
-   .left-container {
-      padding-left: 1rem;
-   }
+   // .left-container {
+   //    padding-left: 1rem;
+   // }
 
-   .right-container {
-      position: relative;
-      width: 70rem;
-      right: 12rem;
-      padding-right: 1rem;
-   }
-}
+   // .right-container {
+   //    position: relative;
+   //    width: 70rem;
+   //    right: 12rem;
+   //    padding-right: 1rem;
+   // }
+// }
 
 .album-track__btns {
    background-color: $color-dark;

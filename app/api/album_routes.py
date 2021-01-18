@@ -78,7 +78,7 @@ def delete_album(id):
 
 @album_routes.route("/player/<int:id>")
 def get_album_player(id):
-    tracks = Track.query.filter(Track.album_id == id).options(joinedload(Track.album), joinedload(Track.artist)).all()
+    tracks = Track.query.filter(Track.album_id == id).options(joinedload(Track.album), joinedload(Track.artist), joinedload(Track.likes)).all()
     if tracks:
         return {"tracks": [track.to_dict() for track in tracks]}
     else:
