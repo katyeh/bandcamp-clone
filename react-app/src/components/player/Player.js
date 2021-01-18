@@ -94,6 +94,7 @@ const PlayerContainer = () => {
   const isPlaying = useSelector(state => state.player.isPlaying)
   const trackIndex = useSelector(state => Number(state.player.currentTrackIndex))
 
+  if (!trackList) return null
 
   return (
     <>
