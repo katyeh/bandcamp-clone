@@ -85,6 +85,7 @@
   &__btn {
     &-container {
       display: flex;
+      justify-content: center;
       margin-top: 2rem;
     }
     @include button-generic($color-accent, $color-accent-dark);

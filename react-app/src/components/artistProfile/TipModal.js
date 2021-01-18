@@ -53,7 +53,7 @@ const TipModal = ({user, artist}) => {
                     <div className="modal__content">
                         Amount: {amount} dough
                     </div>
-                    <div className="modal__content">
+                    <div className="modal__btn-container">
                         <button className="modal__btn" type="submit">TIP</button>
                     </div>
                 </form>
