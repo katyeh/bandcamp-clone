@@ -19,23 +19,19 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 2rem;
   }
 
   &__error-container {
     position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     @include calc("width", "100% - 6rem");
-    height: 6rem;
+    max-height: 5rem;
     font-size: 1.2rem;
     line-height: 2rem;
     overflow: scroll;
     @include hide-scrollbar();
-    z-index: -1;
-    margin-top: 2rem;
   }
 
   &__error {
@@ -46,7 +42,7 @@
     background: $color-error-light;
     color: $color-error-dark;
     border-radius: 3px;
-    @include calc("width", "100% - 13rem");
+    @include calc("width", "100% - 9rem");
 
     &:not(:last-child) {
       margin-bottom: .5rem;
@@ -71,7 +67,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 6rem;
+    margin-top: 4rem;
     @include calc("height", "100% - 10rem");
 
     input {
@@ -113,11 +109,17 @@
 
   &--tip {
     height: 40rem;
+
+    form {
+      @include calc("height", "100% - 5rem");
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
   }
 }
 
 // React modal transitions
-
 .ReactModal__Overlay {
   opacity: 0;
   transition: opacity 500ms ease-in-out;
