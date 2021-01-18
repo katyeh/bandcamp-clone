@@ -117,7 +117,7 @@ const AlbumCard = ({ albumCover, albumId, title, artistName, tracks, artistId, c
                     const likedId = checkIfLiked(userId, track.likes)
                     return (
                       <tr key={track.id} className='table__row'>
-                        <td onClick={clickHandler(i, track.id)} id={`track_${albumId}_${i}`}><img alt="" src={albumCover}/>{"      "+`  ${i + 1}      ${track.title}`}<span>{track.likes.length}</span></td>{likedId ? <i className="fas fa-heart" onClick={onUnlike(likedId)}/>:  <i className="far fa-heart" onClick={onLike(track.id)}/>}
+                        <td onClick={clickHandler(i, track.id)} id={`track_${albumId}_${i}`}><img alt="" src={albumCover}/>{"      "+`  ${i + 1}      ${track.title}`}<span>{track.likes.length}</span></td>{likedId ? <FavoriteIcon className="fas fa-heart" onClick={onUnlike(likedId)}/>:  <FavoriteBorderIcon className="far fa-heart" onClick={onLike(track.id)}/>}
                       </tr>
                     )
                   })}
