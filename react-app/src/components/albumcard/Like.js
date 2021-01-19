@@ -13,14 +13,18 @@ const Like = ({ trackId, trackLikes }) => {
   useEffect(() => {
     trackLikes.forEach(like => {
       if (like.artist_id == user.id) {
-        setHeart(true)
+        setHeart(true);
       }
     })
   }, [trackLikes, heart, user.id])
 
+  useEffect(() => {
+    debugger
+  }, [trackLikes]);
+
   const onLike = () => {
-    dispatch(addLike(trackId, user.id))
-    setHeart(true)
+    dispatch(addLike(trackId, user.id));
+    setHeart(true);
     setLike(like + 1);
   };
 

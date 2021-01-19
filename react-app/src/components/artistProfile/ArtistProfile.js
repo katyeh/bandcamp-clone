@@ -18,14 +18,9 @@ function ArtistProfile({ getOneArtist, artist, user, albums, getAlbums}) {
   const [albumClass, setAlbumClass] = useState(true);
   const [trackClass, setTrackClass] = useState(false);
 
-
-
-
   useEffect(() => {
-    getAlbums()
+    getAlbums();
   }, [])
-
-
 
   let userProfile = false;
   const { id }  = useParams();

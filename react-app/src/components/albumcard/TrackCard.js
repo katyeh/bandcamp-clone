@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { play, pause, getAlbumPlayer, getTracksPlayer, setCurrentTrack } from '../../store/actions/playerActions';
 import Like from './Like';
 
 
-const TrackCard = ({ albumCover, albumId, title, artistName, artistId, currentArtistId, currentTrackIndex, isPlaying, currentAlbum, currentTrackId, trackId, trackIndex, trackLikes }) => {
+const TrackCard = ({ track, trackIndex, currentTrackIndex, isPlaying, currentAlbum, currentTrackId, currentArtistId }) => {
   const dispatch = useDispatch();
+  const [trackLikes, setTrackLikes] = useState(track.likes);
+
+  useEffect(() => {
+    setTrackLikes(track.likes);
+  }, [track.likes])
 
   const parseAlbumId = (st) => {
     const chunks = st.split('_')
@@ -18,9 +23,9 @@ const TrackCard = ({ albumCover, albumId, title, artistName, artistId, currentAr
   }
 
   const clickHandler = () => (e) => {
-    console.log(artistId, trackIndex, trackId)
+    // console.log(artistId, trackIndex, trackId)
 
-    if (currentTrackId === trackId) {
+    if (currentTrackId === track.id) {
       if (isPlaying) {
         dispatch(pause())
       } else {
@@ -28,14 +33,14 @@ const TrackCard = ({ albumCover, albumId, title, artistName, artistId, currentAr
       }
     }
     else {
-      if (artistId !== currentArtistId) {
+      if (track.artist_id !== currentArtistId) {
         (async () => {
-          await dispatch(getTracksPlayer(parseInt(artistId)))
+          await dispatch(getTracksPlayer(parseInt(track.artist_id)))
         })()
       }
 
       (async () => {
-        await dispatch(setCurrentTrack(trackIndex, trackId))
+        await dispatch(setCurrentTrack(trackIndex, track.id))
         await dispatch(pause())
         await dispatch(play())
       })()
@@ -55,29 +60,29 @@ const TrackCard = ({ albumCover, albumId, title, artistName, artistId, currentAr
     <div className='trackalbum__container'>
       <div className='left-container'>
         <div className='album__image'>
-          <img alt="" id={`album_${albumId}_0`} src={albumCover} className='track album-cover'></img>
+          <img alt="" id={`album_${track.album_id}_0`} src={track.album_art_url} className='track album-cover'></img>
         </div>
       </div>
       <div className='trackalbum__container__right-container'>
         <div className='button-album-info'>
           <span className="fa-stack fa-lg">
             <i className="fa fa-circle fa-stack-2x icon-background"></i>
-            <i id={`album_${albumId}_0`} onClick={clickHandler()} className={isPlaying && parseInt(trackId) === parseInt(currentTrackId) ? "fas fa-pause fa-stack-1x pause" : "fa fa-play fa-stack-1x play"} />
+            <i id={`album_${track.album_id}_0`} onClick={clickHandler()} className={isPlaying && parseInt(track.id) === parseInt(currentTrackId) ? "fas fa-pause fa-stack-1x pause" : "fa fa-play fa-stack-1x play"} />
           </span>
 
           <div>
-            <p className="artist" id={artistId} onClick={artistNameHandler}>{artistName}</p>
-            <p className="title">{title}</p>
+            <p className="artist" id={track.artist_id} onClick={artistNameHandler}>{track.artist_name}</p>
+            <p className="title">{track.title}</p>
           </div>
         </div>
-        <Like trackId={trackId} trackLikes={trackLikes} />
+        <Like trackId={track.id} trackLikes={track.likes} />
         {/* <div className='graphic'></div> */}
       </div>
     </div>
   )
 }
 
-const TrackCardContainer = ({ albumCover, albumId, title, artistName, artistId, trackId, trackIndex, trackLikes }) => {
+const TrackCardContainer = ({ track, trackIndex }) => {
   const isPlaying = useSelector(state => state.player.isPlaying)
   const currentTrackIndex = useSelector(state => state.player.currentTrackIndex)
   const currentTrackId = useSelector(state => state.player.currentTrackId)
@@ -86,19 +91,20 @@ const TrackCardContainer = ({ albumCover, albumId, title, artistName, artistId, 
 
   return (
     <TrackCard
-      albumCover={albumCover}
-      albumId={albumId}
-      title={title}
-      trackId={trackId}
-      artistName={artistName}
-      artistId={artistId}
+    track={track}
+      // albumCover={albumCover}
+      // albumId={albumId}
+      // title={title}
+      // trackId={trackId}
+      // artistName={artistName}
+      // artistId={artistId}
       currentTrackIndex={currentTrackIndex}
       isPlaying={isPlaying}
       currentAlbum={currentAlbum}
       currentTrackId={currentTrackId}
       trackIndex={trackIndex}
       currentArtistId={currentArtistId}
-      trackLikes={trackLikes}
+      // trackLikes={trackLikes}
     >
     </TrackCard>
   )

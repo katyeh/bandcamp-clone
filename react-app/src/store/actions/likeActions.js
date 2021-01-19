@@ -1,4 +1,5 @@
 import { GET_LIKES, ADD_LIKE, DELETE_LIKE } from '../reducers/likeReducer';
+import { UPDATE_LIKE } from '../reducers/trackReducer';
 
 export const getLikes = (id) => {
   return async (dispatch) => {
@@ -6,7 +7,7 @@ export const getLikes = (id) => {
       const res = await fetch(`/api/tracks/${id}/likes`)
       const likes = await res.json();
       if (res.ok) {
-        return dispatch({ type: GET_LIKES, ...likes })
+        return dispatch({ type: UPDATE_LIKE, likes })
       }
     } catch (e) {
       console.log(e);
