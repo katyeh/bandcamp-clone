@@ -14,7 +14,7 @@ export const getLikes = (id) => {
   }
 }
 
-export const addLike = (track_id, artist_id) => {
+export const addLike = (track_id, artist_id, currentArtistId) => {
   return async (dispatch) => {
     try {
       const res = await fetch(`/api/tracks/${track_id}/likes`, {

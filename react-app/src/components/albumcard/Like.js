@@ -1,39 +1,59 @@
 import React, { useEffect, useState } from 'react';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { addLike } from "../../store/actions/likeActions";
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useDispatch, useSelector } from 'react-redux';
-import DislikePost from './Dislike';
+import { like, unLike } from '../../store/actions/currentTracksAction'
 
-const Like = ({ trackId, trackLikes }) => {
+const Like = ({ trackId, trackLikes, artistId }) => {
   const user = useSelector(state => state.user);
-  const [heart, setHeart] = useState(false);
-  const [like, setLike] = useState(trackLikes.length)
+  const [heart, setHeart] = useState();
+  const [likeId, setLikeId] = useState('')
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    trackLikes.forEach(like => {
-      if (like.artist_id == user.id) {
-        setHeart(true)
+  const isHeart = () => {
+    for (let i = 0; i < trackLikes.length; i++) {
+      console.log('track', parseInt(trackLikes[i].artist_id), 'user', parseInt(user.id))
+      if (parseInt(trackLikes[i].artist_id) === parseInt(user.id)) {
+        setLikeId(trackLikes[i].id)
+        return true
       }
-    })
-  }, [trackLikes, heart, user.id])
+    }
+    return false
+  }
+
+  useEffect(() => {
+    setHeart(isHeart())
+
+  }, [ heart, trackLikes ])
+
+
 
   const onLike = () => {
-    dispatch(addLike(trackId, user.id))
-    setHeart(true)
-    setLike(like + 1);
+    // dispatch(addLike(trackId, user.id))
+    // setHeart(true)
+    // setLike(like + 1);
+    dispatch(like(trackId, user.id, artistId))
+  };
+
+  const onUnlike = () => {
+    // dispatch(addLike(trackId, user.id))
+    // setHeart(true)
+    // setLike(like + 1);
+    dispatch(unLike(likeId, artistId))
   };
 
   return (
     <div className="like">
       {heart ?
-        <DislikePost like={like} setLike={setLike} setHeart={setHeart} trackId={trackId} user={user} />
-      :
-      <div className="like-btn" onClick={() => onLike()} >
-        <FavoriteBorderIcon style={{fontSize: 25}} />
-      </div>
+        <div className="like-btn" onClick={() => onUnlike()} >
+          <FavoriteIcon button style={{ fontSize: 25 }} />
+        </div>
+        :
+        <div className="like-btn" onClick={() => onLike()} >
+          <FavoriteBorderIcon button style={{ fontSize: 25 }} />
+        </div>
       }
-      <p>{like}</p>
+      <p>{trackLikes.length}</p>
     </div>
   )
 }

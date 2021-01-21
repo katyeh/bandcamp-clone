@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { play, pause, getAlbumPlayer, getTracksPlayer, setCurrentTrack } from '../../store/actions/playerActions';
 import Like from './Like';
@@ -7,15 +7,7 @@ import Like from './Like';
 const TrackCard = ({ albumCover, albumId, title, artistName, artistId, currentArtistId, currentTrackIndex, isPlaying, currentAlbum, currentTrackId, trackId, trackIndex, trackLikes }) => {
   const dispatch = useDispatch();
 
-  const parseAlbumId = (st) => {
-    const chunks = st.split('_')
-    return chunks[chunks.length - 2]
-  }
 
-  const parseIndex = (st) => {
-    const chunks = st.split('_')
-    return chunks[chunks.length - 1]
-  }
 
   const clickHandler = () => (e) => {
     console.log(artistId, trackIndex, trackId)
@@ -36,9 +28,10 @@ const TrackCard = ({ albumCover, albumId, title, artistName, artistId, currentAr
 
       (async () => {
         await dispatch(setCurrentTrack(trackIndex, trackId))
-        await dispatch(pause())
-        await dispatch(play())
       })()
+
+      dispatch(play())
+
     }
     // else if (artistId === currentArtistId) {
     //   dispatch(setCurrentTrack(trackIndex, trackId))
@@ -70,19 +63,21 @@ const TrackCard = ({ albumCover, albumId, title, artistName, artistId, currentAr
             <p className="title">{title}</p>
           </div>
         </div>
-        <Like trackId={trackId} trackLikes={trackLikes} />
+        <Like trackId={trackId} trackLikes={trackLikes} artistId={artistId}/>
         {/* <div className='graphic'></div> */}
       </div>
     </div>
   )
 }
 
-const TrackCardContainer = ({ albumCover, albumId, title, artistName, artistId, trackId, trackIndex, trackLikes }) => {
+const TrackCardContainer = ({ albumCover, albumId, title, artistName, artistId, trackId, trackIndex, trackLikes, likes_count }) => {
   const isPlaying = useSelector(state => state.player.isPlaying)
   const currentTrackIndex = useSelector(state => state.player.currentTrackIndex)
   const currentTrackId = useSelector(state => state.player.currentTrackId)
   const currentAlbum = useSelector(state => state.player.albumId)
   const currentArtistId = useSelector(state => state.player.currentArtistId)
+
+  useState(() => {}, [likes_count])
 
   return (
     <TrackCard
