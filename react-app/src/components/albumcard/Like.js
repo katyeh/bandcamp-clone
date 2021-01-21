@@ -29,16 +29,10 @@ const Like = ({ trackId, trackLikes, artistId }) => {
 
 
   const onLike = () => {
-    // dispatch(addLike(trackId, user.id))
-    // setHeart(true)
-    // setLike(like + 1);
     dispatch(like(trackId, user.id, artistId))
   };
 
   const onUnlike = () => {
-    // dispatch(addLike(trackId, user.id))
-    // setHeart(true)
-    // setLike(like + 1);
     dispatch(unLike(likeId, artistId))
   };
 
