@@ -10,7 +10,7 @@ const CurrentTracks = ({ getTracks, tracks }) => {
     const artistId = Number.parseInt(id);
     useEffect(() => {
         getTracks(artistId)
-    }, [artistId])
+    }, [ artistId ])
 
     if (!tracks) return null
     return (
@@ -27,6 +27,8 @@ const CurrentTracks = ({ getTracks, tracks }) => {
                             trackId={track.id}
                             artistId={track.artist_id}
                             trackIndex={i}
+                            trackLikes={track.likes}
+                            likesCount={track}
                         />
 
                     )

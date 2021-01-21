@@ -6,11 +6,11 @@ export const getTracks = (user) => {
     try {
       const res = await fetch(`/api/tracks/home`);
       const data = await res.json();
-  
+
       if (res.ok) {
         return dispatch({type: GET_TRACKS, ...data});
       }
-      
+
       return dispatch({type: LOAD_ERROR, ...data});
 
     } catch(e) {

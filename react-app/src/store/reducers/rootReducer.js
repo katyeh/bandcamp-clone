@@ -9,6 +9,7 @@ import currentArtistReducer from './currentArtist'
 import currentTracks from './currentTracksReducer'
 import currentAlbums from './currentAlbumsReducer'
 import followers from './followersReducer'
+import likes from './likeReducer'
 
 const DESTROY_SESSION = "DESTROY_SESSION"
 export const destroySessionAction = () => ({
@@ -25,7 +26,8 @@ const appReducer = combineReducers({
   artists: artistReducer,
   currentTracks,
   currentAlbums,
-  followers
+  followers,
+  likes,
 });
 
 const rootReducer = (state, action) => {
