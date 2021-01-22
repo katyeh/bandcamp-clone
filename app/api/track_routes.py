@@ -154,10 +154,10 @@ def new_like(track_id):
     return jsonify(error=repr(error))
 
 
-@track_routes.route('/<int:track_id>/artist/<int:artist_id>', methods=["DELETE"])
-def delete_like(artist_id, track_id):
+@track_routes.route('/<int:like_id>/likes', methods=["DELETE"])
+def delete_like(like_id):
   try:
-    like = Like.query.filter(Like.artist_id == artist_id).filter(Like.track_id == track_id).first()
+    like = Like.query.filter(Like.id == like_id).first()
     db.session.delete(like)
     db.session.commit()
     return like.to_dict()

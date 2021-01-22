@@ -28,6 +28,7 @@ class Track(db.Model):
       "album_art_url": self.album.album_art_url,
       "artist_name": self.artist.name,
       "likes": [like.to_dict() for like in self.likes],
+      "likes_count": len(self.likes),
       "album": {
         "id": self.album.id,
         "title": self.album.title,
