@@ -15,7 +15,6 @@ function Player({ tracks, currentTrackIndex, isPlaying, track }) {
 
   const audioRef = useRef();
 
-
   const handleEnd = () => {
     const nextIndex = parseInt(currentTrackIndex) + 1;
     if (tracks && nextIndex > tracks.length - 1) {
@@ -26,19 +25,14 @@ function Player({ tracks, currentTrackIndex, isPlaying, track }) {
   };
 
   useEffect(() => {
-    // (async () => await setTracks(trackList))()
-
     if (!audioRef.current) {
       audioRef.current = new Audio();
       audioRef.current.crossOrigin = 'anonymous';
-      // audioRef.current.duration = duration;
     }
-    // debugger
     if (track) {
       audioRef.current.src = track.mp3_url;
       setAudio(audioRef.current)
     }
-    // }
   }, [track])
 
 
@@ -64,17 +58,12 @@ function Player({ tracks, currentTrackIndex, isPlaying, track }) {
     }
   }, [audio, clickedTime, currentTime, isPlaying, currentTrackIndex]);
 
-
-  // if (!track) return null;
-
   return (
     <div className="player">
       <div className='controls'>
-        {/* <div className="player__info">
         </div> */}
         <Controls className='buttons'
           isPlaying={isPlaying}
-          // setIsPlaying={setIsPlaying}
           currentTrackIndex={currentTrackIndex}
           setCurrentTrack={setCurrentTrack}
           tracks={tracks}
@@ -87,7 +76,6 @@ function Player({ tracks, currentTrackIndex, isPlaying, track }) {
     </div>
   )
 }
-
 
 const PlayerContainer = () => {
   const trackList = useSelector(state => state.player.tracksData)
@@ -103,7 +91,6 @@ const PlayerContainer = () => {
         tracks={trackList}
         currentTrackIndex={trackIndex}
         isPlaying={isPlaying}
-
       />
     </>
   )
